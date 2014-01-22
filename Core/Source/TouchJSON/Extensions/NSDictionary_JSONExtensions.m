@@ -29,13 +29,13 @@
 
 #import "NSDictionary_JSONExtensions.h"
 
-#import "MobFox_CJSONDeserializer.h"
+#import "CJSONDeserializer.h"
 
 @implementation NSDictionary (NSDictionary_JSONExtensions)
 
 + (id)dictionaryWithJSONData:(NSData *)inData error:(NSError **)outError
     {
-    return([[MobFox_CJSONDeserializer deserializer] deserialize:inData error:outError]);
+    return([[CJSONDeserializer deserializer] deserialize:inData error:outError]);
     }
 
 + (id)dictionaryWithJSONString:(NSString *)inJSON error:(NSError **)outError;

@@ -13,7 +13,8 @@
 #define HOSTNAME                    @"ads.mopub.com"
 #define HOSTNAME_FOR_TESTING        @"testing.ads.mopub.com"
 #define DEFAULT_PUB_ID              @"agltb3B1Yi1pbmNyDAsSBFNpdGUYkaoMDA"
-#define MP_SDK_VERSION              @"1.11.0.0"
+#define MP_SERVER_VERSION           @"8"
+#define MP_SDK_VERSION              @"1.17.0.0"
 
 // Sizing constants.
 #define MOPUB_BANNER_SIZE           CGSizeMake(320, 50)
@@ -22,11 +23,10 @@
 #define MOPUB_WIDE_SKYSCRAPER_SIZE  CGSizeMake(160, 600)
 
 // Miscellaneous constants.
-#define MINIMUM_REFRESH_INTERVAL    5.0
+#define MINIMUM_REFRESH_INTERVAL            5.0
+#define DEFAULT_BANNER_REFRESH_INTERVAL     60
+#define BANNER_TIMEOUT_INTERVAL             10
+#define INTERSTITIAL_TIMEOUT_INTERVAL       30
 
-// In-app purchase constants.
-#define STORE_RECEIPT_SUFFIX        @"/m/purchase"
-
-// Constant for conditional compilation of -[UIDevice uniqueIdentifier] (UDID). The SDK will never
-// utilize -[UIDevice uniqueIdentifier] if this value is set to 0.
-#define MOPUB_ENABLE_UDID           0
+// Feature Flags
+#define SESSION_TRACKING_ENABLED            1

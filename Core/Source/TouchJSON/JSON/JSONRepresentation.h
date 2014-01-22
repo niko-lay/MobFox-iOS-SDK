@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MobFox_JSONRepresentation
+@protocol JSONRepresentation
 
 @optional
 - (id)initWithJSONDataRepresentation:(NSData *)inJSONData;

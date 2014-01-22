@@ -272,7 +272,6 @@ static float animationDuration = 0.50;
     [self interstitialStopTimer];
 
     self.videoHTMLOverlayWebView.delegate = nil;
-
 }
 
 #pragma mark - Utilities

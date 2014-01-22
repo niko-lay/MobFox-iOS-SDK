@@ -9,15 +9,16 @@
 #import "UIDevice+IdentifierAddition.h"
 
 #import <AdSupport/AdSupport.h>
+#import "MobFoxMRAIDBannerAdapter.h"
+#import "MPBaseBannerAdapter.h"
+#import "MPAdView.h"
+#import "MPAdConfiguration.h"
 
-#import "MP_MPMRAIDBannerAdapter.h"
-#import "MP_MPAdView.h"
-#import "MP_MPBaseAdapter.h"
-#import "MP_MPAdConfiguration.h"
+
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPAdapterDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
 }
@@ -25,16 +26,23 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, strong) NSString *demoAdTypeToShow;
 @property (nonatomic, strong) NSString *userAgent;
 @property (nonatomic, strong) NSString *skipOverlay;
-@property (nonatomic, strong) MP_MPMRAIDBannerAdapter *adapter;
+@property (nonatomic, strong) MobFoxMRAIDBannerAdapter *adapter;
+@property (nonatomic, assign) CGFloat currentLatitude;
+@property (nonatomic, assign) CGFloat currentLongitude;
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
+
 @end
+
 
 @implementation MobFoxBannerView
 {
 	RedirectChecker *redirectChecker;
 }
+@synthesize currentLatitude;
+@synthesize currentLongitude;
+
 
 - (void)setup
 {
@@ -421,11 +429,19 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	{
 		NSString *html = [xml.documentRoot getNamedChild:@"htmlString"].text;
 
-		CGSize bannerSize = CGSizeMake(320, 50);
-		if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+        CGSize bannerSize;
+        if(adspaceHeight && adspaceWidth)
+        {
+            bannerSize = CGSizeMake(adspaceWidth, adspaceHeight);
+        }
+		else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 		{
 			bannerSize = CGSizeMake(728, 90);
 		}
+        else
+        {
+            bannerSize = CGSizeMake(320, 50);
+        }
 
 		UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, bannerSize.width, bannerSize.height)];
 
@@ -435,13 +451,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
             webView.delegate = (id)self;
             webView.userInteractionEnabled = YES;
-            [self addSubview:webView];
-
         } else {
 
             webView.delegate = nil;
             webView.userInteractionEnabled = NO;
-
+            
             UIImage *grayingImage = [self darkeningImageOfSize:bannerSize];
 
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -470,23 +484,34 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         NSData  *_data = [html dataUsingEncoding:NSUTF8StringEncoding];
 
         if(!self.adapter) {
-            self.adapter = [[MP_MPMRAIDBannerAdapter alloc] initWithAdapterDelegate:self];
+            self.adapter = [[MobFoxMRAIDBannerAdapter alloc] initWithDelegate:self];
         }
-
-        CGSize size = CGSizeMake(320.0, 50.0);
-
-        MP_MPAdConfiguration *mPAdConfiguration = [[MP_MPAdConfiguration alloc] init];
+        
+        CGSize size;
+        if(adspaceHeight && adspaceWidth)
+        {
+            size = CGSizeMake(adspaceWidth, adspaceHeight);
+        }
+        else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+		{
+			size = CGSizeMake(728, 90);
+		}
+        else
+        {
+            size = CGSizeMake(320, 50);
+        }
+        
+        
+        MPAdConfiguration *mPAdConfiguration = [[MPAdConfiguration alloc] init];
 
         mPAdConfiguration.adResponseData = _data;
-        mPAdConfiguration.adSize = size;
         mPAdConfiguration.preferredSize = size;
         mPAdConfiguration.adType = MPAdTypeBanner;
-        [self.adapter getAdWithConfiguration:mPAdConfiguration];
 
-        newAdView = self.adapter._adView;
+        [self.adapter getAdWithConfiguration:mPAdConfiguration containerSize:size];
 
+        newAdView = self.adapter.adView;
         [self.adapter unregisterDelegate];
-
         self.adapter = nil;
 
     }   else if ([adType isEqualToString:@"noAd"])
@@ -516,7 +541,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	{
 
         newAdView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-
+        
         if (CGRectEqualToRect(self.bounds, CGRectZero))
 		{
 			self.bounds = newAdView.bounds;
@@ -547,7 +572,19 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	@autoreleasepool
 	{
         NSString *mRaidCapable = @"1";
-
+        
+        NSString *adWidth = [NSString stringWithFormat:@"%d",adspaceWidth];
+        NSString *adHeight = [NSString stringWithFormat:@"%d",adspaceHeight];
+        NSString *adStrict;
+        if (adspaceStrict)
+        {
+            adStrict = @"1";
+        }
+        else
+        {
+            adStrict = @"0";
+        }
+        
         NSString *requestType;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
         {
@@ -573,7 +610,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                     o_iosadvidlimit = @"1";
                 }
             }
-
+            
             requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
@@ -586,6 +623,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 						   [publisherId stringByUrlEncoding],
 						   [osVersion stringByUrlEncoding],
 						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
+            
         } else {
 			requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
                            [mRaidCapable stringByUrlEncoding],
@@ -613,7 +651,39 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                        [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
 
 #endif
-
+        NSString *requestStringWithLocation;
+        if(locationAwareAdverts && self.currentLatitude && self.currentLongitude)
+        {
+            NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLatitude];
+            NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLongitude];
+            
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&latitude=%@&longitude=%@",
+                                 requestString,
+                                 [latitudeString stringByUrlEncoding],
+                                 [longitudeString stringByUrlEncoding]
+                                 ];
+        }
+        else
+        {
+            requestStringWithLocation = requestString;
+        }
+        
+        
+        NSString *fullRequestString;
+        if(adspaceHeight && adspaceWidth)
+        {
+            fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+                                requestStringWithLocation,
+                                [adWidth stringByUrlEncoding],
+                                [adHeight stringByUrlEncoding],
+                                [adStrict stringByUrlEncoding]
+                                ];
+        }
+        else
+        {
+            fullRequestString = requestStringWithLocation;
+        }
+        
         NSURL *serverURL = [self serverURL];
 
         if (!serverURL) {
@@ -626,9 +696,9 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
         NSURL *url;
         if ([serverURL isEqual:@"http://my.mobfox.com/request.php"]) {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, requestString]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
         } else {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sdk=banner&%@", serverURL, requestString]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sdk=banner&%@", serverURL, fullRequestString]];
         }
 
         NSMutableURLRequest *request;
@@ -682,6 +752,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 	}
 
+}
+
+- (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    self.currentLatitude = latitude;
+    self.currentLongitude = longitude;
 }
 
 - (void)showErrorLabelWithText:(NSString *)text
@@ -872,53 +947,59 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 {
 
     NSURL *url = [request URL];
-
-    switch (navigationType) {
-        case UIWebViewNavigationTypeLinkClicked:
-            break;
-        case UIWebViewNavigationTypeFormResubmitted:
-            break;
-        case UIWebViewNavigationTypeBackForward:
-            break;
-        case UIWebViewNavigationTypeReload:
-            break;
-        case UIWebViewNavigationTypeOther:
-            break;
-
-        default:
-            break;
-    }
-    if (navigationType == UIWebViewNavigationTypeLinkClicked || navigationType == UIWebViewNavigationTypeOther)
+    NSString *urlString = [url absoluteString];
+    if (navigationType == UIWebViewNavigationTypeLinkClicked)
 	{
-
-        NSString *urlString = [url absoluteString];
         if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] ) {
+            if(_tapThroughURL) {
+                NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
+                [request2 setHTTPMethod: @"GET"];
+                [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+            }
             _tapThroughURL = url;
             [self tapThrough:nil];
-
             return NO;
         } else {
-
             return YES;
         }
 
 	}
-
+    else if(navigationType == UIWebViewNavigationTypeOther)
+    {
+        NSString* documentURL = [[request mainDocumentURL] absoluteString];
+        
+        if( [urlString isEqualToString:documentURL]) {             //if they are the same this is a javascript href click
+            if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] ) {
+                if(_tapThroughURL) {
+                    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
+                    [request2 setHTTPMethod: @"GET"];
+                    [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+                }
+                _tapThroughURL = url;
+                [self tapThrough:nil];
+                return NO;
+            }
+        }
+    }
+    
     return YES;
 }
 
 #pragma mark -
-#pragma mark MPAdapterDelegate
+#pragma mark MPBannerAdapterDelegate
+- (MPAdView *)banner{
+    return (MPAdView *)self;
+}
 
-- (id<MPAdViewDelegate>)adViewDelegate{
+- (id<MPAdViewDelegate>)bannerDelegate{
     return nil;
 }
 
-- (MP_MPAdView *)adView{
-    return (MP_MPAdView *)self;
+- (CLLocation *)location{
+    return nil;
 }
 
-- (void)adapter:(MP_MPBaseAdapter *)adapter didFinishLoadingAd:(UIView *)ad shouldTrackImpression:(BOOL)shouldTrack
+- (void)adapter:(MPBaseBannerAdapter *)adapter didFinishLoadingAd:(UIView *)ad
 {
     bannerLoaded = YES;
 	if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
@@ -927,7 +1008,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)adapter:(MP_MPBaseAdapter *)adapter didFailToLoadAdWithError:(NSError *)error
+- (void)adapter:(MPBaseBannerAdapter *)adapter didFailToLoadAdWithError:(NSError *)error
 {
     bannerLoaded = NO;
 	if ([delegate respondsToSelector:@selector(mobfoxBannerView:didFailToReceiveAdWithError:)])
@@ -936,7 +1017,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)userActionWillBeginForAdapter:(MP_MPBaseAdapter *)adapter
+- (void)userActionWillBeginForAdapter:(MPBaseBannerAdapter *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillPresent:)])
     {
@@ -944,7 +1025,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     }
 }
 
-- (void)userActionDidFinishForAdapter:(MP_MPBaseAdapter *)adapter
+- (void)userActionDidFinishForAdapter:(MPBaseBannerAdapter *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionDidFinish:)])
 	{
@@ -952,7 +1033,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)userWillLeaveApplicationFromAdapter:(MP_MPBaseAdapter *)adapter
+- (void)userWillLeaveApplicationFromAdapter:(MPBaseBannerAdapter *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillLeaveApplication:)])
     {
@@ -962,6 +1043,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (CGSize)maximumAdSize
 {
+    if(adspaceWidth && adspaceHeight)
+    {
+        return CGSizeMake(adspaceWidth, adspaceHeight);
+    }
 	return CGSizeMake(320.0, 50.0);
 }
 
@@ -1001,6 +1086,12 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @synthesize userAgent;
 @synthesize skipOverlay;
 @synthesize adapter;
+@synthesize adspaceHeight;
+@synthesize adspaceWidth;
+@synthesize adspaceStrict;
+@synthesize locationAwareAdverts;
+
+
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MR_MRDimmingView : UIView {
+@interface MRDimmingView : UIView {
     BOOL _dimmed;
     CGFloat _dimmingOpacity;
 }

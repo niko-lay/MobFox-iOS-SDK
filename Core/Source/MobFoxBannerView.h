@@ -59,14 +59,22 @@ enum {
 @property (nonatomic, copy) NSString *advertisingSection;
 @property (nonatomic, assign) UIViewAnimationTransition refreshAnimation;
 
+@property (nonatomic, assign) NSInteger adspaceWidth;
+@property (nonatomic, assign) NSInteger adspaceHeight;
+@property (nonatomic, assign) BOOL adspaceStrict;
+
 @property (nonatomic, readonly, getter=isBannerLoaded) BOOL bannerLoaded;
 @property (nonatomic, readonly, getter=isBannerViewActionInProgress) BOOL bannerViewActionInProgress;
 
-@property (nonatomic, assign) BOOL    refreshTimerOff;
+@property (nonatomic, assign) BOOL refreshTimerOff;
 
 @property (strong, nonatomic) NSString *requestURL;
 
 @property (nonatomic, assign) BOOL allowDelegateAssigmentToRequestAd;
+
+@property (nonatomic, assign) BOOL locationAwareAdverts;
+
+- (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
 - (void)requestAd;
 

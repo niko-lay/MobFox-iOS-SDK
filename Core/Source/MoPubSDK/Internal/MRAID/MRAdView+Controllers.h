@@ -6,15 +6,9 @@
 //  Copyright (c) 2011 MoPub, Inc. All rights reserved.
 //
 
-#import "MR_MRAdView.h"
+#import "MRAdView.h"
 
-@interface MR_MRAdView (Controllers)
-
-- (void)fireChangeEventForProperty:(MR_MRProperty *)property;
-- (void)fireChangeEventsForProperties:(NSArray *)properties;
-- (void)fireErrorEventForAction:(NSString *)action withMessage:(NSString *)message;
-- (void)fireReadyEvent;
-- (void)fireNativeCommandCompleteEvent:(NSString *)command;
+@interface MRAdView (Controllers)
 
 // Delegate callback methods wrapped with -respondsToSelector: checks.
 - (void)adDidLoad;

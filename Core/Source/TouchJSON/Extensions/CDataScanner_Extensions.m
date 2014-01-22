@@ -36,7 +36,7 @@
 #define LS 0x2028 // Line Separator
 #define PS 0x2029 // Paragraph Separator
 
-@implementation MobFox_CDataScanner (CDataScanner_Extensions)
+@implementation CDataScanner (CDataScanner_Extensions)
 
 - (BOOL)scanCStyleComment:(NSString **)outComment
 {
@@ -45,12 +45,13 @@ if ([self scanString:@"/*" intoString:NULL] == YES)
 	NSString *theComment = NULL;
 	if ([self scanUpToString:@"*/" intoString:&theComment] == NO)
 		[NSException raise:NSGenericException format:@"Started to scan a C style comment but it wasn't terminated."];
-
+		
 	if ([theComment rangeOfString:@"/*"].location != NSNotFound)
 		[NSException raise:NSGenericException format:@"C style comments should not be nested."];
+	
 	if ([self scanString:@"*/" intoString:NULL] == NO)
 		[NSException raise:NSGenericException format:@"C style comment did not end correctly."];
-
+		
 	if (outComment != NULL)
 		*outComment = theComment;
 
@@ -116,6 +117,7 @@ else
     NSRange theStartRange = NSIntersectionRange((NSRange){ .location = MAX((NSInteger)self.scanLocation - 20, 0), .length = 20 + (NSInteger)self.scanLocation - 20 }, (NSRange){ .location = 0, .length = self.data.length });
     NSRange theEndRange = NSIntersectionRange((NSRange){ .location = self.scanLocation, .length = 20 }, (NSRange){ .location = 0, .length = self.data.length });
 
+
     NSString *theSnippet = [NSString stringWithFormat:@"%@!HERE>!%@",
         [[[NSString alloc] initWithData:[self.data subdataWithRange:theStartRange] encoding:NSUTF8StringEncoding] autorelease],
         [[[NSString alloc] initWithData:[self.data subdataWithRange:theEndRange] encoding:NSUTF8StringEncoding] autorelease]
@@ -127,7 +129,7 @@ else
         [NSNumber numberWithUnsignedInteger:self.scanLocation], @"location",
         theSnippet, @"snippet",
         NULL];
-    return(theUserInfo);
+    return(theUserInfo);    
     }
 
 @end

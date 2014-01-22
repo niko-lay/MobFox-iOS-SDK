@@ -202,18 +202,6 @@
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
 	self.url = request.URL;
-	
-    if( [self.url.host hasSuffix:@"itunes.apple.com"])
-    {
-        [connection cancel];
-        [self connectionDidFinishLoading:connection];
-        return nil;
-    }
-    else
-    {
-        return request;
-    }
-	
 	return request;
 }
 
@@ -241,18 +229,8 @@
 	NSString *scheme = [_url scheme];
 	NSString *host = [_url host];
 	NSString *path = [[_url path] stringByDeletingLastPathComponent];
-	
-    if( [self.url.host hasSuffix:@"itunes.apple.com"])
-    {
-        [self dismiss:self];
-        [[UIApplication sharedApplication] openURL:self.url];    }
-    else
-    {
-        NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@/", scheme, host, path]];
-        
-        [_webView loadData:receivedData MIMEType:self.mimeType textEncodingName:textEncodingName baseURL:baseURL];
-    }
-	
+	NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@/", scheme, host, path]];
+	[_webView loadData:receivedData MIMEType:self.mimeType textEncodingName:textEncodingName baseURL:baseURL];
 	[self webViewDidFinishLoad:_webView];
 }
 
