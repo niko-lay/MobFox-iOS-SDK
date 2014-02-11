@@ -15,7 +15,8 @@ typedef enum {
     MobFoxAdTypeInterstitialToVideo = 3,
     MobFoxAdTypeNoAdInventory = 4,
     MobFoxAdTypeError = 5,
-    MobFoxAdTypeUnknown = 6
+    MobFoxAdTypeUnknown = 6,
+    MobFoxAdTypeVAST = 7
 } MobFoxAdType;
 
 typedef enum {
