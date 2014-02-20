@@ -139,24 +139,20 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 {
     if (refreshTimerOff) {
         return;
-
     }
-
+    
     BOOL currentlyActive = (_refreshTimer!=nil);
 	if (active == currentlyActive)
 	{
 		return;
 	}
-	if (active && !bannerViewActionInProgress)
+    
+	if (active && !bannerViewActionInProgress && _refreshInterval)
 	{
-		if (_refreshInterval)
-		{
-            if ([self.demoAdTypeToShow isEqualToString:@""]) {
-                _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
-            } else {
-
-                _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestDemoAd) userInfo:nil repeats:YES];
-            }
+        if ([self.demoAdTypeToShow isEqualToString:@""]) {
+            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
+        } else {
+            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestDemoAd) userInfo:nil repeats:YES];
 		}
 	}
 	else
@@ -518,6 +514,9 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	{
 		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
 
+        _refreshInterval = 20;
+        [self setRefreshTimerActive:YES];
+        
 		NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
 		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 	}
