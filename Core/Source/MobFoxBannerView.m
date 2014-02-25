@@ -7,6 +7,7 @@
 #import "MobFoxAdBrowserViewController.h"
 #import "RedirectChecker.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "AdMobCustomEventBanner.h"
 
 #import <AdSupport/AdSupport.h>
 #import "MobFoxMRAIDBannerAdapter.h"
@@ -18,7 +19,7 @@
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
 }
@@ -30,8 +31,24 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, assign) CGFloat currentLatitude;
 @property (nonatomic, assign) CGFloat currentLongitude;
 
+@property (nonatomic, retain) UIView *bannerView;
+@property (nonatomic, retain) CustomEventBanner *customEventBanner;
+@property (nonatomic, retain) NSMutableArray *customEvents;
+
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
+@end
+
+@interface CustomEvent :NSObject {}
+@property (nonatomic, assign) NSString* className;
+@property (nonatomic, assign) NSString* optionalParameter;
+@property (nonatomic, assign) NSString* pixelUrl;
+
+@end
+
+@implementation CustomEvent
+{
+}
 
 @end
 
@@ -40,8 +57,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 {
 	RedirectChecker *redirectChecker;
 }
-@synthesize currentLatitude;
-@synthesize currentLongitude;
 
 
 - (void)setup
@@ -374,7 +389,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
-	NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
+    NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
 
     DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
     self.skipOverlay = [htmlElement.attributes objectForKey:@"skipoverlaybutton"];
@@ -395,7 +410,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 	_shouldScaleWebView = [[xml.documentRoot getNamedChild:@"scale"].text isEqualToString:@"yes"];
 	_shouldSkipLinkPreflight = [[xml.documentRoot getNamedChild:@"skippreflight"].text isEqualToString:@"yes"];
-	UIView *newAdView = nil;
+	_bannerView = nil;
 	NSString *adType = [xml.documentRoot.attributes objectForKey:@"type"];
     refreshAnimation = UIViewAnimationTransitionFlipFromLeft;
 	_refreshInterval = [[xml.documentRoot getNamedChild:@"refresh"].text intValue];
@@ -419,7 +434,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 		[button setImage:_bannerImage forState:UIControlStateNormal];
 		button.center = CGPointMake(roundf(self.bounds.size.width / 2.0), roundf(self.bounds.size.height / 2.0));
-		newAdView = button;
+		_bannerView = button;
 	}
 	else if ([adType isEqualToString:@"textAd"])
 	{
@@ -468,7 +483,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		webView.backgroundColor = [UIColor clearColor];
 		webView.opaque = NO;
 
-		newAdView = webView;
+		_bannerView = webView;
 	}
     else if ([adType isEqualToString:@"mraidAd"])
 	{
@@ -506,7 +521,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
         [self.adapter getAdWithConfiguration:mPAdConfiguration containerSize:size];
 
-        newAdView = self.adapter.adView;
+        _bannerView = self.adapter.adView;
         [self.adapter unregisterDelegate];
         self.adapter = nil;
 
@@ -536,34 +551,97 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
-	if (newAdView)
+
+    [_customEvents removeAllObjects];
+    DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
+#warning no error handling!
+    if(customEventsElement)
+    {
+        NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
+        for(int i=0; i<[customEventElements count];i++)
+        {
+            DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
+            CustomEvent *customEvent = [[CustomEvent alloc] init];
+            customEvent.className = [customEventElement getNamedChild:@"class"].text;
+            customEvent.optionalParameter = [customEventElement getNamedChild:@"classparameter"].text;
+            customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
+            [_customEvents addObject:customEvent];
+        }
+    }
+    
+	if (_bannerView && [_customEvents count] == 0)
 	{
+        [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
+	} else
+    {
+        [self loadCustomEventBanner];
+        if (!_customEventBanner)
+        {
+            [_customEvents removeAllObjects];
+            if(_bannerView)
+            {
+                [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
+            }
+        }
+    }
+}
 
-        newAdView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+- (void)showBannerView:(UIView*)nextBannerView withPreviousSubviews:(NSArray*)previousSubviews
+{
+    nextBannerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    
+    if (CGRectEqualToRect(self.bounds, CGRectZero))
+    {
+        self.bounds = nextBannerView.bounds;
+    }
+    
+    if ([previousSubviews count])
+    {
+        [UIView beginAnimations:@"flip" context:nil];
+        [UIView setAnimationDuration:1.5];
+        [UIView setAnimationTransition:refreshAnimation forView:self cache:NO];
+    }
+    
+    [self insertSubview:nextBannerView atIndex:0];
+    [previousSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    if ([previousSubviews count]) {
+        [UIView commitAnimations];
         
-        if (CGRectEqualToRect(self.bounds, CGRectZero))
-		{
-			self.bounds = newAdView.bounds;
-		}
+        [self performSelectorOnMainThread:@selector(reportRefresh) withObject:nil waitUntilDone:YES];
+    } else {
+        [self performSelectorOnMainThread:@selector(reportSuccess) withObject:nil waitUntilDone:YES];
+    }
+}
 
-		if ([previousSubviews count])
-		{
-			[UIView beginAnimations:@"flip" context:nil];
-			[UIView setAnimationDuration:1.5];
-			[UIView setAnimationTransition:refreshAnimation forView:self cache:NO];
-		}
-
-		[self insertSubview:newAdView atIndex:0];
-		[previousSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-		if ([previousSubviews count]) {
-			[UIView commitAnimations];
-
-			[self performSelectorOnMainThread:@selector(reportRefresh) withObject:nil waitUntilDone:YES];
-		} else {
-			[self performSelectorOnMainThread:@selector(reportSuccess) withObject:nil waitUntilDone:YES];
-		}
-	}
+- (void)loadCustomEventBanner
+{
+    CGSize size;
+    if(adspaceHeight && adspaceWidth)
+    {
+        size = CGSizeMake(adspaceWidth, adspaceHeight);
+    }
+    else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        size = CGSizeMake(728, 90);
+    }
+    else
+    {
+        size = CGSizeMake(320, 50);
+    }
+    
+    _customEventBanner = nil;
+    while ([_customEvents count] > 0 && !_customEventBanner)
+    {
+        CustomEvent *event = [_customEvents objectAtIndex:0];
+        [_customEvents removeObjectAtIndex:0];
+        if([event.className isEqual: @"AdMob"])
+        {
+            _customEventBanner = [[AdMobCustomEventBanner alloc] init];
+            _customEventBanner.delegate = (id)self;
+            [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+        }
+    }
 }
 
 - (void)asyncRequestAdWithPublisherId:(NSString *)publisherId
@@ -1062,6 +1140,57 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 {
 }
 
+#pragma mark CustomEventBannerDelegate
+
+- (void)customEventBannerDidLoadAd:(UIView *)ad {
+    bannerLoaded = YES;
+    NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
+   [self showBannerView:ad withPreviousSubviews:previousSubviews];
+    if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
+	{
+		[delegate mobfoxBannerViewDidLoadMobFoxAd:self];
+	}
+}
+
+- (void)customEventBannerDidFailToLoadAd
+{
+    [self loadCustomEventBanner];
+    NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
+    if (_customEventBanner)
+    {
+        return;
+    }
+    else if (_bannerView)
+    {
+        [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
+    }
+    else
+    {
+        bannerLoaded = NO;
+        if ([delegate respondsToSelector:@selector(mobfoxBannerView:didFailToReceiveAdWithError:)])
+        {
+            [delegate mobfoxBannerView:self didFailToReceiveAdWithError:nil];
+        }
+    }
+}
+
+- (void)customEventBannerWillExpand
+{
+    if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillPresent:)])
+	{
+		[delegate mobfoxBannerViewActionWillPresent:self];
+	}
+}
+
+- (void)customEventBannerWillClose
+{
+    if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillFinish:)])
+	{
+		[delegate mobfoxBannerViewActionWillFinish:self];
+	}
+}
+
+
 #pragma mark Notifications
 - (void) appDidBecomeActive:(NSNotification *)notification
 {
@@ -1089,6 +1218,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @synthesize adspaceWidth;
 @synthesize adspaceStrict;
 @synthesize locationAwareAdverts;
+
 
 
 
