@@ -14,6 +14,7 @@
 #import "MPBaseBannerAdapter.h"
 #import "MPAdView.h"
 #import "MPAdConfiguration.h"
+#import "CustomEvent.h"
 
 
 
@@ -39,18 +40,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 @end
 
-@interface CustomEvent :NSObject {}
-@property (nonatomic, assign) NSString* className;
-@property (nonatomic, assign) NSString* optionalParameter;
-@property (nonatomic, assign) NSString* pixelUrl;
-
-@end
-
-@implementation CustomEvent
-{
-}
-
-@end
 
 
 @implementation MobFoxBannerView
@@ -635,10 +624,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         CustomEvent *event = [_customEvents objectAtIndex:0];
         [_customEvents removeObjectAtIndex:0];
-        if([event.className isEqual: @"AdMob"])
+        if([event.className isEqualToString: @"AdMob"])
         {
             _customEventBanner = [[AdMobCustomEventBanner alloc] init];
-            _customEventBanner.delegate = (id)self;
+            _customEventBanner.delegate = self;
             [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
         }
     }
