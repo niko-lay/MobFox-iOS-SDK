@@ -42,7 +42,6 @@ enum {
 	UIViewAnimationTransition refreshAnimation;
 	__unsafe_unretained id <MobFoxBannerViewDelegate> delegate;
 
-	UIImage *_bannerImage;
 	BOOL _tapThroughLeavesApp;
 	BOOL _shouldScaleWebView;
 	BOOL _shouldSkipLinkPreflight;
@@ -67,7 +66,7 @@ enum {
 @property (nonatomic, readonly, getter=isBannerViewActionInProgress) BOOL bannerViewActionInProgress;
 
 @property (nonatomic, assign) BOOL refreshTimerOff;
-
+@property (nonatomic, retain) UIImage *_bannerImage;
 @property (strong, nonatomic) NSString *requestURL;
 
 @property (nonatomic, assign) BOOL allowDelegateAssigmentToRequestAd;

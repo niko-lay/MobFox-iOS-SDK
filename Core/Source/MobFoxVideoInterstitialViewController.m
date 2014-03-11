@@ -11,6 +11,8 @@
 #import "MobFoxAdBrowserViewController.h"
 #import "MobFoxToolBar.h"
 
+#import "MobFoxBannerView.h"
+
 #import "UIImage+MobFox.h"
 #import "UIButton+MobFox.h"
 
@@ -492,11 +494,11 @@ static float animationDuration = 0.50;
     }
 
     if ([adType isEqualToString:@"noAd"]) {
-        return MobFoxAdTypeInterstitialToVideo;
+        return MobFoxAdTypeNoAdInventory;
     }
 
     if ([adType isEqualToString:@"error"]) {
-        return MobFoxAdTypeInterstitialToVideo;
+        return MobFoxAdTypeError;
     }
     
     if ([adType isEqualToString:@"textAd"]) {
@@ -593,12 +595,14 @@ static float animationDuration = 0.50;
 
 - (void)asyncRequestAdWithPublisherId:(NSString *)publisherId
 {
-	@autoreleasepool 
+	@autoreleasepool
 	{
-        advertRequestInProgress = YES;
-
-        NSString *mRaidCapable = @"0";
-
+        NSString *mRaidCapable = @"1";
+        
+        NSString *adWidth = @"320";
+        NSString *adHeight = @"480";
+        NSString *adStrict = @"1";
+        
         NSString *requestType;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
         {
@@ -608,199 +612,138 @@ static float animationDuration = 0.50;
         {
             requestType = @"ipad_app";
         }
+        
         NSString *osVersion = [UIDevice currentDevice].systemVersion;
-
-        NSString *timestamp = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
-
+        
         NSString *requestString;
-
+        
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
         NSString *iosadvid;
         if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
             iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-
             NSString *o_iosadvidlimit = @"0";
             if (NSClassFromString(@"ASIdentifierManager")) {
-
+                
                 if (![ASIdentifierManager sharedManager].advertisingTrackingEnabled) {
                     o_iosadvidlimit = @"1";
                 }
             }
-
-            if (self.locationAwareAdverts && self.currentLatitude && self.currentLongitude) {
-
-                NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLatitude];
-                NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLongitude];
-
-                requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&o_iosadvid=%@&rt=%@&t=%@&i=%@&lon=%@&lat=%@",
-                               [mRaidCapable stringByUrlEncoding],
-                               [o_iosadvidlimit stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [[self browserAgentString] stringByUrlEncoding],
-                               [SDK_VERSION stringByUrlEncoding],
-                               [publisherId stringByUrlEncoding],
-                               [osVersion stringByUrlEncoding],
-                               [iosadvid stringByUrlEncoding],
-                               [requestType stringByUrlEncoding],
-                               [timestamp stringByUrlEncoding],
-                               [self.IPAddress stringByUrlEncoding],
-                               [longitudeString stringByUrlEncoding],
-                               [latitudeString stringByUrlEncoding]];
-
-            } else {
-
-                requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&o_iosadvid=%@&rt=%@&t=%@&i=%@",
-                               [mRaidCapable stringByUrlEncoding],
-                               [o_iosadvidlimit stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [[self browserAgentString] stringByUrlEncoding],
-                               [SDK_VERSION stringByUrlEncoding],
-                               [publisherId stringByUrlEncoding],
-                               [osVersion stringByUrlEncoding],
-                               [iosadvid stringByUrlEncoding],
-                               [requestType stringByUrlEncoding],
-                               [timestamp stringByUrlEncoding],
-                               [self.IPAddress stringByUrlEncoding]];
-
-            }
-
+            
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+						   [mRaidCapable stringByUrlEncoding],
+						   [o_iosadvidlimit stringByUrlEncoding],
+						   [requestType stringByUrlEncoding],
+						   [self.userAgent stringByUrlEncoding],
+						   [self.userAgent stringByUrlEncoding],
+						   [[self browserAgentString] stringByUrlEncoding],
+						   [iosadvid stringByUrlEncoding],
+						   [SDK_VERSION stringByUrlEncoding],
+						   [publisherId stringByUrlEncoding],
+						   [osVersion stringByUrlEncoding]];
+            
         } else {
-
-            if (self.locationAwareAdverts && self.currentLatitude && self.currentLongitude) {
-
-                NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLatitude];
-                NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLongitude];
-
-                requestString=[NSString stringWithFormat:@"c.mraid=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&rt=%@&t=%@&i=%@&lon=%@&lat=%@",
-                               [mRaidCapable stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [[self browserAgentString] stringByUrlEncoding],
-                               [SDK_VERSION stringByUrlEncoding],
-                               [publisherId stringByUrlEncoding],
-                               [osVersion stringByUrlEncoding],
-                               [requestType stringByUrlEncoding],
-                               [timestamp stringByUrlEncoding],
-                               [self.IPAddress stringByUrlEncoding],
-                               [longitudeString stringByUrlEncoding],
-                               [latitudeString stringByUrlEncoding]];
-
-            } else {
-
-                requestString=[NSString stringWithFormat:@"c.mraid=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&rt=%@&t=%@&i=%@",
-                               [mRaidCapable stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [self.userAgent stringByUrlEncoding],
-                               [[self browserAgentString] stringByUrlEncoding],
-                               [SDK_VERSION stringByUrlEncoding],
-                               [publisherId stringByUrlEncoding],
-                               [osVersion stringByUrlEncoding],
-                               [requestType stringByUrlEncoding],
-                               [timestamp stringByUrlEncoding],
-                               [self.IPAddress stringByUrlEncoding]];
-            }
-
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+                           [mRaidCapable stringByUrlEncoding],
+                           [requestType stringByUrlEncoding],
+                           [self.userAgent stringByUrlEncoding],
+                           [self.userAgent stringByUrlEncoding],
+                           [[self browserAgentString] stringByUrlEncoding],
+                           [SDK_VERSION stringByUrlEncoding],
+                           [publisherId stringByUrlEncoding],
+                           [osVersion stringByUrlEncoding]];
+            
         }
 #else
-
-        if (self.locationAwareAdverts && self.currentLatitude && self.currentLongitude) {
-
+        
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+                       [mRaidCapable stringByUrlEncoding],
+                       [requestType stringByUrlEncoding],
+                       [self.userAgent stringByUrlEncoding],
+                       [self.userAgent stringByUrlEncoding],
+                       [[self browserAgentString] stringByUrlEncoding],
+                       [SDK_VERSION stringByUrlEncoding],
+                       [publisherId stringByUrlEncoding],
+                       [osVersion stringByUrlEncoding]];
+        
+#endif
+        NSString *requestStringWithLocation;
+        if(locationAwareAdverts && self.currentLatitude && self.currentLongitude)
+        {
             NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLatitude];
             NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLongitude];
-
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&rt=%@&t=%@&i=%@&lon=%@&lat=%@",
-                           [mRaidCapable stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [[self browserAgentString] stringByUrlEncoding],
-                           [SDK_VERSION stringByUrlEncoding],
-                           [publisherId stringByUrlEncoding],
-                           [osVersion stringByUrlEncoding],
-                           [requestType stringByUrlEncoding],
-                           [timestamp stringByUrlEncoding],
-                           [self.IPAddress stringByUrlEncoding],
-                           [longitudeString stringByUrlEncoding],
-                           [latitudeString stringByUrlEncoding]];
-
-        } else {
-
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&rt=%@&t=%@&i=%@",
-                           [mRaidCapable stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [[self browserAgentString] stringByUrlEncoding],
-                           [SDK_VERSION stringByUrlEncoding],
-                           [publisherId stringByUrlEncoding],
-                           [osVersion stringByUrlEncoding],
-                           [requestType stringByUrlEncoding],
-                           [timestamp stringByUrlEncoding],
-                           [self.IPAddress stringByUrlEncoding]];
+            
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&latitude=%@&longitude=%@",
+                                         requestString,
+                                         [latitudeString stringByUrlEncoding],
+                                         [longitudeString stringByUrlEncoding]
+                                         ];
         }
+        else
+        {
+            requestStringWithLocation = requestString;
+        }
+        
+        
+        NSString *fullRequestString;
 
-#endif
+        fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+                                 requestStringWithLocation,
+                                 [adWidth stringByUrlEncoding],
+                                 [adHeight stringByUrlEncoding],
+                                 [adStrict stringByUrlEncoding]
+                                 ];
+
+        
         NSURL *serverURL = [self serverURL];
-
+        
         if (!serverURL) {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
-
+            
             NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
-
+        
         NSURL *url;
-        if ([serverURL isEqual:@"http://my.mobfox.com/vrequest.php"]) {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, requestString]];
-        } else {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sdk=vad&%@", serverURL, requestString]];
-        }
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
 
+        
         NSMutableURLRequest *request;
         NSError *error;
         NSURLResponse *response;
         NSData *dataReply;
-
+        
         request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod: @"GET"];
         [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
-
+        
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if ([self.demoAdTypeToShow isEqualToString:@"Video"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Video_Example_Newer" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"Interstitial"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Interstitial_Example_Newer" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"VideoToInterstitial"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"VideoToInterstitial_Example" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"InterstitialToVideo"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"InterstitialToVideo_Example" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
+        
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
-
+        
         if (!xml)
         {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid xml response from server" forKey:NSLocalizedDescriptionKey];
-
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing xml response from server" forKey:NSLocalizedDescriptionKey];
+            
             NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
-
+        NSString *bannerUrlString = [xml.documentRoot getNamedChild:@"imageurl"].text;
+        
+        if ([bannerUrlString length])
+        {
+            NSURL *bannerUrl = [NSURL URLWithString:bannerUrlString];
+            _bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
+        }
+        
         [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:xml waitUntilDone:YES];
-
-        self.demoAdTypeToShow = @"";
-
+        
 	}
+    
 }
+
 
 #pragma mark - Ad Creation
 
@@ -935,9 +878,15 @@ static float animationDuration = 0.50;
             break;
         }
             
-        case MobFoxAdTypeText:{
-            #warning implement
-            
+        case MobFoxAdTypeText:
+        case MobFoxAdTypeImage:
+        case MobFoxAdTypeMraid: {
+            if ([self interstitialFromBannerCreateAdvert:xml]) {
+                [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
+            } else {
+                [self videoFailedToLoad];
+            }
+            break;
         }
             
         case MobFoxAdTypeNoAdInventory:{
@@ -989,6 +938,50 @@ static float animationDuration = 0.50;
             }
     }
 }
+
+- (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
+    interstitialAutoCloseDisabled = YES;
+    interstitialSkipButtonDisplayed = YES;
+    
+    
+    self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
+    self.mobFoxInterstitialPlayerViewController.adInterstitialOrientation = adInterstitialOrientation;
+    self.mobFoxInterstitialPlayerViewController.view.backgroundColor = [UIColor clearColor];
+    self.mobFoxInterstitialPlayerViewController.view.frame = self.view.bounds;
+    self.mobFoxInterstitialPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.interstitialHoldingView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.interstitialHoldingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.interstitialHoldingView.backgroundColor = [UIColor clearColor];
+    self.interstitialHoldingView.autoresizesSubviews = YES;
+    
+    MobFoxBannerView* bannerView = [[MobFoxBannerView alloc] init];
+    bannerView.allowDelegateAssigmentToRequestAd = NO;
+    
+//    bannerView.delegate = self;
+    bannerView._bannerImage = _bannerImage;
+    
+    [bannerView performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:document waitUntilDone:YES];
+    
+    [self.interstitialHoldingView addSubview:bannerView];
+    
+    interstitialSkipButtonShow = YES;
+    
+    UIImage *buttonImage = [UIImage mobfoxSkipButtonImage];
+    UIImage *buttonDisabledImage = buttonDisabledImage = [UIImage mobfoxSkipButtonDisabledImage];
+    
+    float skipButtonSize = buttonSize + 4.0f;
+                
+    self.interstitialSkipButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.interstitialSkipButton setFrame:CGRectMake(0, 0, skipButtonSize, skipButtonSize)];
+    [self.interstitialSkipButton addTarget:self action:@selector(interstitialSkipAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.interstitialSkipButton setImage:buttonImage forState:UIControlStateNormal];
+    [self.interstitialSkipButton setImage:buttonDisabledImage forState:UIControlStateHighlighted];
+  
+    self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+
+    return [bannerView isBannerLoaded];
+}
+
 
 - (BOOL)interstitialCreateAdvert:(DTXMLElement*)interstitialElement {
     interstitialAutoCloseDelay = [[interstitialElement.attributes objectForKey:@"autoclose"] doubleValue];
@@ -2137,6 +2130,9 @@ static float animationDuration = 0.50;
 }
             break;
         case MobFoxAdTypeInterstitial:
+        case MobFoxAdTypeMraid:
+        case MobFoxAdTypeImage:
+        case MobFoxAdTypeText:
         case MobFoxAdTypeInterstitialToVideo:
             if(_customEventFullscreen) {
                 [_customEventFullscreen showFullscreenFromRootViewController:self];
@@ -2276,9 +2272,11 @@ static float animationDuration = 0.50;
             case MobFoxAdTypeInterstitialToVideo:
                 [self interstitialPlayAdvert];
                 break;
-#warning customEvent?
             case MobFoxAdTypeUnknown:
             case MobFoxAdTypeError:
+            case MobFoxAdTypeImage:
+            case MobFoxAdTypeText:
+            case MobFoxAdTypeMraid:
             case MobFoxAdTypeNoAdInventory:
                 break;
         }

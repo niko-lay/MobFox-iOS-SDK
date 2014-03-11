@@ -63,6 +63,7 @@ typedef enum {
     MobFoxAdBrowserViewController *_browser;
 
     NSString *requestURL;
+    UIImage *_bannerImage;
 
 }
 

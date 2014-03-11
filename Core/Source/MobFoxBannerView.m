@@ -406,7 +406,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	[self setRefreshTimerActive:YES];
 	if ([adType isEqualToString:@"imageAd"])
 	{
-		if (!_bannerImage)
+		if (!__bannerImage)
 		{
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error loading banner image" forKey:NSLocalizedDescriptionKey];
 			NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
@@ -421,7 +421,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		[button setFrame:CGRectMake(0, 0, bannerWidth, bannerHeight)];
 		[button addTarget:self action:@selector(tapThrough:) forControlEvents:UIControlEventTouchUpInside];
 
-		[button setImage:_bannerImage forState:UIControlStateNormal];
+		[button setImage:__bannerImage forState:UIControlStateNormal];
 		button.center = CGPointMake(roundf(self.bounds.size.width / 2.0), roundf(self.bounds.size.height / 2.0));
 		_bannerView = button;
 	}
@@ -807,13 +807,13 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             return;
         }
         NSString *bannerUrlString = [xml.documentRoot getNamedChild:@"imageurl"].text;
-
+        __bannerImage = nil;
         if ([bannerUrlString length])
         {
             NSURL *bannerUrl = [NSURL URLWithString:bannerUrlString];
-            _bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
+            __bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
         }
-
+        
         [self performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:xml waitUntilDone:YES];
 
 	}
@@ -1135,7 +1135,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     bannerLoaded = YES;
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
    [self showBannerView:ad withPreviousSubviews:previousSubviews];
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
+    if ([delegate respondsToSelector:@selector(mobfoxBannerViewD0idLoadMobFoxAd:)])
 	{
 		[delegate mobfoxBannerViewDidLoadMobFoxAd:self];
 	}
