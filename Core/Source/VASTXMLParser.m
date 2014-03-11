@@ -117,7 +117,7 @@
     creative.adId = [attributes objectForKey:@"adID"];
     creative.Id = [attributes objectForKey:@"id"];
     creative.apiFramework = [attributes objectForKey:@"apiFramwork"];
-    creative.sequence = [attributes objectForKey:@"sequence"];
+    creative.sequence = [[attributes objectForKey:@"sequence"] integerValue];
     
     DTXMLElement *linear = [element getNamedChild:@"Linear"];
     if(linear) {

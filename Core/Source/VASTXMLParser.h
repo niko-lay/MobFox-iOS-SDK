@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DTXMLElement.h"
-#import "VAST.h";
+#import "VAST.h"
 
 @interface VASTXMLParser : NSObject
 

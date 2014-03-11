@@ -761,17 +761,20 @@ static float animationDuration = 0.50;
 	}
     NSString *adType = [xml.documentRoot.attributes objectForKey:@"type"];
     self.advertAnimation = [xml.documentRoot.attributes objectForKey:@"animation"];
-
-    advertTypeCurrentlyPlaying = [self adTypeEnumValue:adType];
+    
+    if ([adType isEqualToString:@"vast"]) {
+        DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
+        advertTypeCurrentlyPlaying = [self VASTDecideTypeOfAdvert:htmlElement];
+    } else {
+         advertTypeCurrentlyPlaying = [self adTypeEnumValue:adType];
+    }
 
     videoWasSkipped = NO;
     videoCheckLoadedCount = 0;
     
-    
     //custom events:
     [_customEvents removeAllObjects];
     DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
-#warning no error handling!
     if(customEventsElement)
     {
         NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
@@ -796,14 +799,14 @@ static float animationDuration = 0.50;
     //eo custom events
     
     
+    
 
     switch (advertTypeCurrentlyPlaying) {
         case MobFoxAdTypeVideo:{
-#warning: implement VAST
-            DTXMLElement *videoElement = [xml.documentRoot getNamedChild:@"video"];
 
-            adVideoOrientation = [videoElement.attributes objectForKey:@"orientation"];
-            if ([self videoCreateAdvert:videoElement]) {
+            DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
+
+            if ([self videoCreateAdvert:htmlElement]) {
 
                 [self checkVideoLoadedAndReadyToPlay];
 
@@ -815,11 +818,8 @@ static float animationDuration = 0.50;
         }
 
         case MobFoxAdTypeInterstitial:{
-#warning: implement VAST
-            DTXMLElement *interstitialElement = [xml.documentRoot getNamedChild:@"interstitial"];
-
-            adInterstitialOrientation = [interstitialElement.attributes objectForKey:@"orientation"];
-            if ([self interstitialCreateAdvert:interstitialElement]) {
+            DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
+            if ([self interstitialCreateAdvert:htmlElement]) {
 
                 [self advertCreatedSuccessfully:MobFoxAdTypeInterstitial];
 
@@ -831,19 +831,14 @@ static float animationDuration = 0.50;
         }
 
         case MobFoxAdTypeVideoToInterstitial:{
-#warning: implement VAST
-            adVideoOrientation = [[xml.documentRoot getNamedChild:@"video"].attributes objectForKey:@"orientation"]; 
-            adInterstitialOrientation = [[xml.documentRoot getNamedChild:@"interstitial"].attributes objectForKey:@"orientation"];
+            DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
 
-            DTXMLElement *videoElement = [xml.documentRoot getNamedChild:@"video"];
-            DTXMLElement *interstitialElement = [xml.documentRoot getNamedChild:@"interstitial"];
-
-            if ([self videoCreateAdvert:videoElement]) {
+            if ([self videoCreateAdvert:htmlElement]) {
 
                 NSNumber *adType = [NSNumber numberWithInt:MobFoxAdTypeVideoToInterstitial];
 
                 NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            interstitialElement, @"interstitialElement",
+                                            htmlElement, @"interstitialElement",
                                             adType, @"adType", nil];
                 [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(checkVideoToInterstitialVideoLoadedAndReadyToPlay:) userInfo:dictionary repeats:NO];
 
@@ -855,19 +850,14 @@ static float animationDuration = 0.50;
         }
 
         case MobFoxAdTypeInterstitialToVideo:{
-#warning: implement VAST
-            adVideoOrientation = [[xml.documentRoot getNamedChild:@"video"].attributes objectForKey:@"orientation"];
-            adInterstitialOrientation = [[xml.documentRoot getNamedChild:@"interstitial"].attributes objectForKey:@"orientation"];
+            DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
 
-            DTXMLElement *videoElement = [xml.documentRoot getNamedChild:@"video"];
-            DTXMLElement *interstitialElement = [xml.documentRoot getNamedChild:@"interstitial"];
-
-            if ([self videoCreateAdvert:videoElement]) {
+            if ([self videoCreateAdvert:htmlElement]) {
 
                 NSNumber *adType = [NSNumber numberWithInt:MobFoxAdTypeInterstitialToVideo];
 
                 NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            interstitialElement, @"interstitialElement",
+                                            htmlElement, @"interstitialElement",
                                             adType, @"adType", nil];
                 [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(checkVideoToInterstitialVideoLoadedAndReadyToPlay:) userInfo:dictionary repeats:NO];
 
@@ -1329,23 +1319,84 @@ static float animationDuration = 0.50;
 
 }
 
-- (BOOL)VASTCreateAdvert:(DTXMLElement*)vastElement {
-#warning remove?
+- (NSInteger)VASTDecideTypeOfAdvert:(DTXMLElement*)vastElement {
     vastAds = [VASTXMLParser parseVAST: vastElement];
+    NSInteger interstitialSequence = -1;
+    NSInteger videoSequence = -1;
+    
+    for(VAST_Ad* ad in vastAds) {
+        if(ad.InLine) {
+            for(VAST_Creative* c in ad.InLine.creatives) {
+                if(c.linear && c.linear.mediaFiles.count != 0)
+                {
+                    videoSequence = c.sequence;
+                }
+                if(c.companionAds && c.companionAds.companions.count != 0) {
+                    interstitialSequence = c.sequence;
+                }
+            }
+        }
+    }
+    
+    if(interstitialSequence != -1 && videoSequence != -1) {
+        if(videoSequence < interstitialSequence) {
+            return MobFoxAdTypeVideoToInterstitial;
+        } else {
+            return MobFoxAdTypeInterstitialToVideo;
+        }
+    }
+    else if(videoSequence != -1) {
+        return MobFoxAdTypeVideo;
+    }
+    else if(interstitialSequence != -1) {
+        return MobFoxAdTypeInterstitial;
+    }
+    return MobFoxAdTypeError;
+}
+
+
+- (int)getTimeFromString:(NSString*)string {
+    
+    NSArray *components = [string componentsSeparatedByString:@":"];
+    
+    NSInteger hours   = [[components objectAtIndex:0] integerValue];
+    NSInteger minutes = [[components objectAtIndex:1] integerValue];
+    NSInteger seconds = [[components objectAtIndex:2] integerValue];
+    
+    return (hours * 60 * 60) + (minutes * 60) + seconds;
+}
+
+- (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement {
+    vastAds = [VASTXMLParser parseVAST: videoElement];
+    
     if(vastAds)
     {
-        VAST_Ad *vastAd = [vastAds objectAtIndex:0];
-        VAST_Creative *creative = [vastAd.InLine.creatives objectAtIndex:0];
-        VAST_Linear *linear = creative.linear;
-        VAST_MediaFile *mediaFile = [linear.mediaFiles objectAtIndex:0];
+        VAST_Ad *vastAd;
+        VAST_Creative *creative;
+        VAST_Linear *linear;
+        VAST_MediaFile *mediaFile;
+        
+        for(VAST_Ad* ad in vastAds) {
+            if(ad.InLine) {
+                for(VAST_Creative* c in ad.InLine.creatives) {
+                    if(c.linear && c.linear.mediaFiles.count != 0)
+                    {
+                        vastAd = ad;
+                        creative = c;
+                        linear = c.linear;
+                        mediaFile = [c.linear.mediaFiles objectAtIndex:0];
+                        break;
+                    }
+                }
+            }
+            if(mediaFile) break;
+        }
+        
         if(!mediaFile)
         {
             return NO;
         }
-   
-        NSString *adVideoDeliveryType = mediaFile.delivery;
-        NSString *adVideoDeliveryBitRate = mediaFile.bitrate;
-        CGSize   adVideoDimensions = CGSizeMake(mediaFile.width,  mediaFile.height);
+        
         NSString *adVideoURL = mediaFile.url;
         
         NSArray *videoTrackingEvents = linear.trackingEvents;
@@ -1353,7 +1404,7 @@ static float animationDuration = 0.50;
         {
             return NO;
         }
-  
+        
         
         [self advertAddNotificationObservers:MobFoxAdGroupVideo];
         
@@ -1382,8 +1433,8 @@ static float animationDuration = 0.50;
         if (videoVideoFailedToLoad) {
             return NO;
         }
-//        DTXMLElement *navigationBarsElement = [videoElement getNamedChild:@"navigation"];
-
+        //        DTXMLElement *navigationBarsElement = [videoElement getNamedChild:@"navigation"];
+        
         videoSkipButtonShow = (linear.skipoffset != nil);
         
         if(videoSkipButtonShow) {
@@ -1426,7 +1477,7 @@ static float animationDuration = 0.50;
         if (videoVideoFailedToLoad) {
             return NO;
         }
-     
+        
         if ([videoTrackingEvents count]) {
             
             self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
@@ -1448,7 +1499,7 @@ static float animationDuration = 0.50;
             }
             
         }
-
+        
         VAST_NonLinear *nonLinear;
         for (VAST_Creative *creative in vastAd.InLine.creatives)
         {
@@ -1489,7 +1540,7 @@ static float animationDuration = 0.50;
         }
         else if(nonLinear.htmlResource)
         {
-             self.videoHTMLOverlayHTML = nonLinear.htmlResource;
+            self.videoHTMLOverlayHTML = nonLinear.htmlResource;
         }
         
         
@@ -1503,220 +1554,7 @@ static float animationDuration = 0.50;
     {
         return NO;
     }
-    
-}
 
-- (int)getTimeFromString:(NSString*)string {
-    
-    NSArray *components = [string componentsSeparatedByString:@":"];
-    
-    NSInteger hours   = [[components objectAtIndex:0] integerValue];
-    NSInteger minutes = [[components objectAtIndex:1] integerValue];
-    NSInteger seconds = [[components objectAtIndex:2] integerValue];
-    
-    return (hours * 60 * 60) + (minutes * 60) + seconds;
-}
-
-- (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement {
-
-    NSString *adVideoDeliveryType;
-    NSString *adVideoDeliveryBitRate;
-    CGSize   adVideoDimensions;
-    NSString *adVideoURL;
-
-    BOOL     adVideoToolbarBarsShow;
-    BOOL     adVideoToolbarBarsAllowTap;
-
-    NSArray *videoTrackingEvents;
-
-    NSString *adVideoHTMLOverlayType;
-    DTXMLElement *creativeElement = [videoElement getNamedChild:@"creative"];
-
-    NSMutableDictionary *creativeElementAttributes = creativeElement.attributes;
-    adVideoDeliveryType = [creativeElementAttributes objectForKey:@"delivery"];
-    adVideoDeliveryBitRate = [creativeElementAttributes objectForKey:@"bitrate"];
-
-    int adWith = [[creativeElementAttributes objectForKey:@"width"] intValue];
-    int adHeight = [[creativeElementAttributes objectForKey:@"height"] intValue];
-
-    adVideoDimensions = CGSizeMake(adWith, adHeight);
-
-    adVideoURL = creativeElement.text;
-
-    if (adVideoURL) {
-        [self advertAddNotificationObservers:MobFoxAdGroupVideo];
-
-        videoCheckLoadedCount = 0;
-        videoVideoFailedToLoad = NO;
-        self.mobFoxVideoPlayerViewController = [[MobFoxVideoPlayerViewController alloc] init]; 
-        self.mobFoxVideoPlayerViewController.adVideoOrientation = adVideoOrientation;
-        self.mobFoxVideoPlayerViewController.view.backgroundColor = [UIColor clearColor];
-
-        self.videoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:adVideoURL]];
-
-        [self.videoPlayer prepareToPlay];
-
-        self.videoPlayer.view.backgroundColor = [UIColor blackColor];
-        self.videoPlayer.view.frame = self.view.bounds;
-        self.videoPlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.mobFoxVideoPlayerViewController.view.frame = self.view.bounds;
-        self.mobFoxVideoPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-        self.videoPlayer.shouldAutoplay = NO;
-
-        self.videoPlayer.controlStyle = MPMovieControlStyleNone;
-
-        videoDuration = [[videoElement getNamedChild:@"duration"].text intValue];
-
-        if (videoVideoFailedToLoad) {
-            return NO;
-        }
-        DTXMLElement *navigationBarsElement = [videoElement getNamedChild:@"navigation"];
-
-        adVideoToolbarBarsShow = [[navigationBarsElement.attributes objectForKey:@"show"] isEqualToString:@"1"];
-
-        if(adVideoToolbarBarsShow) {
-            [self videoCreateTopToolbar:navigationBarsElement];
-            [self videoCreateBottomToolbar:navigationBarsElement];
-
-            adVideoToolbarBarsAllowTap = [[navigationBarsElement.attributes objectForKey:@"allowtap"] isEqualToString:@"1"];
-
-            if (adVideoToolbarBarsAllowTap && (self.videoTopToolbar || self.videoBottomToolbar)) {
-
-                UIView *coveringView = [[UIView alloc] initWithFrame:self.videoPlayer.view.bounds];
-
-                UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-                singleTap.delegate = self;
-
-                [coveringView addGestureRecognizer:singleTap];
-
-                coveringView.backgroundColor = [UIColor clearColor];
-
-                coveringView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-                [self.videoPlayer.view addSubview:coveringView];
-
-            }
-
-            if (self.videoTopToolbar) {
-                [self.videoPlayer.view addSubview:self.videoTopToolbar];
-            }
-
-            if (self.videoBottomToolbar) {
-                [self.videoPlayer.view addSubview:self.videoBottomToolbar];
-            }
-
-        }
-
-        if (videoVideoFailedToLoad) {
-            return NO;
-        }
-        NSMutableDictionary *skipButtonElementAttributes = [videoElement getNamedChild:@"skipbutton"].attributes;
-        videoSkipButtonShow = [[skipButtonElementAttributes objectForKey:@"show"] isEqualToString:@"1"];
-
-        if(videoSkipButtonShow || !adVideoToolbarBarsShow) {
-
-            videoSkipButtonDisplayDelay = (NSTimeInterval)[[skipButtonElementAttributes objectForKey:@"showafter"] doubleValue];
-            UIImage *buttonImage = [UIImage imageNamed:@""];
-            UIImage *buttonDisabledImage = [UIImage imageNamed:@""];
-
-            NSString *adSkipButtonGraphicURL = [skipButtonElementAttributes objectForKey:@"graphic"];
-
-            if (![adSkipButtonGraphicURL isEqualToString:@""]) {
-
-                NSURL *imageURL = [NSURL URLWithString:adSkipButtonGraphicURL];
-                buttonImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:imageURL]];
-                buttonDisabledImage = buttonImage;
-            }
-            if (!buttonImage) {
-                buttonImage = [UIImage mobfoxSkipButtonImage];
-                buttonDisabledImage = [UIImage mobfoxSkipButtonDisabledImage];
-            }
-
-            if (buttonImage) {
-                float skipButtonSize = buttonSize + 4.0f;
-
-                self.videoSkipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                [self.videoSkipButton setFrame:CGRectMake(0, 0, skipButtonSize, skipButtonSize)];
-                [self.videoSkipButton addTarget:self action:@selector(videoSkipAction:) forControlEvents:UIControlEventTouchUpInside];
-                [self.videoSkipButton setImage:buttonImage forState:UIControlStateNormal];
-                [self.videoSkipButton setImage:buttonDisabledImage forState:UIControlStateHighlighted];
-
-                if (self.videoTopToolbar) {
-
-                    UIBarButtonItem *flexiblespace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                                      UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
-                    UIBarButtonItem *theButton = [[UIBarButtonItem alloc] initWithCustomView:self.videoSkipButton];
-                    self.videoTopToolbarButtons = [NSMutableArray arrayWithArray:self.videoTopToolbar.items];
-                    [self.videoTopToolbarButtons addObject:flexiblespace];
-                    [self.videoTopToolbarButtons addObject:theButton];
-
-                } else {
-
-                    self.videoSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-
-                }
-            }
-
-        }
-
-        if (videoVideoFailedToLoad) {
-            return NO;
-        }
-        DTXMLElement *trackingEventsElement = [videoElement getNamedChild:@"trackingevents"];
-        videoTrackingEvents = [trackingEventsElement getNamedChildren:@"tracker"];
-
-        if ([videoTrackingEvents count]) {
-
-            self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
-
-            for (DTXMLElement *tracker in videoTrackingEvents)
-            {
-
-                NSMutableDictionary *trackerAttributes = tracker.attributes;
-
-                NSString *type = [trackerAttributes objectForKey:@"type"];
-                NSString *clickUrl = tracker.text;
-
-                if (clickUrl && type) {
-                    NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                   clickUrl, type, 
-                                                   nil];
-
-                    [self.advertTrackingEvents addObject:trackingEvent];
-                }
-
-            }
-
-        }
-
-        DTXMLElement *htmloverlayElement = [videoElement getNamedChild:@"htmloverlay"];
-        NSMutableDictionary *htmloverlayElementAttributes = htmloverlayElement.attributes;
-
-        videoHTMLOverlayDisplayDelay = (NSTimeInterval)[[htmloverlayElementAttributes objectForKey:@"showafter"] doubleValue];
-        adVideoHTMLOverlayType = [htmloverlayElementAttributes objectForKey:@"type"];
-
-        if([adVideoHTMLOverlayType isEqualToString:@"url"]) {
-            NSString *adVideoHTMLOverlayShowURL = [htmloverlayElementAttributes objectForKey:@"url"];
-
-            NSError* error = nil;
-            self.videoHTMLOverlayHTML = [NSString stringWithContentsOfURL:[NSURL URLWithString:adVideoHTMLOverlayShowURL] encoding:NSUTF8StringEncoding error:&error];
-
-        } else {
-
-            self.videoHTMLOverlayHTML = htmloverlayElement.text;
-
-        }
-
-        if (videoVideoFailedToLoad) {
-            return NO;
-        }
-
-        return YES;
-
-    }
-    return NO;
 }
 
 - (BOOL)videoCreateTopToolbar:(DTXMLElement*)xml {

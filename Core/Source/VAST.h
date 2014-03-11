@@ -64,7 +64,7 @@
 
 @interface VAST_Creative : NSObject
 @property (strong, nonatomic) NSString *Id;
-@property (strong, nonatomic) NSString *sequence;
+@property (nonatomic) NSInteger sequence;
 @property (strong, nonatomic) NSString *adId;
 @property (strong, nonatomic) NSString *apiFramework;
 @property (strong, nonatomic) VAST_Linear *linear;
