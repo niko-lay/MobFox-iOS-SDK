@@ -122,7 +122,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
 - (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement;
-- (BOOL)VASTCreateAdvert:(DTXMLElement*)vastElement;
 - (BOOL)videoCreateTopToolbar:(DTXMLElement*)xml;
 - (BOOL)videoCreateBottomToolbar:(DTXMLElement*)xml;
 - (void)videoReplayButtonAction:(id)sender;
@@ -974,27 +973,67 @@ static float animationDuration = 0.50;
 
 
 - (BOOL)interstitialCreateAdvert:(DTXMLElement*)interstitialElement {
-    interstitialAutoCloseDelay = [[interstitialElement.attributes objectForKey:@"autoclose"] doubleValue];
-    interstitialAutoCloseDisabled = (interstitialAutoCloseDelay == 0);
-    interstitialSkipButtonDisplayed = NO;
-
-    NSString *interstitialURLorMarkup = [interstitialElement.attributes objectForKey:@"type"];
-    if ([interstitialURLorMarkup isEqualToString:@"url"]) {
-        self.interstitialURL = [interstitialElement.attributes objectForKey:@"url"];
-
+    vastAds = [VASTXMLParser parseVAST: interstitialElement];
+    if(!vastAds) return NO;
+    
+    
+    VAST_Creative *creative;
+    VAST_Companion *companion;
+    
+    for(VAST_Ad* ad in vastAds) {
+        if(ad.InLine) {
+            for(VAST_Creative* c in ad.InLine.creatives) {
+                if(c.companionAds && c.companionAds.companions.count != 0)
+                {
+                    creative = c;
+                    companion = [c.companionAds.companions objectAtIndex:0];
+                    break;
+                }
+            }
+        }
+        if(companion) break;
+    }
+    
+    if(!companion)
+    {
+        return NO;
+    }
+    
+    interstitialAutoCloseDisabled = YES;
+    interstitialSkipButtonDisplayed = YES;
+    
+    
+    if (companion.staticResource)
+    {
+        interstitialLoadedFromURL = NO;
+        if([companion.staticResource.type rangeOfString:@"image"].location != NSNotFound)
+        {
+            self.interstitialMarkup = [NSString stringWithFormat: @"<img src=\"%@\">",companion.staticResource.url];
+        }
+        else if([companion.staticResource.type rangeOfString:@"x-javascript"].location != NSNotFound)
+        {
+            self.interstitialMarkup = [NSString stringWithFormat: @"<script src=\"%@\"></script>",companion.staticResource.url];
+        }
+        
+    }
+    else if(companion.iFrameResource)
+    {
+        self.interstitialURL = companion.iFrameResource;
         if (self.interstitialURL) {
             NSError* error = nil;
             self.interstitialMarkup = [NSString stringWithContentsOfURL:[NSURL URLWithString:self.interstitialURL] encoding:NSUTF8StringEncoding error:&error];
-
+            
             interstitialLoadedFromURL = YES;
         }
-
-    } else {
-
-        self.interstitialMarkup = [interstitialElement getNamedChild:@"markup"].text;
-
+    }
+    else if(companion.htmlResource)
+    {
+        self.interstitialMarkup = companion.htmlResource;
         interstitialLoadedFromURL = NO;
-
+    }
+    else
+    {
+        return NO;
     }
 
     if (self.interstitialMarkup) {
