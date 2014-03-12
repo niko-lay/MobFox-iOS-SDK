@@ -230,7 +230,7 @@ static float animationDuration = 0.50;
         statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.width;
     }
 
-    CGRect mainFrame = [UIScreen mainScreen].applicationFrame;
+    CGRect mainFrame = [UIScreen mainScreen].bounds;
     self.view = [[UIView alloc] initWithFrame:mainFrame];
     self.view.backgroundColor = [UIColor clearColor];
 
@@ -930,28 +930,43 @@ static float animationDuration = 0.50;
 
 - (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
     interstitialAutoCloseDisabled = YES;
-    interstitialSkipButtonDisplayed = YES;
-    
+    interstitialSkipButtonDisplayed = NO;
     
     self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        adInterstitialOrientation = @"portrait";
+    }
+    else
+    {
+        adInterstitialOrientation = @"landscape";
+    }
+    
     self.mobFoxInterstitialPlayerViewController.adInterstitialOrientation = adInterstitialOrientation;
     self.mobFoxInterstitialPlayerViewController.view.backgroundColor = [UIColor clearColor];
     self.mobFoxInterstitialPlayerViewController.view.frame = self.view.bounds;
-    self.mobFoxInterstitialPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    self.mobFoxInterstitialPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.interstitialHoldingView = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.interstitialHoldingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    self.interstitialHoldingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.interstitialHoldingView.backgroundColor = [UIColor clearColor];
     self.interstitialHoldingView.autoresizesSubviews = YES;
     
-    MobFoxBannerView* bannerView = [[MobFoxBannerView alloc] init];
+    MobFoxBannerView* bannerView = [[MobFoxBannerView alloc] initWithFrame:interstitialHoldingView.frame];
+
     bannerView.allowDelegateAssigmentToRequestAd = NO;
+    bannerView.adspaceHeight = interstitialHoldingView.bounds.size.height;
+    bannerView.adspaceWidth = interstitialHoldingView.bounds.size.width;
+
+
+    bannerView.refreshTimerOff = YES;
     
-//    bannerView.delegate = self;
     bannerView._bannerImage = _bannerImage;
-    
     [bannerView performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:document waitUntilDone:YES];
     
     [self.interstitialHoldingView addSubview:bannerView];
+    
+    [self.interstitialHoldingView addSubview:self.interstitialTopToolbar];
     
     interstitialSkipButtonShow = YES;
     
@@ -965,9 +980,10 @@ static float animationDuration = 0.50;
     [self.interstitialSkipButton addTarget:self action:@selector(interstitialSkipAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.interstitialSkipButton setImage:buttonImage forState:UIControlStateNormal];
     [self.interstitialSkipButton setImage:buttonDisabledImage forState:UIControlStateHighlighted];
+    
   
     self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-
+    [self showInterstitialSkipButton];
     return [bannerView isBannerLoaded];
 }
 
@@ -2463,7 +2479,7 @@ static float animationDuration = 0.50;
 		[delegate mobfoxVideoInterstitialViewWillDismissScreen:self];
 	}
 
-    if ([animationType isEqualToString:@"None"] || [animationType isEqualToString:@"none"] || [animationType isEqualToString:@""]) {
+    if (!animationType || [animationType isEqualToString:@"None"] || [animationType isEqualToString:@"none"] || [animationType isEqualToString:@""]) {
         [self advertTidyUpAfterAnimationOut:advertType];
     }
 
@@ -3422,7 +3438,6 @@ static float animationDuration = 0.50;
 }
 
 - (void)interstitialSkipAction:(id)sender {
-
     [self interstitialStopAdvert];
 
 }
