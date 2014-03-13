@@ -162,7 +162,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 - (void)showStatusBarIfNecessary;
 - (void)hideStatusBar;
 
-- (void)applyFrameSize:(UIInterfaceOrientation)interfaceOrientation;
 - (void)applyToolbarFrame:(MobFoxToolBar*)theToolBar bottomToolbar:(BOOL)bottomToolbar orientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)updateAllFrames:(UIInterfaceOrientation)interfaceOrientation;
 - (CGRect)returnVideoHTMLOverlayFrame;
@@ -216,7 +215,7 @@ static float animationDuration = 0.50;
 
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     {
-        buttonSize = 30.0f;
+        buttonSize = 40.0f;
     }
     else
     {
@@ -942,6 +941,7 @@ static float animationDuration = 0.50;
     {
         adInterstitialOrientation = @"landscape";
     }
+    [self updateAllFrames:orientation];
     
     self.mobFoxInterstitialPlayerViewController.adInterstitialOrientation = adInterstitialOrientation;
     self.mobFoxInterstitialPlayerViewController.view.backgroundColor = [UIColor clearColor];
@@ -2781,31 +2781,12 @@ static float animationDuration = 0.50;
 
 - (void)applyFrameSize:(UIInterfaceOrientation)interfaceOrientation {
 
-    BOOL is5 = [[UIScreen mainScreen] bounds].size.height == 568.0f;
+    CGSize size = [UIScreen mainScreen].bounds.size;
 
     if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-
-        if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
-            self.view.frame = CGRectMake(0, 0, 768, 1024);
-        } else {
-            if (is5) {
-                self.view.frame = CGRectMake(0, 0, 320, 568);
-            } else {
-                self.view.frame = CGRectMake(0, 0, 320, 480);
-            }
-        }
-
+        self.view.frame = CGRectMake(0, 0, size.width, size.height);
     } else {
-        if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
-            self.view.frame = CGRectMake(0, 0, 1024, 768);
-        } else {
-            if (is5) {
-                self.view.frame = CGRectMake(0, 0, 568, 320);
-            } else {
-                self.view.frame = CGRectMake(0, 0, 480, 320);
-            }
-        }
-
+        self.view.frame = CGRectMake(0, 0, size.height, size.width);
     }
 
 }
