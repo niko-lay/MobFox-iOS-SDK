@@ -8,6 +8,7 @@
 #import "RedirectChecker.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "AdMobCustomEventBanner.h"
+#import "iAdCustomEventBanner.h"
 
 #import <AdSupport/AdSupport.h>
 #import "MobFoxMRAIDBannerAdapter.h"
@@ -627,6 +628,12 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         if([event.className isEqualToString: @"AdMob"])
         {
             _customEventBanner = [[AdMobCustomEventBanner alloc] init];
+            _customEventBanner.delegate = self;
+            [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+        }
+        else if([event.className isEqualToString: @"iAd"])
+        {
+            _customEventBanner = [[iAdCustomEventBanner alloc] init];
             _customEventBanner.delegate = self;
             [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
         }

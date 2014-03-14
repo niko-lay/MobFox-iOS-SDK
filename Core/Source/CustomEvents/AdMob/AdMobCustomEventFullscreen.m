@@ -12,6 +12,7 @@
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
+    self.trackingPixel = trackingPixel;
     interstitial_ = [[GADInterstitial alloc] init];
     interstitial_.adUnitID = optionalParameters;
     interstitial_.delegate = self;

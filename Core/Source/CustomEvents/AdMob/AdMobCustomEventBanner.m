@@ -17,6 +17,7 @@
 
 - (void)loadBannerWithSize:(CGSize)size optionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
+    self.trackingPixel = trackingPixel;
     [_adBannerView setFrame:CGRectMake(0, 0, size.width, size.height)];
     self.adBannerView.adUnitID = optionalParameters;
     self.adBannerView.rootViewController = [self.delegate viewControllerForPresentingModalView];
@@ -53,12 +54,12 @@
 - (void)adView:(GADBannerView *)bannerView
 didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    [self didDisplayAd];
     [self.delegate customEventBannerDidFailToLoadAd];
 }
 
 - (void)adViewWillPresentScreen:(GADBannerView *)bannerView
 {
+    [self didDisplayAd];
     [self.delegate customEventBannerWillExpand];
 }
 
@@ -66,6 +67,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 {
     [self.delegate customEventBannerWillClose];
 }
+
 
 
 @end

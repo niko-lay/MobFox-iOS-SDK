@@ -25,6 +25,7 @@
 
 #import <AdSupport/AdSupport.h>
 #import "AdMobCustomEventFullscreen.h"
+#import "iAdCustomEventFullscreen.h"
 #import "CustomEvent.h"
 
 NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial";
@@ -924,6 +925,12 @@ static float animationDuration = 0.50;
                 _customEventFullscreen.delegate = self;
                 [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
             }
+        else if ([event.className isEqualToString:@"iAd"])
+        {
+            _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
+            _customEventFullscreen.delegate = self;
+            [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+        }
     }
 }
 

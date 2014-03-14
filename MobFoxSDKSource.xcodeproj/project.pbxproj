@@ -363,6 +363,10 @@
 		903ADF0C18CDFDAA0001F0E4 /* CustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0918CDFDAA0001F0E4 /* CustomEvent.h */; };
 		903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */; };
 		903ADF0E18CDFDAA0001F0E4 /* CustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */; };
+		9078055D18D1C26E00427F7B /* iAdCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 9078055B18D1C26E00427F7B /* iAdCustomEventBanner.h */; };
+		9078055E18D1C26E00427F7B /* iAdCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 9078055B18D1C26E00427F7B /* iAdCustomEventBanner.h */; };
+		9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
+		9078056018D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
 		909716CE18AA4DDF007EEB4D /* VASTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */; };
 		909716CF18AA4DDF007EEB4D /* VASTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */; };
 		909716D018AA4DDF007EEB4D /* VASTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 909716CD18AA4DDF007EEB4D /* VASTXMLParser.m */; };
@@ -407,6 +411,10 @@
 		909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
 		909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
+		90A0330C18D2E6A5001340B7 /* iAdCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */; };
+		90A0330D18D2E6A5001340B7 /* iAdCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */; };
+		90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
+		90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
 		A7992E8F1489362800E86AC8 /* DTXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E761489362800E86AC8 /* DTXMLDocument.h */; };
 		A7992E911489362800E86AC8 /* DTXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E771489362800E86AC8 /* DTXMLDocument.m */; };
 		A7992E931489362800E86AC8 /* DTXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E781489362800E86AC8 /* DTXMLElement.h */; };
@@ -631,6 +639,8 @@
 		905D81A6184CC1B8007AF71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		905D81A8184CC1BF007AF71F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		905D81A9184CC1BF007AF71F /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		9078055B18D1C26E00427F7B /* iAdCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iAdCustomEventBanner.h; path = CustomEvents/iAd/iAdCustomEventBanner.h; sourceTree = "<group>"; };
+		9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iAdCustomEventBanner.m; path = CustomEvents/iAd/iAdCustomEventBanner.m; sourceTree = "<group>"; };
 		909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VASTXMLParser.h; sourceTree = "<group>"; };
 		909716CD18AA4DDF007EEB4D /* VASTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VASTXMLParser.m; sourceTree = "<group>"; };
 		909716D218AA5CF8007EEB4D /* VAST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAST.h; sourceTree = "<group>"; };
@@ -656,6 +666,8 @@
 		909A5E9B18B6168500C929A5 /* CustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventBanner.m; path = CustomEvents/CustomEventBanner.m; sourceTree = "<group>"; };
 		909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxMRAIDBannerAdapter.h; sourceTree = "<group>"; };
 		909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxMRAIDBannerAdapter.m; sourceTree = "<group>"; };
+		90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAdCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAdCustomEventFullscreen.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -994,6 +1006,17 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		9078055A18D1BFAD00427F7B /* iAd */ = {
+			isa = PBXGroup;
+			children = (
+				9078055B18D1C26E00427F7B /* iAdCustomEventBanner.h */,
+				9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */,
+				90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */,
+				90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */,
+			);
+			name = iAd;
+			sourceTree = "<group>";
+		};
 		909716CB18AA4DAA007EEB4D /* VAST */ = {
 			isa = PBXGroup;
 			children = (
@@ -1008,6 +1031,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				9078055A18D1BFAD00427F7B /* iAd */,
 				909A5E9418B6079A00C929A5 /* AdMob */,
 				909A5E9718B60DC500C929A5 /* CustomEventBannerDelegate.h */,
 				909A5E9A18B6168500C929A5 /* CustomEventBanner.h */,
@@ -1186,6 +1210,7 @@
 				90038E6F1846019400446EAD /* MPBannerCustomEventAdapter.h in Headers */,
 				90038ECC1846019400446EAD /* MPError.h in Headers */,
 				90038E961846019400446EAD /* MPHTMLInterstitialViewController.h in Headers */,
+				9078055D18D1C26E00427F7B /* iAdCustomEventBanner.h in Headers */,
 				90038ED61846019400446EAD /* MPSessionTracker.h in Headers */,
 				90038E7D1846019400446EAD /* MPAdConfiguration.h in Headers */,
 				90038F111846035D00446EAD /* CFilteringJSONSerializer.h in Headers */,
@@ -1238,6 +1263,7 @@
 				0F0EB65C1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h in Headers */,
 				903ADF0B18CDFDAA0001F0E4 /* CustomEvent.h in Headers */,
 				90038E8A1846019400446EAD /* MPProgressOverlayView.h in Headers */,
+				90A0330C18D2E6A5001340B7 /* iAdCustomEventFullscreen.h in Headers */,
 				903ADEFF18CDAE460001F0E4 /* CustomEventFullscreen.h in Headers */,
 				90038F151846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h in Headers */,
 				90038EA11846019400446EAD /* MPLegacyInterstitialCustomEventAdapter.h in Headers */,
@@ -1306,6 +1332,7 @@
 				903602DA1859AE040020E5EE /* MPBaseBannerAdapter.h in Headers */,
 				903602DB1859AE040020E5EE /* MPLegacyBannerCustomEventAdapter.h in Headers */,
 				903602DC1859AE040020E5EE /* MPPrivateBannerCustomEventDelegate.h in Headers */,
+				9078055E18D1C26E00427F7B /* iAdCustomEventBanner.h in Headers */,
 				903602DD1859AE040020E5EE /* MPAdAlertGestureRecognizer.h in Headers */,
 				903602DE1859AE040020E5EE /* MPAdAlertManager.h in Headers */,
 				903602DF1859AE040020E5EE /* MPAdBrowserController.h in Headers */,
@@ -1358,6 +1385,7 @@
 				903603091859AE040020E5EE /* MPError.h in Headers */,
 				903ADF0C18CDFDAA0001F0E4 /* CustomEvent.h in Headers */,
 				9036030A1859AE040020E5EE /* MPGlobal.h in Headers */,
+				90A0330D18D2E6A5001340B7 /* iAdCustomEventFullscreen.h in Headers */,
 				903ADF0018CDAE460001F0E4 /* CustomEventFullscreen.h in Headers */,
 				9036030B1859AE040020E5EE /* MPIdentityProvider.h in Headers */,
 				9036030C1859AE040020E5EE /* MPLogging.h in Headers */,
@@ -1571,6 +1599,7 @@
 				903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				0F66D50814F30E9400FD6569 /* UIButton+MobFox.m in Sources */,
+				9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				90038EC71846019400446EAD /* UIViewController+MPAdditions.m in Sources */,
 				90038E701846019400446EAD /* MPBannerCustomEventAdapter.m in Sources */,
 				90038EA81846019400446EAD /* MPMRAIDBannerCustomEvent.m in Sources */,
@@ -1593,6 +1622,7 @@
 				903ADF0718CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */,
 				0F3B191A159456940035D3EF /* MobFoxVideoPlayerViewController.m in Sources */,
 				90038EBF1846019400446EAD /* MRPictureManager.m in Sources */,
+				90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */,
 				90038EB51846019400446EAD /* MRCalendarManager.m in Sources */,
 				90038E951846019400446EAD /* MPHTMLInterstitialCustomEvent.m in Sources */,
 				90038E931846019400446EAD /* MPHTMLBannerCustomEvent.m in Sources */,
@@ -1670,6 +1700,7 @@
 				903ADF0E18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				902073701859A6A5001A696C /* MRProperty.m in Sources */,
 				902073721859A6A5001A696C /* MRVideoPlayerManager.m in Sources */,
+				9078056018D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				902073741859A6A5001A696C /* NSURL+MPAdditions.m in Sources */,
 				902073761859A6A5001A696C /* UIViewController+MPAdditions.m in Sources */,
 				902073781859A6A5001A696C /* UIWebView+MPAdditions.m in Sources */,
@@ -1692,6 +1723,7 @@
 				903ADF0818CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */,
 				A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */,
 				A7992ECD1489373000E86AC8 /* RedirectChecker.m in Sources */,
+				90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */,
 				A7992ECF1489373000E86AC8 /* UIView+FindViewController.m in Sources */,
 				A7992ED11489373000E86AC8 /* DTXMLDocument.m in Sources */,
 				A7992ED31489373000E86AC8 /* DTXMLElement.m in Sources */,
