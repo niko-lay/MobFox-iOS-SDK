@@ -14,7 +14,10 @@
 
 
 +(NSMutableArray *)parseVAST:(DTXMLElement *)vastElement {
-    NSArray *adElements = [vastElement getNamedChildren:@"Ad"];
+    
+    DTXMLElement *vastInternalElement = [vastElement getNamedChild:@"VAST"];
+    
+    NSArray *adElements = [vastInternalElement getNamedChildren:@"Ad"];
     NSMutableArray *ads = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < adElements.count; i++) {

@@ -104,6 +104,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) UIButton *browserBackButton;
 @property (nonatomic, strong) UIButton *browserForwardButton;
 @property (nonatomic, strong) NSString *interstitialURL;
+@property (nonatomic, strong) NSString *videoClickThrough;
 @property (nonatomic, strong) UIButton *interstitialSkipButton;
 
 @property (nonatomic, strong) NSMutableArray *advertTrackingEvents;
@@ -761,7 +762,7 @@ static float animationDuration = 0.50;
     NSString *adType = [xml.documentRoot.attributes objectForKey:@"type"];
     self.advertAnimation = [xml.documentRoot.attributes objectForKey:@"animation"];
     
-    if ([adType isEqualToString:@"vast"]) {
+    if ([adType isEqualToString:@"vastAd"]) {
         DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
         advertTypeCurrentlyPlaying = [self VASTDecideTypeOfAdvert:htmlElement];
     } else {
@@ -1430,6 +1431,7 @@ static float animationDuration = 0.50;
 
 - (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement {
     vastAds = [VASTXMLParser parseVAST: videoElement];
+    videoSkipButtonDisplayed = NO;
     
     if(vastAds)
     {
@@ -1468,10 +1470,11 @@ static float animationDuration = 0.50;
         }
         
         
-        [self advertAddNotificationObservers:MobFoxAdGroupVideo];
+        [self advertAddNotificationObservers:MobFoxAdGroupVideo]; //necessary here? Also done in videoPlayAdvert.
         
         videoCheckLoadedCount = 0;
         videoVideoFailedToLoad = NO;
+
         self.mobFoxVideoPlayerViewController = [[MobFoxVideoPlayerViewController alloc] init];
         self.mobFoxVideoPlayerViewController.adVideoOrientation = adVideoOrientation;
         self.mobFoxVideoPlayerViewController.view.backgroundColor = [UIColor clearColor];
@@ -1485,8 +1488,6 @@ static float animationDuration = 0.50;
         self.videoPlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.mobFoxVideoPlayerViewController.view.frame = self.view.bounds;
         self.mobFoxVideoPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        self.videoPlayer.shouldAutoplay = NO;
         
         self.videoPlayer.controlStyle = MPMovieControlStyleNone;
         
@@ -1605,6 +1606,24 @@ static float animationDuration = 0.50;
             self.videoHTMLOverlayHTML = nonLinear.htmlResource;
         }
         
+        if (linear.videoClicks.clickThrough)
+        {
+            UIView *coveringView = [[UIView alloc] initWithFrame:self.videoPlayer.view.bounds];
+            _videoClickThrough = linear.videoClicks.clickThrough;
+            
+            UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleVideoClick:)];
+            singleTap.delegate = self;
+            
+            [coveringView addGestureRecognizer:singleTap];
+            
+            coveringView.backgroundColor = [UIColor clearColor];
+            
+            coveringView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            
+            [self.videoPlayer.view addSubview:coveringView];
+
+        }
+        
         
         if (videoVideoFailedToLoad) {
             return NO;
@@ -1618,6 +1637,8 @@ static float animationDuration = 0.50;
     }
 
 }
+
+
 
 - (BOOL)videoCreateTopToolbar:(DTXMLElement*)xml {
 
@@ -2206,7 +2227,7 @@ static float animationDuration = 0.50;
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
     [self updateAllFrames:interfaceOrientation];
 
-    if ([animationType isEqualToString:@"None"] || [animationType isEqualToString:@"none"] || [animationType isEqualToString:@""]) {
+    if (!animationType ||[animationType isEqualToString:@"None"] || [animationType isEqualToString:@"none"] || [animationType isEqualToString:@""]) {
         viewToAnimate.alpha = 1.0f;
         viewToAnimate.hidden = NO;
         [self playAdvert:advertType];
@@ -3678,6 +3699,22 @@ static float animationDuration = 0.50;
 
     }
 }
+
+- (void)handleVideoClick:(UITapGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded)     {
+        
+        if (self.videoPlayer) {
+            [self toggleToolbars];
+        }
+
+        NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
+        [self tapThrough:YES tapThroughURL:clickUrl];
+        [self videoShowSkipButton];
+    }
+    
+}
+
 
 #pragma mark
 #pragma mark Status Bar Handling
