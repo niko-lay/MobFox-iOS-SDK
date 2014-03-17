@@ -2098,6 +2098,7 @@ static float animationDuration = 0.50;
 
         [self videoStartTimer];
         [self advertActionTrackingEvent:@"start"];
+        [self advertActionTrackingEvent:@"creativeView"];
         [self.videoPlayer play];
 
     }
@@ -3078,15 +3079,15 @@ static float animationDuration = 0.50;
     int timeToCheckAgainst = (int)roundf(currentProgress);
     if (videoDuration != 0) {
         if (timeToCheckAgainst == videoDuration/2) {
-            [self advertActionTrackingEvent:@"Midpoint"];
+            [self advertActionTrackingEvent:@"midpoint"];
         }
 
         int quartile = videoDuration/4;
         if (timeToCheckAgainst == quartile) {
-            [self advertActionTrackingEvent:@"firstquartile"];
+            [self advertActionTrackingEvent:@"firstQuartile"];
         }
         if (timeToCheckAgainst == (quartile*3)) {
-            [self advertActionTrackingEvent:@"thirdquartile"];
+            [self advertActionTrackingEvent:@"thirdQuartile"];
         }
     }
 
@@ -3158,7 +3159,7 @@ static float animationDuration = 0.50;
 
 - (void)videoUnPause {
 
-    [self advertActionTrackingEvent:@"unpause"];
+    [self advertActionTrackingEvent:@"resume"];
 
     [self.videoPlayer play];
 
