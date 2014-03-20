@@ -8,6 +8,7 @@
 
 #import "CustomEventBanner.h"
 #import "GADBannerViewDelegate.h"
+#import "GADBannerView.h"
 
 @interface AdMobCustomEventBanner : CustomEventBanner <GADBannerViewDelegate>
 

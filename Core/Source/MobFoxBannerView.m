@@ -24,6 +24,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
+    NSMutableArray *customEvents;
 }
 
 @property (nonatomic, strong) NSString *demoAdTypeToShow;
@@ -35,7 +36,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 @property (nonatomic, retain) UIView *bannerView;
 @property (nonatomic, retain) CustomEventBanner *customEventBanner;
-@property (nonatomic, retain) NSMutableArray *customEvents;
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
@@ -60,6 +60,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	self.backgroundColor = [UIColor clearColor];
 	refreshAnimation = UIViewAnimationTransitionFlipFromLeft;
     self.allowDelegateAssigmentToRequestAd = YES;
+
+    customEvents = [[NSMutableArray alloc] init];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -517,13 +519,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
     }   else if ([adType isEqualToString:@"noAd"])
 	{
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
-
-        _refreshInterval = 20;
-        [self setRefreshTimerActive:YES];
-        
-		NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+        //do nothing, there still can be custom events.
 	}
 	else if ([adType isEqualToString:@"error"])
 	{
@@ -542,7 +538,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		return;
 	}
 
-    [_customEvents removeAllObjects];
+    [customEvents removeAllObjects];
     DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
 #warning no error handling!
     if(customEventsElement)
@@ -553,13 +549,13 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
             CustomEvent *customEvent = [[CustomEvent alloc] init];
             customEvent.className = [customEventElement getNamedChild:@"class"].text;
-            customEvent.optionalParameter = [customEventElement getNamedChild:@"classparameter"].text;
+            customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
             customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-            [_customEvents addObject:customEvent];
+            [customEvents addObject:customEvent];
         }
     }
     
-	if (_bannerView && [_customEvents count] == 0)
+	if (_bannerView && [customEvents count] == 0)
 	{
         [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
 	} else
@@ -567,11 +563,24 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [self loadCustomEventBanner];
         if (!_customEventBanner)
         {
-            [_customEvents removeAllObjects];
+            [customEvents removeAllObjects];
             if(_bannerView)
             {
                 [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
             }
+            else {
+                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
+                
+                _refreshInterval = 20;
+                [self setRefreshTimerActive:YES];
+                
+                NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
+                [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+
+            }
+        } else {
+            _refreshInterval = 30; //enable banner refresh for  custom events.
+            [self setRefreshTimerActive:YES];
         }
     }
 }
@@ -619,12 +628,13 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         size = CGSizeMake(320, 50);
     }
-    
     _customEventBanner = nil;
-    while ([_customEvents count] > 0 && !_customEventBanner)
+    while ([customEvents count] > 0)
     {
-        CustomEvent *event = [_customEvents objectAtIndex:0];
-        [_customEvents removeObjectAtIndex:0];
+        @try
+    {
+            CustomEvent *event = [customEvents objectAtIndex:0];
+            [customEvents removeObjectAtIndex:0];
         if([event.className isEqualToString: @"AdMob"])
         {
             _customEventBanner = [[AdMobCustomEventBanner alloc] init];
@@ -637,6 +647,14 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             _customEventBanner.delegate = self;
             [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
         }
+    }
+        @catch (NSException *exception) {
+            _customEventBanner = nil;
+            NSLog( @"Exception while creating custom event!" );
+            NSLog( @"Name: %@", exception.name);
+            NSLog( @"Reason: %@", exception.reason );
+        }
+        
     }
 }
 

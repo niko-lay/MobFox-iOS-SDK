@@ -355,8 +355,6 @@
 		903ADF0018CDAE460001F0E4 /* CustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEFD18CDAE460001F0E4 /* CustomEventFullscreen.h */; };
 		903ADF0118CDAE460001F0E4 /* CustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADEFE18CDAE460001F0E4 /* CustomEventFullscreen.m */; };
 		903ADF0218CDAE460001F0E4 /* CustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADEFE18CDAE460001F0E4 /* CustomEventFullscreen.m */; };
-		903ADF0518CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0318CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h */; };
-		903ADF0618CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0318CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h */; };
 		903ADF0718CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0418CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m */; };
 		903ADF0818CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0418CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m */; };
 		903ADF0B18CDFDAA0001F0E4 /* CustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0918CDFDAA0001F0E4 /* CustomEvent.h */; };
@@ -1202,7 +1200,6 @@
 				90038E9A1846019400446EAD /* MPInterstitialAdManager.h in Headers */,
 				90038ED81846019400446EAD /* MPStoreKitProvider.h in Headers */,
 				903ADEF918CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */,
-				903ADF0518CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h in Headers */,
 				90987D2C18BCD32100148D09 /* GADAdSize.h in Headers */,
 				0FCEB209150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				90987D3218BCD32100148D09 /* GADRequestError.h in Headers */,
@@ -1324,7 +1321,6 @@
 				A7992EC81489373000E86AC8 /* NSString+MobFox.h in Headers */,
 				903602D71859AE040020E5EE /* MPBannerAdManager.h in Headers */,
 				903ADEFA18CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */,
-				903ADF0618CDB4D20001F0E4 /* AdMobCustomEventFullscreen.h in Headers */,
 				90987D3518BCD32200148D09 /* GADAdSize.h in Headers */,
 				903602D81859AE040020E5EE /* MPBannerAdManagerDelegate.h in Headers */,
 				90987D3B18BCD32200148D09 /* GADRequestError.h in Headers */,
@@ -1780,6 +1776,7 @@
 				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MobFox;
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
@@ -1811,6 +1808,7 @@
 				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MobFox;
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";

@@ -63,6 +63,12 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     [self.delegate customEventBannerWillExpand];
 }
 
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView
+{
+    [self didDisplayAd];
+    [self.delegate customEventBannerWillExpand];
+}
+
 - (void)adViewDidDismissScreen:(GADBannerView *)bannerView
 {
     [self.delegate customEventBannerWillClose];
