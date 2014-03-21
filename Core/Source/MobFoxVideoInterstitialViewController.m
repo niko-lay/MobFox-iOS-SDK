@@ -67,6 +67,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     UIViewController *videoViewController;
     UIViewController *interstitialViewController;
 
+    NSMutableArray *customEvents;
+
     UIView *tempView;
 }
 
@@ -90,7 +92,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) MobFoxInterstitialPlayerViewController *mobFoxInterstitialPlayerViewController;
 
 @property (nonatomic, retain) CustomEventFullscreen *customEventFullscreen;
-@property (nonatomic, retain) NSMutableArray *customEvents;
 
 @property (nonatomic, strong) MobFoxToolBar *interstitialTopToolbar;
 @property (nonatomic, strong) MobFoxToolBar *interstitialBottomToolbar;
@@ -239,6 +240,7 @@ static float animationDuration = 0.50;
 
     self.wantsFullScreenLayout = YES;
     self.view.autoresizesSubviews = YES;
+    customEvents = [[NSMutableArray alloc]init];
 
     self.view.alpha = 0.0f;
     self.view.hidden = YES;
@@ -773,7 +775,7 @@ static float animationDuration = 0.50;
     videoCheckLoadedCount = 0;
     
     //custom events:
-    [_customEvents removeAllObjects];
+    [customEvents removeAllObjects];
     DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
     if(customEventsElement)
     {
@@ -783,17 +785,17 @@ static float animationDuration = 0.50;
             DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
             CustomEvent *customEvent = [[CustomEvent alloc] init];
             customEvent.className = [customEventElement getNamedChild:@"class"].text;
-            customEvent.optionalParameter = [customEventElement getNamedChild:@"classparameter"].text;
+            customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
             customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-            [_customEvents addObject:customEvent];
+            [customEvents addObject:customEvent];
         }
     }
-    if([_customEvents count] > 0)
+    if([customEvents count] > 0)
     {
         [self loadCustomEvent];
         if(!_customEventFullscreen)
         {
-            [_customEvents removeAllObjects];
+            [customEvents removeAllObjects];
         }
     }
     //eo custom events
@@ -810,7 +812,7 @@ static float animationDuration = 0.50;
 
                 [self checkVideoLoadedAndReadyToPlay];
 
-            } else {
+            } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
 
@@ -823,7 +825,7 @@ static float animationDuration = 0.50;
 
                 [self advertCreatedSuccessfully:MobFoxAdTypeInterstitial];
 
-            } else {
+            } else if(!_customEventFullscreen){
                 [self advertCreationFailed];
             }
             break;
@@ -842,7 +844,7 @@ static float animationDuration = 0.50;
                                             adType, @"adType", nil];
                 [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(checkVideoToInterstitialVideoLoadedAndReadyToPlay:) userInfo:dictionary repeats:NO];
 
-            } else {
+            } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
 
@@ -861,7 +863,7 @@ static float animationDuration = 0.50;
                                             adType, @"adType", nil];
                 [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(checkVideoToInterstitialVideoLoadedAndReadyToPlay:) userInfo:dictionary repeats:NO];
 
-            } else {
+            } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
 
@@ -873,7 +875,7 @@ static float animationDuration = 0.50;
         case MobFoxAdTypeMraid: {
             if ([self interstitialFromBannerCreateAdvert:xml]) {
                 [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
-            } else {
+            } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
             break;
@@ -881,7 +883,7 @@ static float animationDuration = 0.50;
             
         case MobFoxAdTypeNoAdInventory:{
 
-            if([_customEvents count] == 0)
+            if(!_customEventFullscreen)
             {
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
                 NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorInventoryUnavailable userInfo:userInfo];
@@ -916,10 +918,12 @@ static float animationDuration = 0.50;
 - (void) loadCustomEvent
 {
     _customEventFullscreen = nil;
-    while ([_customEvents count] > 0 && !_customEventFullscreen)
+    while ([customEvents count] > 0 && !_customEventFullscreen)
     {
-        CustomEvent *event = [_customEvents objectAtIndex:0];
-        [_customEvents removeObjectAtIndex:0];
+        @try
+    {
+            CustomEvent *event = [customEvents objectAtIndex:0];
+            [customEvents removeObjectAtIndex:0];
         if ([event.className isEqualToString:@"AdMob"])
             {
                 _customEventFullscreen = [[AdMobCustomEventFullscreen alloc]init];
@@ -931,6 +935,13 @@ static float animationDuration = 0.50;
             _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
             _customEventFullscreen.delegate = self;
             [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+        }
+    }
+        @catch (NSException *exception) {
+            _customEventFullscreen = nil;
+            NSLog( @"Exception while creating custom event!" );
+            NSLog( @"Name: %@", exception.name);
+            NSLog( @"Reason: %@", exception.reason );
         }
     }
 }
@@ -2014,7 +2025,7 @@ static float animationDuration = 0.50;
 
 - (void)customEventFullscreenWillClose
 {
-    
+    [self advertTidyUpAfterAnimationOut:currentlyPlayingInterstitial];
 }
 
 - (void)customEventFullscreenWillLeaveApplication
@@ -2022,8 +2033,21 @@ static float animationDuration = 0.50;
     
 }
 
-
 #pragma mark - Ad Presentation
+- (void)presentCustomEventFullscreen {
+    @try {
+        [_customEventFullscreen showFullscreenFromRootViewController:self];
+    }
+    @catch (NSException *exception) {
+        _customEventFullscreen = nil;
+        [self advertTidyUpAfterAnimationOut:currentlyPlayingInterstitial];
+        [self advertCreationFailed];
+    }
+    
+}
+
+
+
 
 - (void)presentAd:(MobFoxAdType)advertType {
 
@@ -2031,7 +2055,7 @@ static float animationDuration = 0.50;
         case MobFoxAdTypeVideo:
         case MobFoxAdTypeVideoToInterstitial:
             if(_customEventFullscreen) {
-                [_customEventFullscreen showFullscreenFromRootViewController:self];
+                [self presentCustomEventFullscreen];
             }
             else if (self.videoPlayer.view) {
                 tempView = [[UIView alloc]initWithFrame:self.videoPlayer.view.frame];
@@ -2056,7 +2080,7 @@ static float animationDuration = 0.50;
         case MobFoxAdTypeText:
         case MobFoxAdTypeInterstitialToVideo:
             if(_customEventFullscreen) {
-                [_customEventFullscreen showFullscreenFromRootViewController:self];
+                [self presentCustomEventFullscreen];
             }
             else if (self.interstitialHoldingView) {
 
@@ -2077,7 +2101,7 @@ static float animationDuration = 0.50;
             break;
         case MobFoxAdTypeNoAdInventory:
             if(_customEventFullscreen) {
-                [_customEventFullscreen showFullscreenFromRootViewController:self];
+                [self presentCustomEventFullscreen];
             }
             break;
     }

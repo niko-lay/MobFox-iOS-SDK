@@ -20,11 +20,16 @@
 
 - (void)didDisplayAd
 {
-    if(trackingPixel) {
-        NSURL *url = [NSURL URLWithString:trackingPixel];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-        [request setHTTPMethod: @"GET"];
-        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+    @try {
+        if(trackingPixel) {
+            NSURL *url = [NSURL URLWithString:[trackingPixel stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+            [request setHTTPMethod: @"GET"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error when tracking custom event interstitial");
     }
 }
 

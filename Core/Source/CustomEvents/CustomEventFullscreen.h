@@ -20,6 +20,6 @@
 - (void)didDisplayAd;
 
 @property (nonatomic, assign) id<CustomEventFullscreenDelegate> delegate;
-@property (nonatomic, assign) NSString* trackingPixel;
+@property (nonatomic, retain) NSString* trackingPixel;
 
 @end

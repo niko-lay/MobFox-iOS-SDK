@@ -16,6 +16,6 @@
 - (void)didDisplayAd;
 
 @property (nonatomic, assign) id<CustomEventBannerDelegate> delegate;
-@property (nonatomic, assign) NSString* trackingPixel;
+@property (nonatomic, retain) NSString* trackingPixel;
 
 @end

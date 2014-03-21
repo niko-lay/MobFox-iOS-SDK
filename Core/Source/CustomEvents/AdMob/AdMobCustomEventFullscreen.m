@@ -13,15 +13,30 @@
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
     self.trackingPixel = trackingPixel;
+    if(interstitial_) {
+        interstitial_.delegate = nil;
+        interstitial_ = nil;
+    }
     interstitial_ = [[GADInterstitial alloc] init];
     interstitial_.adUnitID = optionalParameters;
     interstitial_.delegate = self;
-    [interstitial_ loadRequest:[GADRequest request]];
+    
+    
+    GADRequest *request = [GADRequest request];
+    request.testDevices = [NSArray arrayWithObjects: GAD_SIMULATOR_ID, nil];
+    
+    [interstitial_ loadRequest:request];
 }
 
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController
 {
     [interstitial_ presentFromRootViewController:rootViewController];
+}
+
+- (void)dealloc
+{
+    interstitial_.delegate = nil;
+    interstitial_ = nil;
 }
 
 #pragma mark GADInterstitialDelegate methods
@@ -34,6 +49,7 @@
 {
     [self.delegate customEventFullscreenDidFailToLoadAd];
 }
+
 
 - (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
 {
