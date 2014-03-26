@@ -69,6 +69,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
     NSMutableArray *customEvents;
 
+    NSInteger HTMLOverlayWidth;
+    NSInteger HTMLOverlayHeight;
+
     UIView *tempView;
 }
 
@@ -1582,6 +1585,8 @@ static float animationDuration = 0.50;
                 if (nonL)
                 {
                     nonLinear = nonL;
+                    HTMLOverlayHeight = nonLinear.height;
+                    HTMLOverlayWidth = nonLinear.width;
                     break;
                 }
             }
@@ -1598,7 +1603,8 @@ static float animationDuration = 0.50;
             NSString *type = nonLinear.staticResource.type;
             if([type isEqualToString:@"image/gif"] || [type isEqualToString:@"image/jpeg"] || [type isEqualToString:@"image/png"])
             {
-                resource = [NSString stringWithFormat:@"<img src=\"%@\">", nonLinear.staticResource.url];
+                resource = [NSString stringWithFormat:@"<body style=\"margin: 0px; padding: 0px; text-align:center; width:100%%; height:100%%\"><img src=\"%@\"></body>", nonLinear.staticResource.url];
+                
                 self.videoHTMLOverlayHTML = resource;
             }
             else if([type isEqualToString:@"application/x-javascript"])
@@ -2864,18 +2870,18 @@ static float animationDuration = 0.50;
 
 - (CGRect)returnVideoHTMLOverlayFrame {
 
-    float topToolbarHeight = 0.0f;
-    float bottomToolbarHeight = 0.0f;
+//    float topToolbarHeight = 0.0f;
+//    float bottomToolbarHeight = 0.0f;
+//
+//    if (self.videoTopToolbar) {
+//        topToolbarHeight = self.videoTopToolbar.frame.size.height;
+//    }
+//
+//    if (self.videoBottomToolbar) {
+//        bottomToolbarHeight = self.videoBottomToolbar.frame.size.height;
+//    }
 
-    if (self.videoTopToolbar) {
-        topToolbarHeight = self.videoTopToolbar.frame.size.height;
-    }
-
-    if (self.videoBottomToolbar) {
-        bottomToolbarHeight = self.videoBottomToolbar.frame.size.height;
-    }
-
-    CGRect webFrame = CGRectMake(0, topToolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height - bottomToolbarHeight - topToolbarHeight);
+    CGRect webFrame = CGRectMake(0, self.view.bounds.size.height-HTMLOverlayHeight, HTMLOverlayWidth, HTMLOverlayHeight);
 
     return webFrame;
 }
@@ -3083,8 +3089,10 @@ static float animationDuration = 0.50;
     self.videoHTMLOverlayWebView.delegate = (id)self;
     self.videoHTMLOverlayWebView.dataDetectorTypes = UIDataDetectorTypeAll;
 
-    self.videoHTMLOverlayWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect frame = CGRectMake(0, self.view.bounds.size.height-HTMLOverlayHeight, HTMLOverlayWidth, HTMLOverlayHeight);
+    self.videoHTMLOverlayWebView.frame = frame;
 
+//    self.videoHTMLOverlayWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self removeUIWebViewBounce:self.videoHTMLOverlayWebView];
 
     [self.videoHTMLOverlayWebView loadHTMLString:self.videoHTMLOverlayHTML baseURL:nil];

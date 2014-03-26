@@ -128,12 +128,12 @@
     }
     
     DTXMLElement *nonLinearAds = [element getNamedChild:@"NonLinearAds"];
-    if(linear) {
+    if(nonLinearAds) {
         creative.nonLinearAds = [self readNonLinearAds:nonLinearAds];
     }
     
     DTXMLElement *companion = [element getNamedChild:@"CompanionAds"];
-    if(linear) {
+    if(companion) {
         creative.companionAds = [self readCompanionAds:companion];
     }
     
@@ -270,7 +270,7 @@
     VAST_StaticResource *staticResource = [[VAST_StaticResource alloc]init];
     
     NSMutableDictionary *attributes = element.attributes;
-    staticResource.type = [attributes objectForKey:@"type"];
+    staticResource.type = [attributes objectForKey:@"creativeType"];
     staticResource.url = element.text;
     
     return staticResource;
