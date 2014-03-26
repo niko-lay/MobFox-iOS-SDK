@@ -109,6 +109,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) UIButton *browserForwardButton;
 @property (nonatomic, strong) NSString *interstitialURL;
 @property (nonatomic, strong) NSString *videoClickThrough;
+@property (nonatomic, strong) NSString *overlayClickThrough;
+
 @property (nonatomic, strong) UIButton *interstitialSkipButton;
 
 @property (nonatomic, strong) NSMutableArray *advertTrackingEvents;
@@ -1622,11 +1624,14 @@ static float animationDuration = 0.50;
         {
             self.videoHTMLOverlayHTML = nonLinear.htmlResource;
         }
+        if(nonLinear.nonLinearClickThrough) {
+            _overlayClickThrough = [nonLinear.nonLinearClickThrough stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
         
         if (linear.videoClicks.clickThrough)
         {
             UIView *coveringView = [[UIView alloc] initWithFrame:self.videoPlayer.view.bounds];
-            _videoClickThrough = linear.videoClicks.clickThrough;
+            _videoClickThrough = [linear.videoClicks.clickThrough stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleVideoClick:)];
             singleTap.delegate = self;
@@ -2870,19 +2875,9 @@ static float animationDuration = 0.50;
 
 - (CGRect)returnVideoHTMLOverlayFrame {
 
-//    float topToolbarHeight = 0.0f;
-//    float bottomToolbarHeight = 0.0f;
-//
-//    if (self.videoTopToolbar) {
-//        topToolbarHeight = self.videoTopToolbar.frame.size.height;
-//    }
-//
-//    if (self.videoBottomToolbar) {
-//        bottomToolbarHeight = self.videoBottomToolbar.frame.size.height;
-//    }
-
     CGRect webFrame = CGRectMake(0, self.view.bounds.size.height-HTMLOverlayHeight, HTMLOverlayWidth, HTMLOverlayHeight);
 
+    webFrame.origin.x = self.view.center.x - HTMLOverlayWidth/2;
     return webFrame;
 }
 
@@ -3089,16 +3084,14 @@ static float animationDuration = 0.50;
     self.videoHTMLOverlayWebView.delegate = (id)self;
     self.videoHTMLOverlayWebView.dataDetectorTypes = UIDataDetectorTypeAll;
 
-    CGRect frame = CGRectMake(0, self.view.bounds.size.height-HTMLOverlayHeight, HTMLOverlayWidth, HTMLOverlayHeight);
-    self.videoHTMLOverlayWebView.frame = frame;
-
 //    self.videoHTMLOverlayWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self removeUIWebViewBounce:self.videoHTMLOverlayWebView];
 
     [self.videoHTMLOverlayWebView loadHTMLString:self.videoHTMLOverlayHTML baseURL:nil];
     self.videoHTMLOverlayWebView.backgroundColor = [UIColor clearColor];
     self.videoHTMLOverlayWebView.opaque = NO;
-    UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)]; 
+    
+    UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOverlayClick:)];
     touch.delegate = self;
     [self.videoHTMLOverlayWebView addGestureRecognizer:touch];
 
@@ -3720,7 +3713,8 @@ static float animationDuration = 0.50;
     return YES;
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+
+- (void)handleOverlayClick:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded)     {
 
         if (self.videoPlayer) {
@@ -3728,9 +3722,15 @@ static float animationDuration = 0.50;
         }
 
         [self checkAndCancelAutoClose];
-
+        if(_overlayClickThrough) {
+            NSString *escapedDataString = [_overlayClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
+            [self tapThrough:YES tapThroughURL:clickUrl];
+        }
     }
 }
+
+
 
 - (void)handleVideoClick:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded)     {
@@ -3738,11 +3738,13 @@ static float animationDuration = 0.50;
         if (self.videoPlayer) {
             [self toggleToolbars];
         }
-
+        if(_videoClickThrough) {
         NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
         [self tapThrough:YES tapThroughURL:clickUrl];
+            
         [self videoShowSkipButton];
+    }
     }
     
 }
