@@ -110,6 +110,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) NSString *interstitialURL;
 @property (nonatomic, strong) NSString *videoClickThrough;
 @property (nonatomic, strong) NSString *overlayClickThrough;
+@property (nonatomic, strong) NSString *interstitialClickThrough;
 
 @property (nonatomic, strong) UIButton *interstitialSkipButton;
 
@@ -926,22 +927,22 @@ static float animationDuration = 0.50;
     while ([customEvents count] > 0 && !_customEventFullscreen)
     {
         @try
-    {
+        {
             CustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
-        if ([event.className isEqualToString:@"AdMob"])
+            if ([event.className isEqualToString:@"AdMob"])
             {
                 _customEventFullscreen = [[AdMobCustomEventFullscreen alloc]init];
                 _customEventFullscreen.delegate = self;
                 [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
             }
-        else if ([event.className isEqualToString:@"iAd"])
-        {
-            _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
-            _customEventFullscreen.delegate = self;
-            [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+            else if ([event.className isEqualToString:@"iAd"])
+            {
+                _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
+                _customEventFullscreen.delegate = self;
+                [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+            }
         }
-    }
         @catch (NSException *exception) {
             _customEventFullscreen = nil;
             NSLog( @"Exception while creating custom event!" );
@@ -1040,15 +1041,21 @@ static float animationDuration = 0.50;
     }
     
     interstitialAutoCloseDisabled = YES;
-    interstitialSkipButtonDisplayed = YES;
-    
+    interstitialSkipButtonDisplayed = NO;
+    interstitialSkipButtonShow = YES;
+    BOOL imageResource = NO;
     
     if (companion.staticResource)
     {
         interstitialLoadedFromURL = NO;
         if([companion.staticResource.type rangeOfString:@"image"].location != NSNotFound)
         {
-            self.interstitialMarkup = [NSString stringWithFormat: @"<img src=\"%@\">",companion.staticResource.url];
+            imageResource = YES;
+            NSString *style = @"<style>* { -webkit-tap-highlight-color: rgba(0,0,0,0);} body {height:100%; width:100%;} img {max-width:100%; max-height:100%; width:auto; height:auto; position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;}</style>";
+            
+            NSString *image_resource = [NSString stringWithFormat:@"%@<body style=\"margin: 0px; padding: 0px; text-align:center;\"><img src=\"%@\" width=\"%idp\" height=\"%idp\"></body>", style, companion.staticResource.url, companion.width, companion.height];
+            
+            self.interstitialMarkup = image_resource;
         }
         else if([companion.staticResource.type rangeOfString:@"x-javascript"].location != NSNotFound)
         {
@@ -1075,6 +1082,10 @@ static float animationDuration = 0.50;
     {
         return NO;
     }
+    
+    if(companion.companionClickThrough) {
+        _interstitialClickThrough = [companion.companionClickThrough stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
 
     if (self.interstitialMarkup) {
         self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
@@ -1091,12 +1102,14 @@ static float animationDuration = 0.50;
         self.interstitialWebView.dataDetectorTypes = UIDataDetectorTypeAll;
         self.interstitialWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.interstitialWebView.allowsInlineMediaPlayback = YES;
-        self.interstitialWebView.scalesPageToFit = YES;
+        if(!imageResource) {
+            self.interstitialWebView.scalesPageToFit = YES;
+        }
 
         [self removeUIWebViewBounce:self.interstitialWebView];
 
         [self interstitialLoadWebPage];
-        UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)]; 
+        UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleInterstitialClick:)];
         touch.delegate = self;
         [self.interstitialWebView addGestureRecognizer:touch];
 
@@ -1116,29 +1129,13 @@ static float animationDuration = 0.50;
         }
         self.interstitialWebView.frame = [self returnInterstitialWebFrame];
         [self.interstitialHoldingView addSubview:self.interstitialWebView];
-        NSMutableDictionary *skipButtonElementAttributes = [interstitialElement getNamedChild:@"skipbutton"].attributes;
-        interstitialSkipButtonShow = [[skipButtonElementAttributes objectForKey:@"show"] isEqualToString:@"1"];
+
         if(interstitialSkipButtonShow || !adInterstitialToolbarBarsShow) {
 
-            UIBarButtonItem *flexiblespace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                              UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
-            interstitialSkipButtonDisplayDelay = (NSTimeInterval)[[skipButtonElementAttributes objectForKey:@"showafter"] doubleValue];
-            UIImage *buttonImage = [UIImage imageNamed:@""];
-            UIImage *buttonDisabledImage = [UIImage imageNamed:@""];
-
-            NSString *adSkipButtonGraphicURL = [skipButtonElementAttributes objectForKey:@"graphic"];
-
-            if (![adSkipButtonGraphicURL isEqualToString:@""]) {
-
-                NSURL *imageURL = [NSURL URLWithString:adSkipButtonGraphicURL];
-                buttonImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:imageURL]];
-                buttonDisabledImage = buttonImage;
-            }
-            if (!buttonImage) {
-                buttonImage = [UIImage mobfoxSkipButtonImage];
-                buttonDisabledImage = [UIImage mobfoxSkipButtonDisabledImage];
-            }
+            interstitialSkipButtonDisplayDelay = 0;
+            
+            UIImage *buttonImage = [UIImage mobfoxSkipButtonImage];
+            UIImage *buttonDisabledImage = [UIImage mobfoxSkipButtonDisabledImage];
 
             if (buttonImage) {
                 float skipButtonSize = buttonSize + 4.0f;
@@ -1149,17 +1146,9 @@ static float animationDuration = 0.50;
                 [self.interstitialSkipButton setImage:buttonImage forState:UIControlStateNormal];
                 [self.interstitialSkipButton setImage:buttonDisabledImage forState:UIControlStateHighlighted];
 
-                if (self.interstitialTopToolbar) {
-                    UIBarButtonItem *theButton = [[UIBarButtonItem alloc] initWithCustomView:self.interstitialSkipButton];
-                    self.interstitialTopToolbarButtons = [NSMutableArray arrayWithArray:self.interstitialTopToolbar.items];
-                    [self.interstitialTopToolbarButtons addObject:flexiblespace];
-                    [self.interstitialTopToolbarButtons addObject:theButton];
 
-                }   else {
+                self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 
-                    self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-
-                } 
             }
 
         }
@@ -2083,7 +2072,7 @@ static float animationDuration = 0.50;
 
                 [self advertAnimateIn:self.advertAnimation advertTypeLoaded:advertType viewToAnimate:self.mobFoxVideoPlayerViewController.view];
 
-}
+            }
             break;
         case MobFoxAdTypeInterstitial:
         case MobFoxAdTypeMraid:
@@ -3716,11 +3705,11 @@ static float animationDuration = 0.50;
 
 - (void)handleOverlayClick:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded)     {
-
+        
         if (self.videoPlayer) {
             [self toggleToolbars];
         }
-
+        
         [self checkAndCancelAutoClose];
         if(_overlayClickThrough) {
             NSString *escapedDataString = [_overlayClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -3730,7 +3719,17 @@ static float animationDuration = 0.50;
     }
 }
 
+- (void)handleInterstitialClick:(UITapGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded)     {
 
+        if(_interstitialClickThrough) {
+            NSString *escapedDataString = [_interstitialClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
+            [self tapThrough:YES tapThroughURL:clickUrl];
+        }
+    }
+    
+}
 
 - (void)handleVideoClick:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded)     {
@@ -3739,12 +3738,12 @@ static float animationDuration = 0.50;
             [self toggleToolbars];
         }
         if(_videoClickThrough) {
-        NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
-        [self tapThrough:YES tapThroughURL:clickUrl];
+            NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
+            [self tapThrough:YES tapThroughURL:clickUrl];
             
-        [self videoShowSkipButton];
-    }
+            [self videoShowSkipButton];
+        }
     }
     
 }
