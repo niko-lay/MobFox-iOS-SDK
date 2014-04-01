@@ -65,13 +65,14 @@
         inLine.adSystem = [self readAdSystem:adSystem];
     }
     inLine.adTitle = [element getNamedChild:@"AdTitle"].text;
+    inLine.impressions = [[NSMutableArray alloc]init];
     
     NSArray *impressionElements = [element getNamedChildren:@"Impression"];
     
     for (int i = 0; i < impressionElements.count; i++) {
         DTXMLElement *element = [impressionElements objectAtIndex:i];
         VAST_Impression *impression = [self readImpression:element];
-        
+
         [inLine.impressions addObject:impression];
     }
 

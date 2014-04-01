@@ -1014,7 +1014,6 @@ static float animationDuration = 0.50;
     if(!vastAds) return NO;
     
     
-    VAST_Creative *creative;
     VAST_Companion *companion;
     
     for(VAST_Ad* ad in vastAds) {
@@ -1022,7 +1021,6 @@ static float animationDuration = 0.50;
             for(VAST_Creative* c in ad.InLine.creatives) {
                 if(c.companionAds && c.companionAds.companions.count != 0)
                 {
-                    creative = c;
                     companion = [c.companionAds.companions objectAtIndex:0];
                     break;
                 }
@@ -1209,7 +1207,6 @@ static float animationDuration = 0.50;
     if(vastAds)
     {
         VAST_Ad *vastAd;
-        VAST_Creative *creative;
         VAST_Linear *linear;
         VAST_MediaFile *mediaFile;
         
@@ -1219,7 +1216,6 @@ static float animationDuration = 0.50;
                     if(c.linear && c.linear.mediaFiles.count != 0)
                     {
                         vastAd = ad;
-                        creative = c;
                         linear = c.linear;
                         mediaFile = [c.linear.mediaFiles objectAtIndex:0];
                         break;
@@ -1236,7 +1232,7 @@ static float animationDuration = 0.50;
         
         NSString *adVideoURL = mediaFile.url;
         
-        NSArray *videoTrackingEvents = linear.trackingEvents;
+        NSMutableArray *videoTrackingEvents = [NSMutableArray arrayWithArray: linear.trackingEvents];
         if(!adVideoURL)
         {
             return NO;
@@ -1300,6 +1296,28 @@ static float animationDuration = 0.50;
             return NO;
         }
         
+ 
+        
+        VAST_NonLinear *nonLinear;
+        for (VAST_Creative *creative in vastAd.InLine.creatives)
+        {
+            for (VAST_NonLinear *nonL in creative.nonLinearAds.nonLinears)
+            {
+                if (nonL)
+                {
+                    nonLinear = nonL;
+                    [videoTrackingEvents addObjectsFromArray:creative.nonLinearAds.trackingEvents];
+                    HTMLOverlayHeight = nonLinear.height;
+                    HTMLOverlayWidth = nonLinear.width;
+                    break;
+                }
+            }
+            if(nonLinear)
+                break;
+        }
+        
+        
+        
         if ([videoTrackingEvents count]) {
             
             self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
@@ -1320,23 +1338,29 @@ static float animationDuration = 0.50;
                 
             }
             
-        }
-        
-        VAST_NonLinear *nonLinear;
-        for (VAST_Creative *creative in vastAd.InLine.creatives)
-        {
-            for (VAST_NonLinear *nonL in creative.nonLinearAds.nonLinears)
-            {
-                if (nonL)
-                {
-                    nonLinear = nonL;
-                    HTMLOverlayHeight = nonLinear.height;
-                    HTMLOverlayWidth = nonLinear.width;
-                    break;
-                }
+            if (nonLinear.nonLinearClickTracking) {
+                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              nonLinear.nonLinearClickTracking, @"overlayClick",
+                                              nil];
+                
+                [self.advertTrackingEvents addObject:trackingEvent];
             }
-            if(nonLinear)
-                break;
+            for (NSString* click in linear.videoClicks.clickTracking) {
+                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               click, @"videoClick",
+                                               nil];
+                
+                [self.advertTrackingEvents addObject:trackingEvent];
+            }
+            
+            for (VAST_Impression* impression in  vastAd.InLine.impressions) {
+                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               impression.url, @"Impression",
+                                               nil];
+                
+                [self.advertTrackingEvents addObject:trackingEvent];
+            }
+            
         }
         
         
@@ -1616,6 +1640,7 @@ static float animationDuration = 0.50;
 
         [self videoStartTimer];
         [self advertActionTrackingEvent:@"start"];
+        [self advertActionTrackingEvent:@"Impression"];
         [self advertActionTrackingEvent:@"creativeView"];
         [self.videoPlayer play];
 
@@ -2599,7 +2624,7 @@ static float animationDuration = 0.50;
         }
     }
 
-    [self advertActionTrackingEvent:[NSString stringWithFormat:@"sec:%d", timeToCheckAgainst]];
+//    [self advertActionTrackingEvent:[NSString stringWithFormat:@"sec:%d", timeToCheckAgainst]];
 
     if(!videoSkipButtonDisplayed) {
         if(videoSkipButtonShow) {
@@ -2739,6 +2764,8 @@ static float animationDuration = 0.50;
 	{
 
         NSString *urlString = [trackingEvent objectForKey:eventType];
+        urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
 
         if (urlString) {
 
@@ -2855,6 +2882,7 @@ static float animationDuration = 0.50;
     videoWasSkipped = YES;
 
     [self advertActionTrackingEvent:@"skip"];
+    [self advertActionTrackingEvent:@"close"];
 
     if (self.videoPlayer.playbackState != MPMoviePlaybackStateStopped ) {
         [self.videoPlayer stop];
@@ -3018,7 +3046,9 @@ static float animationDuration = 0.50;
         switch (reasonForFinish) {
             case MPMovieFinishReasonPlaybackEnded:
             case MPMovieFinishReasonUserExited:
-                [self advertActionTrackingEvent:@"complete"];
+                if(!videoWasSkipped){
+                    [self advertActionTrackingEvent:@"complete"];
+                }
                 [self videoStopAdvert];
                 break;
         }
@@ -3185,6 +3215,7 @@ static float animationDuration = 0.50;
         
         [self checkAndCancelAutoClose];
         if(_overlayClickThrough) {
+            [self advertActionTrackingEvent:@"overlayClick"];
             NSString *escapedDataString = [_overlayClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
             [self tapThrough:YES tapThroughURL:clickUrl];
@@ -3211,6 +3242,7 @@ static float animationDuration = 0.50;
             [self toggleToolbars];
         }
         if(_videoClickThrough) {
+            [self advertActionTrackingEvent:@"videoClick"];
             NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
             [self tapThrough:YES tapThroughURL:clickUrl];
