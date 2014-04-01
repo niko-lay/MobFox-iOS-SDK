@@ -1015,12 +1015,14 @@ static float animationDuration = 0.50;
     
     
     VAST_Companion *companion;
+    VAST_Ad *vastAd;
     
     for(VAST_Ad* ad in vastAds) {
         if(ad.InLine) {
             for(VAST_Creative* c in ad.InLine.creatives) {
                 if(c.companionAds && c.companionAds.companions.count != 0)
                 {
+                    vastAd = ad;
                     companion = [c.companionAds.companions objectAtIndex:0];
                     break;
                 }
@@ -1077,9 +1079,41 @@ static float animationDuration = 0.50;
         return NO;
     }
     
+    self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
     if(companion.companionClickThrough) {
         _interstitialClickThrough = [companion.companionClickThrough stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if(companion.companionClickTracking) {
+            NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           companion.companionClickTracking, @"interstitialClick",
+                                           nil];
+            
+            [self.advertTrackingEvents addObject:trackingEvent];
+        }
     }
+
+    for (VAST_Tracking *tracking in companion.trackingEvents)
+    {
+        NSString *type = tracking.event;
+        NSString *clickUrl = tracking.url;
+        
+        if (clickUrl && type) {
+            NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           clickUrl, type,
+                                           nil];
+            
+            [self.advertTrackingEvents addObject:trackingEvent];
+        }
+    }
+    
+    for (VAST_Impression* impression in  vastAd.InLine.impressions) {
+        NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       impression.url, @"Impression",
+                                       nil];
+        
+        [self.advertTrackingEvents addObject:trackingEvent];
+    }
+
+
 
     if (self.interstitialMarkup) {
         self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
@@ -1317,10 +1351,9 @@ static float animationDuration = 0.50;
         }
         
         
+        self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
         
         if ([videoTrackingEvents count]) {
-            
-            self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
             
             for (VAST_Tracking *tracking in videoTrackingEvents)
             {
@@ -1337,31 +1370,32 @@ static float animationDuration = 0.50;
                 }
                 
             }
-            
-            if (nonLinear.nonLinearClickTracking) {
-                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+        }
+        
+        if (nonLinear.nonLinearClickTracking) {
+               NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
                                               nonLinear.nonLinearClickTracking, @"overlayClick",
                                               nil];
                 
-                [self.advertTrackingEvents addObject:trackingEvent];
-            }
-            for (NSString* click in linear.videoClicks.clickTracking) {
-                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
-                                               click, @"videoClick",
-                                               nil];
-                
-                [self.advertTrackingEvents addObject:trackingEvent];
-            }
-            
-            for (VAST_Impression* impression in  vastAd.InLine.impressions) {
-                NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
-                                               impression.url, @"Impression",
-                                               nil];
-                
-                [self.advertTrackingEvents addObject:trackingEvent];
-            }
-            
+               [self.advertTrackingEvents addObject:trackingEvent];
         }
+        for (NSString* click in linear.videoClicks.clickTracking) {
+              NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                             click, @"videoClick",
+                                             nil];
+                
+             [self.advertTrackingEvents addObject:trackingEvent];
+        }
+            
+        for (VAST_Impression* impression in  vastAd.InLine.impressions) {
+              NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
+                                             impression.url, @"Impression",
+                                             nil];
+                
+             [self.advertTrackingEvents addObject:trackingEvent];
+        }
+            
+        
         
         
         videoHTMLOverlayDisplayDelay = (NSTimeInterval)0;
@@ -1609,6 +1643,12 @@ static float animationDuration = 0.50;
 
     [self interstitialStartTimer];
     [self advertAddNotificationObservers:MobFoxAdGroupInterstitial];
+    
+    if(advertTypeCurrentlyPlaying != MobFoxAdTypeVideoToInterstitial) {
+        [self advertActionTrackingEvent:@"Impression"];
+    }
+    
+    [self advertActionTrackingEvent:@"creativeView"];
 
     currentlyPlayingInterstitial = YES;
 }
@@ -1640,7 +1680,11 @@ static float animationDuration = 0.50;
 
         [self videoStartTimer];
         [self advertActionTrackingEvent:@"start"];
-        [self advertActionTrackingEvent:@"Impression"];
+        
+        if(advertTypeCurrentlyPlaying != MobFoxAdTypeInterstitialToVideo) {
+            [self advertActionTrackingEvent:@"Impression"];
+        }
+        
         [self advertActionTrackingEvent:@"creativeView"];
         [self.videoPlayer play];
 
@@ -2754,7 +2798,7 @@ static float animationDuration = 0.50;
 }
 
 - (void)advertActionTrackingEvent:(NSString*)eventType {
-
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY @allKeys = %@", eventType];
     NSArray *trackingEvents = [self.advertTrackingEvents filteredArrayUsingPredicate:predicate];
 
@@ -2765,7 +2809,6 @@ static float animationDuration = 0.50;
 
         NSString *urlString = [trackingEvent objectForKey:eventType];
         urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
 
         if (urlString) {
 
@@ -3227,6 +3270,7 @@ static float animationDuration = 0.50;
     if (recognizer.state == UIGestureRecognizerStateEnded)     {
 
         if(_interstitialClickThrough) {
+            [self advertActionTrackingEvent:@"interstitialClick"];
             NSString *escapedDataString = [_interstitialClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
             [self tapThrough:YES tapThroughURL:clickUrl];
