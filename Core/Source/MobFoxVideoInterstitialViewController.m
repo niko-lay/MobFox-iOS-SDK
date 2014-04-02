@@ -593,6 +593,7 @@ static float animationDuration = 0.50;
 
 		return;
 	}
+    advertRequestInProgress = YES;
 	[self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
 
 }
