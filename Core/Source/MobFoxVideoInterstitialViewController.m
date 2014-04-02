@@ -114,7 +114,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @property (nonatomic, strong) UIButton *interstitialSkipButton;
 
-@property (nonatomic, strong) NSMutableArray *advertTrackingEvents;
+@property (nonatomic, strong) NSMutableArray *videoAdvertTrackingEvents;
+@property (nonatomic, strong) NSMutableArray *interstitialAdvertTrackingEvents;
+
 @property (nonatomic, strong) NSString *advertAnimation;
 
 @property (nonatomic, strong) NSString *demoAdTypeToShow;
@@ -180,7 +182,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @synthesize delegate, locationAwareAdverts, currentLatitude, currentLongitude, advertLoaded, advertViewActionInProgress, requestURL;
 
-@synthesize demoAdTypeToShow, advertAnimation,advertTrackingEvents, IPAddress;
+@synthesize demoAdTypeToShow, advertAnimation,videoAdvertTrackingEvents, interstitialAdvertTrackingEvents, IPAddress;
 @synthesize mobFoxVideoPlayerViewController, videoPlayer, videoTopToolbar, videoBottomToolbar, videoTopToolbarButtons, videoSkipButton, videoStalledTimer; 
 @synthesize videoPauseButtonDisabledImage, videoPlayButtonDisabledImage,videoPauseButtonImage, videoPlayButtonImage, videoTimer, videoTimerLabel, interstitialTimer;
 @synthesize videoHTMLOverlayHTML, videoHTMLOverlayWebView;
@@ -1080,7 +1082,7 @@ static float animationDuration = 0.50;
         return NO;
     }
     
-    self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
+    self.interstitialAdvertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
     if(companion.companionClickThrough) {
         _interstitialClickThrough = [companion.companionClickThrough stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if(companion.companionClickTracking) {
@@ -1088,7 +1090,7 @@ static float animationDuration = 0.50;
                                            companion.companionClickTracking, @"interstitialClick",
                                            nil];
             
-            [self.advertTrackingEvents addObject:trackingEvent];
+            [self.interstitialAdvertTrackingEvents addObject:trackingEvent];
         }
     }
 
@@ -1102,7 +1104,7 @@ static float animationDuration = 0.50;
                                            clickUrl, type,
                                            nil];
             
-            [self.advertTrackingEvents addObject:trackingEvent];
+            [self.interstitialAdvertTrackingEvents addObject:trackingEvent];
         }
     }
     
@@ -1111,7 +1113,7 @@ static float animationDuration = 0.50;
                                        impression.url, @"Impression",
                                        nil];
         
-        [self.advertTrackingEvents addObject:trackingEvent];
+        [self.interstitialAdvertTrackingEvents addObject:trackingEvent];
     }
 
 
@@ -1272,10 +1274,7 @@ static float animationDuration = 0.50;
         {
             return NO;
         }
-        
-        
-        [self advertAddNotificationObservers:MobFoxAdGroupVideo]; //necessary here? Also done in videoPlayAdvert.
-        
+        [self advertAddNotificationObservers:MobFoxAdGroupVideo];
         videoCheckLoadedCount = 0;
         videoVideoFailedToLoad = NO;
 
@@ -1294,6 +1293,7 @@ static float animationDuration = 0.50;
         self.mobFoxVideoPlayerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         self.videoPlayer.controlStyle = MPMovieControlStyleNone;
+        self.videoPlayer.shouldAutoplay = NO;
         
         videoDuration = [self getTimeFromString:linear.duration];
         
@@ -1352,7 +1352,7 @@ static float animationDuration = 0.50;
         }
         
         
-        self.advertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
+        self.videoAdvertTrackingEvents = [NSMutableArray arrayWithCapacity:0];
         
         if ([videoTrackingEvents count]) {
             
@@ -1367,7 +1367,7 @@ static float animationDuration = 0.50;
                                                    clickUrl, type,
                                                    nil];
                     
-                    [self.advertTrackingEvents addObject:trackingEvent];
+                    [self.videoAdvertTrackingEvents addObject:trackingEvent];
                 }
                 
             }
@@ -1378,14 +1378,14 @@ static float animationDuration = 0.50;
                                               nonLinear.nonLinearClickTracking, @"overlayClick",
                                               nil];
                 
-               [self.advertTrackingEvents addObject:trackingEvent];
+               [self.videoAdvertTrackingEvents addObject:trackingEvent];
         }
         for (NSString* click in linear.videoClicks.clickTracking) {
               NSDictionary *trackingEvent = [NSDictionary dictionaryWithObjectsAndKeys:
                                              click, @"videoClick",
                                              nil];
                 
-             [self.advertTrackingEvents addObject:trackingEvent];
+             [self.videoAdvertTrackingEvents addObject:trackingEvent];
         }
             
         for (VAST_Impression* impression in  vastAd.InLine.impressions) {
@@ -1393,7 +1393,7 @@ static float animationDuration = 0.50;
                                              impression.url, @"Impression",
                                              nil];
                 
-             [self.advertTrackingEvents addObject:trackingEvent];
+             [self.videoAdvertTrackingEvents addObject:trackingEvent];
         }
             
         
@@ -1641,6 +1641,8 @@ static float animationDuration = 0.50;
 }
 
 - (void)interstitialPlayAdvert {
+    
+    currentlyPlayingInterstitial = YES;
 
     [self interstitialStartTimer];
     [self advertAddNotificationObservers:MobFoxAdGroupInterstitial];
@@ -1651,7 +1653,7 @@ static float animationDuration = 0.50;
     
     [self advertActionTrackingEvent:@"creativeView"];
 
-    currentlyPlayingInterstitial = YES;
+    
 }
 
 - (void)interstitialStopAdvert {
@@ -1699,8 +1701,10 @@ static float animationDuration = 0.50;
     if (advertTypeCurrentlyPlaying == MobFoxAdTypeInterstitialToVideo) {
 
         if (self.interstitialHoldingView) {
-            [self.interstitialWebView reload];
-
+            if(interstitialLoadedFromURL) {
+                [self.interstitialWebView reload];
+            }
+            
             [videoViewController dismissModalViewControllerAnimated:NO];
             [self videoTidyUpAfterAnimationOut];
             UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -1721,9 +1725,13 @@ static float animationDuration = 0.50;
     }
 
     if (advertTypeCurrentlyPlaying == MobFoxAdTypeVideoToInterstitial && !videoWasSkipped) {
-        if (self.interstitialHoldingView) {
-            [self.interstitialWebView reload];
 
+        if (self.interstitialHoldingView) {
+
+            if(interstitialLoadedFromURL) {
+                [self.interstitialWebView reload];
+            }
+            
             [videoViewController dismissModalViewControllerAnimated:NO]; 
             [self videoTidyUpAfterAnimationOut];
             UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -2801,7 +2809,14 @@ static float animationDuration = 0.50;
 - (void)advertActionTrackingEvent:(NSString*)eventType {
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY @allKeys = %@", eventType];
-    NSArray *trackingEvents = [self.advertTrackingEvents filteredArrayUsingPredicate:predicate];
+    NSMutableArray *currentTrackingEvents;
+    if(currentlyPlayingInterstitial) {
+        currentTrackingEvents = self.interstitialAdvertTrackingEvents;
+    } else {
+        currentTrackingEvents = self.videoAdvertTrackingEvents;
+    }
+
+    NSArray *trackingEvents = [currentTrackingEvents filteredArrayUsingPredicate:predicate];
 
     NSMutableArray *trackingEventsToRemove = [NSMutableArray arrayWithCapacity:0];
 
@@ -2823,7 +2838,7 @@ static float animationDuration = 0.50;
     if (![eventType isEqualToString:@"mute"] && ![eventType isEqualToString:@"unmute"] && ![eventType isEqualToString:@"pause"] && ![eventType isEqualToString:@"unpause"] && ![eventType isEqualToString:@"skip"] && ![eventType isEqualToString:@"replay"]) {
 
         if ([trackingEventsToRemove count]) {
-            [self.advertTrackingEvents removeObjectsInArray:trackingEventsToRemove]; 
+            [currentTrackingEvents removeObjectsInArray:trackingEventsToRemove];
         }
 
     }
