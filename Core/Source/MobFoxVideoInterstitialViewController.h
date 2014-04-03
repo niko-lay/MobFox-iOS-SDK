@@ -9,16 +9,13 @@ enum {
 };
 
 typedef enum {
-    MobFoxAdTypeVideoToInterstitial = 0,
-    MobFoxAdTypeVideo = 1,
-    MobFoxAdTypeInterstitial = 2,
-    MobFoxAdTypeInterstitialToVideo = 3,
-    MobFoxAdTypeNoAdInventory = 4,
-    MobFoxAdTypeError = 5,
-    MobFoxAdTypeUnknown = 6,
-    MobFoxAdTypeText = 7,
-    MobFoxAdTypeImage = 8,
-    MobFoxAdTypeMraid = 9
+    MobFoxAdTypeVideo = 0,
+    MobFoxAdTypeNoAdInventory = 1,
+    MobFoxAdTypeError = 2,
+    MobFoxAdTypeUnknown = 3,
+    MobFoxAdTypeText = 4,
+    MobFoxAdTypeImage = 5,
+    MobFoxAdTypeMraid = 6
     
 } MobFoxAdType;
 
@@ -82,10 +79,6 @@ typedef enum {
 
 - (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
-- (void)requestDemoVideoAdvert; 
-- (void)requestDemoInterstitualAdvert;
-- (void)requestDemoVideoToInterstitualAdvert;
-- (void)requestDemoInterstitualToVideoAdvert;
 
 @end
 
