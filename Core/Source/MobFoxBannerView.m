@@ -27,7 +27,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     NSMutableArray *customEvents;
 }
 
-@property (nonatomic, strong) NSString *demoAdTypeToShow;
 @property (nonatomic, strong) NSString *userAgent;
 @property (nonatomic, strong) NSString *skipOverlay;
 @property (nonatomic, strong) MobFoxMRAIDBannerAdapter *adapter;
@@ -156,11 +155,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     
 	if (active && !bannerViewActionInProgress && _refreshInterval)
 	{
-        if ([self.demoAdTypeToShow isEqualToString:@""]) {
-            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
-        } else {
-            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestDemoAd) userInfo:nil repeats:YES];
-		}
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
 	}
 	else
 	{
@@ -309,31 +304,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     return agentString;
 }
 
-#pragma mark - Demo Ad Requests
-
-- (void)requestDemoBannerImageAdvert {
-    self.demoAdTypeToShow = @"BannerImage";
-
-    [self requestDemoAd];
-}
-
-- (void)requestDemoBannerTextAdvert {
-    self.demoAdTypeToShow = @"BannerText";
-
-    [self requestDemoAd];
-}
-
-- (void)requestDemoBannerTextSkipOverlayInAppAdvert {
-    self.demoAdTypeToShow = @"BannerTextSkipOverlayInApp";
-
-    [self requestDemoAd];
-}
-
-- (void)requestDemoBannerTextSkipOverlaySafariAdvert {
-    self.demoAdTypeToShow = @"BannerTextSkipOverlaySafari";
-
-    [self requestDemoAd];
-}
 
 #pragma mark MRAID (MOPUB required)
 
@@ -809,23 +779,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-        if ([self.demoAdTypeToShow isEqualToString:@"BannerImage"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BannerImage_Example" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"BannerText"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BannerText_Example" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"BannerTextSkipOverlayInApp"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BannerText_SkipOverlayButtonInApp" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        if ([self.demoAdTypeToShow isEqualToString:@"BannerTextSkipOverlaySafari"]) {
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BannerText_SkipOverlayButtonSafari" ofType:@"xml"];
-            dataReply = [NSData dataWithContentsOfFile:filePath];
-        }
-        
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
 
         if (!xml)
@@ -870,8 +823,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 - (void)requestAd
 {
 
-    self.demoAdTypeToShow = @"";
-
     if (!delegate)
 	{
 		[self showErrorLabelWithText:@"MobFoxBannerViewDelegate not set"];
@@ -898,33 +849,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	[self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
 }
 
-- (void)requestDemoAd
-{
-	if (!delegate)
-	{
-		[self showErrorLabelWithText:@"MobFoxBannerViewDelegate not set"];
-
-		return;
-	}
-	if (![delegate respondsToSelector:@selector(publisherIdForMobFoxBannerView:)])
-	{
-		[self showErrorLabelWithText:@"MobFoxBannerViewDelegate does not implement publisherIdForMobFoxBannerView:"];
-
-		return;
-	}
-	NSString *publisherId = [delegate publisherIdForMobFoxBannerView:self];
-	if (![publisherId length])
-	{
-		[self showErrorLabelWithText:@"MobFoxBannerViewDelegate returned invalid publisher ID."];
-
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid publisher ID or Publisher ID not set" forKey:NSLocalizedDescriptionKey];
-
-        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;
-	}
-	[self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
-}
 
 #pragma mark Interaction
 
@@ -1229,7 +1153,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @synthesize refreshTimerOff;
 @synthesize requestURL;
 @synthesize allowDelegateAssigmentToRequestAd;
-@synthesize demoAdTypeToShow;
 @synthesize userAgent;
 @synthesize skipOverlay;
 @synthesize adapter;

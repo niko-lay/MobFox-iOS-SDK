@@ -115,7 +115,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @property (nonatomic, strong) NSMutableArray *videoAdvertTrackingEvents;
 
-@property (nonatomic, strong) NSString *demoAdTypeToShow;
 @property (nonatomic, strong) NSString *IPAddress;
 
 @property (nonatomic, assign) CGFloat currentLatitude;
@@ -1231,8 +1230,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
     
 }
-
-
 
 
 - (void)presentAd:(MobFoxAdType)advertType {

@@ -78,11 +78,6 @@ enum {
 
 - (void)requestAd;
 
-- (void)requestDemoBannerImageAdvert; 
-- (void)requestDemoBannerTextAdvert;
-- (void)requestDemoBannerTextSkipOverlayInAppAdvert;
-- (void)requestDemoBannerTextSkipOverlaySafariAdvert;
-
 @end
 
 extern NSString * const MobFoxErrorDomain;
