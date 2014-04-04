@@ -540,20 +540,28 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
     [customEvents removeAllObjects];
     DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
-#warning no error handling!
+
     if(customEventsElement)
     {
+        
         NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
         for(int i=0; i<[customEventElements count];i++)
         {
-            DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
-            CustomEvent *customEvent = [[CustomEvent alloc] init];
-            customEvent.className = [customEventElement getNamedChild:@"class"].text;
-            customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
-            customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-            [customEvents addObject:customEvent];
+            @try {
+                DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
+                CustomEvent *customEvent = [[CustomEvent alloc] init];
+                customEvent.className = [customEventElement getNamedChild:@"class"].text;
+                customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
+                customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
+                [customEvents addObject:customEvent];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Error creating custom event");
+            }
         }
+        
     }
+    
     
 	if (_bannerView && [customEvents count] == 0)
 	{
@@ -702,7 +710,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -716,7 +724,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -730,7 +738,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
 #else
 
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -786,11 +794,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
 
         NSURL *url;
-        if ([serverURL isEqual:@"http://my.mobfox.com/request.php"]) {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
-        } else {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sdk=banner&%@", serverURL, fullRequestString]];
-        }
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
+        
 
         NSMutableURLRequest *request;
         NSError *error;
@@ -820,7 +825,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BannerText_SkipOverlayButtonSafari" ofType:@"xml"];
             dataReply = [NSData dataWithContentsOfFile:filePath];
         }
-
+        
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
 
         if (!xml)

@@ -556,7 +556,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         
         NSString *adWidth = @"320";
         NSString *adHeight = @"480";
-        NSString *adStrict = @"1";
+        NSString *adStrict = @"0";
         
         NSString *requestType;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -584,7 +584,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -597,7 +597,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 						   [osVersion stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -610,7 +610,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -729,14 +729,22 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
         for(int i=0; i<[customEventElements count];i++)
         {
-            DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
-            CustomEvent *customEvent = [[CustomEvent alloc] init];
-            customEvent.className = [customEventElement getNamedChild:@"class"].text;
-            customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
-            customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-            [customEvents addObject:customEvent];
+            @try {
+                DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
+                CustomEvent *customEvent = [[CustomEvent alloc] init];
+                customEvent.className = [customEventElement getNamedChild:@"class"].text;
+                customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
+                customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
+                [customEvents addObject:customEvent];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Error creating custom event");
+            }
         }
     }
+    
+    
+    
     if([customEvents count] > 0)
     {
         [self loadCustomEvent];
@@ -1214,7 +1222,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 #pragma mark - Ad Presentation
 - (void)presentCustomEventFullscreen {
     @try {
-        [_customEventFullscreen showFullscreenFromRootViewController:self];
+        [_customEventFullscreen showFullscreenFromRootViewController:[self firstAvailableUIViewController]];
     }
     @catch (NSException *exception) {
         _customEventFullscreen = nil;
