@@ -53,13 +53,12 @@ typedef enum {
     BOOL advertLoaded;
 	BOOL advertViewActionInProgress;
 
-    BOOL locationAwareAdverts;
-
     __unsafe_unretained id <MobFoxVideoInterstitialViewControllerDelegate> delegate;
 
     MobFoxAdBrowserViewController *_browser;
 
-    NSString *requestURL;
+    NSString *interstitialRequestURL;
+    NSString *videoRequestURL;
     UIImage *_bannerImage;
 
 }
@@ -70,8 +69,14 @@ typedef enum {
 @property (nonatomic, readonly, getter=isAdvertViewActionInProgress) BOOL advertViewActionInProgress;
 
 @property (nonatomic, assign) BOOL locationAwareAdverts;
+@property (nonatomic, assign) BOOL enableInterstitialAds;
+@property (nonatomic, assign) BOOL enableVideoAds;
+@property (nonatomic, assign) BOOL prioritizeVideoAds;
+@property (nonatomic, assign) NSInteger video_min_duration;
+@property (nonatomic, assign) NSInteger video_max_duration;
 
-@property (nonatomic, strong) NSString *requestURL;
+@property (nonatomic, strong) NSString *interstitialRequestURL;
+@property (nonatomic, strong) NSString *videoRequestURL;
 
 - (void)requestAd;
 

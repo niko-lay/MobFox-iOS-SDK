@@ -680,7 +680,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -694,7 +694,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -708,7 +708,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
 #else
 
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],

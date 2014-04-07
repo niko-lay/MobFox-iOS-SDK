@@ -49,6 +49,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     NSTimeInterval interstitialAutoCloseDelay;
     BOOL interstitialTimerShow;
     BOOL readyToPlaySecondaryInterstitial;
+    BOOL alreadyRequestedInterstitial;
+    BOOL alreadyRequestedVideo;
 
     BOOL currentlyPlayingInterstitial;
     float statusBarHeight;
@@ -166,7 +168,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @implementation MobFoxVideoInterstitialViewController
 
-@synthesize delegate, locationAwareAdverts, currentLatitude, currentLongitude, advertLoaded, advertViewActionInProgress, requestURL;
+@synthesize delegate, locationAwareAdverts, enableInterstitialAds, prioritizeVideoAds, enableVideoAds, currentLatitude, currentLongitude, advertLoaded, advertViewActionInProgress, interstitialRequestURL, videoRequestURL;
 
 @synthesize videoAdvertTrackingEvents, IPAddress;
 @synthesize mobFoxVideoPlayerViewController, videoPlayer, videoTopToolbar, videoBottomToolbar, videoTopToolbarButtons, videoSkipButton, videoStalledTimer; 
@@ -176,7 +178,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @synthesize interstitialTopToolbar, interstitialBottomToolbar, interstitialTopToolbarButtons, interstitialSkipButton;
 @synthesize interstitialURL, interstitialHoldingView, interstitialWebView, interstitialMarkup, browserBackButton, browserForwardButton;
 @synthesize userAgent;
-@synthesize vastAds;
+@synthesize vastAds, video_max_duration, video_min_duration;
 
 
 #pragma mark - Init/Dealloc Methods
@@ -202,6 +204,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 {
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    enableInterstitialAds = YES;
 
     [self setUpBrowserUserAgentStrings];
 
@@ -495,9 +498,14 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     return MobFoxAdTypeUnknown;
 }
 
-- (NSURL *)serverURL
+- (NSURL *)interstitialServerURL
 {
-	return [NSURL URLWithString:self.requestURL];
+	return [NSURL URLWithString:self.interstitialRequestURL];
+}
+
+- (NSURL *)videoServerURL
+{
+	return [NSURL URLWithString:self.videoRequestURL];
 }
 
 #pragma mark Properties
@@ -513,6 +521,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)requestAd
 {
+    if(!enableVideoAds) {
+        prioritizeVideoAds = NO;
+    }
+    
     if (self.advertLoaded || self.advertViewActionInProgress || advertRequestInProgress) {
         return;
     }
@@ -543,7 +555,19 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 		return;
 	}
     advertRequestInProgress = YES;
-	[self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+    
+    if (enableInterstitialAds && !prioritizeVideoAds) {
+        [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+    } else if(enableVideoAds) {
+        [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
+    } else {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error creating ad- both video and interstitial ads disabled" forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
+        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+        advertRequestInProgress = NO;
+        return;
+    }
+	
 
 }
 
@@ -583,7 +607,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -596,7 +620,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 						   [osVersion stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -609,7 +633,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -637,7 +661,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             requestStringWithLocation = requestString;
         }
         
-        
         NSString *fullRequestString;
 
         fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
@@ -648,7 +671,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                                  ];
 
         
-        NSURL *serverURL = [self serverURL];
+        NSURL *serverURL = [self interstitialServerURL];
         
         if (!serverURL) {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
@@ -661,6 +684,170 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         NSURL *url;
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
 
+        
+        NSMutableURLRequest *request;
+        NSError *error;
+        NSURLResponse *response;
+        NSData *dataReply;
+        
+        request = [NSMutableURLRequest requestWithURL:url];
+        [request setHTTPMethod: @"GET"];
+        [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
+        [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
+        
+        dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
+        
+        if (!xml)
+        {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing xml response from server" forKey:NSLocalizedDescriptionKey];
+            
+            NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
+        NSString *bannerUrlString = [xml.documentRoot getNamedChild:@"imageurl"].text;
+        
+        if ([bannerUrlString length])
+        {
+            NSURL *bannerUrl = [NSURL URLWithString:bannerUrlString];
+            _bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
+        }
+        
+        [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:xml waitUntilDone:YES];
+        
+	}
+    
+}
+
+
+- (void)asyncRequestVideoAdWithPublisherId:(NSString *)publisherId
+{
+	@autoreleasepool
+	{
+        NSString *mRaidCapable = @"1";
+        
+        NSString *adWidth = @"320";
+        NSString *adHeight = @"480";
+        NSString *adStrict = @"0";
+        
+        NSString *requestType;
+        if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+        {
+            requestType = @"iphone_app";
+        }
+        else
+        {
+            requestType = @"ipad_app";
+        }
+        
+        NSString *osVersion = [UIDevice currentDevice].systemVersion;
+        
+        NSString *requestString;
+        
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
+        NSString *iosadvid;
+        if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
+            iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+            NSString *o_iosadvidlimit = @"0";
+            if (NSClassFromString(@"ASIdentifierManager")) {
+                
+                if (![ASIdentifierManager sharedManager].advertisingTrackingEnabled) {
+                    o_iosadvidlimit = @"1";
+                }
+            }
+            
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+						   [mRaidCapable stringByUrlEncoding],
+						   [o_iosadvidlimit stringByUrlEncoding],
+						   [requestType stringByUrlEncoding],
+						   [self.userAgent stringByUrlEncoding],
+						   [self.userAgent stringByUrlEncoding],
+						   [[self browserAgentString] stringByUrlEncoding],
+						   [iosadvid stringByUrlEncoding],
+						   [SDK_VERSION stringByUrlEncoding],
+						   [publisherId stringByUrlEncoding],
+						   [osVersion stringByUrlEncoding]];
+            
+        } else {
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+                           [mRaidCapable stringByUrlEncoding],
+                           [requestType stringByUrlEncoding],
+                           [self.userAgent stringByUrlEncoding],
+                           [self.userAgent stringByUrlEncoding],
+                           [[self browserAgentString] stringByUrlEncoding],
+                           [SDK_VERSION stringByUrlEncoding],
+                           [publisherId stringByUrlEncoding],
+                           [osVersion stringByUrlEncoding]];
+            
+        }
+#else
+        
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+                       [mRaidCapable stringByUrlEncoding],
+                       [requestType stringByUrlEncoding],
+                       [self.userAgent stringByUrlEncoding],
+                       [self.userAgent stringByUrlEncoding],
+                       [[self browserAgentString] stringByUrlEncoding],
+                       [SDK_VERSION stringByUrlEncoding],
+                       [publisherId stringByUrlEncoding],
+                       [osVersion stringByUrlEncoding]];
+        
+#endif
+        NSString *requestStringWithLocation;
+        if(locationAwareAdverts && self.currentLatitude && self.currentLongitude)
+        {
+            NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLatitude];
+            NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.currentLongitude];
+            
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&latitude=%@&longitude=%@",
+                                         requestString,
+                                         [latitudeString stringByUrlEncoding],
+                                         [longitudeString stringByUrlEncoding]
+                                         ];
+        }
+        else
+        {
+            requestStringWithLocation = requestString;
+        }
+        
+        NSMutableString *fullRequestString;
+        
+        fullRequestString = [NSMutableString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+                             requestStringWithLocation,
+                             [adWidth stringByUrlEncoding],
+                             [adHeight stringByUrlEncoding],
+                             [adStrict stringByUrlEncoding]
+                             ];
+        if(video_min_duration) {
+            NSString *minDuration = [NSString stringWithFormat:@"%d",video_min_duration];
+            fullRequestString = [NSMutableString stringWithFormat:@"%@&v_dur_min=%@",
+                                 requestStringWithLocation,
+                                 [minDuration stringByUrlEncoding]];
+        }
+        
+        if(video_max_duration) {
+            NSString *maxDuration = [NSString stringWithFormat:@"%d",video_max_duration];
+            fullRequestString = [NSMutableString stringWithFormat:@"%@&v_dur_max=%@",
+                                 requestStringWithLocation,
+                                 [maxDuration stringByUrlEncoding]];
+        }
+        
+        
+        NSURL *serverURL = [self videoServerURL];
+        
+        if (!serverURL) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
+            
+            NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
+        
+        NSURL *url;
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
+        
         
         NSMutableURLRequest *request;
         NSError *error;
@@ -742,8 +929,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
     }
     
-    
-    
     if([customEvents count] > 0)
     {
         [self loadCustomEvent];
@@ -784,7 +969,12 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             
         case MobFoxAdTypeNoAdInventory:{
 
-            if(!_customEventFullscreen)
+            NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+            if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo) {
+                [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
+            } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial) {
+                [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+            } else if(!_customEventFullscreen)
             {
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
                 NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorInventoryUnavailable userInfo:userInfo];
