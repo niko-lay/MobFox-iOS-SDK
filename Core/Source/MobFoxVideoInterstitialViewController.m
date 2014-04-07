@@ -1176,8 +1176,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         videoSkipButtonShow = (linear.skipoffset != nil);
         
         if(videoSkipButtonShow) {
-            
-            videoSkipButtonDisplayDelay = (NSTimeInterval)[self getTimeFromString:linear.skipoffset];
+            if(linear.skipoffset) {
+                videoSkipButtonDisplayDelay = (NSTimeInterval)[self getTimeFromString:linear.skipoffset];
+            } else {
+                videoSkipButtonDisplayDelay = 0;
+            }
             UIImage *buttonImage;
             UIImage *buttonDisabledImage;
             
