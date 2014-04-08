@@ -555,6 +555,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 		return;
 	}
     advertRequestInProgress = YES;
+    alreadyRequestedInterstitial = NO;
+    alreadyRequestedVideo = NO;
     
     if (enableInterstitialAds && !prioritizeVideoAds) {
         [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
@@ -573,6 +575,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)asyncRequestAdWithPublisherId:(NSString *)publisherId
 {
+    alreadyRequestedInterstitial = YES;
 	@autoreleasepool
 	{
         NSString *mRaidCapable = @"1";
@@ -724,6 +727,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)asyncRequestVideoAdWithPublisherId:(NSString *)publisherId
 {
+    alreadyRequestedVideo = YES;
 	@autoreleasepool
 	{
         NSString *mRaidCapable = @"1";
@@ -900,9 +904,15 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;	
 	}
-    NSString *adType = [xml.documentRoot.attributes objectForKey:@"type"];
-
+    NSString *adType;
+    if([xml.documentRoot.name isEqualToString:@"VAST"]) {
+        adType = @"vastAd";
+    } else {
+        adType = [xml.documentRoot.attributes objectForKey:@"type"];
+    }
+    
     advertTypeCurrentlyPlaying = [self adTypeEnumValue:adType];
+    
     
     videoWasSkipped = NO;
     videoCheckLoadedCount = 0;
@@ -939,16 +949,16 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
     //eo custom events
     
- 
+    NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
     switch (advertTypeCurrentlyPlaying) {
         case MobFoxAdTypeVideo:{
-
-            DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
-
-            if ([self videoCreateAdvert:htmlElement]) {
+            
+            if ([self videoCreateAdvert:xml.documentRoot]) {
 
                 [self checkVideoLoadedAndReadyToPlay];
 
+            } else if (enableInterstitialAds && !alreadyRequestedInterstitial) {
+                [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
             } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
@@ -961,6 +971,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         case MobFoxAdTypeMraid: {
             if ([self interstitialFromBannerCreateAdvert:xml]) {
                 [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
+            } else if (enableVideoAds && !alreadyRequestedVideo) {
+                [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
             } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
@@ -968,8 +980,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
             
         case MobFoxAdTypeNoAdInventory:{
-
-            NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+            
             if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo) {
                 [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
             } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial) {
@@ -1076,8 +1087,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     
     [self.interstitialHoldingView addSubview:bannerView];
     
-    [self.interstitialHoldingView addSubview:self.interstitialTopToolbar];
-    
     interstitialSkipButtonShow = YES;
     
     UIImage *buttonImage = [UIImage mobfoxSkipButtonImage];
@@ -1090,7 +1099,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     [self.interstitialSkipButton addTarget:self action:@selector(interstitialSkipAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.interstitialSkipButton setImage:buttonImage forState:UIControlStateNormal];
     [self.interstitialSkipButton setImage:buttonDisabledImage forState:UIControlStateHighlighted];
-    
   
     self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self showInterstitialSkipButton];
@@ -1173,7 +1181,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             return NO;
         }
         
-        videoSkipButtonShow = (linear.skipoffset != nil);
+        videoSkipButtonShow = YES;
         
         if(videoSkipButtonShow) {
             if(linear.skipoffset) {
