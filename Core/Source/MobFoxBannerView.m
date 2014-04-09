@@ -21,10 +21,11 @@
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate, UIGestureRecognizerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
     NSMutableArray *customEvents;
+    BOOL wasUserAction;
 }
 
 @property (nonatomic, strong) NSString *userAgent;
@@ -422,8 +423,18 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 		if([skipOverlay isEqualToString:@"1"]) {
 
+            wasUserAction = NO;
+            
             webView.delegate = (id)self;
             webView.userInteractionEnabled = YES;
+            
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+            
+            [webView addGestureRecognizer:tap];
+            
+            tap.delegate = self;
+            
+            
         } else {
 
             webView.delegate = nil;
@@ -945,6 +956,20 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	bannerViewActionInProgress = YES;
 }
 
+- (void)handleTapGesture:(UITapGestureRecognizer *)gestureRecognizer
+{
+    // this is called after gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer: so we can safely remove the delegate here
+    if (gestureRecognizer.delegate) {
+        gestureRecognizer.delegate = nil;
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    wasUserAction = YES; //countermeasure for malicious, "auto-clicking" banners
+    return YES;
+}
+
 - (void)mobfoxAdBrowserControllerDidDismiss:(MobFoxAdBrowserViewController *)mobfoxAdBrowserController
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillFinish:)])
@@ -970,7 +995,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     NSString *urlString = [url absoluteString];
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
 	{
-        if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] ) {
+        if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] && wasUserAction) {
             if(_tapThroughURL) {
                 NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
                 [request2 setHTTPMethod: @"GET"];
@@ -989,7 +1014,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         NSString* documentURL = [[request mainDocumentURL] absoluteString];
         
         if( [urlString isEqualToString:documentURL]) {             //if they are the same this is a javascript href click
-            if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] ) {
+            if (![urlString isEqualToString:@"about:blank"] && ![urlString isEqualToString:@""] && wasUserAction) {
                 if(_tapThroughURL) {
                     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
                     [request2 setHTTPMethod: @"GET"];
