@@ -51,7 +51,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     BOOL readyToPlaySecondaryInterstitial;
     BOOL alreadyRequestedInterstitial;
     BOOL alreadyRequestedVideo;
-
+    
+    UIInterfaceOrientation requestedAdOrientation;
+    
     BOOL currentlyPlayingInterstitial;
     float statusBarHeight;
     BOOL statusBarWasVisible;
@@ -580,17 +582,37 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	{
         NSString *mRaidCapable = @"1";
         
-        NSString *adWidth = @"320";
-        NSString *adHeight = @"480";
+        
+        NSString *adWidth;
+        NSString *adHeight;
+        
+        UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+
         NSString *adStrict = @"0";
         
         NSString *requestType;
+        requestedAdOrientation = interfaceOrientation;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
         {
+            if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+                adWidth = @"320";
+                adHeight = @"480";
+            } else {
+                adWidth = @"480";
+                adHeight = @"320";
+            }
             requestType = @"iphone_app";
         }
         else
         {
+            if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+                adWidth = @"768";
+                adHeight = @"1024";
+            } else {
+                adWidth = @"1024";
+                adHeight = @"768";
+            }
+
             requestType = @"ipad_app";
         }
         
@@ -1053,8 +1075,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     interstitialSkipButtonDisplayed = NO;
     
     self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if(UIInterfaceOrientationIsPortrait(orientation))
+
+    if(UIInterfaceOrientationIsPortrait(requestedAdOrientation))
     {
         adInterstitialOrientation = @"portrait";
     }
@@ -1062,7 +1084,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     {
         adInterstitialOrientation = @"landscape";
     }
-    [self updateAllFrames:orientation];
+
+    
+    [self updateAllFrames:requestedAdOrientation];
     
     self.mobFoxInterstitialPlayerViewController.adInterstitialOrientation = adInterstitialOrientation;
     self.mobFoxInterstitialPlayerViewController.view.backgroundColor = [UIColor clearColor];
