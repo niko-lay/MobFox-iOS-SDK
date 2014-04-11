@@ -635,6 +635,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                 _customEventBanner = [[iAdCustomEventBanner alloc] init];
                 _customEventBanner.delegate = self;
                 [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+            } else {
+                NSLog(@"custom event for %@ not implemented!",event.className);
             }
         }
         @catch (NSException *exception) {

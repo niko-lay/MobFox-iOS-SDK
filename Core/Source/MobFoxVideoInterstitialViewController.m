@@ -1103,6 +1103,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
                 _customEventFullscreen.delegate = self;
                 [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
+            } else {
+                NSLog(@"custom event for %@ not implemented!",event.className);
             }
         }
         @catch (NSException *exception) {
