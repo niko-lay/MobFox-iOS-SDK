@@ -764,6 +764,27 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             fullRequestString = requestStringWithLocation;
         }
         
+        if([userGender isEqualToString:@"female"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=f",
+                                 fullRequestString];
+        } else if([userGender isEqualToString:@"male"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=m",
+                                 fullRequestString];
+        }
+        if(userAge) {
+            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
+                                 fullRequestString,
+                                 [age stringByUrlEncoding]];
+        }
+        if(keywords) {
+            NSString *words = [keywords componentsJoinedByString:@","];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+                                 fullRequestString,
+                                 words];
+            
+        }
+        
         NSURL *serverURL = [self serverURL];
 
         if (!serverURL) {
@@ -1185,6 +1206,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @synthesize adspaceWidth;
 @synthesize adspaceStrict;
 @synthesize locationAwareAdverts;
+@synthesize userGender,userAge,keywords;
 
 
 

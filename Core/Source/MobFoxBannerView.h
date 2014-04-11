@@ -69,6 +69,10 @@ enum {
 @property (nonatomic, retain) UIImage *_bannerImage;
 @property (strong, nonatomic) NSString *requestURL;
 
+@property (nonatomic, assign) NSInteger userAge;
+@property (nonatomic, assign) NSString* userGender;
+@property (nonatomic, retain) NSArray* keywords;
+
 @property (nonatomic, assign) BOOL allowDelegateAssigmentToRequestAd;
 
 @property (nonatomic, assign) BOOL locationAwareAdverts;

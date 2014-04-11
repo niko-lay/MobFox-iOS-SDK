@@ -75,6 +75,10 @@ typedef enum {
 @property (nonatomic, assign) NSInteger video_min_duration;
 @property (nonatomic, assign) NSInteger video_max_duration;
 
+@property (nonatomic, assign) NSInteger userAge;
+@property (nonatomic, assign) NSString* userGender;
+@property (nonatomic, retain) NSArray* keywords;
+
 @property (nonatomic, strong) NSString *interstitialRequestURL;
 @property (nonatomic, strong) NSString *videoRequestURL;
 

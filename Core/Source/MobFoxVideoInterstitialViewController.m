@@ -181,6 +181,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @synthesize interstitialURL, interstitialHoldingView, interstitialWebView, interstitialMarkup, browserBackButton, browserForwardButton;
 @synthesize userAgent;
 @synthesize vastAds, video_max_duration, video_min_duration;
+@synthesize userAge, userGender, keywords;
 
 
 #pragma mark - Init/Dealloc Methods
@@ -695,6 +696,27 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                                  [adStrict stringByUrlEncoding]
                                  ];
 
+        if([userGender isEqualToString:@"female"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=f",
+                                 fullRequestString];
+        } else if([userGender isEqualToString:@"male"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=m",
+                                 fullRequestString];
+        }
+        if(userAge) {
+            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
+                                 fullRequestString,
+                                 [age stringByUrlEncoding]];
+        }
+        if(keywords) {
+            NSString *words = [keywords componentsJoinedByString:@","];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+                                 fullRequestString,
+                                 words];
+            
+        }
+
         
         NSURL *serverURL = [self interstitialServerURL];
         
@@ -838,25 +860,47 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             requestStringWithLocation = requestString;
         }
         
-        NSMutableString *fullRequestString;
+        NSString *fullRequestString;
         
-        fullRequestString = [NSMutableString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+        fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
                              requestStringWithLocation,
                              [adWidth stringByUrlEncoding],
                              [adHeight stringByUrlEncoding],
                              [adStrict stringByUrlEncoding]
                              ];
+        
+        if([userGender isEqualToString:@"female"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=f",
+                                 fullRequestString];
+        } else if([userGender isEqualToString:@"male"]) {
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=m",
+                                 fullRequestString];
+        }
+        if(userAge) {
+            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
+                                 fullRequestString,
+                                 [age stringByUrlEncoding]];
+        }
+        if(keywords) {
+            NSString *words = [keywords componentsJoinedByString:@","];
+            fullRequestString = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+                                 fullRequestString,
+                                 words];
+            
+        }
+        
         if(video_min_duration) {
             NSString *minDuration = [NSString stringWithFormat:@"%d",video_min_duration];
-            fullRequestString = [NSMutableString stringWithFormat:@"%@&v_dur_min=%@",
-                                 requestStringWithLocation,
+            fullRequestString = [NSString stringWithFormat:@"%@&v_dur_min=%@",
+                                 fullRequestString,
                                  [minDuration stringByUrlEncoding]];
         }
         
         if(video_max_duration) {
             NSString *maxDuration = [NSString stringWithFormat:@"%d",video_max_duration];
-            fullRequestString = [NSMutableString stringWithFormat:@"%@&v_dur_max=%@",
-                                 requestStringWithLocation,
+            fullRequestString = [NSString stringWithFormat:@"%@&v_dur_max=%@",
+                                 fullRequestString,
                                  [maxDuration stringByUrlEncoding]];
         }
         
