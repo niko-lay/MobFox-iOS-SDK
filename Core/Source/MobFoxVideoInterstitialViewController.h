@@ -9,8 +9,8 @@ enum {
 };
 
 typedef enum {
-    MobFoxAdTypeVideo = 0,
-    MobFoxAdTypeNoAdInventory = 1,
+    MobFoxAdTypeNoAdInventory = 0,
+    MobFoxAdTypeVideo = 1,
     MobFoxAdTypeError = 2,
     MobFoxAdTypeUnknown = 3,
     MobFoxAdTypeText = 4,

@@ -376,8 +376,6 @@
 		90987CFF18BCB95600148D09 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90987CFE18BCB95600148D09 /* AudioToolbox.framework */; };
 		90987D0118BCB96400148D09 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90987D0018BCB96400148D09 /* AVFoundation.framework */; };
 		90987D0318BCB96E00148D09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90987D0218BCB96E00148D09 /* CoreGraphics.framework */; };
-		90987D2118BCD1AB00148D09 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90987D0D18BCD1AB00148D09 /* libGoogleAdMobAds.a */; };
-		90987D2218BCD1AB00148D09 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90987D0D18BCD1AB00148D09 /* libGoogleAdMobAds.a */; };
 		90987D2318BCD1AB00148D09 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90987D0E18BCD1AB00148D09 /* README.txt */; };
 		90987D2A18BCD32100148D09 /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0418BCD1AB00148D09 /* GADAdMobExtras.h */; };
 		90987D2B18BCD32100148D09 /* GADAdNetworkExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0518BCD1AB00148D09 /* GADAdNetworkExtras.h */; };
@@ -692,7 +690,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90987D2118BCD1AB00148D09 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,7 +698,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9014FD30184DFD8C006746EC /* SystemConfiguration.framework in Frameworks */,
-				90987D2218BCD1AB00148D09 /* libGoogleAdMobAds.a in Frameworks */,
 				9014FD31184DFD99006746EC /* MessageUI.framework in Frameworks */,
 				90987D0318BCB96E00148D09 /* CoreGraphics.framework in Frameworks */,
 				90987D0118BCB96400148D09 /* AVFoundation.framework in Frameworks */,
