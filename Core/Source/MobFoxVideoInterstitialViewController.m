@@ -1047,9 +1047,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             
         case MobFoxAdTypeNoAdInventory:{
             
-            if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo) {
+            if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
-            } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial) {
+            } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
             } else if(!_customEventFullscreen)
             {

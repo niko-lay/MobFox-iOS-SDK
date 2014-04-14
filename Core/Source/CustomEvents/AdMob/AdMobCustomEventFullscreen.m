@@ -17,12 +17,19 @@
         interstitial_.delegate = nil;
         interstitial_ = nil;
     }
-    interstitial_ = [[GADInterstitial alloc] init];
+    
+    Class interstitialClass = NSClassFromString(@"GADInterstitial");
+    Class requestClass = NSClassFromString(@"GADRequest");
+    if(!interstitialClass || !requestClass) {
+        [self.delegate customEventFullscreenDidFailToLoadAd];
+        return;
+    }
+    
+    interstitial_ = [[interstitialClass alloc] init];
     interstitial_.adUnitID = optionalParameters;
     interstitial_.delegate = self;
     
-    
-    GADRequest *request = [GADRequest request];
+    GADRequest *request = [requestClass request];
     request.testDevices = [NSArray arrayWithObjects: GAD_SIMULATOR_ID, nil];
     
     [interstitial_ loadRequest:request];
