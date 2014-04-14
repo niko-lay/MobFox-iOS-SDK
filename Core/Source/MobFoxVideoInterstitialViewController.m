@@ -1092,15 +1092,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         {
             CustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
-            if ([event.className isEqualToString:@"AdMob"])
-            {
-                _customEventFullscreen = [[AdMobCustomEventFullscreen alloc]init];
-                _customEventFullscreen.delegate = self;
-                [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
-            }
-            else if ([event.className isEqualToString:@"iAd"])
-            {
-                _customEventFullscreen = [[iAdCustomEventFullscreen alloc]init];
+            
+            NSString* className = [NSString stringWithFormat:@"%@CustomEventFullscreen",event.className];
+            Class customClass = NSClassFromString(className);
+            if(className) {
+                _customEventFullscreen = [[customClass alloc]init];
                 _customEventFullscreen.delegate = self;
                 [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
             } else {

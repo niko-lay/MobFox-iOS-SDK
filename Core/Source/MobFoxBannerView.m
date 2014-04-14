@@ -624,15 +624,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         {
             CustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
-            if([event.className isEqualToString: @"AdMob"])
-            {
-                _customEventBanner = [[AdMobCustomEventBanner alloc] init];
-                _customEventBanner.delegate = self;
-                [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
-            }
-            else if([event.className isEqualToString: @"iAd"])
-            {
-                _customEventBanner = [[iAdCustomEventBanner alloc] init];
+            
+            NSString* className = [NSString stringWithFormat:@"%@CustomEventBanner",event.className];
+            Class customClass = NSClassFromString(className);
+            if(className) {
+                _customEventBanner = [[customClass alloc] init];
                 _customEventBanner.delegate = self;
                 [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
             } else {
