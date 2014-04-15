@@ -30,7 +30,7 @@
 
 NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial";
 
-@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, CustomEventFullscreenDelegate> {
+@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, CustomEventFullscreenDelegate, MobFoxBannerViewDelegate> {
     BOOL videoSkipButtonShow;
     NSTimeInterval videoSkipButtonDisplayDelay;
     BOOL videoTimerShow;
@@ -1142,6 +1142,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     MobFoxBannerView* bannerView = [[MobFoxBannerView alloc] initWithFrame:interstitialHoldingView.frame];
 
     bannerView.allowDelegateAssigmentToRequestAd = NO;
+    bannerView.delegate = self;
     bannerView.adspaceHeight = interstitialHoldingView.bounds.size.height;
     bannerView.adspaceWidth = interstitialHoldingView.bounds.size.width;
 
@@ -1477,12 +1478,24 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)customEventFullscreenWillClose
 {
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWillDismissScreen:)])
+	{
+		[delegate mobfoxVideoInterstitialViewWillDismissScreen:self];
+	}
     [self advertTidyUpAfterAd:currentlyPlayingInterstitial];
 }
 
 - (void)customEventFullscreenWillLeaveApplication
 {
-    
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
+    {
+        [delegate mobfoxVideoInterstitialViewWasClicked:self];
+    }
+
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillLeaveApplication:)])
+    {
+        [delegate mobfoxVideoInterstitialViewActionWillLeaveApplication:self];
+    }
 }
 
 #pragma mark - Ad Presentation
@@ -2090,7 +2103,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	if (tapThroughLeavesApp || [tapThroughURL isDeviceSupported])
 	{
 
-        if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillLeaveApplication:)])
+        if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillLeaveApplication:)])
         {
             [delegate mobfoxVideoInterstitialViewActionWillLeaveApplication:self];
         }
@@ -2558,6 +2571,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         
         [self checkAndCancelAutoClose];
         if(_overlayClickThrough) {
+            if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
+            {
+                [delegate mobfoxVideoInterstitialViewWasClicked:self];
+            }
             [self advertActionTrackingEvent:@"overlayClick"];
             NSString *escapedDataString = [_overlayClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
@@ -2572,6 +2589,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
         if(_videoClickThrough) {
             [self advertActionTrackingEvent:@"videoClick"];
+            if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
+            {
+                [delegate mobfoxVideoInterstitialViewWasClicked:self];
+            }
             NSString *escapedDataString = [_videoClickThrough stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSURL *clickUrl = [NSURL URLWithString:escapedDataString];
             [self tapThrough:YES tapThroughURL:clickUrl];
@@ -2774,6 +2795,26 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
     [self updateAllFrames:interfaceOrientation];
+}
+
+#pragma mark Banner View Delegate
+
+-(void) mobfoxBannerViewActionWillPresent:(MobFoxBannerView *)banner {
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
+    {
+        [delegate mobfoxVideoInterstitialViewWasClicked:self];
+    }
+}
+
+-(void) mobfoxBannerViewActionWillLeaveApplication:(MobFoxBannerView *)banner {
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillLeaveApplication:)])
+    {
+        [delegate mobfoxVideoInterstitialViewActionWillLeaveApplication:self];
+    }
+}
+
+-(NSString*) publisherIdForMobFoxBannerView:(MobFoxBannerView *)banner {
+    return [delegate publisherIdForMobFoxVideoInterstitialView:self];
 }
 
 @end
