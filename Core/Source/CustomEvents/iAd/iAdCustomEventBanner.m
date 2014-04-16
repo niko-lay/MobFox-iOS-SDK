@@ -45,6 +45,7 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+    [self didDisplayAd];
     [self.delegate customEventBannerDidLoadAd:self.adBannerView];
 }
 
@@ -55,7 +56,6 @@
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
-    [self didDisplayAd];
     [self.delegate customEventBannerWillExpand];
     return YES;
 }

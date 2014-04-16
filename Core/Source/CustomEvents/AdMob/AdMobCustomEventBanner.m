@@ -58,6 +58,7 @@
 
 - (void)adViewDidReceiveAd:(GADBannerView *)bannerView
 {
+    [self didDisplayAd];
     [self.delegate customEventBannerDidLoadAd:self.adBannerView];
 }
 
@@ -69,7 +70,6 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 
 - (void)adViewWillPresentScreen:(GADBannerView *)bannerView
 {
-    [self didDisplayAd];
     [self.delegate customEventBannerWillExpand];
 }
 
