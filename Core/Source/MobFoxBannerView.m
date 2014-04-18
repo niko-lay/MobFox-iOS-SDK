@@ -651,8 +651,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	{
         NSString *mRaidCapable = @"1";
         
-        NSString *adWidth = [NSString stringWithFormat:@"%d",adspaceWidth];
-        NSString *adHeight = [NSString stringWithFormat:@"%d",adspaceHeight];
+        NSString *adWidth = [NSString stringWithFormat:@"%d",(int)adspaceWidth];
+        NSString *adHeight = [NSString stringWithFormat:@"%d",(int)adspaceHeight];
         NSString *adStrict;
         if (adspaceStrict)
         {
@@ -770,7 +770,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                                  fullRequestString];
         }
         if(userAge) {
-            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
             fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
                                  fullRequestString,
                                  [age stringByUrlEncoding]];

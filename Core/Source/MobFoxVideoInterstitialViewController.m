@@ -456,8 +456,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	if (theRangeBeginning.location == NSNotFound) {
 		return nil;
 	}
-	int location = theRangeBeginning.location + theRangeBeginning.length;
-	int length = [localContents length] - location;
+	long location = theRangeBeginning.location + theRangeBeginning.length;
+	long length = [localContents length] - location;
 	NSRange theRangeToSearch = {location, length};
 	NSRange theRangeEnding = [localContents rangeOfString:endingString options:NSCaseInsensitiveSearch range:theRangeToSearch];
 	if (theRangeEnding.location == NSNotFound) {
@@ -704,7 +704,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                                  fullRequestString];
         }
         if(userAge) {
-            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
             fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
                                  fullRequestString,
                                  [age stringByUrlEncoding]];
@@ -877,7 +877,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                                  fullRequestString];
         }
         if(userAge) {
-            NSString *age = [NSString stringWithFormat:@"%d",userAge];
+            NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
             fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
                                  fullRequestString,
                                  [age stringByUrlEncoding]];
@@ -891,14 +891,14 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
         
         if(video_min_duration) {
-            NSString *minDuration = [NSString stringWithFormat:@"%d",video_min_duration];
+            NSString *minDuration = [NSString stringWithFormat:@"%d",(int)video_min_duration];
             fullRequestString = [NSString stringWithFormat:@"%@&v_dur_min=%@",
                                  fullRequestString,
                                  [minDuration stringByUrlEncoding]];
         }
         
         if(video_max_duration) {
-            NSString *maxDuration = [NSString stringWithFormat:@"%d",video_max_duration];
+            NSString *maxDuration = [NSString stringWithFormat:@"%d",(int)video_max_duration];
             fullRequestString = [NSString stringWithFormat:@"%@&v_dur_max=%@",
                                  fullRequestString,
                                  [maxDuration stringByUrlEncoding]];
@@ -1173,7 +1173,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 
-- (int)getTimeFromString:(NSString*)string {
+- (NSInteger)getTimeFromString:(NSString*)string {
     
     NSArray *components = [string componentsSeparatedByString:@":"];
     
@@ -2009,7 +2009,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             [self advertActionTrackingEvent:@"midpoint"];
         }
 
-        int quartile = videoDuration/4;
+        NSInteger quartile = videoDuration/4;
         if (timeToCheckAgainst == quartile) {
             [self advertActionTrackingEvent:@"firstQuartile"];
         }
