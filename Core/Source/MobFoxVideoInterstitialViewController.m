@@ -170,7 +170,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @implementation MobFoxVideoInterstitialViewController
 
-@synthesize delegate, locationAwareAdverts, enableInterstitialAds, prioritizeVideoAds, enableVideoAds, currentLatitude, currentLongitude, advertLoaded, advertViewActionInProgress, interstitialRequestURL, videoRequestURL;
+@synthesize delegate, locationAwareAdverts, enableInterstitialAds, prioritizeVideoAds, enableVideoAds, currentLatitude, currentLongitude, advertLoaded, advertViewActionInProgress, requestURL;
 
 @synthesize videoAdvertTrackingEvents, IPAddress;
 @synthesize mobFoxVideoPlayerViewController, videoPlayer, videoTopToolbar, videoBottomToolbar, videoTopToolbarButtons, videoSkipButton, videoStalledTimer; 
@@ -501,14 +501,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     return MobFoxAdTypeUnknown;
 }
 
-- (NSURL *)interstitialServerURL
+- (NSURL *)serverURL
 {
-	return [NSURL URLWithString:self.interstitialRequestURL];
-}
-
-- (NSURL *)videoServerURL
-{
-	return [NSURL URLWithString:self.videoRequestURL];
+	return [NSURL URLWithString:self.requestURL];
 }
 
 #pragma mark Properties
@@ -718,7 +713,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
 
         
-        NSURL *serverURL = [self interstitialServerURL];
+        NSURL *serverURL = [self serverURL];
         
         if (!serverURL) {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
@@ -905,7 +900,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
         
         
-        NSURL *serverURL = [self videoServerURL];
+        NSURL *serverURL = [self serverURL];
         
         if (!serverURL) {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];

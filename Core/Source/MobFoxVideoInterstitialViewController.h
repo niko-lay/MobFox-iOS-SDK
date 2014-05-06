@@ -59,7 +59,7 @@ typedef enum {
 
     MobFoxAdBrowserViewController *_browser;
 
-    NSString *interstitialRequestURL;
+    NSString *requestURL;
     NSString *videoRequestURL;
     UIImage *_bannerImage;
 
@@ -81,8 +81,7 @@ typedef enum {
 @property (nonatomic, assign) NSString* userGender;
 @property (nonatomic, retain) NSArray* keywords;
 
-@property (nonatomic, strong) NSString *interstitialRequestURL;
-@property (nonatomic, strong) NSString *videoRequestURL;
+@property (nonatomic, strong) NSString *requestURL;
 
 - (void)requestAd;
 
