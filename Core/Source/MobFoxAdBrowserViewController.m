@@ -202,6 +202,10 @@
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
 	self.url = request.URL;
+    if ([self.url isDeviceSupported])
+    {
+        [[UIApplication sharedApplication] openURL:self.url];
+    }
 	return request;
 }
 

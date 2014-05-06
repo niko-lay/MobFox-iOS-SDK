@@ -10,7 +10,7 @@
 	{
 		return YES;
 	}
-	if ([scheme isEqualToString:@"http"])
+	if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"])
 	{
 		if ([host isEqualToString:@"maps.google.com"])
 		{
