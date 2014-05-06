@@ -8,6 +8,4 @@
 
 @property (nonatomic, strong) NSString *adVideoOrientation;
 
-- (void)hideStatusBar;
-
 @end

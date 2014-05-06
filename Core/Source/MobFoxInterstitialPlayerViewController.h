@@ -8,6 +8,4 @@
 
 @property (nonatomic, strong) NSString *adInterstitialOrientation;
 
-- (void)hideStatusBar;
-
 @end
