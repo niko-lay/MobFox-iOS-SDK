@@ -175,7 +175,6 @@
 		90038EE81846019400446EAD /* MPInterstitialCustomEventDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038E671846019400446EAD /* MPInterstitialCustomEventDelegate.h */; };
 		90038EE91846019400446EAD /* MPCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = 90038E691846019400446EAD /* MPCloseButtonX.png */; };
 		90038EEA1846019400446EAD /* MPCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90038E6A1846019400446EAD /* MPCloseButtonX@2x.png */; };
-		90038EEB1846019400446EAD /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90038E6B1846019400446EAD /* MRAID.bundle */; };
 		90038F0D1846035D00446EAD /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* CDataScanner.h */; };
 		90038F0E1846035D00446EAD /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* CDataScanner.h */; };
 		90038F0F1846035D00446EAD /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1499,7 +1498,6 @@
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90038EE91846019400446EAD /* MPCloseButtonX.png in Resources */,
 				90987D2318BCD1AB00148D09 /* README.txt in Resources */,
-				90038EEB1846019400446EAD /* MRAID.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

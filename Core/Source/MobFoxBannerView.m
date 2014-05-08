@@ -634,7 +634,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             
             NSString* className = [NSString stringWithFormat:@"%@CustomEventBanner",event.className];
             Class customClass = NSClassFromString(className);
-            if(className) {
+            if(customClass) {
                 _customEventBanner = [[customClass alloc] init];
                 _customEventBanner.delegate = self;
                 [_customEventBanner loadBannerWithSize:size optionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];

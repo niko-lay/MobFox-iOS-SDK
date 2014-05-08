@@ -974,11 +974,12 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     
     advertTypeCurrentlyPlaying = [self adTypeEnumValue:adType];
     
-    
     videoWasSkipped = NO;
     videoCheckLoadedCount = 0;
     
     //custom events:
+
+    _customEventFullscreen = nil;
     [customEvents removeAllObjects];
     DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
     if(customEventsElement)
@@ -1018,12 +1019,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
                 [self checkVideoLoadedAndReadyToPlay];
 
-            } else if (enableInterstitialAds && !alreadyRequestedInterstitial) {
+            } else if (enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
             } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
             }
-
             break;
         }
             
@@ -1031,8 +1031,12 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         case MobFoxAdTypeImage:
         case MobFoxAdTypeMraid: {
             if ([self interstitialFromBannerCreateAdvert:xml]) {
-                [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
-            } else if (enableVideoAds && !alreadyRequestedVideo) {
+                if(!_customEventFullscreen) {
+                    [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
+                } else {
+                    self.advertLoaded = YES;
+                }
+            } else if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
             } else if(!_customEventFullscreen){
                 [self videoFailedToLoad];
@@ -1087,10 +1091,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         {
             CustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
-            
             NSString* className = [NSString stringWithFormat:@"%@CustomEventFullscreen",event.className];
             Class customClass = NSClassFromString(className);
-            if(className) {
+            if(customClass) {
                 _customEventFullscreen = [[customClass alloc]init];
                 _customEventFullscreen.delegate = self;
                 [_customEventFullscreen loadFullscreenWithOptionalParameters:event.optionalParameter trackingPixel:event.pixelUrl];
@@ -1110,6 +1113,12 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 - (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
     interstitialAutoCloseDisabled = YES;
     interstitialSkipButtonDisplayed = NO;
+
+    DTXMLElement *customEventsElement = [document.documentRoot getNamedChild:@"customevents"];
+    if(customEventsElement) {
+        [document.documentRoot removeNamedChild:@"customevents"];
+    }
+
     
     self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
 
@@ -1140,7 +1149,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     bannerView.delegate = self;
     bannerView.adspaceHeight = interstitialHoldingView.bounds.size.height;
     bannerView.adspaceWidth = interstitialHoldingView.bounds.size.width;
-
 
     bannerView.refreshTimerOff = YES;
     
@@ -1432,8 +1440,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(checkVideoLoadedAndReadyToPlay) userInfo:nil repeats:NO];
             return;
         }
-
-        [self advertCreatedSuccessfully:MobFoxAdTypeVideo];
+        if(!_customEventFullscreen) {
+            [self advertCreatedSuccessfully:MobFoxAdTypeVideo];
+        } else {
+            self.advertLoaded = YES;
+        }
     }
 
 }
@@ -1456,12 +1467,18 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 - (void)customEventFullscreenDidFailToLoadAd
 {
     [self loadCustomEvent];
-    if(_customEventFullscreen || advertTypeCurrentlyPlaying != MobFoxAdTypeNoAdInventory)
-    {
+    if(_customEventFullscreen) {
         return;
-    }
-    else
-    {
+    } else if(advertLoaded) {
+        [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
+        return;
+    } else if (enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
+        NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+        [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+    } else if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
+        NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+        [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
+    } else {
         [self advertCreationFailed];
     }
 }
