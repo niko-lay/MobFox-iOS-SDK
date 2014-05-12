@@ -957,13 +957,21 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 {
 	if ([xml.documentRoot.name isEqualToString:@"error"])
 	{
-		NSString *errorMsg = xml.documentRoot.text;
+        if (enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
+            NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+            [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+        } else if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
+            NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
+            [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
+        } else {
+            NSString *errorMsg = xml.documentRoot.text;
 
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
 
-		NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;	
+            NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+        }
+		return;
 	}
     NSString *adType;
     if([xml.documentRoot.name isEqualToString:@"VAST"]) {
@@ -1014,7 +1022,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
     switch (advertTypeCurrentlyPlaying) {
         case MobFoxAdTypeVideo:{
-            
+
             if ([self videoCreateAdvert:xml.documentRoot]) {
 
                 [self checkVideoLoadedAndReadyToPlay];
@@ -1045,7 +1053,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
             
         case MobFoxAdTypeNoAdInventory:{
-            
             if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
             } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
@@ -1061,7 +1068,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             break;
         }
         case MobFoxAdTypeError:{
-
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Unknown error" forKey:NSLocalizedDescriptionKey];
 
             NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
