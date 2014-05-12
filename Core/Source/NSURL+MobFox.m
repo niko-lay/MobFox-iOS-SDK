@@ -26,11 +26,12 @@
 		{
 			return YES;
 		}
-
-		if ([host isEqualToString:@"itunes.apple.com"])
+        
+        if ([host hasSuffix:@"itunes.apple.com"])
 		{
 			return YES;
 		}
+        
 	}
 	return NO;	
 }
