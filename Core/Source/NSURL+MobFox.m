@@ -33,6 +33,10 @@
 		}
         
 	}
+    if ([scheme isEqualToString:@"itms-apps"] && [host hasSuffix:@"itunes.apple.com"])
+    {
+        return YES;
+    }
 	return NO;	
 }
 
