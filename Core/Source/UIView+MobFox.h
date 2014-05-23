@@ -10,5 +10,6 @@
 @interface UIView (MobFox)
 
 @property (nonatomic, strong) NSString* MobFoxTextAsset;
+@property (nonatomic, strong) NSString* MobFoxImageAsset;
 
 @end

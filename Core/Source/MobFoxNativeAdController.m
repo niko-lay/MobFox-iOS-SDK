@@ -318,7 +318,9 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
     while (key = [imageAssetEnumerator nextObject]) {
         ImageAsset* asset = [[ImageAsset alloc]init];
         NSDictionary* assetObject = imageAssets[key];
-        asset.url = assetObject[@"url"];
+        NSString* imageUrl = assetObject[@"url"];
+        asset.url = imageUrl;
+        asset.image = [self downloadImageFromUrl:imageUrl];
         asset.width =  assetObject[@"width"];
         asset.height = assetObject[@"height"];
         [ad.imageAssets setObject:asset forKey:key];
@@ -342,18 +344,40 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
     [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:ad waitUntilDone:YES];
 }
 
+-(UIImage*)downloadImageFromUrl:(NSString*)url {
+    UIImage * result;
+    
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    result = [UIImage imageWithData:data];
+    
+    return result;
+}
+
 -(UIView *)getNativeAdViewForResponse:(NativeAd *)response xibName:(NSString *)name {
     
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     UIView* mainView = nibObjects[0];
     for (UIView *child in mainView.subviews) {
-        NSString* assetName = [child valueForKey:@"MobFoxTextAsset"];
-        if(assetName && [child isKindOfClass:[UILabel class]]) {
-            NSString* text = [response.textAssets objectForKey:assetName];
+        
+        NSString* textAssetName = [child valueForKey:@"MobFoxTextAsset"];
+        NSString* imageAssetName = [child valueForKey:@"MobFoxImageAsset"];
+        
+        if(textAssetName && [child isKindOfClass:[UILabel class]]) {
+            NSString* text = [response.textAssets objectForKey:textAssetName];
             ((UILabel*)child).text = text;
+        } else if(imageAssetName && [child isKindOfClass:[UIImageView class]]){
+            ImageAsset* asset = [response.imageAssets objectForKey:imageAssetName];
+            if(asset.image) {
+                ((UIImageView*)child).image = asset.image;
+            }
         }
+        
      
         //rating?
+        
+        
+        
+        
     }
     
     

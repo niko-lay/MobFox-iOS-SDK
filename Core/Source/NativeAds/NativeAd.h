@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class ImageAsset;
 @class Tracker;
+@class UIImage;
 
 @interface NativeAd : NSObject
 @property (nonatomic, strong) NSString* clickUrl;
@@ -20,6 +21,7 @@
 
 @interface ImageAsset : NSObject
 @property (nonatomic, strong) NSString* url;
+@property (nonatomic, strong) UIImage* image;
 @property (nonatomic, strong) NSString* width;
 @property (nonatomic, strong) NSString* height;
 @end
