@@ -39,6 +39,8 @@
 
 - (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
+- (UIView*)getNativeAdViewForResponse:(NativeAd*)response xibName:(NSString*)name;
+
 - (void)requestAd;
 
 @end

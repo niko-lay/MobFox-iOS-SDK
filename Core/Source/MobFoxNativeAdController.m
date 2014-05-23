@@ -12,6 +12,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import <AdSupport/AdSupport.h>
 #import "NativeAd.h"
+#import <UIKit/UIKit.h>
 
 
 NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
@@ -339,6 +340,25 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
     }
 
     [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:ad waitUntilDone:YES];
+}
+
+-(UIView *)getNativeAdViewForResponse:(NativeAd *)response xibName:(NSString *)name {
+    
+    NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
+    UIView* mainView = nibObjects[0];
+    for (UIView *child in mainView.subviews) {
+        NSString* assetName = [child valueForKey:@"MobFoxTextAsset"];
+        if(assetName && [child isKindOfClass:[UILabel class]]) {
+            NSString* text = [response.textAssets objectForKey:assetName];
+            ((UILabel*)child).text = text;
+        }
+     
+        //rating?
+    }
+    
+    
+    return mainView;
+
 }
 
 - (void)reportError:(NSError *)error
