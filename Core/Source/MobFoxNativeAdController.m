@@ -26,6 +26,7 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 @property (nonatomic, assign) CGFloat currentLatitude;
 @property (nonatomic, assign) CGFloat currentLongitude;
+@property (nonatomic, strong) NSString *clickUrl;
 
 @end
 
@@ -374,15 +375,25 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
         
      
         //rating?
-        
-        
-        
-        
+   
     }
     
+    clickUrl = response.clickUrl;
+    
+    if(clickUrl) {
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        [mainView addGestureRecognizer:tap];
+    }
     
     return mainView;
 
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self performSelectorOnMainThread:@selector(reportClick) withObject:nil waitUntilDone:YES];
+    NSURL *clickURL = [NSURL URLWithString:clickUrl];
+    [[UIApplication sharedApplication]openURL:clickURL];
 }
 
 - (void)reportError:(NSError *)error
@@ -395,9 +406,17 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
 
 - (void)reportSuccess:(NativeAd *)ad
 {
-	if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
+	if ([delegate respondsToSelector:@selector(nativeAdDidLoad:)])
 	{
 		[delegate nativeAdDidLoad:ad];
+	}
+}
+
+- (void)reportClick
+{
+	if ([delegate respondsToSelector:@selector(nativeAdWasClicked)])
+	{
+		[delegate nativeAdWasClicked];
 	}
 }
 
@@ -416,6 +435,7 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
 
 @synthesize delegate;
 @synthesize requestURL;
+@synthesize clickUrl;
 @synthesize locationAwareAdverts;
 @synthesize userAge, userGender, keywords;
 @synthesize adTypes;
