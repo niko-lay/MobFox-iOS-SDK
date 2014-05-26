@@ -13,6 +13,7 @@
 #import <AdSupport/AdSupport.h>
 #import "NativeAd.h"
 #import <UIKit/UIKit.h>
+#import "MobFoxNativeTrackingView.h"
 
 
 NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
@@ -358,6 +359,20 @@ int const MAX_STARS = 5;
     
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     UIView* mainView = nibObjects[0];
+    
+    
+    NSMutableArray* impressionTrackers = [[NSMutableArray alloc]init];
+    for (Tracker* t in response.trackers) {
+        if([t.type isEqualToString:@"impression"]) {
+            [impressionTrackers addObject:t.url];
+        }
+    }
+    
+    MobFoxNativeTrackingView* trackingView = [[MobFoxNativeTrackingView alloc] initWithFrame:mainView.frame]; //Invisible view, used for tracking impressions
+    trackingView.impressionTrackers = impressionTrackers;
+    trackingView.delegate = delegate;
+    [mainView addSubview:trackingView];
+    
     for (UIView *child in mainView.subviews) {
         
         NSString* textAssetName = [child valueForKey:@"MobFoxTextAsset"];
@@ -398,6 +413,7 @@ int const MAX_STARS = 5;
     return mainView;
 
 }
+
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)gestureRecognizer
 {

@@ -394,6 +394,10 @@
 		909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
 		909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
+		909FE95519336C060014597C /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
+		909FE95619336C060014597C /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
+		909FE95719336C060014597C /* MobFoxNativeTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 909FE95419336C060014597C /* MobFoxNativeTrackingView.m */; };
+		909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 909FE95419336C060014597C /* MobFoxNativeTrackingView.m */; };
 		90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
 		90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
 		90A5C8C0192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
@@ -673,6 +677,8 @@
 		909A5E9B18B6168500C929A5 /* CustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventBanner.m; path = CustomEvents/CustomEventBanner.m; sourceTree = "<group>"; };
 		909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxMRAIDBannerAdapter.h; sourceTree = "<group>"; };
 		909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxMRAIDBannerAdapter.m; sourceTree = "<group>"; };
+		909FE95319336C060014597C /* MobFoxNativeTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeTrackingView.h; path = NativeAds/MobFoxNativeTrackingView.h; sourceTree = "<group>"; };
+		909FE95419336C060014597C /* MobFoxNativeTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeTrackingView.m; path = NativeAds/MobFoxNativeTrackingView.m; sourceTree = "<group>"; };
 		90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAdCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAdCustomEventFullscreen.m; sourceTree = "<group>"; };
 		90A5C8BE192F677700978746 /* UIView+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MobFox.h"; sourceTree = "<group>"; };
@@ -1018,6 +1024,8 @@
 			children = (
 				901FCEE7192C8E4900D22785 /* NativeAd.h */,
 				901FCEE8192C8E4900D22785 /* NativeAd.m */,
+				909FE95319336C060014597C /* MobFoxNativeTrackingView.h */,
+				909FE95419336C060014597C /* MobFoxNativeTrackingView.m */,
 			);
 			name = NativeAds;
 			sourceTree = "<group>";
@@ -1278,6 +1286,7 @@
 				90038E981846019400446EAD /* MPBaseInterstitialAdapter.h in Headers */,
 				90038EC41846019400446EAD /* NSURL+MPAdditions.h in Headers */,
 				90038EC21846019400446EAD /* MRVideoPlayerManager.h in Headers */,
+				909FE95519336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
 				90038EA91846019400446EAD /* MPMRAIDInterstitialCustomEvent.h in Headers */,
 				0F62B51A14E92D4A0027BCB8 /* UIImage+MobFox.h in Headers */,
 				0F62B51F14E92E3D0027BCB8 /* NSBundle+MobFox.h in Headers */,
@@ -1400,6 +1409,7 @@
 				903603021859AE040020E5EE /* MRPictureManager.h in Headers */,
 				903603031859AE040020E5EE /* MRProperty.h in Headers */,
 				903603041859AE040020E5EE /* MRVideoPlayerManager.h in Headers */,
+				909FE95619336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
 				903603051859AE040020E5EE /* NSURL+MPAdditions.h in Headers */,
 				903603061859AE040020E5EE /* UIViewController+MPAdditions.h in Headers */,
 				903603071859AE040020E5EE /* UIWebView+MPAdditions.h in Headers */,
@@ -1634,6 +1644,7 @@
 				90038EDB1846019400446EAD /* MPTimer.m in Sources */,
 				0F0EB65E1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */,
 				90038E801846019400446EAD /* MPAdDestinationDisplayAgent.m in Sources */,
+				909FE95719336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
 				90038EE71846019400446EAD /* MPInterstitialCustomEvent.m in Sources */,
 				90038EBB1846019400446EAD /* MRImageDownloader.m in Sources */,
 				0FCEB20B150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */,
@@ -1738,6 +1749,7 @@
 				902073861859A6A5001A696C /* MPSessionTracker.m in Sources */,
 				902073881859A6A5001A696C /* MPStoreKitProvider.m in Sources */,
 				9020738A1859A6A5001A696C /* MPTimer.m in Sources */,
+				909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
 				9020738C1859A6A5001A696C /* MPAdConversionTracker.m in Sources */,
 				9020738E1859A6A5001A696C /* MPAdView.m in Sources */,
 				902073901859A6A5001A696C /* MPBannerCustomEvent.m in Sources */,
