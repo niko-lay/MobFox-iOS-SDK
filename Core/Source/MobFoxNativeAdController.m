@@ -16,6 +16,7 @@
 
 
 NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
+int const MAX_STARS = 5;
 
 @interface MobFoxNativeAdController () {
     
@@ -302,8 +303,7 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
             return;
         }
         
-        [self performSelectorOnMainThread:@selector(setupAdFromJson:) withObject:json waitUntilDone:YES];
-        
+        [self setupAdFromJson:json];
 	}
     
 }
@@ -365,16 +365,26 @@ NSString * const MobFoxNativeAdErrorDomain = @"MobFoxNativeAd";
         
         if(textAssetName && [child isKindOfClass:[UILabel class]]) {
             NSString* text = [response.textAssets objectForKey:textAssetName];
-            ((UILabel*)child).text = text;
+            if([textAssetName isEqualToString:@"rating"]) {
+                int fullStars = [text intValue];
+                int emptyStars = MAX_STARS - fullStars;
+                NSMutableString* starsLabel = [[NSMutableString alloc] init];
+                for (int i=0; i<fullStars; i++) {
+                    [starsLabel appendString:@"★"];
+                }
+                for (int i=0; i<emptyStars; i++) {
+                    [starsLabel appendString:@"☆"];
+                }
+                ((UILabel*)child).text = starsLabel;
+            } else {
+                ((UILabel*)child).text = text;
+            }
         } else if(imageAssetName && [child isKindOfClass:[UIImageView class]]){
             ImageAsset* asset = [response.imageAssets objectForKey:imageAssetName];
             if(asset.image) {
                 ((UIImageView*)child).image = asset.image;
             }
         }
-        
-     
-        //rating?
    
     }
     
