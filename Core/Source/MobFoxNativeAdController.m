@@ -29,6 +29,7 @@ int const MAX_STARS = 5;
 @property (nonatomic, assign) CGFloat currentLatitude;
 @property (nonatomic, assign) CGFloat currentLongitude;
 @property (nonatomic, strong) NSString *clickUrl;
+@property (nonatomic, strong) NSString *IPAddress;
 
 @end
 
@@ -42,6 +43,7 @@ int const MAX_STARS = 5;
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     [self setUpBrowserUserAgentStrings];
+    self.IPAddress = [self returnDeviceIPAddress];
 }
 
 - (id)init
@@ -193,9 +195,10 @@ int const MAX_STARS = 5;
         if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
             iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 
-            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
                            [adTypesString stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
+                           [self.IPAddress stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
 						   [[self browserAgentString] stringByUrlEncoding],
 						   [iosadvid stringByUrlEncoding],
@@ -204,9 +207,10 @@ int const MAX_STARS = 5;
 						   [osVersion stringByUrlEncoding]];
             
         } else {
-            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
                            [adTypesString stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
+                           [self.IPAddress stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
 						   [[self browserAgentString] stringByUrlEncoding],
 						   [SDK_VERSION stringByUrlEncoding],
@@ -217,9 +221,10 @@ int const MAX_STARS = 5;
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
                        [adTypesString stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
+                       [self.IPAddress stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
                        [[self browserAgentString] stringByUrlEncoding],
                        [SDK_VERSION stringByUrlEncoding],
@@ -457,6 +462,24 @@ int const MAX_STARS = 5;
 	return [NSURL URLWithString:self.requestURL];
 }
 
+- (NSString*)returnDeviceIPAddress {
+    
+    NSString *IPAddressToReturn;
+    
+#if TARGET_IPHONE_SIMULATOR
+    IPAddressToReturn = [UIDevice localSimulatorIPAddress];
+#else
+    
+    IPAddressToReturn = [UIDevice localWiFiIPAddress];
+    
+    if(!IPAddressToReturn) {
+        IPAddressToReturn = [UIDevice localCellularIPAddress];
+    }
+    
+#endif
+    
+    return IPAddressToReturn;
+}
 
 
 @synthesize delegate;
@@ -465,5 +488,6 @@ int const MAX_STARS = 5;
 @synthesize locationAwareAdverts;
 @synthesize userAge, userGender, keywords;
 @synthesize adTypes;
+@synthesize IPAddress;
 
 @end
