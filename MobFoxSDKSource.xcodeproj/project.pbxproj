@@ -400,6 +400,10 @@
 		909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 909FE95419336C060014597C /* MobFoxNativeTrackingView.m */; };
 		90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
 		90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
+		90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90A3F7C11935E02F00814208 /* MobFoxTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */; };
+		90A3F7C21935E02F00814208 /* MobFoxTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */; };
 		90A5C8C0192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
 		90A5C8C1192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
 		90A5C8C2192F677700978746 /* UIView+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5C8BF192F677700978746 /* UIView+MobFox.m */; };
@@ -681,6 +685,8 @@
 		909FE95419336C060014597C /* MobFoxNativeTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeTrackingView.m; path = NativeAds/MobFoxNativeTrackingView.m; sourceTree = "<group>"; };
 		90A0330A18D2E6A5001340B7 /* iAdCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAdCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAdCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxTableViewHelper.h; path = NativeAds/MobFoxTableViewHelper.h; sourceTree = "<group>"; };
+		90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxTableViewHelper.m; path = NativeAds/MobFoxTableViewHelper.m; sourceTree = "<group>"; };
 		90A5C8BE192F677700978746 /* UIView+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MobFox.h"; sourceTree = "<group>"; };
 		90A5C8BF192F677700978746 /* UIView+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MobFox.m"; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1026,6 +1032,8 @@
 				901FCEE8192C8E4900D22785 /* NativeAd.m */,
 				909FE95319336C060014597C /* MobFoxNativeTrackingView.h */,
 				909FE95419336C060014597C /* MobFoxNativeTrackingView.m */,
+				90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */,
+				90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */,
 			);
 			name = NativeAds;
 			sourceTree = "<group>";
@@ -1226,6 +1234,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
 				90038E851846019400446EAD /* MPFacebookKeywordProvider.h in Headers */,
@@ -1349,6 +1358,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */,
 				0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				901FCEF3192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
@@ -1609,6 +1619,7 @@
 				90038E891846019400446EAD /* MPLastResortDelegate.m in Sources */,
 				90038E971846019400446EAD /* MPHTMLInterstitialViewController.m in Sources */,
 				90987CDC18BCA9CD00148D09 /* AdMobCustomEventBanner.m in Sources */,
+				90A3F7C11935E02F00814208 /* MobFoxTableViewHelper.m in Sources */,
 				0F34E1C014DBEF04000F8713 /* MobFoxToolBar.m in Sources */,
 				903ADF0118CDAE460001F0E4 /* CustomEventFullscreen.m in Sources */,
 				90038E8F1846019400446EAD /* MPAdWebView.m in Sources */,
@@ -1714,6 +1725,7 @@
 				902073481859A6A5001A696C /* MPBaseInterstitialAdapter.m in Sources */,
 				9020734A1859A6A5001A696C /* MPInterstitialAdManager.m in Sources */,
 				90987CDD18BCA9CD00148D09 /* AdMobCustomEventBanner.m in Sources */,
+				90A3F7C21935E02F00814208 /* MobFoxTableViewHelper.m in Sources */,
 				9020734D1859A6A5001A696C /* MPInterstitialCustomEventAdapter.m in Sources */,
 				903ADF0218CDAE460001F0E4 /* CustomEventFullscreen.m in Sources */,
 				9020734F1859A6A5001A696C /* MPInterstitialViewController.m in Sources */,

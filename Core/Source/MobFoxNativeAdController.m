@@ -362,6 +362,11 @@ int const MAX_STARS = 5;
 
 -(UIView *)getNativeAdViewForResponse:(NativeAd *)response xibName:(NSString *)name {
     
+    if(!response) {
+        return nil;
+    }
+    
+    
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     UIView* mainView = nibObjects[0];
     
@@ -385,7 +390,7 @@ int const MAX_STARS = 5;
         
         if(textAssetName && [child isKindOfClass:[UILabel class]]) {
             NSString* text = [response.textAssets objectForKey:textAssetName];
-            if([textAssetName isEqualToString:@"rating"]) {
+            if([textAssetName isEqualToString:@"rating"] && text) {
                 int fullStars = [text intValue];
                 int emptyStars = MAX_STARS - fullStars;
                 NSMutableString* starsLabel = [[NSMutableString alloc] init];
@@ -407,6 +412,7 @@ int const MAX_STARS = 5;
         }
    
     }
+    
     
     clickUrl = response.clickUrl;
     
