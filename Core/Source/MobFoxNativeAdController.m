@@ -296,6 +296,14 @@ int const MAX_STARS = 5;
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+
+        if(!dataReply ){
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No response from the server" forKey:NSLocalizedDescriptionKey];
+            
+            NSError *error = [NSError errorWithDomain:MobFoxNativeAdErrorDomain code:0 userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
         
         NSError *localError = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:dataReply options:0 error:&localError];
