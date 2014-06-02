@@ -190,12 +190,15 @@ int const MAX_STARS = 5;
         NSString *requestString;
         NSString *adTypesString = [adTypes componentsJoinedByString:@","];
         
+        int r = arc4random_uniform(50000);
+        NSString *random = [NSString stringWithFormat:@"%d", r];
+        
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
         NSString *iosadvid;
         if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
             iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 
-            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [adTypesString stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
                            [self.IPAddress stringByUrlEncoding],
@@ -204,10 +207,11 @@ int const MAX_STARS = 5;
 						   [iosadvid stringByUrlEncoding],
 						   [SDK_VERSION stringByUrlEncoding],
 						   [publisherId stringByUrlEncoding],
-						   [osVersion stringByUrlEncoding]];
+						   [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         } else {
-            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [adTypesString stringByUrlEncoding],
 						   [self.userAgent stringByUrlEncoding],
                            [self.IPAddress stringByUrlEncoding],
@@ -215,13 +219,14 @@ int const MAX_STARS = 5;
 						   [[self browserAgentString] stringByUrlEncoding],
 						   [SDK_VERSION stringByUrlEncoding],
 						   [publisherId stringByUrlEncoding],
-						   [osVersion stringByUrlEncoding]];
+						   [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
 			
             
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"r_type=native&r_resp=json&n_img=icon,main&n_txt=headline,description,cta,advertiser,rating&n_type=%@&u=%@&i=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                        [adTypesString stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
                        [self.IPAddress stringByUrlEncoding],
@@ -229,7 +234,8 @@ int const MAX_STARS = 5;
                        [[self browserAgentString] stringByUrlEncoding],
                        [SDK_VERSION stringByUrlEncoding],
                        [publisherId stringByUrlEncoding],
-                       [osVersion stringByUrlEncoding]];
+                       [osVersion stringByUrlEncoding],
+                       [random stringByUrlEncoding]];
         
 #endif
         NSString *requestStringWithLocation;

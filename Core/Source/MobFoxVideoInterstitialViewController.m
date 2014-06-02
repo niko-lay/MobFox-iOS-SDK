@@ -582,6 +582,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         NSString *adWidth;
         NSString *adHeight;
         
+        int r = arc4random_uniform(50000);
+        NSString *random = [NSString stringWithFormat:@"%d", r];
+        
         UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 
         NSString *adStrict = @"0";
@@ -628,7 +631,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -638,10 +641,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 						   [iosadvid stringByUrlEncoding],
 						   [SDK_VERSION stringByUrlEncoding],
 						   [publisherId stringByUrlEncoding],
-						   [osVersion stringByUrlEncoding]];
+						   [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -649,12 +653,13 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                            [[self browserAgentString] stringByUrlEncoding],
                            [SDK_VERSION stringByUrlEncoding],
                            [publisherId stringByUrlEncoding],
-                           [osVersion stringByUrlEncoding]];
+                           [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -662,7 +667,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                        [[self browserAgentString] stringByUrlEncoding],
                        [SDK_VERSION stringByUrlEncoding],
                        [publisherId stringByUrlEncoding],
-                       [osVersion stringByUrlEncoding]];
+                       [osVersion stringByUrlEncoding],
+                       [random stringByUrlEncoding]];
         
 #endif
         NSString *requestStringWithLocation;
@@ -775,6 +781,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         NSString *adHeight = @"480";
         NSString *adStrict = @"0";
         
+        int r = arc4random_uniform(50000);
+        NSString *random = [NSString stringWithFormat:@"%d", r];
+        
         NSString *requestType;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
         {
@@ -801,7 +810,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -811,10 +820,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 						   [iosadvid stringByUrlEncoding],
 						   [SDK_VERSION stringByUrlEncoding],
 						   [publisherId stringByUrlEncoding],
-						   [osVersion stringByUrlEncoding]];
+						   [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -822,12 +832,13 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                            [[self browserAgentString] stringByUrlEncoding],
                            [SDK_VERSION stringByUrlEncoding],
                            [publisherId stringByUrlEncoding],
-                           [osVersion stringByUrlEncoding]];
+                           [osVersion stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -835,7 +846,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                        [[self browserAgentString] stringByUrlEncoding],
                        [SDK_VERSION stringByUrlEncoding],
                        [publisherId stringByUrlEncoding],
-                       [osVersion stringByUrlEncoding]];
+                       [osVersion stringByUrlEncoding],
+                       [random stringByUrlEncoding]];
         
 #endif
         NSString *requestStringWithLocation;

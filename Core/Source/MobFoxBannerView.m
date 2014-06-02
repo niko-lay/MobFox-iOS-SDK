@@ -661,6 +661,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         
         NSString *adWidth = [NSString stringWithFormat:@"%d",(int)adspaceWidth];
         NSString *adHeight = [NSString stringWithFormat:@"%d",(int)adspaceHeight];
+        
+        int r = arc4random_uniform(50000);
+        NSString *random = [NSString stringWithFormat:@"%d", r];
+        
         NSString *adStrict;
         if (adspaceStrict)
         {
@@ -697,7 +701,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -708,10 +712,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 						   [SDK_VERSION stringByUrlEncoding],
 						   [publisherId stringByUrlEncoding],
 						   [osVersion stringByUrlEncoding],
-						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
+						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -720,12 +725,13 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                            [SDK_VERSION stringByUrlEncoding],
                            [publisherId stringByUrlEncoding],
                            [osVersion stringByUrlEncoding],
-                           [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
+                           [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
+                           [random stringByUrlEncoding]];
 
         }
 #else
 
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@",
+        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -734,7 +740,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                        [SDK_VERSION stringByUrlEncoding],
                        [publisherId stringByUrlEncoding],
                        [osVersion stringByUrlEncoding],
-                       [advertisingSection?advertisingSection:@"" stringByUrlEncoding]];
+                       [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
+                       [random stringByUrlEncoding]];
 
 #endif
         NSString *requestStringWithLocation;
