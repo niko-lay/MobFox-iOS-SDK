@@ -311,9 +311,16 @@ int const MAX_STARS = 5;
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        if ([dataReply length] == 0) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
+            NSError *error = [NSError errorWithDomain:MobFoxNativeAdErrorDomain code:0 userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
 
-        if(!dataReply ){
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No response from the server" forKey:NSLocalizedDescriptionKey];
+        if(!dataReply || error){
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No correct response from the server" forKey:NSLocalizedDescriptionKey];
             
             NSError *error = [NSError errorWithDomain:MobFoxNativeAdErrorDomain code:0 userInfo:userInfo];
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
@@ -322,10 +329,10 @@ int const MAX_STARS = 5;
         
         NSError *localError = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:dataReply options:0 error:&localError];
-        
-        if (!json || error)
+
+        if (localError || !json)
         {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing JSON response from server" forKey:NSLocalizedDescriptionKey];
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing response from server" forKey:NSLocalizedDescriptionKey];
             
             NSError *error = [NSError errorWithDomain:MobFoxNativeAdErrorDomain code:0 userInfo:userInfo];
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
