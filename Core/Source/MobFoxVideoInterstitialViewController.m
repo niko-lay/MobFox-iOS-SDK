@@ -2641,24 +2641,23 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)hideStatusBar
 {
-
-    if(self.mobFoxVideoPlayerViewController && !self.interstitialHoldingView) {
-        statusBarWasVisible = YES;
-        return;
-    }
-
-    if(self.mobFoxInterstitialPlayerViewController) {
-        statusBarWasVisible = YES;
-        return;
-    }
     UIApplication *app = [UIApplication sharedApplication];
+    if(!app.statusBarHidden) {
+        statusBarWasVisible = YES;
+    } else {
+        statusBarWasVisible = NO;
+    }
+    
+    if((self.mobFoxVideoPlayerViewController && !self.interstitialHoldingView) || self.mobFoxInterstitialPlayerViewController) {
+        return;
+    }
+    
 	if (!app.statusBarHidden)
 	{
 
         [app setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 		[app setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
-		statusBarWasVisible = YES;
 
         CGRect frame = self.view.superview.frame;
         if([UIApplication sharedApplication].statusBarHidden ) {
