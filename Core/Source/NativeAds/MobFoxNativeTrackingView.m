@@ -10,18 +10,20 @@
 
 @interface MobFoxNativeTrackingView()
 @property (nonatomic, assign) BOOL wasShown;
+@property (nonatomic, strong) NSString* userAgent;
 @end
 
 
 @implementation MobFoxNativeTrackingView
 
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andUserAgent:(NSString*)userAgent
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
     }
+    self.userAgent = userAgent;
     return self;
 }
 
@@ -48,6 +50,7 @@
     NSURL* url = [NSURL URLWithString:impressionUrl];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod: @"GET"];
+    [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
 }
 

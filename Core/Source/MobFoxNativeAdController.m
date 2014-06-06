@@ -412,7 +412,7 @@ int const MAX_STARS = 5;
         }
     }
     
-    MobFoxNativeTrackingView* trackingView = [[MobFoxNativeTrackingView alloc] initWithFrame:mainView.frame]; //Invisible view, used for tracking impressions
+    MobFoxNativeTrackingView* trackingView = [[MobFoxNativeTrackingView alloc] initWithFrame:mainView.frame andUserAgent:self.userAgent]; //Invisible view, used for tracking impressions
     trackingView.impressionTrackers = impressionTrackers;
     trackingView.delegate = delegate;
     [mainView addSubview:trackingView];

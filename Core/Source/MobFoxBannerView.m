@@ -1148,7 +1148,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     bannerLoaded = YES;
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
     [self showBannerView:ad withPreviousSubviews:previousSubviews];
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewD0idLoadMobFoxAd:)])
+    if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
 	{
 		[delegate mobfoxBannerViewDidLoadMobFoxAd:self];
 	}

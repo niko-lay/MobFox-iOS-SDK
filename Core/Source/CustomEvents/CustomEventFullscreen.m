@@ -26,10 +26,14 @@
 - (void)didDisplayAd;
 {
     @try {
+        UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSString* userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        
         if(trackingPixel) {
             NSURL *url = [NSURL URLWithString:[trackingPixel stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
             [request setHTTPMethod: @"GET"];
+            [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
             [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
         }
     }

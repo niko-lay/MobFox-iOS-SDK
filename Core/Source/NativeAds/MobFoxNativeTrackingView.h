@@ -11,6 +11,8 @@
 
 @interface MobFoxNativeTrackingView : UIView
 
+- (id)initWithFrame:(CGRect)frame andUserAgent:(NSString*)userAgent;
+
 @property (nonatomic, strong) NSArray* impressionTrackers;
 @property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxNativeAdDelegate> delegate;
 

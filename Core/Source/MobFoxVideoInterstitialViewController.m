@@ -2171,6 +2171,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	NSMutableURLRequest *request;
 
     request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod: @"GET"];
+    [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
 
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
     [connection start];
