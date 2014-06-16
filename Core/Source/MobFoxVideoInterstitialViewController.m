@@ -744,6 +744,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        NSDictionary *headers;
+        if ([response respondsToSelector:@selector(allHeaderFields)]) {
+            headers = [(NSHTTPURLResponse *)response allHeaderFields];
+        }
         
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
         
@@ -763,7 +767,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             _bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
         }
         
-        [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:xml waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:@[xml, headers] waitUntilDone:YES];
         
 	}
     
@@ -937,7 +941,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+        NSDictionary *headers;
+        if ([response respondsToSelector:@selector(allHeaderFields)]) {
+            headers = [(NSHTTPURLResponse *)response allHeaderFields];
+        }
+
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
         
         if (!xml)
@@ -956,7 +964,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             _bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
         }
         
-        [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:xml waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:@[xml, headers] waitUntilDone:YES];
         
 	}
     
@@ -965,8 +973,15 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 #pragma mark - Ad Creation
 
-- (void)advertCreateFromXML:(DTXMLDocument *)xml
+- (void)advertCreateFromXML:(NSArray*)array
 {
+    DTXMLDocument *xml = [array objectAtIndex:0];
+    NSDictionary *headers;
+    if([array count] > 1) {
+        headers = [array objectAtIndex:1];
+    }
+    
+    
 	if ([xml.documentRoot.name isEqualToString:@"error"])
 	{
         if (enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
@@ -1001,25 +1016,36 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
     _customEventFullscreen = nil;
     [customEvents removeAllObjects];
-    DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
-    if(customEventsElement)
+    
+    if(headers)
     {
-        NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
-        for(int i=0; i<[customEventElements count];i++)
-        {
-            @try {
-                DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
-                CustomEvent *customEvent = [[CustomEvent alloc] init];
-                customEvent.className = [customEventElement getNamedChild:@"class"].text;
-                customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
-                customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-                [customEvents addObject:customEvent];
-            }
-            @catch (NSException *exception) {
-                NSLog(@"Error creating custom event");
+        for(NSString* key in headers) {
+            if ([key hasPrefix:@"X-CustomEvent"]) {
+                @try {
+                    NSString* jsonString = [headers objectForKey:key];
+                    NSError *error;
+                    NSDictionary *json =
+                    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                                    options: NSJSONReadingMutableContainers
+                                                      error: &error];
+                    if(error) {
+                        continue;
+                    }
+                    CustomEvent *customEvent = [[CustomEvent alloc] init];
+                    customEvent.className = [json objectForKey:@"class"];
+                    customEvent.optionalParameter = [json objectForKey:@"parameter"];
+                    customEvent.pixelUrl = [json objectForKey:@"pixel"];
+                    [customEvents addObject:customEvent];
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"Error creating custom event");
+                }
+                
             }
         }
+        
     }
+
     
     if([customEvents count] > 0)
     {
@@ -1131,12 +1157,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 - (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
     interstitialAutoCloseDisabled = YES;
     interstitialSkipButtonDisplayed = NO;
-
-    DTXMLElement *customEventsElement = [document.documentRoot getNamedChild:@"customevents"];
-    if(customEventsElement) {
-        [document.documentRoot removeNamedChild:@"customevents"];
-    }
-
     
     self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
 
@@ -1171,7 +1191,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     bannerView.refreshTimerOff = YES;
     
     bannerView._bannerImage = _bannerImage;
-    [bannerView performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:document waitUntilDone:YES];
+
+    [bannerView performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:@[document] waitUntilDone:YES];
     
     [self.interstitialHoldingView addSubview:bannerView];
     

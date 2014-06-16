@@ -341,8 +341,16 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)setupAdFromXml:(DTXMLDocument *)xml
+- (void)setupAdFromXml:(NSArray*)array
 {
+    
+    DTXMLDocument *xml = [array objectAtIndex:0];
+    NSDictionary *headers;
+    if([array count] > 1) {
+        headers = [array objectAtIndex:1];
+    }
+    
+    
 	if ([xml.documentRoot.name isEqualToString:@"error"])
 	{
 		NSString *errorMsg = xml.documentRoot.text;
@@ -510,25 +518,32 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 
     [customEvents removeAllObjects];
-    DTXMLElement *customEventsElement = [xml.documentRoot getNamedChild:@"customevents"];
     _customEventBanner = nil;
 
-    if(customEventsElement)
+    if(headers)
     {
-        
-        NSArray *customEventElements = [customEventsElement getNamedChildren:@"customevent"];
-        for(int i=0; i<[customEventElements count];i++)
-        {
-            @try {
-                DTXMLElement *customEventElement = [customEventElements objectAtIndex:i];
-                CustomEvent *customEvent = [[CustomEvent alloc] init];
-                customEvent.className = [customEventElement getNamedChild:@"class"].text;
-                customEvent.optionalParameter = [customEventElement getNamedChild:@"parameter"].text;
-                customEvent.pixelUrl = [customEventElement getNamedChild:@"pixel"].text;
-                [customEvents addObject:customEvent];
-            }
-            @catch (NSException *exception) {
-                NSLog(@"Error creating custom event");
+        for(NSString* key in headers) {
+            if ([key hasPrefix:@"X-CustomEvent"]) {
+                @try {
+                    NSString* jsonString = [headers objectForKey:key];
+                    NSError *error;
+                    NSDictionary *json =
+                    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                                options: NSJSONReadingMutableContainers
+                                                  error: &error];
+                    if(error) {
+                        continue;
+                    }
+                    CustomEvent *customEvent = [[CustomEvent alloc] init];
+                    customEvent.className = [json objectForKey:@"class"];
+                    customEvent.optionalParameter = [json objectForKey:@"parameter"];
+                    customEvent.pixelUrl = [json objectForKey:@"pixel"];
+                    [customEvents addObject:customEvent];
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"Error creating custom event");
+                }
+                
             }
         }
         
@@ -821,9 +836,14 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [request setHTTPMethod: @"GET"];
         [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
+        
+        NSDictionary *headers;
 
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
+        if ([response respondsToSelector:@selector(allHeaderFields)]) {
+            headers = [(NSHTTPURLResponse *)response allHeaderFields];
+        }
+        
         DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
 
         if (!xml)
@@ -834,6 +854,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
+        
         NSString *bannerUrlString = [xml.documentRoot getNamedChild:@"imageurl"].text;
         __bannerImage = nil;
         if ([bannerUrlString length])
@@ -842,7 +863,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             __bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
         }
         
-        [self performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:xml waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:@[xml, headers] waitUntilDone:YES];
 
 	}
 
