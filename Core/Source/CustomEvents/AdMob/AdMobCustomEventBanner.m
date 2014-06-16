@@ -75,8 +75,6 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView
 {
-    [self didDisplayAd];
-    [self.delegate customEventBannerWillExpand];
 }
 
 - (void)adViewDidDismissScreen:(GADBannerView *)bannerView

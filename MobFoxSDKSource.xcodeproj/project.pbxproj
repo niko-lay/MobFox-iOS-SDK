@@ -390,6 +390,10 @@
 		90987D3F18BCD32600148D09 /* CustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9A18B6168500C929A5 /* CustomEventBanner.h */; };
 		909A5E9D18B6168500C929A5 /* CustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* CustomEventBanner.m */; };
 		909A5E9F18B6168B00C929A5 /* CustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* CustomEventBanner.m */; };
+		909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */; };
+		909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */; };
+		909B6122194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */; };
+		909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */; };
 		909F363118487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
@@ -680,6 +684,11 @@
 		909A5E9718B60DC500C929A5 /* CustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventBannerDelegate.h; path = CustomEvents/CustomEventBannerDelegate.h; sourceTree = "<group>"; };
 		909A5E9A18B6168500C929A5 /* CustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventBanner.h; path = CustomEvents/CustomEventBanner.h; sourceTree = "<group>"; };
 		909A5E9B18B6168500C929A5 /* CustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventBanner.m; path = CustomEvents/CustomEventBanner.m; sourceTree = "<group>"; };
+		909B6116194F087000B413A5 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = Core/Source/CustomEvents/Facebook/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		909B6117194F091700B413A5 /* FacebookCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookCustomEventBanner.h; sourceTree = "<group>"; };
+		909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookCustomEventBanner.m; sourceTree = "<group>"; };
+		909B611E194F237300B413A5 /* FacebookCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookCustomEventFullscreen.h; sourceTree = "<group>"; };
+		909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookCustomEventFullscreen.m; sourceTree = "<group>"; };
 		909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxMRAIDBannerAdapter.h; sourceTree = "<group>"; };
 		909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxMRAIDBannerAdapter.m; sourceTree = "<group>"; };
 		909FE95319336C060014597C /* MobFoxNativeTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeTrackingView.h; path = NativeAds/MobFoxNativeTrackingView.h; sourceTree = "<group>"; };
@@ -1072,6 +1081,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				909B6115194F087000B413A5 /* Facebook */,
 				9078055A18D1BFAD00427F7B /* iAd */,
 				909A5E9418B6079A00C929A5 /* AdMob */,
 				909A5E9718B60DC500C929A5 /* CustomEventBannerDelegate.h */,
@@ -1117,6 +1127,18 @@
 				90987D0E18BCD1AB00148D09 /* README.txt */,
 			);
 			name = SDK;
+			sourceTree = "<group>";
+		};
+		909B6115194F087000B413A5 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				909B6117194F091700B413A5 /* FacebookCustomEventBanner.h */,
+				909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */,
+				909B611E194F237300B413A5 /* FacebookCustomEventFullscreen.h */,
+				909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */,
+			);
+			name = Facebook;
+			path = CustomEvents/Facebook;
 			sourceTree = "<group>";
 		};
 		A7992E711489362800E86AC8 /* Core */ = {
@@ -1201,6 +1223,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				909B6116194F087000B413A5 /* FBAudienceNetwork.framework */,
 				90987D0218BCB96E00148D09 /* CoreGraphics.framework */,
 				90987D0018BCB96400148D09 /* AVFoundation.framework */,
 				90987CFE18BCB95600148D09 /* AudioToolbox.framework */,
@@ -1647,6 +1670,7 @@
 				90038ED31846019400446EAD /* MPLogging.m in Sources */,
 				90038EAA1846019400446EAD /* MPMRAIDInterstitialCustomEvent.m in Sources */,
 				90038E9E1846019400446EAD /* MPInterstitialCustomEventAdapter.m in Sources */,
+				909B6122194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				90038E7E1846019400446EAD /* MPAdConfiguration.m in Sources */,
 				90038E721846019400446EAD /* MPBaseBannerAdapter.m in Sources */,
 				0F62B51B14E92D4A0027BCB8 /* UIImage+MobFox.m in Sources */,
@@ -1688,6 +1712,7 @@
 				90038E951846019400446EAD /* MPHTMLInterstitialCustomEvent.m in Sources */,
 				90038E931846019400446EAD /* MPHTMLBannerCustomEvent.m in Sources */,
 				90038F0F1846035D00446EAD /* CDataScanner.m in Sources */,
+				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
 				90038EB71846019400446EAD /* MRCommand.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
@@ -1753,6 +1778,7 @@
 				902073591859A6A5001A696C /* MPMRAIDInterstitialCustomEvent.m in Sources */,
 				9020735B1859A6A5001A696C /* MPMRAIDInterstitialViewController.m in Sources */,
 				9020735E1859A6A5001A696C /* MRAdView.m in Sources */,
+				909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				902073601859A6A5001A696C /* MRAdViewDisplayController.m in Sources */,
 				902073621859A6A5001A696C /* MRBundleManager.m in Sources */,
 				902073641859A6A5001A696C /* MRCalendarManager.m in Sources */,
@@ -1794,6 +1820,7 @@
 				A7992ED11489373000E86AC8 /* DTXMLDocument.m in Sources */,
 				A7992ED31489373000E86AC8 /* DTXMLElement.m in Sources */,
 				A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
+				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
 				90038F181846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
@@ -1833,6 +1860,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1865,6 +1896,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
