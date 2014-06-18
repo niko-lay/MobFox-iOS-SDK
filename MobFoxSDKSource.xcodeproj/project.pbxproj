@@ -416,6 +416,10 @@
 		90A79E0E19518033001172D2 /* MillennialCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */; };
 		90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */; };
 		90A79E151951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */; };
+		90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */; };
+		90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
+		90A79E1F1951B710001172D2 /* MoPubCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */; };
+		90A79E201951B716001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
 		90AC3AD9193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADA193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADB193C70300021402D /* GADAdNetworkExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */; };
@@ -708,6 +712,10 @@
 		90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MillennialCustomEventBanner.m; sourceTree = "<group>"; };
 		90A79E101951A0D7001172D2 /* MillennialCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MillennialCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MillennialCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90A79E171951B16A001172D2 /* MoPubCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventBanner.h; sourceTree = "<group>"; };
+		90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventBanner.m; sourceTree = "<group>"; };
+		90A79E1B1951B708001172D2 /* MoPubCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventFullscreen.m; sourceTree = "<group>"; };
 		90AC3ACD193C702F0021402D /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = CustomEvents/AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
 		90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = CustomEvents/AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		90AC3ACF193C702F0021402D /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = CustomEvents/AdMob/GADAdSize.h; sourceTree = "<group>"; };
@@ -1090,6 +1098,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				90A79E161951B110001172D2 /* MoPub */,
 				90A79E0619517E3C001172D2 /* Millennial */,
 				909B6115194F087000B413A5 /* Facebook */,
 				9078055A18D1BFAD00427F7B /* iAd */,
@@ -1161,6 +1170,18 @@
 			);
 			name = Millennial;
 			path = CustomEvents/Millennial;
+			sourceTree = "<group>";
+		};
+		90A79E161951B110001172D2 /* MoPub */ = {
+			isa = PBXGroup;
+			children = (
+				90A79E171951B16A001172D2 /* MoPubCustomEventBanner.h */,
+				90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */,
+				90A79E1B1951B708001172D2 /* MoPubCustomEventFullscreen.h */,
+				90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */,
+			);
+			name = MoPub;
+			path = CustomEvents/MoPub;
 			sourceTree = "<group>";
 		};
 		A7992E711489362800E86AC8 /* Core */ = {
@@ -1700,6 +1721,7 @@
 				0F62B52014E92E3D0027BCB8 /* NSBundle+MobFox.m in Sources */,
 				90038EE51846019400446EAD /* MPInterstitialAdController.m in Sources */,
 				909716D618AA5CF8007EEB4D /* VAST.m in Sources */,
+				90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */,
 				90038F2F1846035D00446EAD /* CJSONScanner.m in Sources */,
 				90038ECB1846019400446EAD /* MPAnalyticsTracker.m in Sources */,
 				90038ED71846019400446EAD /* MPSessionTracker.m in Sources */,
@@ -1740,6 +1762,7 @@
 				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
 				90038EB71846019400446EAD /* MRCommand.m in Sources */,
+				90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90038EC91846019400446EAD /* UIWebView+MPAdditions.m in Sources */,
 				90038E821846019400446EAD /* MPAdServerCommunicator.m in Sources */,
@@ -1810,6 +1833,7 @@
 				902073661859A6A5001A696C /* MRCommand.m in Sources */,
 				902073681859A6A5001A696C /* MRDimmingView.m in Sources */,
 				909716D718AA5CF8007EEB4D /* VAST.m in Sources */,
+				90A79E1F1951B710001172D2 /* MoPubCustomEventBanner.m in Sources */,
 				9020736A1859A6A5001A696C /* MRImageDownloader.m in Sources */,
 				9020736C1859A6A5001A696C /* MRJavaScriptEventEmitter.m in Sources */,
 				9020736E1859A6A5001A696C /* MRPictureManager.m in Sources */,
@@ -1850,6 +1874,7 @@
 				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
+				90A79E201951B716001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				90038F181846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				0F34E1C114DBEF04000F8713 /* MobFoxToolBar.m in Sources */,
 				0F09F46A14E7F134001C23E2 /* UIBarButtonItem+MobFox.m in Sources */,
