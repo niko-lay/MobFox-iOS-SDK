@@ -412,6 +412,10 @@
 		90A5C8C1192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
 		90A5C8C2192F677700978746 /* UIView+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5C8BF192F677700978746 /* UIView+MobFox.m */; };
 		90A5C8C3192F677700978746 /* UIView+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5C8BF192F677700978746 /* UIView+MobFox.m */; };
+		90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */; };
+		90A79E0E19518033001172D2 /* MillennialCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */; };
+		90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */; };
+		90A79E151951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */; };
 		90AC3AD9193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADA193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADB193C70300021402D /* GADAdNetworkExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */; };
@@ -699,6 +703,11 @@
 		90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxTableViewHelper.m; path = NativeAds/MobFoxTableViewHelper.m; sourceTree = "<group>"; };
 		90A5C8BE192F677700978746 /* UIView+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MobFox.h"; sourceTree = "<group>"; };
 		90A5C8BF192F677700978746 /* UIView+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MobFox.m"; sourceTree = "<group>"; };
+		90A79E0719517E3C001172D2 /* MillennialMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MillennialMedia.framework; path = Core/Source/CustomEvents/Millennial/MillennialMedia.framework; sourceTree = "<group>"; };
+		90A79E0919518033001172D2 /* MillennialCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MillennialCustomEventBanner.h; sourceTree = "<group>"; };
+		90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MillennialCustomEventBanner.m; sourceTree = "<group>"; };
+		90A79E101951A0D7001172D2 /* MillennialCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MillennialCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MillennialCustomEventFullscreen.m; sourceTree = "<group>"; };
 		90AC3ACD193C702F0021402D /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = CustomEvents/AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
 		90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = CustomEvents/AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		90AC3ACF193C702F0021402D /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = CustomEvents/AdMob/GADAdSize.h; sourceTree = "<group>"; };
@@ -1081,6 +1090,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				90A79E0619517E3C001172D2 /* Millennial */,
 				909B6115194F087000B413A5 /* Facebook */,
 				9078055A18D1BFAD00427F7B /* iAd */,
 				909A5E9418B6079A00C929A5 /* AdMob */,
@@ -1139,6 +1149,18 @@
 			);
 			name = Facebook;
 			path = CustomEvents/Facebook;
+			sourceTree = "<group>";
+		};
+		90A79E0619517E3C001172D2 /* Millennial */ = {
+			isa = PBXGroup;
+			children = (
+				90A79E0919518033001172D2 /* MillennialCustomEventBanner.h */,
+				90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */,
+				90A79E101951A0D7001172D2 /* MillennialCustomEventFullscreen.h */,
+				90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */,
+			);
+			name = Millennial;
+			path = CustomEvents/Millennial;
 			sourceTree = "<group>";
 		};
 		A7992E711489362800E86AC8 /* Core */ = {
@@ -1223,6 +1245,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90A79E0719517E3C001172D2 /* MillennialMedia.framework */,
 				909B6116194F087000B413A5 /* FBAudienceNetwork.framework */,
 				90987D0218BCB96E00148D09 /* CoreGraphics.framework */,
 				90987D0018BCB96400148D09 /* AVFoundation.framework */,
@@ -1682,6 +1705,7 @@
 				90038ED71846019400446EAD /* MPSessionTracker.m in Sources */,
 				903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */,
+				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
 				0F66D50814F30E9400FD6569 /* UIButton+MobFox.m in Sources */,
 				9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				90038EC71846019400446EAD /* UIViewController+MPAdditions.m in Sources */,
@@ -1695,6 +1719,7 @@
 				90038EB91846019400446EAD /* MRDimmingView.m in Sources */,
 				90038ECF1846019400446EAD /* MPGlobal.m in Sources */,
 				90038EDB1846019400446EAD /* MPTimer.m in Sources */,
+				90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				0F0EB65E1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */,
 				90038E801846019400446EAD /* MPAdDestinationDisplayAgent.m in Sources */,
 				909FE95719336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
@@ -1790,6 +1815,7 @@
 				9020736E1859A6A5001A696C /* MRPictureManager.m in Sources */,
 				903ADF0E18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				902073701859A6A5001A696C /* MRProperty.m in Sources */,
+				90A79E0E19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
 				902073721859A6A5001A696C /* MRVideoPlayerManager.m in Sources */,
 				9078056018D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				902073741859A6A5001A696C /* NSURL+MPAdditions.m in Sources */,
@@ -1803,6 +1829,7 @@
 				902073821859A6A5001A696C /* MPLogging.m in Sources */,
 				902073841859A6A5001A696C /* MPReachability.m in Sources */,
 				902073861859A6A5001A696C /* MPSessionTracker.m in Sources */,
+				90A79E151951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				902073881859A6A5001A696C /* MPStoreKitProvider.m in Sources */,
 				9020738A1859A6A5001A696C /* MPTimer.m in Sources */,
 				909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
@@ -1863,6 +1890,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1899,6 +1927,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
