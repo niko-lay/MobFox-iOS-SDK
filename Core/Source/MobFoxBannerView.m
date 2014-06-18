@@ -26,6 +26,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     NSString *skipOverlay;
     NSMutableArray *customEvents;
     BOOL wasUserAction;
+    BOOL normalBannerWasShownAfterCustomEventFail;
 }
 
 @property (nonatomic, strong) NSString *userAgent;
@@ -36,7 +37,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, assign) CGFloat currentLongitude;
 
 @property (nonatomic, retain) UIView *bannerView;
-@property (nonatomic, retain) CustomEventBanner *customEventBanner;
+@property (nonatomic, strong) CustomEventBanner *customEventBanner;
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
@@ -549,33 +550,35 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         
     }
     
-    
+    normalBannerWasShownAfterCustomEventFail = NO;
 	if (_bannerView && [customEvents count] == 0)
 	{
         [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
 	} else
     {
         [self loadCustomEventBanner];
-        if (!_customEventBanner)
-        {
-            [customEvents removeAllObjects];
-            if(_bannerView)
+        if(!normalBannerWasShownAfterCustomEventFail) {
+            if (!_customEventBanner)
             {
-                [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
-            }
-            else {
-                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
+                [customEvents removeAllObjects];
+                if(_bannerView)
+                {
+                    [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
+                }
+                else {
+                    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
                 
-                _refreshInterval = 20;
-                [self setRefreshTimerActive:YES];
+                    _refreshInterval = 20;
+                    [self setRefreshTimerActive:YES];
                 
-                NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
-                [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+                    NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
+                    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 
+                }
+            } else {
+                _refreshInterval = 30; //enable banner refresh for  custom events.
+                [self setRefreshTimerActive:YES];
             }
-        } else {
-            _refreshInterval = 30; //enable banner refresh for  custom events.
-            [self setRefreshTimerActive:YES];
         }
     }
 }
@@ -639,6 +642,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         size = CGSizeMake(320, 50);
     }
+
     _customEventBanner = nil;
     while ([customEvents count] > 0)
     {
@@ -1185,15 +1189,18 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     }
     else if (_bannerView)
     {
+        normalBannerWasShownAfterCustomEventFail = YES;
         [self showBannerView:_bannerView withPreviousSubviews:previousSubviews];
     }
     else
     {
-        bannerLoaded = NO;
-        if ([delegate respondsToSelector:@selector(mobfoxBannerView:didFailToReceiveAdWithError:)])
-        {
-            [delegate mobfoxBannerView:self didFailToReceiveAdWithError:nil];
-        }
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
+        
+        _refreshInterval = 20;
+        [self setRefreshTimerActive:YES];
+        
+        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
+        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
     }
 }
 
