@@ -17,15 +17,20 @@
 - (void)loadBannerWithSize:(CGSize)size optionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
     self.trackingPixel = trackingPixel;
+    
+    Class bannerClass = NSClassFromString(@"GADBannerView");
+    Class requestClass = NSClassFromString(@"GADRequest");
+    if(!requestClass || !bannerClass) {
+        [self.delegate customEventBannerDidFailToLoadAd];
+        return;
+    }
+    self.adBannerView = [[bannerClass alloc] init];
+    self.adBannerView.delegate = self;
+    
     [_adBannerView setFrame:CGRectMake(0, 0, size.width, size.height)];
     self.adBannerView.adUnitID = optionalParameters;
     self.adBannerView.rootViewController = [self.delegate viewControllerForPresentingModalView];
     
-    Class requestClass = NSClassFromString(@"GADRequest");
-    if(!requestClass) {
-        [self.delegate customEventBannerDidFailToLoadAd];
-        return;
-    }
 
     GADRequest *request = [requestClass request];
     request.testDevices = [NSArray arrayWithObjects: GAD_SIMULATOR_ID, nil];
@@ -34,17 +39,8 @@
 
 - (id)init
 {
-    Class bannerClass = NSClassFromString(@"GADBannerView");
-    if(!bannerClass) {
-        return nil;
-    }
-    
     self = [super init];
-    if (self)
-    {
-        self.adBannerView = [[bannerClass alloc] init];
-        self.adBannerView.delegate = self;
-    }
+
     return self;
 }
 
