@@ -368,6 +368,8 @@
 		903ADF0C18CDFDAA0001F0E4 /* CustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0918CDFDAA0001F0E4 /* CustomEvent.h */; };
 		903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */; };
 		903ADF0E18CDFDAA0001F0E4 /* CustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */; };
+		9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */; };
+		9047E8B119583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */; };
 		9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
 		9078056018D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
 		909716CE18AA4DDF007EEB4D /* VASTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */; };
@@ -672,6 +674,9 @@
 		903ADF0418CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdMobCustomEventFullscreen.m; path = CustomEvents/AdMob/AdMobCustomEventFullscreen.m; sourceTree = "<group>"; };
 		903ADF0918CDFDAA0001F0E4 /* CustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEvent.h; sourceTree = "<group>"; };
 		903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEvent.m; sourceTree = "<group>"; };
+		9047E8AA19582CD6006DDB1F /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = Core/Source/CustomEvents/AdColony/AdColony.framework; sourceTree = "<group>"; };
+		9047E8AC19583181006DDB1F /* AdColonyCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyCustomEventFullscreen.h; sourceTree = "<group>"; };
+		9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyCustomEventFullscreen.m; sourceTree = "<group>"; };
 		905D81A4184CC1B1007AF71F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		905D81A6184CC1B8007AF71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		905D81A8184CC1BF007AF71F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -1080,6 +1085,16 @@
 			name = NativeAds;
 			sourceTree = "<group>";
 		};
+		9047E8A919582CD6006DDB1F /* AdColony */ = {
+			isa = PBXGroup;
+			children = (
+				9047E8AC19583181006DDB1F /* AdColonyCustomEventFullscreen.h */,
+				9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */,
+			);
+			name = AdColony;
+			path = CustomEvents/AdColony;
+			sourceTree = "<group>";
+		};
 		9078055A18D1BFAD00427F7B /* iAd */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1120,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				9047E8A919582CD6006DDB1F /* AdColony */,
 				90A79E211951C4C8001172D2 /* Vungle */,
 				90A79E161951B110001172D2 /* MoPub */,
 				90A79E0619517E3C001172D2 /* Millennial */,
@@ -1284,6 +1300,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9047E8AA19582CD6006DDB1F /* AdColony.framework */,
 				90A79E221951C4C8001172D2 /* VungleSDK.framework */,
 				90A79E0719517E3C001172D2 /* MillennialMedia.framework */,
 				909B6116194F087000B413A5 /* FBAudienceNetwork.framework */,
@@ -1718,6 +1735,7 @@
 				90038F171846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				90038E741846019400446EAD /* MPLegacyBannerCustomEventAdapter.m in Sources */,
 				A7992EAD1489362800E86AC8 /* RedirectChecker.m in Sources */,
+				9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				90038EA21846019400446EAD /* MPLegacyInterstitialCustomEventAdapter.m in Sources */,
 				90038E991846019400446EAD /* MPBaseInterstitialAdapter.m in Sources */,
 				90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
@@ -1831,6 +1849,7 @@
 				9020733A1859A6A4001A696C /* MPProgressOverlayView.m in Sources */,
 				9020733C1859A6A4001A696C /* MPURLResolver.m in Sources */,
 				9020733E1859A6A4001A696C /* MPAdWebView.m in Sources */,
+				9047E8B119583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				902073401859A6A4001A696C /* MPAdWebViewAgent.m in Sources */,
 				902073421859A6A4001A696C /* MPHTMLBannerCustomEvent.m in Sources */,
 				90A79E2B1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
@@ -1940,6 +1959,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1978,6 +1998,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
