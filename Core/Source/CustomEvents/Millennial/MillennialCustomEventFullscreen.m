@@ -25,7 +25,7 @@
     Class interstitialClass = NSClassFromString(@"MMInterstitial");
     Class requestClass = NSClassFromString(@"MMRequest");
     Class SDKClass = NSClassFromString(@"MMSDK");
-    if(!interstitialClass || !requestClass || SDKClass) {
+    if(!interstitialClass || !requestClass || !SDKClass) {
         [self.delegate customEventFullscreenDidFailToLoadAd];
         return;
     }

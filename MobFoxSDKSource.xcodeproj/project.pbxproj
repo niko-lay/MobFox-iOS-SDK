@@ -420,6 +420,10 @@
 		90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
 		90A79E1F1951B710001172D2 /* MoPubCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */; };
 		90A79E201951B716001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
+		90A79E281951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */; };
+		90A79E291951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */; };
+		90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E271951C5AF001172D2 /* VungleCustomEventFullscreen.m */; };
+		90A79E2B1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E271951C5AF001172D2 /* VungleCustomEventFullscreen.m */; };
 		90AC3AD9193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADA193C70300021402D /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACD193C702F0021402D /* GADAdMobExtras.h */; };
 		90AC3ADB193C70300021402D /* GADAdNetworkExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */; };
@@ -716,6 +720,9 @@
 		90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventBanner.m; sourceTree = "<group>"; };
 		90A79E1B1951B708001172D2 /* MoPubCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90A79E221951C4C8001172D2 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VungleSDK.framework; path = Core/Source/CustomEvents/Vungle/VungleSDK.framework; sourceTree = "<group>"; };
+		90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90A79E271951C5AF001172D2 /* VungleCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleCustomEventFullscreen.m; sourceTree = "<group>"; };
 		90AC3ACD193C702F0021402D /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = CustomEvents/AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
 		90AC3ACE193C702F0021402D /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = CustomEvents/AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		90AC3ACF193C702F0021402D /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = CustomEvents/AdMob/GADAdSize.h; sourceTree = "<group>"; };
@@ -1098,6 +1105,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				90A79E211951C4C8001172D2 /* Vungle */,
 				90A79E161951B110001172D2 /* MoPub */,
 				90A79E0619517E3C001172D2 /* Millennial */,
 				909B6115194F087000B413A5 /* Facebook */,
@@ -1184,6 +1192,16 @@
 			path = CustomEvents/MoPub;
 			sourceTree = "<group>";
 		};
+		90A79E211951C4C8001172D2 /* Vungle */ = {
+			isa = PBXGroup;
+			children = (
+				90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */,
+				90A79E271951C5AF001172D2 /* VungleCustomEventFullscreen.m */,
+			);
+			name = Vungle;
+			path = CustomEvents/Vungle;
+			sourceTree = "<group>";
+		};
 		A7992E711489362800E86AC8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1284,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90A79E221951C4C8001172D2 /* VungleSDK.framework */,
 				90A79E0719517E3C001172D2 /* MillennialMedia.framework */,
 				909B6116194F087000B413A5 /* FBAudienceNetwork.framework */,
 				90987D0218BCB96E00148D09 /* CoreGraphics.framework */,
@@ -1376,6 +1395,7 @@
 				90987D3D18BCD32500148D09 /* CustomEventBanner.h in Headers */,
 				90038E981846019400446EAD /* MPBaseInterstitialAdapter.h in Headers */,
 				90038EC41846019400446EAD /* NSURL+MPAdditions.h in Headers */,
+				90A79E281951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */,
 				90038EC21846019400446EAD /* MRVideoPlayerManager.h in Headers */,
 				909FE95519336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
 				90038EA91846019400446EAD /* MPMRAIDInterstitialCustomEvent.h in Headers */,
@@ -1503,6 +1523,7 @@
 				90987D3F18BCD32600148D09 /* CustomEventBanner.h in Headers */,
 				903603021859AE040020E5EE /* MRPictureManager.h in Headers */,
 				903603031859AE040020E5EE /* MRProperty.h in Headers */,
+				90A79E291951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */,
 				903603041859AE040020E5EE /* MRVideoPlayerManager.h in Headers */,
 				909FE95619336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
 				903603051859AE040020E5EE /* NSURL+MPAdditions.h in Headers */,
@@ -1699,6 +1720,7 @@
 				A7992EAD1489362800E86AC8 /* RedirectChecker.m in Sources */,
 				90038EA21846019400446EAD /* MPLegacyInterstitialCustomEventAdapter.m in Sources */,
 				90038E991846019400446EAD /* MPBaseInterstitialAdapter.m in Sources */,
+				90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
 				90038E771846019400446EAD /* MPAdAlertGestureRecognizer.m in Sources */,
 				A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */,
 				90038E891846019400446EAD /* MPLastResortDelegate.m in Sources */,
@@ -1811,6 +1833,7 @@
 				9020733E1859A6A4001A696C /* MPAdWebView.m in Sources */,
 				902073401859A6A4001A696C /* MPAdWebViewAgent.m in Sources */,
 				902073421859A6A4001A696C /* MPHTMLBannerCustomEvent.m in Sources */,
+				90A79E2B1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
 				902073441859A6A5001A696C /* MPHTMLInterstitialCustomEvent.m in Sources */,
 				902073461859A6A5001A696C /* MPHTMLInterstitialViewController.m in Sources */,
 				902073481859A6A5001A696C /* MPBaseInterstitialAdapter.m in Sources */,
@@ -1916,6 +1939,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1953,6 +1977,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1982,6 +2007,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -2003,6 +2032,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
