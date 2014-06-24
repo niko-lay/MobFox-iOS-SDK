@@ -113,6 +113,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super viewWillDisappear:animated];
 }
 
@@ -134,13 +135,18 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
 
+- (void) appDidBecomeActive:(NSNotification *)notification //automatically close after opening external app
+{
+    [self dismiss:nil];
 }
 
 #pragma mark Actions
 
 -(void)dismiss:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	if ([delegate respondsToSelector:@selector(mobfoxAdBrowserControllerDidDismiss:)])
 	{
 		[delegate mobfoxAdBrowserControllerDidDismiss:self];
@@ -160,6 +166,7 @@
 
 		if ( [url isDeviceSupported])
 		{
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 			[[UIApplication sharedApplication] openURL:url];
 		}
 
@@ -204,6 +211,7 @@
 	self.url = request.URL;
     if ([self.url isDeviceSupported])
     {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[UIApplication sharedApplication] openURL:self.url];
     }
 	return request;
