@@ -442,6 +442,12 @@
 		90AC3AE6193C70300021402D /* GADInAppPurchaseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD3193C70300021402D /* GADInAppPurchaseDelegate.h */; };
 		90AC3AEB193C70300021402D /* GADModules.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD6193C70300021402D /* GADModules.h */; };
 		90AC3AEC193C70300021402D /* GADModules.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD6193C70300021402D /* GADModules.h */; };
+		90B6D1241962B1A300061451 /* CustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */; };
+		90B6D1251962B1A300061451 /* CustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */; };
+		90B6D1281962B67200061451 /* CustomEventNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1261962B67200061451 /* CustomEventNative.h */; };
+		90B6D1291962B67200061451 /* CustomEventNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1261962B67200061451 /* CustomEventNative.h */; };
+		90B6D12A1962B67200061451 /* CustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* CustomEventNative.m */; };
+		90B6D12B1962B67200061451 /* CustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* CustomEventNative.m */; };
 		90CCFB0718F829E400D73FEB /* GADInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0918BCD1AB00148D09 /* GADInterstitial.h */; };
 		90CCFB0818F829E400D73FEB /* GADInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0A18BCD1AB00148D09 /* GADInterstitialDelegate.h */; };
 		90CCFB0918F829E400D73FEB /* GADRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0B18BCD1AB00148D09 /* GADRequest.h */; };
@@ -736,6 +742,9 @@
 		90AC3AD2193C70300021402D /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchase.h; path = CustomEvents/AdMob/GADInAppPurchase.h; sourceTree = "<group>"; };
 		90AC3AD3193C70300021402D /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchaseDelegate.h; path = CustomEvents/AdMob/GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
 		90AC3AD6193C70300021402D /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADModules.h; path = CustomEvents/AdMob/GADModules.h; sourceTree = "<group>"; };
+		90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNativeDelegate.h; sourceTree = "<group>"; };
+		90B6D1261962B67200061451 /* CustomEventNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNative.h; sourceTree = "<group>"; };
+		90B6D1271962B67200061451 /* CustomEventNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEventNative.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -1135,6 +1144,9 @@
 				903ADEFE18CDAE460001F0E4 /* CustomEventFullscreen.m */,
 				903ADF0918CDFDAA0001F0E4 /* CustomEvent.h */,
 				903ADF0A18CDFDAA0001F0E4 /* CustomEvent.m */,
+				90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */,
+				90B6D1261962B67200061451 /* CustomEventNative.h */,
+				90B6D1271962B67200061451 /* CustomEventNative.m */,
 			);
 			name = CustomEvents;
 			sourceTree = "<group>";
@@ -1404,6 +1416,7 @@
 				90038E9D1846019400446EAD /* MPInterstitialCustomEventAdapter.h in Headers */,
 				0F09F46714E7F134001C23E2 /* UIBarButtonItem+MobFox.h in Headers */,
 				90038EBA1846019400446EAD /* MRImageDownloader.h in Headers */,
+				90B6D1241962B1A300061451 /* CustomEventNativeDelegate.h in Headers */,
 				90038E751846019400446EAD /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				90038F291846035D00446EAD /* CJSONDeserializer.h in Headers */,
 				90038F2D1846035D00446EAD /* CJSONScanner.h in Headers */,
@@ -1431,6 +1444,7 @@
 				0F3567F6165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.h in Headers */,
 				90AC3AE5193C70300021402D /* GADInAppPurchaseDelegate.h in Headers */,
 				90038E871846019400446EAD /* MPKeywordProvider.h in Headers */,
+				90B6D1281962B67200061451 /* CustomEventNative.h in Headers */,
 				90038EAB1846019400446EAD /* MPMRAIDInterstitialViewController.h in Headers */,
 				90987D3C18BCD32500148D09 /* CustomEventBannerDelegate.h in Headers */,
 				90038E731846019400446EAD /* MPLegacyBannerCustomEventAdapter.h in Headers */,
@@ -1532,6 +1546,7 @@
 				903602FA1859AE040020E5EE /* MRAdView.h in Headers */,
 				903602FB1859AE040020E5EE /* MRAdViewDisplayController.h in Headers */,
 				903602FC1859AE040020E5EE /* MRBundleManager.h in Headers */,
+				90B6D1251962B1A300061451 /* CustomEventNativeDelegate.h in Headers */,
 				903602FD1859AE040020E5EE /* MRCalendarManager.h in Headers */,
 				903602FE1859AE040020E5EE /* MRCommand.h in Headers */,
 				903602FF1859AE040020E5EE /* MRDimmingView.h in Headers */,
@@ -1559,6 +1574,7 @@
 				903603101859AE040020E5EE /* MPTimer.h in Headers */,
 				90AC3AE6193C70300021402D /* GADInAppPurchaseDelegate.h in Headers */,
 				903603111859AE040020E5EE /* MPAdConversionTracker.h in Headers */,
+				90B6D1291962B67200061451 /* CustomEventNative.h in Headers */,
 				903603121859AE040020E5EE /* MPAdView.h in Headers */,
 				90987D3E18BCD32600148D09 /* CustomEventBannerDelegate.h in Headers */,
 				903603131859AE040020E5EE /* MPBannerCustomEvent.h in Headers */,
@@ -1720,6 +1736,7 @@
 			files = (
 				90038EC31846019400446EAD /* MRVideoPlayerManager.m in Sources */,
 				90038E8D1846019400446EAD /* MPURLResolver.m in Sources */,
+				90B6D12A1962B67200061451 /* CustomEventNative.m in Sources */,
 				A7992E911489362800E86AC8 /* DTXMLDocument.m in Sources */,
 				90A5C8C2192F677700978746 /* UIView+MobFox.m in Sources */,
 				A7992E951489362800E86AC8 /* DTXMLElement.m in Sources */,
@@ -1834,6 +1851,7 @@
 			files = (
 				903602D61859ACA30020E5EE /* MPBannerAdManager.m in Sources */,
 				9020731F1859A6A4001A696C /* MPBannerCustomEventAdapter.m in Sources */,
+				90B6D12B1962B67200061451 /* CustomEventNative.m in Sources */,
 				902073211859A6A4001A696C /* MPBaseBannerAdapter.m in Sources */,
 				90A5C8C3192F677700978746 /* UIView+MobFox.m in Sources */,
 				902073231859A6A4001A696C /* MPLegacyBannerCustomEventAdapter.m in Sources */,
