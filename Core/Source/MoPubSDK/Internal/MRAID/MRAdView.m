@@ -14,17 +14,19 @@
 #import "MRCommand.h"
 #import "MRProperty.h"
 #import "MPInstanceProvider.h"
+#import "MPCoreInstanceProvider.h"
 #import "MRCalendarManager.h"
 #import "MRJavaScriptEventEmitter.h"
 #import "UIViewController+MPAdditions.h"
 #import "MRBundleManager.h"
+#import "NSURL+MPAdditions.h"
 
 static NSString *const kExpandableCloseButtonImageName = @"MPCloseButtonX.png";
 static NSString *const kMraidURLScheme = @"mraid";
 static NSString *const kMoPubURLScheme = @"mopub";
 static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
-@interface MRAdView () <UIGestureRecognizerDelegate>
+@interface MRAdView () <UIGestureRecognizerDelegate, MRCommandDelegate>
 
 @property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, retain) MPAdDestinationDisplayAgent *destinationDisplayAgent;
@@ -121,7 +123,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
         [_closeButton addTarget:_displayController action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
-        _destinationDisplayAgent = [[[MPInstanceProvider sharedProvider]
+        _destinationDisplayAgent = [[[MPCoreInstanceProvider sharedProvider]
                                     buildMPAdDestinationDisplayAgentWithDelegate:self] retain];
         _calendarManager = [[[MPInstanceProvider sharedProvider]
                              buildMRCalendarManagerWithDelegate:self] retain];
@@ -131,15 +133,15 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
                                 buildMRVideoPlayerManagerWithDelegate:self] retain];
         _jsEventEmitter = [[[MPInstanceProvider sharedProvider]
                              buildMRJavaScriptEventEmitterWithWebView:_webView] retain];
-
-        self.adAlertManager = [[MPInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
-
+        
+        self.adAlertManager = [[MPCoreInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
+        
         self.adType = MRAdViewAdTypeDefault;
-
+        
         self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)] autorelease];
         [self addGestureRecognizer:self.tapRecognizer];
         self.tapRecognizer.delegate = self;
-
+        
         // XXX jren: inline videos seem to delay tap gesture recognition so that we get the click through
         // request in the webview delegate BEFORE we get the gesture recognizer triggered callback. For now
         // excuse all MRAID interstitials from the user interaction requirement.
@@ -278,12 +280,12 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 - (BOOL)safeHandleDisplayDestinationForURL:(NSURL *)URL
 {
     BOOL handled = NO;
-
+    
     if (self.userTappedWebView) {
         handled = YES;
         [self.destinationDisplayAgent displayDestinationForURL:URL];
     }
-
+    
     return handled;
 }
 
@@ -306,7 +308,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 - (void)loadRequest:(NSURLRequest *)request
 {
     [self initAdAlertManager];
-
+    
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     if (connection) {
         self.data = [NSMutableData data];
@@ -316,7 +318,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 - (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL
 {
     [self initAdAlertManager];
-
+    
     // Bail out if we can't locate mraid.js.
     if (![self MRAIDScriptPath]) {
         [self adDidFailToLoad];
@@ -398,50 +400,22 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
             [MRSupportsProperty defaultProperty]]];
 }
 
-- (BOOL)handleUserInteractionRequiredMRAIDCommand:(NSString *)command parameters:(NSDictionary *)parameters
-{
-    BOOL handled = NO;
-
-    if (self.userTappedWebView) {
-        if ([command isEqualToString:@"createCalendarEvent"]) {
-            handled = YES;
-            [self.calendarManager createCalendarEventWithParameters:parameters];
-        } else if ([command isEqualToString:@"storePicture"]) {
-            handled = YES;
-            [self.pictureManager storePicture:parameters];
-        }
-    }
-
-    // XXX jren: localize hack here, totally refactor mraid command handling later. Allow playVideo to auto-execute for interstitials
-    if ([command isEqualToString:@"playVideo"] && (self.userTappedWebView || _placementType == MRAdViewPlacementTypeInterstitial)) {
-        handled = YES;
-        [self.videoPlayerManager playVideo:parameters];
-    }
-
-    return handled;
-}
-
 - (void)handleCommandWithURL:(NSURL *)URL
 {
     NSString *command = URL.host;
     NSDictionary *parameters = MPDictionaryFromQueryString(URL.query);
     BOOL success = YES;
 
-    // XXX jren: there should only be one command registry
-    success = [self handleUserInteractionRequiredMRAIDCommand:command parameters:parameters];
-    if (!success) {
-        MRCommand *cmd = [MRCommand commandForString:command];
-        if (cmd == nil) {
-            success = NO;
-        } else if ([self shouldExecuteMRCommand:cmd]) {
-            cmd.parameters = parameters;
-            cmd.view = self;
-            success = [cmd execute];
-        }
+    MRCommand *cmd = [MRCommand commandForString:command];
+    if (cmd == nil) {
+        success = NO;
+    } else if ([self shouldExecuteMRCommand:cmd]) {
+        cmd.delegate = self;
+        success = [cmd executeWithParams:parameters];
     }
-
+    
     [self.jsEventEmitter fireNativeCommandCompleteEvent:command];
-
+    
     if (!success) {
         MPLogDebug(@"Unknown command: %@", command);
         [self.jsEventEmitter fireErrorEventForAction:command withMessage:@"Specified command is not implemented."];
@@ -451,7 +425,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 - (BOOL)shouldExecuteMRCommand:(MRCommand *)cmd
 {
     // some MRAID commands may not require user interaction
-    return ![cmd requiresUserInteraction] || self.userTappedWebView;
+    return ![cmd requiresUserInteractionForPlacementType:_placementType] || self.userTappedWebView;
 }
 
 - (void)performActionForMoPubSpecificURL:(NSURL *)url
@@ -463,6 +437,49 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
     } else {
         MPLogWarn(@"MRAdView - unsupported MoPub URL: %@", [url absoluteString]);
     }
+}
+
+#pragma mark - MRCommandDelegate
+
+- (void)mrCommand:(MRCommand *)command createCalendarEventWithParams:(NSDictionary *)params
+{
+    [self.calendarManager createCalendarEventWithParameters:params];
+}
+
+- (void)mrCommand:(MRCommand *)command playVideoWithURL:(NSURL *)url
+{
+    [self.videoPlayerManager playVideo:url];
+}
+
+- (void)mrCommand:(MRCommand *)command storePictureWithURL:(NSURL *)url
+{
+    [self.pictureManager storePicture:url];
+}
+
+- (void)mrCommand:(MRCommand *)command shouldUseCustomClose:(BOOL)useCustomClose
+{
+    [self.displayController useCustomClose:useCustomClose];
+}
+
+- (void)mrCommand:(MRCommand *)command openURL:(NSURL *)url
+{
+    [self handleMRAIDOpenCallForURL:url];
+}
+
+- (void)mrCommand:(MRCommand *)command expandWithParams:(NSDictionary *)params
+{
+    id urlValue = [params objectForKey:@"url"];
+    
+    [self.displayController expandToFrame:CGRectFromString([params objectForKey:@"expandToFrame"])
+                                  withURL:(urlValue == [NSNull null]) ? nil : urlValue
+                           useCustomClose:[[params objectForKey:@"useCustomClose"] boolValue]
+                                  isModal:[[params objectForKey:@"isModal"] boolValue]
+                    shouldLockOrientation:[[params objectForKey:@"shouldLockOrientation"] boolValue]];
+}
+
+- (void)mrCommandClose:(MRCommand *)command
+{
+    [self.displayController close];
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -505,6 +522,9 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
     } else if ([scheme isEqualToString:kMoPubURLScheme]) {
         [self performActionForMoPubSpecificURL:url];
         return NO;
+    } else if ([url mp_hasTelephoneScheme] || [url mp_hasTelephonePromptScheme]) {
+        [self safeHandleDisplayDestinationForURL:url];
+        return NO;
     } else if ([scheme isEqualToString:@"ios-log"]) {
         [urlString replaceOccurrencesOfString:@"%20"
                                    withString:@" "
@@ -536,7 +556,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
     if (_isLoading) {
         _isLoading = NO;
         [self initializeJavascriptState];
-
+        
         switch (self.adType) {
             case MRAdViewAdTypeDefault:
                 [self adDidLoad];
