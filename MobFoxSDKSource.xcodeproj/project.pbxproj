@@ -524,6 +524,8 @@
 		90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4CF19652C530013DC80 /* MPCloseButtonX.png */; };
 		90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4D019652C530013DC80 /* MPCloseButtonX@2x.png */; };
 		90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4D119652C530013DC80 /* MRAID.bundle */; };
+		90B5C628196535A80013DC80 /* MoPubCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */; };
+		90B5C629196535A80013DC80 /* MoPubCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */; };
 		90B6D1241962B1A300061451 /* CustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */; };
 		90B6D1251962B1A300061451 /* CustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */; };
 		90B6D1281962B67200061451 /* CustomEventNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1261962B67200061451 /* CustomEventNative.h */; };
@@ -865,6 +867,8 @@
 		90B5C4CF19652C530013DC80 /* MPCloseButtonX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPCloseButtonX.png; sourceTree = "<group>"; };
 		90B5C4D019652C530013DC80 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		90B5C4D119652C530013DC80 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
+		90B5C624196535A80013DC80 /* MoPubCustomEventNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventNative.h; sourceTree = "<group>"; };
+		90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventNative.m; sourceTree = "<group>"; };
 		90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNativeDelegate.h; sourceTree = "<group>"; };
 		90B6D1261962B67200061451 /* CustomEventNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNative.h; sourceTree = "<group>"; };
 		90B6D1271962B67200061451 /* CustomEventNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEventNative.m; sourceTree = "<group>"; };
@@ -1142,6 +1146,8 @@
 		90A79E161951B110001172D2 /* MoPub */ = {
 			isa = PBXGroup;
 			children = (
+				90B5C624196535A80013DC80 /* MoPubCustomEventNative.h */,
+				90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */,
 				90A79E171951B16A001172D2 /* MoPubCustomEventBanner.h */,
 				90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */,
 				90A79E1B1951B708001172D2 /* MoPubCustomEventFullscreen.h */,
@@ -2084,6 +2090,7 @@
 				90B5C4F019652C530013DC80 /* MPAdBrowserController.m in Sources */,
 				90038F131846035D00446EAD /* CFilteringJSONSerializer.m in Sources */,
 				90038F271846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */,
+				90B5C628196535A80013DC80 /* MoPubCustomEventNative.m in Sources */,
 				90038F331846035D00446EAD /* CJSONSerializer.m in Sources */,
 				90038F231846035D00446EAD /* CDataScanner_Extensions.m in Sources */,
 				90B5C52B19652C530013DC80 /* MPHTMLInterstitialViewController.m in Sources */,
@@ -2217,6 +2224,7 @@
 				90B5C4F119652C530013DC80 /* MPAdBrowserController.m in Sources */,
 				90038F1C1846035D00446EAD /* CJSONSerialization.m in Sources */,
 				901FCEEC192C8E4900D22785 /* NativeAd.m in Sources */,
+				90B5C629196535A80013DC80 /* MoPubCustomEventNative.m in Sources */,
 				0F3B191D159456A50035D3EF /* MobFoxVideoPlayerViewController.m in Sources */,
 				90038F341846035D00446EAD /* CJSONSerializer.m in Sources */,
 				90B5C52C19652C530013DC80 /* MPHTMLInterstitialViewController.m in Sources */,
