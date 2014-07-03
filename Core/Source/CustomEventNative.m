@@ -24,7 +24,7 @@
 }
 
 -(void)addImpressionTrackerWithUrl:(NSString*)url {
-    if(url) {
+    if(url && url.length > 0) {
         Tracker* tracker = [[Tracker alloc]init];
         tracker.type = kImpressionTrackerType;
         tracker.url = url;

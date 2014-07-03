@@ -31,7 +31,6 @@ int const MAX_STARS = 5;
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 @property (nonatomic, assign) CGFloat currentLatitude;
 @property (nonatomic, assign) CGFloat currentLongitude;
-@property (nonatomic, strong) NSString *clickUrl;
 
 @end
 
@@ -484,16 +483,8 @@ int const MAX_STARS = 5;
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     UIView* mainView = nibObjects[0];
     
-    
-    NSMutableArray* impressionTrackers = [[NSMutableArray alloc]init];
-    for (Tracker* t in response.trackers) {
-        if([t.type isEqualToString:@"impression"]) {
-            [impressionTrackers addObject:t.url];
-        }
-    }
-    
     MobFoxNativeTrackingView* trackingView = [[MobFoxNativeTrackingView alloc] initWithFrame:mainView.frame andUserAgent:self.userAgent]; //Invisible view, used for tracking impressions
-    trackingView.impressionTrackers = impressionTrackers;
+    trackingView.nativeAd = response;
     trackingView.delegate = delegate; //pass native ad, call on click?
     [mainView addSubview:trackingView];
     
@@ -526,14 +517,7 @@ int const MAX_STARS = 5;
         }
    
     }
-    
-    
-    clickUrl = response.clickUrl;
-    
-    if(clickUrl) {
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-        [mainView addGestureRecognizer:tap];
-    }
+
     
     return mainView;
 
@@ -557,13 +541,6 @@ int const MAX_STARS = 5;
     [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:_customEventNative waitUntilDone:YES];
 }
 
-- (void)handleTapGesture:(UITapGestureRecognizer *)gestureRecognizer
-{
-    [self performSelectorOnMainThread:@selector(reportClick) withObject:nil waitUntilDone:YES];
-    NSURL *clickURL = [NSURL URLWithString:clickUrl];
-    [[UIApplication sharedApplication]openURL:clickURL];
-}
-
 - (void)reportError:(NSError *)error
 {
 	if ([delegate respondsToSelector:@selector(nativeAdFailedToLoadWithError:)])
@@ -580,13 +557,7 @@ int const MAX_STARS = 5;
 	}
 }
 
-- (void)reportClick
-{
-	if ([delegate respondsToSelector:@selector(nativeAdWasClicked)])
-	{
-		[delegate nativeAdWasClicked];
-	}
-}
+
 
 
 - (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
@@ -602,7 +573,6 @@ int const MAX_STARS = 5;
 
 @synthesize delegate;
 @synthesize requestURL;
-@synthesize clickUrl;
 @synthesize locationAwareAdverts;
 @synthesize userAge, userGender, keywords;
 @synthesize adTypes;

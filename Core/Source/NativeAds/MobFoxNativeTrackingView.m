@@ -24,6 +24,11 @@
         self.backgroundColor = [UIColor clearColor];
     }
     self.userAgent = userAgent;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    
+    [self addGestureRecognizer:tap];
+    
     return self;
 }
 
@@ -32,6 +37,15 @@
     if(!wasShown) {
         wasShown = YES;
         [self performSelectorOnMainThread:@selector(reportImpression) withObject:nil waitUntilDone:YES];
+        [nativeAd handleImpression];
+        
+        NSMutableArray* impressionTrackers = [[NSMutableArray alloc]init];
+        for (Tracker* t in nativeAd.trackers) {
+            if([t.type isEqualToString:@"impression"]) {
+                [impressionTrackers addObject:t.url];
+            }
+        }
+        
         for(NSString *impressionUrl in impressionTrackers) {
             [self makeTrackingRequest:impressionUrl];
         }
@@ -46,6 +60,17 @@
 	}
 }
 
+- (void)handleTapGesture:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self performSelectorOnMainThread:@selector(reportClick) withObject:nil waitUntilDone:YES];
+    [nativeAd handleClick];
+    
+    if(nativeAd.clickUrl && nativeAd.clickUrl.length > 0) {
+        NSURL *clickURL = [NSURL URLWithString:nativeAd.clickUrl];
+        [[UIApplication sharedApplication]openURL:clickURL];
+    }
+}
+
 - (void)makeTrackingRequest:(NSString*) impressionUrl {
     NSURL* url = [NSURL URLWithString:impressionUrl];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -54,9 +79,17 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
 }
 
+- (void)reportClick
+{
+	if ([delegate respondsToSelector:@selector(nativeAdWasClicked)])
+	{
+		[delegate nativeAdWasClicked];
+	}
+}
+
 
 @synthesize wasShown;
-@synthesize impressionTrackers;
+@synthesize nativeAd;
 @synthesize delegate;
 
 @end
