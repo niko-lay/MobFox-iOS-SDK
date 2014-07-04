@@ -192,6 +192,8 @@
 		90AC3AE6193C70300021402D /* GADInAppPurchaseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD3193C70300021402D /* GADInAppPurchaseDelegate.h */; };
 		90AC3AEB193C70300021402D /* GADModules.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD6193C70300021402D /* GADModules.h */; };
 		90AC3AEC193C70300021402D /* GADModules.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AC3AD6193C70300021402D /* GADModules.h */; };
+		90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B090B919669D4400809340 /* FacebookCustomEventNative.m */; };
+		90B090BD19669D4400809340 /* FacebookCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B090B919669D4400809340 /* FacebookCustomEventNative.m */; };
 		90B5C4D219652C530013DC80 /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B5C41E19652C530013DC80 /* MPBannerAdManager.h */; };
 		90B5C4D319652C530013DC80 /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B5C41E19652C530013DC80 /* MPBannerAdManager.h */; };
 		90B5C4D419652C530013DC80 /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C41F19652C530013DC80 /* MPBannerAdManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -722,6 +724,8 @@
 		90AC3AD2193C70300021402D /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchase.h; path = CustomEvents/AdMob/GADInAppPurchase.h; sourceTree = "<group>"; };
 		90AC3AD3193C70300021402D /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchaseDelegate.h; path = CustomEvents/AdMob/GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
 		90AC3AD6193C70300021402D /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADModules.h; path = CustomEvents/AdMob/GADModules.h; sourceTree = "<group>"; };
+		90B090B819669D4400809340 /* FacebookCustomEventNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookCustomEventNative.h; sourceTree = "<group>"; };
+		90B090B919669D4400809340 /* FacebookCustomEventNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookCustomEventNative.m; sourceTree = "<group>"; };
 		90B5C41E19652C530013DC80 /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		90B5C41F19652C530013DC80 /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		90B5C42019652C530013DC80 /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -1165,6 +1169,8 @@
 				909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */,
 				909B611E194F237300B413A5 /* FacebookCustomEventFullscreen.h */,
 				909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */,
+				90B090B819669D4400809340 /* FacebookCustomEventNative.h */,
+				90B090B919669D4400809340 /* FacebookCustomEventNative.m */,
 			);
 			name = Facebook;
 			path = CustomEvents/Facebook;
@@ -2173,6 +2179,7 @@
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
 				90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
+				90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
 				90B5C55019652C530013DC80 /* MPMRAIDBannerCustomEvent.m in Sources */,
 				90B5C57A19652C530013DC80 /* MRJavaScriptEventEmitter.m in Sources */,
 				90B5C5CE19652C530013DC80 /* MPInterstitialAdController.m in Sources */,
@@ -2308,6 +2315,7 @@
 				90038F101846035D00446EAD /* CDataScanner.m in Sources */,
 				909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90038F301846035D00446EAD /* CJSONScanner.m in Sources */,
+				90B090BD19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
 				90B5C55119652C530013DC80 /* MPMRAIDBannerCustomEvent.m in Sources */,
 				90B5C57B19652C530013DC80 /* MRJavaScriptEventEmitter.m in Sources */,
 				90B5C5CF19652C530013DC80 /* MPInterstitialAdController.m in Sources */,
