@@ -85,6 +85,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)dealloc
 {
+    if(self.adapter) {
+        [self.adapter unregisterDelegate];
+    }
+    
+    self.adapter = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate = nil;
 	[_refreshTimer invalidate], _refreshTimer = nil;
@@ -494,8 +499,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [self.adapter getAdWithConfiguration:mPAdConfiguration containerSize:size];
 
         _bannerView = self.adapter.adView;
-        [self.adapter unregisterDelegate];
-        self.adapter = nil;
 
     }   else if ([adType isEqualToString:@"noAd"])
 	{
@@ -1105,20 +1108,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)adapter:(MPBaseBannerAdapter *)adapter didFinishLoadingAd:(UIView *)ad
 {
-    bannerLoaded = YES;
-	if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
-	{
-		[delegate mobfoxBannerViewDidLoadMobFoxAd:self];
-	}
 }
 
 - (void)adapter:(MPBaseBannerAdapter *)adapter didFailToLoadAdWithError:(NSError *)error
 {
-    bannerLoaded = NO;
-	if ([delegate respondsToSelector:@selector(mobfoxBannerView:didFailToReceiveAdWithError:)])
-	{
-		[delegate mobfoxBannerView:self didFailToReceiveAdWithError:error];
-	}
 }
 
 - (void)userActionWillBeginForAdapter:(MPBaseBannerAdapter *)adapter
