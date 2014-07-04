@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class ImageAsset;
 @class Tracker;
@@ -34,6 +35,7 @@ extern NSString * const kImpressionTrackerType;
 
 -(void)handleImpression;
 -(void)handleClick;
+-(void)prepareImpressionWithView:(UIView *)view;
 
 @end
 

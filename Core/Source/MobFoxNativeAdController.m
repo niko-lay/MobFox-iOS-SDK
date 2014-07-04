@@ -482,11 +482,15 @@ int const MAX_STARS = 5;
     
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     UIView* mainView = nibObjects[0];
+    if(!mainView) {
+        return nil;
+    }
     
     MobFoxNativeTrackingView* trackingView = [[MobFoxNativeTrackingView alloc] initWithFrame:mainView.frame andUserAgent:self.userAgent]; //Invisible view, used for tracking impressions
     trackingView.nativeAd = response;
     trackingView.delegate = delegate; //pass native ad, call on click?
     [mainView addSubview:trackingView];
+    [response prepareImpressionWithView:mainView];
     
     for (UIView *child in mainView.subviews) {
         

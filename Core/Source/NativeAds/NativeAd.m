@@ -37,6 +37,10 @@ NSString * const kImpressionTrackerType = @"impression";
     //custom events may implement this method    
 }
 
+-(void)prepareImpressionWithView:(UIView *)view {
+    //custom events may implement this method        
+}
+
 -(void)addImageAsset:(ImageAsset *)asset withType:(NSString *)type {
     if(asset && type) {
         [self.imageAssets setObject:asset forKey:type];
