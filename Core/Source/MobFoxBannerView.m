@@ -384,6 +384,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	NSString *clickUrlString = [xml.documentRoot getNamedChild:@"clickurl"].text;
 	if ([clickUrlString length])
 	{
+        clickUrlString = [clickUrlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
 		_tapThroughURL = [NSURL URLWithString:clickUrlString];
 	}
 	_shouldScaleWebView = [[xml.documentRoot getNamedChild:@"scale"].text isEqualToString:@"yes"];
