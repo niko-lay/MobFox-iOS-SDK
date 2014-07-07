@@ -26,7 +26,7 @@
     Class requestClass = NSClassFromString(@"MMRequest");
     Class SDKClass = NSClassFromString(@"MMSDK");
     if(!interstitialClass || !requestClass || !SDKClass) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
         return;
     }
     [SDKClass initialize];
@@ -52,10 +52,10 @@
                                 apid:optionalParameters
                         onCompletion:^(BOOL success, NSError *error) {
                             if (success) {
-                                [self.delegate customEventFullscreenDidLoadAd:self];
+                                [self notifyAdLoaded];
                             }
                             else {
-                                [self.delegate customEventFullscreenDidFailToLoadAd];
+                                [self notifyAdFailed];
                             }
                         }];
     
@@ -65,8 +65,7 @@
 {
     Class interstitialClass = NSClassFromString(@"MMInterstitial");
     if(interstitialClass && [interstitialClass isAdAvailableForApid:self.adId]) {
-        [self didDisplayAd];
-        [self.delegate customEventFullscreenWillAppear];
+        [self notifyAdWillAppear];
         
         [interstitialClass displayForApid: self.adId
                  fromViewController: rootViewController
@@ -77,11 +76,11 @@
 
 
 - (void)adModalWillDismiss:(NSNotification *)notification {
-    [self.delegate customEventFullscreenWillClose];
+    [self notifyAdWillClose];
 }
 
 - (void)applicationWillTerminateFromAd:(NSNotification *)notification {
-    [self.delegate customEventFullscreenWillLeaveApplication];
+    [self notifyAdWillLeaveApplication];
 }
 
 

@@ -39,24 +39,22 @@
 #pragma mark delegate methods
 - (void)interstitialDidLoadAd:(MPInterstitialAdController *)interstitial
 {
-    [self.delegate customEventFullscreenDidLoadAd:self];
+    [self notifyAdLoaded];
 }
-
 
 - (void)interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial
 {
-    [self.delegate customEventFullscreenDidFailToLoadAd];
+    [self notifyAdFailed];
 }
 
 - (void)interstitialDidAppear:(MPInterstitialAdController *)interstitial
 {
-    [self didDisplayAd];
-    [self.delegate customEventFullscreenWillAppear];
+    [self notifyAdWillAppear];
 }
 
 - (void)interstitialWillDisappear:(MPInterstitialAdController *)interstitial
 {
-     [self.delegate customEventFullscreenWillClose];
+    [self notifyAdWillClose];
 }
 
 

@@ -15,10 +15,9 @@
 {
     self.trackingPixel = trackingPixel;
     
-
     Class SDKClass = NSClassFromString(@"VungleSDK");
     if(!SDKClass) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
         return;
     }
     sdk = [SDKClass sharedSDK];
@@ -36,25 +35,24 @@
 }
 
 - (void)vungleSDKwillShowAd {
-    [self didDisplayAd];
-    [self.delegate customEventFullscreenWillAppear];
+    [self notifyAdWillAppear];
 }
 
 - (void)vungleSDKwillCloseAdWithViewInfo:(NSDictionary*)viewInfo willPresentProductSheet:(BOOL)willPresentProductSheet {
     if(!willPresentProductSheet) {
-        [self.delegate customEventFullscreenWillClose];
+        [self notifyAdWillClose];
     }
 }
 
 - (void)vungleSDKwillCloseProductSheet:(id)productSheet {
-    [self.delegate customEventFullscreenWillClose];
+    [self notifyAdWillClose];
 }
 
 - (void)checkVungleReady {
     if(sdk && [sdk isCachedAdAvailable]) {
-        [self.delegate customEventFullscreenDidLoadAd:self];
+        [self notifyAdLoaded];
     } else {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
     }
 }
 

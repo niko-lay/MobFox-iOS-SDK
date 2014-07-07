@@ -10,13 +10,21 @@
 #import "CustomEventFullscreen.h"
 
 @implementation iAdCustomEventFullscreen
-
+static ADInterstitialAd *interstitial_;
+static BOOL initialized;
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
     self.trackingPixel = trackingPixel;
-    interstitial_ = [[ADInterstitialAd alloc] init];
-    interstitial_.delegate = self;
+    if(!initialized) {
+        interstitial_ = [[ADInterstitialAd alloc] init];
+        interstitial_.delegate = self;
+        initialized = YES;
+    } else if([interstitial_ isLoaded]) {
+        [self notifyAdLoaded];
+    } else {
+        [self notifyAdFailed];
+    }
 }
 
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController
@@ -27,23 +35,21 @@
 #pragma mark delegate methods
 
 - (void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-    [self.delegate customEventFullscreenDidFailToLoadAd];
+    [self notifyAdFailed];
 }
 
 - (void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd {
-    [self.delegate customEventFullscreenDidLoadAd:self];
+    [self notifyAdLoaded];
 }
 
 - (void)interstitialAdActionDidFinish:(ADInterstitialAd *)interstitialAd {
-    [self.delegate customEventFullscreenWillClose];
-    
+    [self notifyAdWillClose];
 }
 
 - (BOOL)interstitialAdActionShouldBegin:(ADInterstitialAd *)interstitialAd willLeaveApplication:(BOOL)willLeave {
-    [self didDisplayAd];
-    [self.delegate customEventFullscreenWillAppear];
+    [self notifyAdWillAppear];
     if(willLeave) {
-        [self.delegate customEventFullscreenWillLeaveApplication];
+        [self notifyAdWillLeaveApplication];
     }
     return YES;
 }
@@ -51,7 +57,6 @@
 - (void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd {
    
 }
-
 
 
 

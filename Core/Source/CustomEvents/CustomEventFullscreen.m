@@ -43,5 +43,43 @@
     
 }
 
+-(void)notifyAdFailed {
+    if(delegate) {
+        [self.delegate customEventFullscreenDidFailToLoadAd];
+    }
+    [self finish];
+}
+
+-(void)notifyAdLoaded {
+    if(delegate) {
+        [self.delegate customEventFullscreenDidLoadAd:self];
+    }
+}
+
+-(void)notifyAdWillAppear {
+    [self didDisplayAd];
+    if(delegate) {
+        [self.delegate customEventFullscreenWillAppear];
+    }
+}
+
+-(void)notifyAdWillClose {
+    if(delegate) {
+        [self.delegate customEventFullscreenWillClose];
+    }
+    [self finish];
+}
+
+-(void)notifyAdWillLeaveApplication {
+    if(delegate) {
+        [self.delegate customEventFullscreenWillLeaveApplication];
+    }
+}
+
+-(void)finish
+{
+    self.delegate = nil;
+}
+
 
 @end

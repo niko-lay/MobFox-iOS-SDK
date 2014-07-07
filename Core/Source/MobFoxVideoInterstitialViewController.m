@@ -98,7 +98,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @property (nonatomic, strong) MobFoxInterstitialPlayerViewController *mobFoxInterstitialPlayerViewController;
 
-@property (nonatomic, retain) CustomEventFullscreen *customEventFullscreen;
+@property (nonatomic, strong) CustomEventFullscreen *customEventFullscreen;
 
 @property (nonatomic, strong) MobFoxToolBar *interstitialTopToolbar;
 @property (nonatomic, strong) MobFoxToolBar *interstitialBottomToolbar;

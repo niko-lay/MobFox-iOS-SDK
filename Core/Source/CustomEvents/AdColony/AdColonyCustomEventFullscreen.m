@@ -18,7 +18,7 @@ static BOOL initialized;
     NSArray *tmp=[optionalParameters componentsSeparatedByString:@";"];
     Class SDKClass = NSClassFromString(@"AdColony");
     if(!SDKClass || [tmp count] < 2 || [tmp count] > 3) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
         return;
     }
 
@@ -42,19 +42,19 @@ static BOOL initialized;
     }
     
     else if(loadedZoneId) {
-        [self.delegate customEventFullscreenDidLoadAd:self];
+        [self notifyAdLoaded];
     } else {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
     }
 }
 
 - (void) onAdColonyAdAvailabilityChange:(BOOL)available inZone:(NSString*) zoneID {
     if(available) {
         loadedZoneId = zoneID;
-        [self.delegate customEventFullscreenDidLoadAd:self];
+        [self notifyAdLoaded];
     } else {
         loadedZoneId = nil;
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
     }
 }
 
@@ -67,16 +67,15 @@ static BOOL initialized;
 }
 
 - (void) onAdColonyAdStartedInZone:( NSString * )zoneID {
-    [self didDisplayAd];
-    [self.delegate customEventFullscreenWillAppear];
+    [self notifyAdWillAppear];
 }
 
 
 - (void) onAdColonyAdAttemptFinished:(BOOL)shown inZone:( NSString * )zoneID {
     if(!shown) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
     } else {
-        [self.delegate customEventFullscreenWillClose];
+        [self notifyAdWillClose];
     }
 }
 

@@ -17,7 +17,16 @@
 
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController;
 
-- (void)didDisplayAd;
+- (void)notifyAdFailed;
+
+- (void)notifyAdLoaded;
+
+- (void)notifyAdWillAppear;
+
+- (void)notifyAdWillClose;
+
+- (void)notifyAdWillLeaveApplication;
+
 
 @property (nonatomic, assign) id<CustomEventFullscreenDelegate> delegate;
 @property (nonatomic, retain) NSString* trackingPixel;

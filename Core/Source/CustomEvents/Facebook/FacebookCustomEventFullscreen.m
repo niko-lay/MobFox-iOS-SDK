@@ -20,7 +20,7 @@
     
     Class interstitialClass = NSClassFromString(@"FBInterstitialAd");
     if(!interstitialClass) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
         return;
     }
     
@@ -34,8 +34,7 @@
 {
     if([interstitial isAdValid]) {
         if([interstitial showAdFromRootViewController:rootViewController]) {
-            [self didDisplayAd];
-            [self.delegate customEventFullscreenWillAppear];
+            [self notifyAdWillAppear];
         }
     }
     
@@ -50,20 +49,19 @@
 #pragma mark delegate methods
 
 - (void)interstitialAdDidClick:(FBInterstitialAd *)interstitialAd {
-    [self.delegate customEventFullscreenWillLeaveApplication];
+    [self notifyAdWillLeaveApplication];
 }
 
 - (void)interstitialAdWillClose:(FBInterstitialAd *)interstitialAd {
-    [self.delegate customEventFullscreenWillClose];
+    [self notifyAdWillClose];
 }
 
 - (void)interstitialAdDidLoad:(FBInterstitialAd *)interstitialAd {
-    [self.delegate customEventFullscreenDidLoadAd:self];
-
+    [self notifyAdLoaded];
 }
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-    [self.delegate customEventFullscreenDidFailToLoadAd];
+    [self notifyAdFailed];
 }
 
 

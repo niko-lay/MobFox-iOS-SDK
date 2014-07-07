@@ -10,7 +10,7 @@
 #import <iAd/AdInterstitialAd.h>
 
 @interface iAdCustomEventFullscreen : CustomEventFullscreen <ADInterstitialAdDelegate> {
-    ADInterstitialAd *interstitial_;
+    
 }
 
 @end

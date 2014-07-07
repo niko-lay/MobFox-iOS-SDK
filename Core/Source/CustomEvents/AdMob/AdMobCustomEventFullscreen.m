@@ -21,7 +21,7 @@
     Class interstitialClass = NSClassFromString(@"GADInterstitial");
     Class requestClass = NSClassFromString(@"GADRequest");
     if(!interstitialClass || !requestClass) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
+        [self notifyAdFailed];
         return;
     }
     
@@ -49,29 +49,27 @@
 #pragma mark GADInterstitialDelegate methods
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    [self.delegate customEventFullscreenDidLoadAd:self];
+    [self notifyAdLoaded];
 }
 
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    [self.delegate customEventFullscreenDidFailToLoadAd];
+    [self notifyAdFailed];
 }
-
 
 - (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
 {
-    [self didDisplayAd];
-    [self.delegate customEventFullscreenWillAppear];
+    [self notifyAdWillAppear];
 }
 
 - (void)interstitialWillDismissScreen:(GADInterstitial *)interstitial
 {
-    [self.delegate customEventFullscreenWillClose];
+    [self notifyAdWillClose];
 }
 
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
 {
-    [self.delegate customEventFullscreenWillLeaveApplication];
+    [self notifyAdWillLeaveApplication];
 }
 
 
