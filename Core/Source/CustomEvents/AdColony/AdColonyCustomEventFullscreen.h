@@ -10,7 +10,7 @@
 #import <AdColony/AdColony.h>
 
 @interface AdColonyCustomEventFullscreen : CustomEventFullscreen <AdColonyDelegate, AdColonyAdDelegate> {
-    NSString* loadedZoneId;
+
 }
 
 @end

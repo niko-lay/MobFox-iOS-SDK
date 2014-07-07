@@ -9,6 +9,8 @@
 #import "AdColonyCustomEventFullscreen.h"
 
 @implementation AdColonyCustomEventFullscreen
+static NSString* loadedZoneId;
+static BOOL initialized;
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
@@ -19,22 +21,31 @@
         [self.delegate customEventFullscreenDidFailToLoadAd];
         return;
     }
-    NSString* appID;
-    NSString* zoneIDs;
-    if([tmp count] == 2) {
-        appID=[tmp objectAtIndex:0];
-        zoneIDs=[tmp objectAtIndex:1];
-    } else {
-        appID=[tmp objectAtIndex:1];
-        zoneIDs=[tmp objectAtIndex:2];
+
+    if(!initialized) {
+        NSString* appID;
+        NSString* zoneIDs;
+        if([tmp count] == 2) {
+            appID=[tmp objectAtIndex:0];
+            zoneIDs=[tmp objectAtIndex:1];
+        } else {
+            appID=[tmp objectAtIndex:1];
+            zoneIDs=[tmp objectAtIndex:2];
+        }
+        
+        NSArray *zoneIDsArray = [zoneIDs componentsSeparatedByString:@","];
+        [SDKClass configureWithAppID:appID
+                             zoneIDs:zoneIDsArray
+                            delegate:self
+                             logging:NO];
+        initialized = YES;
     }
-    NSArray *zoneIDsArray = [zoneIDs componentsSeparatedByString:@","];
     
-    [SDKClass configureWithAppID:appID
-                         zoneIDs:zoneIDsArray
-                        delegate:self
-                         logging:NO];
-    
+    else if(loadedZoneId) {
+        [self.delegate customEventFullscreenDidLoadAd:self];
+    } else {
+        [self.delegate customEventFullscreenDidFailToLoadAd];
+    }
 }
 
 - (void) onAdColonyAdAvailabilityChange:(BOOL)available inZone:(NSString*) zoneID {
@@ -42,6 +53,7 @@
         loadedZoneId = zoneID;
         [self.delegate customEventFullscreenDidLoadAd:self];
     } else {
+        loadedZoneId = nil;
         [self.delegate customEventFullscreenDidFailToLoadAd];
     }
 }
@@ -66,15 +78,6 @@
     } else {
         [self.delegate customEventFullscreenWillClose];
     }
-}
-
-
-
-
-- (void)dealloc
-{
-    loadedZoneId = nil;
-    
 }
 
 
