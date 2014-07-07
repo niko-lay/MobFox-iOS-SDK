@@ -23,8 +23,12 @@
     sdk = [SDKClass sharedSDK];
     [sdk startWithAppId:optionalParameters];
     [sdk setDelegate:self];
-
-    checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkVungleReady) userInfo:nil repeats:NO]; //hack, Vungle doesn't provide delegate method  notifying about ad load status
+    
+    if([sdk isCachedAdAvailable]) {
+        [self notifyAdLoaded];
+    } else {
+        checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkVungleReady) userInfo:nil repeats:NO]; //hack, Vungle doesn't provide delegate method  notifying about ad load status
+    }
 }
 
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController
