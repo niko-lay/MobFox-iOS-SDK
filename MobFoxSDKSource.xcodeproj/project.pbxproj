@@ -558,6 +558,10 @@
 		90B6D1291962B67200061451 /* CustomEventNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1261962B67200061451 /* CustomEventNative.h */; };
 		90B6D12A1962B67200061451 /* CustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* CustomEventNative.m */; };
 		90B6D12B1962B67200061451 /* CustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* CustomEventNative.m */; };
+		90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */; };
+		90BF0052196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */; };
+		90BF0057196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */; };
+		90BF0058196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */; };
 		90CCFB0718F829E400D73FEB /* GADInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0918BCD1AB00148D09 /* GADInterstitial.h */; };
 		90CCFB0818F829E400D73FEB /* GADInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0A18BCD1AB00148D09 /* GADInterstitialDelegate.h */; };
 		90CCFB0918F829E400D73FEB /* GADRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0B18BCD1AB00148D09 /* GADRequest.h */; };
@@ -914,6 +918,10 @@
 		90B6D1231962B1A300061451 /* CustomEventNativeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNativeDelegate.h; sourceTree = "<group>"; };
 		90B6D1261962B67200061451 /* CustomEventNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEventNative.h; sourceTree = "<group>"; };
 		90B6D1271962B67200061451 /* CustomEventNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEventNative.m; sourceTree = "<group>"; };
+		90BF004D196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90BF0053196C026D00D4FF06 /* InMobiCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiCustomEventBanner.h; sourceTree = "<group>"; };
+		90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiCustomEventBanner.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -1475,6 +1483,10 @@
 				90B5C62B196564840013DC80 /* SDK */,
 				90B5C666196565550013DC80 /* InMobiCustomEventNative.h */,
 				90B5C667196565550013DC80 /* InMobiCustomEventNative.m */,
+				90BF004D196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.h */,
+				90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */,
+				90BF0053196C026D00D4FF06 /* InMobiCustomEventBanner.h */,
+				90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */,
 			);
 			name = InMobi;
 			path = CustomEvents/InMobi;
@@ -2090,6 +2102,7 @@
 				90B5C57219652C530013DC80 /* MRDimmingView.m in Sources */,
 				A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */,
 				90B5C58619652C530013DC80 /* MRVideoPlayerManager.m in Sources */,
+				90BF0057196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */,
 				90B5C4E819652C530013DC80 /* MPAdAlertGestureRecognizer.m in Sources */,
 				A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */,
 				90038F171846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
@@ -2139,6 +2152,7 @@
 				90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */,
 				90038F2F1846035D00446EAD /* CJSONScanner.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewController.m in Sources */,
+				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
 				90B5C54B19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BE19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BA19652C530013DC80 /* MPTimer.m in Sources */,
@@ -2226,6 +2240,7 @@
 				90B5C57319652C530013DC80 /* MRDimmingView.m in Sources */,
 				909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				90B5C58719652C530013DC80 /* MRVideoPlayerManager.m in Sources */,
+				90BF0058196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */,
 				90B5C4E919652C530013DC80 /* MPAdAlertGestureRecognizer.m in Sources */,
 				909716D718AA5CF8007EEB4D /* VAST.m in Sources */,
 				90A79E1F1951B710001172D2 /* MoPubCustomEventBanner.m in Sources */,
@@ -2275,6 +2290,7 @@
 				A7992ED31489373000E86AC8 /* DTXMLElement.m in Sources */,
 				A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
 				90B5C55919652C530013DC80 /* MPMRAIDInterstitialViewController.m in Sources */,
+				90BF0052196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
 				90B5C54C19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BF19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BB19652C530013DC80 /* MPTimer.m in Sources */,
