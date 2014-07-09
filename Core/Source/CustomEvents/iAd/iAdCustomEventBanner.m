@@ -8,50 +8,50 @@
 
 #import "iAdCustomEventBanner.h"
 
-@interface iAdCustomEventBanner()
-@property (nonatomic, retain) ADBannerView *adBannerView;
-@end
-
 @implementation iAdCustomEventBanner
 
+BOOL alreadyReportedAvailability;
+static ADBannerView *adBannerView;
 
 - (void)loadBannerWithSize:(CGSize)size optionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
-    if (self)
-    {
-        self.trackingPixel = trackingPixel;
-        
+    self.trackingPixel = trackingPixel;
+    alreadyReportedAvailability = NO;
+    
+    if(!adBannerView) {
         if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-            self.adBannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+            adBannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
         } else {
-            self.adBannerView = [[ADBannerView alloc] init];
+            adBannerView = [[ADBannerView alloc] init];
         }
-        self.adBannerView.delegate = self;
-        [self.adBannerView setFrame:CGRectMake(0, 0, size.width, size.height)];
+        adBannerView.delegate = self;
+        [adBannerView setFrame:CGRectMake(0, 0, size.width, size.height)];
+    } else if(adBannerView.isBannerLoaded && !alreadyReportedAvailability) {
+        alreadyReportedAvailability = YES;
+        [self didDisplayAd];
+        [self.delegate customEventBannerDidLoadAd:adBannerView];
+    } else if (!alreadyReportedAvailability){
+        alreadyReportedAvailability = YES;
+        [self.delegate customEventBannerDidFailToLoadAd];
     }
-}
 
-- (id)init
-{
-    self = [super init];
-    return self;
-}
-
-- (void)dealloc
-{
-    self.adBannerView.delegate = nil;
-    self.adBannerView = nil;
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    [self didDisplayAd];
-    [self.delegate customEventBannerDidLoadAd:self.adBannerView];
+    if(!alreadyReportedAvailability) {
+        alreadyReportedAvailability = YES;
+        [self didDisplayAd];
+        [self.delegate customEventBannerDidLoadAd:adBannerView];
+    }
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    [self.delegate customEventBannerDidFailToLoadAd];
+    if(!alreadyReportedAvailability) {
+        alreadyReportedAvailability = YES;
+        [self.delegate customEventBannerDidFailToLoadAd];
+    }
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
