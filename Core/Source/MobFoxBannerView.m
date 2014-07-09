@@ -1165,13 +1165,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 #pragma mark CustomEventBannerDelegate
 
 - (void)customEventBannerDidLoadAd:(UIView *)ad {
-    bannerLoaded = YES;
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
     [self showBannerView:ad withPreviousSubviews:previousSubviews];
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewDidLoadMobFoxAd:)])
-	{
-		[delegate mobfoxBannerViewDidLoadMobFoxAd:self];
-	}
 }
 
 - (void)customEventBannerDidFailToLoadAd
