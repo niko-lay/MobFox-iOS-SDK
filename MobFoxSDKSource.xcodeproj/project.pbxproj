@@ -106,6 +106,12 @@
 		901FCEF3192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		901FCEF4192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
 		901FCEF5192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
+		9024BCDF1973D93800922327 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD81973D93800922327 /* Flurry.h */; };
+		9024BCE01973D93800922327 /* FlurryUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD91973D93800922327 /* FlurryUtil.h */; };
+		9024BCE21973D93800922327 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDC1973D93800922327 /* FlurryAdDelegate.h */; };
+		9024BCE31973D93800922327 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDD1973D93800922327 /* FlurryAds.h */; };
+		9024BCE61973D95200922327 /* FlurryUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD91973D93800922327 /* FlurryUtil.h */; };
+		9024BCE71973D95500922327 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD81973D93800922327 /* Flurry.h */; };
 		903ADEF918CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* CustomEventFullscreenDelegate.h */; };
 		903ADEFA18CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* CustomEventFullscreenDelegate.h */; };
 		903ADEFF18CDAE460001F0E4 /* CustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEFD18CDAE460001F0E4 /* CustomEventFullscreen.h */; };
@@ -570,6 +576,12 @@
 		90CCFB1118F829E700D73FEB /* GADInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0A18BCD1AB00148D09 /* GADInterstitialDelegate.h */; };
 		90CCFB1218F829E700D73FEB /* GADRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0B18BCD1AB00148D09 /* GADRequest.h */; };
 		90CCFB1318F829E700D73FEB /* GADRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = 90987D0C18BCD1AB00148D09 /* GADRequestError.h */; };
+		90DD65FF1973D97D00745A59 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDC1973D93800922327 /* FlurryAdDelegate.h */; };
+		90DD66001973D98000745A59 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDD1973D93800922327 /* FlurryAds.h */; };
+		90DD66051973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */; };
+		90DD66061973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */; };
+		90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
+		90DD660C1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
 		A7992E8F1489362800E86AC8 /* DTXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E761489362800E86AC8 /* DTXMLDocument.h */; };
 		A7992E911489362800E86AC8 /* DTXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E771489362800E86AC8 /* DTXMLDocument.m */; };
 		A7992E931489362800E86AC8 /* DTXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E781489362800E86AC8 /* DTXMLElement.h */; };
@@ -659,6 +671,12 @@
 		901FCEE8192C8E4900D22785 /* NativeAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeAd.m; path = NativeAds/NativeAd.m; sourceTree = "<group>"; };
 		901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxNativeAdController.h; sourceTree = "<group>"; };
 		901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxNativeAdController.m; sourceTree = "<group>"; };
+		9024BCD81973D93800922327 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		9024BCD91973D93800922327 /* FlurryUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryUtil.h; sourceTree = "<group>"; };
+		9024BCDA1973D93800922327 /* libFlurry_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.0.0.a; sourceTree = "<group>"; };
+		9024BCDC1973D93800922327 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		9024BCDD1973D93800922327 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		9024BCDE1973D93800922327 /* libFlurryAds_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_5.0.0.a; sourceTree = "<group>"; };
 		903ADEF818CDABA50001F0E4 /* CustomEventFullscreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventFullscreenDelegate.h; path = CustomEvents/CustomEventFullscreenDelegate.h; sourceTree = "<group>"; };
 		903ADEFD18CDAE460001F0E4 /* CustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventFullscreen.h; path = CustomEvents/CustomEventFullscreen.h; sourceTree = "<group>"; };
 		903ADEFE18CDAE460001F0E4 /* CustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventFullscreen.m; path = CustomEvents/CustomEventFullscreen.m; sourceTree = "<group>"; };
@@ -922,6 +940,10 @@
 		90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiCustomEventFullscreen.m; sourceTree = "<group>"; };
 		90BF0053196C026D00D4FF06 /* InMobiCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiCustomEventBanner.h; sourceTree = "<group>"; };
 		90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiCustomEventBanner.m; sourceTree = "<group>"; };
+		90DD66011973D9B000745A59 /* FlurryCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventBanner.h; sourceTree = "<group>"; };
+		90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventBanner.m; sourceTree = "<group>"; };
+		90DD66071973F3D500745A59 /* FlurryCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventFullscreen.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -1079,6 +1101,48 @@
 			name = NativeAds;
 			sourceTree = "<group>";
 		};
+		9024BCD51973D93800922327 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				9024BCD61973D93800922327 /* SDK */,
+				90DD66011973D9B000745A59 /* FlurryCustomEventBanner.h */,
+				90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */,
+				90DD66071973F3D500745A59 /* FlurryCustomEventFullscreen.h */,
+				90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */,
+			);
+			name = Flurry;
+			path = CustomEvents/Flurry;
+			sourceTree = "<group>";
+		};
+		9024BCD61973D93800922327 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				9024BCD71973D93800922327 /* Flurry */,
+				9024BCDB1973D93800922327 /* FlurryAds */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		9024BCD71973D93800922327 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				9024BCD81973D93800922327 /* Flurry.h */,
+				9024BCD91973D93800922327 /* FlurryUtil.h */,
+				9024BCDA1973D93800922327 /* libFlurry_5.0.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
+		9024BCDB1973D93800922327 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				9024BCDC1973D93800922327 /* FlurryAdDelegate.h */,
+				9024BCDD1973D93800922327 /* FlurryAds.h */,
+				9024BCDE1973D93800922327 /* libFlurryAds_5.0.0.a */,
+			);
+			path = FlurryAds;
+			sourceTree = "<group>";
+		};
 		9047E8A919582CD6006DDB1F /* AdColony */ = {
 			isa = PBXGroup;
 			children = (
@@ -1114,6 +1178,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				9024BCD51973D93800922327 /* Flurry */,
 				90B5C62A196564840013DC80 /* InMobi */,
 				9047E8A919582CD6006DDB1F /* AdColony */,
 				90A79E211951C4C8001172D2 /* Vungle */,
@@ -1693,14 +1758,17 @@
 				90B5C54919652C530013DC80 /* MPInstanceProvider.h in Headers */,
 				90B5C56C19652C530013DC80 /* MRCommand.h in Headers */,
 				A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */,
+				9024BCDF1973D93800922327 /* Flurry.h in Headers */,
 				90B5C5EA19652C530013DC80 /* MPMoPubNativeCustomEvent.h in Headers */,
 				90B5C60619652C530013DC80 /* MPNativeAdRendering.h in Headers */,
 				90B5C55619652C530013DC80 /* MPMRAIDInterstitialViewController.h in Headers */,
 				90B5C65C196564BF0013DC80 /* IMBannerDelegate.h in Headers */,
+				9024BCE01973D93800922327 /* FlurryUtil.h in Headers */,
 				90B5C5D019652C530013DC80 /* MPInterstitialCustomEvent.h in Headers */,
 				A7992EAB1489362800E86AC8 /* RedirectChecker.h in Headers */,
 				90AC3ADF193C70300021402D /* GADBannerView.h in Headers */,
 				A7992EAF1489362800E86AC8 /* UIView+FindViewController.h in Headers */,
+				9024BCE31973D93800922327 /* FlurryAds.h in Headers */,
 				90CCFB0918F829E400D73FEB /* GADRequest.h in Headers */,
 				90AC3ADD193C70300021402D /* GADAdSize.h in Headers */,
 				90AC3ADB193C70300021402D /* GADAdNetworkExtras.h in Headers */,
@@ -1713,6 +1781,7 @@
 				90038F251846035D00446EAD /* NSDictionary_JSONExtensions.h in Headers */,
 				90AC3AD9193C70300021402D /* GADAdMobExtras.h in Headers */,
 				90B5C5D619652C530013DC80 /* UIImageView+MPNativeAd.h in Headers */,
+				9024BCE21973D93800922327 /* FlurryAdDelegate.h in Headers */,
 				90B5C5CA19652C530013DC80 /* MPConstants.h in Headers */,
 				90B5C5C819652C530013DC80 /* MPBannerCustomEventDelegate.h in Headers */,
 				90B5C4F319652C530013DC80 /* MPAdConfiguration.h in Headers */,
@@ -1866,6 +1935,7 @@
 				909FE95619336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
 				903ADF0C18CDFDAA0001F0E4 /* CustomEvent.h in Headers */,
 				903ADF0018CDAE460001F0E4 /* CustomEventFullscreen.h in Headers */,
+				90DD66001973D98000745A59 /* FlurryAds.h in Headers */,
 				90AC3AE6193C70300021402D /* GADInAppPurchaseDelegate.h in Headers */,
 				90B5C53C19652C530013DC80 /* MPInterstitialViewController.h in Headers */,
 				90B5C50E19652C530013DC80 /* MPLastResortDelegate.h in Headers */,
@@ -1878,6 +1948,7 @@
 				90B5C5D719652C530013DC80 /* UIImageView+MPNativeAd.h in Headers */,
 				90B5C5CB19652C530013DC80 /* MPConstants.h in Headers */,
 				90B5C5C919652C530013DC80 /* MPBannerCustomEventDelegate.h in Headers */,
+				90DD65FF1973D97D00745A59 /* FlurryAdDelegate.h in Headers */,
 				90B5C4F419652C530013DC80 /* MPAdConfiguration.h in Headers */,
 				909716CF18AA4DDF007EEB4D /* VASTXMLParser.h in Headers */,
 				90B5C652196564BE0013DC80 /* IMConstants.h in Headers */,
@@ -1919,9 +1990,11 @@
 				A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */,
 				90B5C51A19652C530013DC80 /* MPAdWebView.h in Headers */,
 				90B5C5A519652C530013DC80 /* MPIdentityProvider.h in Headers */,
+				9024BCE61973D95200922327 /* FlurryUtil.h in Headers */,
 				A7992ED61489373000E86AC8 /* MobFoxBannerView.h in Headers */,
 				90B5C650196564BE0013DC80 /* IMBanner.h in Headers */,
 				0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */,
+				9024BCE71973D95500922327 /* Flurry.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTracker.h in Headers */,
 				90038F361846035D00446EAD /* JSONRepresentation.h in Headers */,
 				90B5C653196564BE0013DC80 /* IMError.h in Headers */,
@@ -2130,6 +2203,7 @@
 				90B5C4EC19652C530013DC80 /* MPAdAlertManager.m in Sources */,
 				0F34E1C014DBEF04000F8713 /* MobFoxToolBar.m in Sources */,
 				903ADF0118CDAE460001F0E4 /* CustomEventFullscreen.m in Sources */,
+				90DD66051973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */,
 				90B5C58219652C530013DC80 /* MRProperty.m in Sources */,
 				90B5C55E19652C530013DC80 /* MRAdView.m in Sources */,
 				90B5C5B619652C530013DC80 /* MPStoreKitProvider.m in Sources */,
@@ -2210,6 +2284,7 @@
 				901FCEEB192C8E4900D22785 /* NativeAd.m in Sources */,
 				90038F2B1846035D00446EAD /* CJSONDeserializer.m in Sources */,
 				909A5E9D18B6168500C929A5 /* CustomEventBanner.m in Sources */,
+				90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */,
 				90B5C53D19652C530013DC80 /* MPInterstitialViewController.m in Sources */,
 				90B5C60419652C530013DC80 /* MPNativeAdError.m in Sources */,
 				90B5C50519652C530013DC80 /* MPFacebookKeywordProvider.m in Sources */,
@@ -2268,6 +2343,7 @@
 				90B5C4ED19652C530013DC80 /* MPAdAlertManager.m in Sources */,
 				A7992EC91489373000E86AC8 /* NSString+MobFox.m in Sources */,
 				903ADF0818CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */,
+				90DD66061973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */,
 				90B5C58319652C530013DC80 /* MRProperty.m in Sources */,
 				90B5C55F19652C530013DC80 /* MRAdView.m in Sources */,
 				90B5C5B719652C530013DC80 /* MPStoreKitProvider.m in Sources */,
@@ -2348,6 +2424,7 @@
 				909A5E9F18B6168B00C929A5 /* CustomEventBanner.m in Sources */,
 				0F3567F9165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
 				90038F241846035D00446EAD /* CDataScanner_Extensions.m in Sources */,
+				90DD660C1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */,
 				90B5C53E19652C530013DC80 /* MPInterstitialViewController.m in Sources */,
 				90B5C60519652C530013DC80 /* MPNativeAdError.m in Sources */,
 				90B5C50619652C530013DC80 /* MPFacebookKeywordProvider.m in Sources */,
@@ -2387,6 +2464,8 @@
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source/CustomEvents/AdMob",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/InMobi/SDK",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/Flurry",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/FlurryAds",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
@@ -2427,6 +2506,8 @@
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source/CustomEvents/AdMob",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/InMobi/SDK",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/Flurry",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/FlurryAds",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
@@ -2459,6 +2540,7 @@
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source/CustomEvents/AdMob",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/InMobi/SDK",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/Flurry",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MobFox;
@@ -2488,6 +2570,7 @@
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source/CustomEvents/AdMob",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/InMobi/SDK",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Flurry/SDK/Flurry",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MobFox;

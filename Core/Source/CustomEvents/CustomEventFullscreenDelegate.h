@@ -12,6 +12,8 @@
 
 @protocol CustomEventFullscreenDelegate <NSObject>
 
+- (UIViewController *)viewControllerForPresentingModalView;
+
 - (void)customEventFullscreenDidLoadAd:(CustomEventFullscreen *)fullscreen;
 
 - (void)customEventFullscreenDidFailToLoadAd;

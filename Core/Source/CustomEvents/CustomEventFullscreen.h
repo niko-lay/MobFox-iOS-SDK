@@ -27,6 +27,8 @@
 
 - (void)notifyAdWillLeaveApplication;
 
+- (void)finish;
+
 
 @property (nonatomic, assign) id<CustomEventFullscreenDelegate> delegate;
 @property (nonatomic, retain) NSString* trackingPixel;

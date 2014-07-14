@@ -1498,6 +1498,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 #pragma mark - CustomEventFullscreenDelegate methods
+-(UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
+
 - (void)customEventFullscreenDidLoadAd:(CustomEventFullscreen *)fullscreen
 {
     [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
