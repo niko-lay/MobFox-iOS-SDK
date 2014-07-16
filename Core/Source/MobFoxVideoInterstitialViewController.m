@@ -1528,7 +1528,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)customEventFullscreenWillAppear
 {
-    
+    if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillPresentScreen:)])
+	{
+		[delegate mobfoxVideoInterstitialViewActionWillPresentScreen:self];
+	}
 }
 
 - (void)customEventFullscreenWillClose
