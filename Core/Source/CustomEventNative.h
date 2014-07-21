@@ -19,6 +19,8 @@
 
 -(void)addExtraAsset:(NSString*)asset withType:(NSString*)type;
 
-@property (nonatomic, assign) id<CustomEventNativeDelegate> delegate;
+-(void)destroy;
+
+@property (nonatomic, strong) id<CustomEventNativeDelegate> delegate;
 
 @end

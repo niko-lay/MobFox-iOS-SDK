@@ -8,14 +8,13 @@
 
 #import "MobFoxNativeTrackingView.h"
 
-@interface MobFoxNativeTrackingView()
-@property (nonatomic, assign) BOOL wasShown;
+@interface MobFoxNativeTrackingView() <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) NSString* userAgent;
 @end
 
 
 @implementation MobFoxNativeTrackingView
-
+BOOL wasShown;
 
 - (id)initWithFrame:(CGRect)frame andUserAgent:(NSString*)userAgent
 {
@@ -26,6 +25,7 @@
     self.userAgent = userAgent;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tap.delegate = self;
     
     [self addGestureRecognizer:tap];
     
@@ -50,6 +50,10 @@
             [self makeTrackingRequest:impressionUrl];
         }
     }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)reportImpression
@@ -79,6 +83,14 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:nil];
 }
 
+-(void)removeFromSuperview {
+    NSLog(@"remove from");
+    self.nativeAd = nil;
+    self.delegate = nil;
+
+    [super removeFromSuperview];
+}
+
 - (void)reportClick
 {
 	if ([delegate respondsToSelector:@selector(nativeAdWasClicked)])
@@ -87,8 +99,12 @@
 	}
 }
 
+- (void)dealloc
+{
+    self.nativeAd = nil;
+    self.delegate = nil;
+}
 
-@synthesize wasShown;
 @synthesize nativeAd;
 @synthesize delegate;
 

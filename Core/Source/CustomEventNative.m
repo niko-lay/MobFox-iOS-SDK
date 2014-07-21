@@ -40,5 +40,12 @@
     }
 }
 
+-(void)destroy {
+    delegate = nil;
+}
+
+-(void)dealloc {
+    [self destroy];
+}
 
 @end

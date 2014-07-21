@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) NativeAd* nativeAd;
 
-@property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxNativeAdDelegate> delegate;
+@property (nonatomic, weak) id <MobFoxNativeAdDelegate> delegate;
 
 @end

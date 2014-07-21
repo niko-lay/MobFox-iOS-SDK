@@ -19,7 +19,13 @@
         return;
     }
     
-    facebookNativeAd = [[facebookNativeClass alloc] initWithPlacementID:optionalParameters];
+    [self performSelectorOnMainThread:@selector(loadFacebook:) withObject:optionalParameters waitUntilDone:YES];
+
+}
+
+- (void) loadFacebook:(NSString *)key {
+    Class facebookNativeClass = NSClassFromString(@"FBNativeAd");
+    facebookNativeAd = [[facebookNativeClass alloc] initWithPlacementID:key];
     facebookNativeAd.delegate = self;
     [facebookNativeAd loadAd];
 }
