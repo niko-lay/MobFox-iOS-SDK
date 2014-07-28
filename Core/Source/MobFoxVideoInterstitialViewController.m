@@ -984,10 +984,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     
 	if ([xml.documentRoot.name isEqualToString:@"error"])
 	{
-        if (enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
+        if (enableInterstitialAds && !alreadyRequestedInterstitial) {
             NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
             [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
-        } else if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
+        } else if (enableVideoAds && !alreadyRequestedVideo) {
             NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
             [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
         } else {
