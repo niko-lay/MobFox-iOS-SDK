@@ -65,11 +65,23 @@
     if(checkStatusTimer) {
         [checkStatusTimer invalidate];
     }
+    checkStatusTimer = nil;
+
+    sdk = nil;
+    
+}
+
+-(void)finish {
+    if(checkStatusTimer) {
+        [checkStatusTimer invalidate];
+    }
+    checkStatusTimer = nil;
     
     if(sdk) {
         [sdk setDelegate:nil];
     }
     sdk = nil;
+    [super finish];
 }
 
 
