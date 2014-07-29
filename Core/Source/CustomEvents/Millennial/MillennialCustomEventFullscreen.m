@@ -83,13 +83,13 @@
     [self notifyAdWillLeaveApplication];
 }
 
-
-- (void)dealloc
-{
+-(void)finish {
 #if COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
+    [super finish];
 }
+
 
 
 
