@@ -44,10 +44,14 @@
 }
 
 -(void)notifyAdFailed {
-    if(delegate) {
-        [self.delegate customEventFullscreenDidFailToLoadAd];
-    }
-    [self finish];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        
+        if(delegate) {
+            [self.delegate customEventFullscreenDidFailToLoadAd];
+        }
+        
+        [self finish];
+    });
 }
 
 -(void)notifyAdLoaded {
@@ -64,10 +68,13 @@
 }
 
 -(void)notifyAdWillClose {
-    if(delegate) {
-        [self.delegate customEventFullscreenWillClose];
-    }
-    [self finish];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+
+        if(delegate) {
+            [self.delegate customEventFullscreenWillClose];
+        }
+        [self finish];
+    });
 }
 
 -(void)notifyAdWillLeaveApplication {
