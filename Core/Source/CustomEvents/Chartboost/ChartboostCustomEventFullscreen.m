@@ -8,8 +8,12 @@
 
 #import "ChartboostCustomEventFullscreen.h"
 
+@interface ChartboostCustomEventFullscreen()
+@property (nonatomic) BOOL didReportAvailability;
+@end
+
 @implementation ChartboostCustomEventFullscreen
-BOOL didReportAvailability;
+
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
@@ -25,7 +29,7 @@ BOOL didReportAvailability;
     NSString* appSignature = [tmp objectAtIndex:1];
     [SDKClass startWithAppId:appID appSignature:appSignature delegate:self];
     sdk = [SDKClass sharedChartboost];
-    didReportAvailability = NO;
+    self.didReportAvailability = NO;
     [sdk cacheInterstitial];
 }
 
@@ -42,17 +46,17 @@ BOOL didReportAvailability;
 }
 
 -(void)didCacheInterstitial:(CBLocation)location {
-    if(!didReportAvailability) {
+    if(!self.didReportAvailability) {
         [self notifyAdLoaded];
-        didReportAvailability = YES;
+        self.didReportAvailability = YES;
     }
     
 }
 
 -(void)didFailToLoadInterstitial:(CBLocation)location withError:(CBLoadError)error {
-    if(!didReportAvailability) {
+    if(!self.didReportAvailability) {
         [self notifyAdFailed];
-        didReportAvailability = YES;
+        self.didReportAvailability = YES;
     }
 
 }

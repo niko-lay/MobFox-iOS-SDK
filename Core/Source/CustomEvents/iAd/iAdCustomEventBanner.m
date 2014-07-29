@@ -10,7 +10,7 @@
 
 @implementation iAdCustomEventBanner
 
-BOOL alreadyReportedAvailability;
+static BOOL alreadyReportedAvailability;
 static ADBannerView *adBannerView;
 
 - (void)loadBannerWithSize:(CGSize)size optionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel

@@ -103,6 +103,7 @@
 {
     self.nativeAd = nil;
     self.delegate = nil;
+    self.userAgent = nil;
 }
 
 @synthesize nativeAd;
