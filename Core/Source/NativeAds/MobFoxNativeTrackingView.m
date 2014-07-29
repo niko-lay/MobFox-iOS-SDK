@@ -10,11 +10,12 @@
 
 @interface MobFoxNativeTrackingView() <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) NSString* userAgent;
+@property (nonatomic) BOOL wasShown;
 @end
 
 
 @implementation MobFoxNativeTrackingView
-BOOL wasShown;
+
 
 - (id)initWithFrame:(CGRect)frame andUserAgent:(NSString*)userAgent
 {
@@ -34,8 +35,8 @@ BOOL wasShown;
 
 - (void)drawRect:(CGRect)rect
 {
-    if(!wasShown) {
-        wasShown = YES;
+    if(!self.wasShown) {
+        self.wasShown = YES;
         [self performSelectorOnMainThread:@selector(reportImpression) withObject:nil waitUntilDone:YES];
         [nativeAd handleImpression];
         
@@ -84,7 +85,6 @@ BOOL wasShown;
 }
 
 -(void)removeFromSuperview {
-    NSLog(@"remove from");
     self.nativeAd = nil;
     self.delegate = nil;
 

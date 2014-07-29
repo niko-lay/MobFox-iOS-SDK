@@ -16,7 +16,7 @@
 }
     @property (nonatomic, strong) NativeAd* nativeAd;
     @property (nonatomic, strong) CustomEventNative* customEventNative;
-
+    @property (nonatomic, strong) NSDictionary *json;
 
 @end
 
@@ -69,13 +69,14 @@
         return;
     }
     
-    [self setupAdFromJson:json headers:headers];
+    self.json = json;
+    [self setupAdWithHeaders:headers];
 
 }
 
 
 
-- (void)setupAdFromJson:(NSDictionary *)json headers:(NSDictionary*)headers
+- (void)setupAdWithHeaders:(NSDictionary*)headers
 {
     NativeAd *ad = [[NativeAd alloc]init];
     
@@ -107,40 +108,12 @@
         }
     }
     
-    ad.clickUrl = json[@"click_url"];
-    
-    NSDictionary* imageAssets = json[@"imageassets"];
-    NSEnumerator* imageAssetEnumerator = [imageAssets keyEnumerator];
-    NSString* key;
-    while (key = [imageAssetEnumerator nextObject]) {
-        NSDictionary* assetObject = imageAssets[key];
-        NSString* imageUrl = assetObject[@"url"];
-        NSString* width =  assetObject[@"width"];
-        NSString* height = assetObject[@"height"];
-        ImageAsset* asset = [[ImageAsset alloc]initWithUrl:imageUrl width:width height:height];
-        [ad addImageAsset:asset withType:key];
-    }
-    
-    NSDictionary* textAssets = json[@"textassets"];
-    NSEnumerator* textAssetEnumerator = [textAssets keyEnumerator];
-    while (key = [textAssetEnumerator nextObject]) {
-        NSString* text = textAssets[key];
-        [ad addTextAsset:text withType:key];
-    }
-    
-    NSArray* trackersArray = json[@"trackers"];
-    for (NSDictionary* trackerObject in trackersArray){
-        Tracker* tracker = [[Tracker alloc]init];
-        tracker.type = trackerObject[@"type"];
-        tracker.url = trackerObject[@"url"];
-        [ad.trackers addObject:tracker];
-    }
-    
     _nativeAd = ad;
     _customEventNative = nil;
     if([[ad customEvents]count] > 0) {
         [self loadCustomEventNativeAd];
         if(!_customEventNative) {
+            [self fillOriginalNativeAdData];
             if([_nativeAd isNativeAdValid]) {
                 [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:_nativeAd waitUntilDone:YES];
             } else {
@@ -150,6 +123,7 @@
             }
         }
     } else {
+        [self fillOriginalNativeAdData];
         if([_nativeAd isNativeAdValid]) {
             [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:_nativeAd waitUntilDone:YES];
         } else {
@@ -159,6 +133,40 @@
         }
     }
 }
+
+-(void)fillOriginalNativeAdData {
+
+    self.nativeAd.clickUrl = self.json[@"click_url"];
+    
+    NSDictionary* imageAssets = self.json[@"imageassets"];
+    NSEnumerator* imageAssetEnumerator = [imageAssets keyEnumerator];
+    NSString* key;
+    while (key = [imageAssetEnumerator nextObject]) {
+        NSDictionary* assetObject = imageAssets[key];
+        NSString* imageUrl = assetObject[@"url"];
+        NSString* width =  assetObject[@"width"];
+        NSString* height = assetObject[@"height"];
+        ImageAsset* asset = [[ImageAsset alloc]initWithUrl:imageUrl width:width height:height];
+        [self.nativeAd addImageAsset:asset withType:key];
+    }
+    
+    NSDictionary* textAssets = self.json[@"textassets"];
+    NSEnumerator* textAssetEnumerator = [textAssets keyEnumerator];
+    while (key = [textAssetEnumerator nextObject]) {
+        NSString* text = textAssets[key];
+        [self.nativeAd addTextAsset:text withType:key];
+    }
+    
+    NSArray* trackersArray = self.json[@"trackers"];
+    for (NSDictionary* trackerObject in trackersArray){
+        Tracker* tracker = [[Tracker alloc]init];
+        tracker.type = trackerObject[@"type"];
+        tracker.url = trackerObject[@"url"];
+        [self.nativeAd.trackers addObject:tracker];
+    }
+
+}
+
 
 -(void)loadCustomEventNativeAd {
     _customEventNative = nil;
@@ -194,6 +202,7 @@
     self.delegate = nil;
     self.customEventNative = nil;
     self.nativeAd = nil;
+    self.json = nil;
 }
 
 #pragma mark custom event native ad delegate:
@@ -201,7 +210,9 @@
     [self loadCustomEventNativeAd];
     if(_customEventNative) {
         return;
-    } else if([_nativeAd isNativeAdValid]) {
+    }
+    [self fillOriginalNativeAdData];
+    if([_nativeAd isNativeAdValid]) {
         [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:_nativeAd waitUntilDone:YES];
     } else {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing response from server" forKey:NSLocalizedDescriptionKey];
