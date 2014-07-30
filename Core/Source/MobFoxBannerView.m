@@ -35,6 +35,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, strong) MobFoxMRAIDBannerAdapter *adapter;
 @property (nonatomic, assign) CGFloat currentLatitude;
 @property (nonatomic, assign) CGFloat currentLongitude;
+@property (nonatomic, strong) NSString* htmlString;
 
 @property (nonatomic, retain) UIView *bannerView;
 @property (nonatomic, strong) CustomEventBanner *customEventBanner;
@@ -90,6 +91,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     }
     
     self.adapter = nil;
+    self.customEventBanner = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate = nil;
 	[_refreshTimer invalidate], _refreshTimer = nil;
@@ -349,7 +351,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setupAdFromXml:(NSArray*)array
 {
-    
+    _htmlString = nil;
     DTXMLDocument *xml = [array objectAtIndex:0];
     NSDictionary *headers;
     if([array count] > 1) {
@@ -435,8 +437,9 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
 
 		UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, bannerSize.width, bannerSize.height)];
-
-		[webView loadHTMLString:html baseURL:nil];
+        
+        //load HTML string later (to avoid calling impression pixels when using custom events)
+        _htmlString = html;
 
 		if([skipOverlay isEqualToString:@"1"]) {
 
@@ -590,20 +593,24 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)showBannerView:(UIView*)nextBannerView withPreviousSubviews:(NSArray*)previousSubviews
 {
-    if([adType isEqualToString:@"textAd"] && !skipOverlay && !_customEventBanner) { //create overlay only if necessary, to not interfere with custom events
-        UIImage *grayingImage = [self darkeningImageOfSize:_bannerView.frame.size];
+    if([adType isEqualToString:@"textAd"] && !_customEventBanner) {
         
-        UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:_bannerView.bounds];
-        [button addTarget:self action:@selector(tapThrough:) forControlEvents:UIControlEventTouchUpInside];
-        [button setImage:grayingImage forState:UIControlStateHighlighted];
-        button.alpha = 0.47;
+        [(UIWebView*)nextBannerView loadHTMLString:_htmlString baseURL:nil];
         
-        button.center = CGPointMake(roundf(self.bounds.size.width / 2.0), roundf(self.bounds.size.height / 2.0));
-        button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        if(!skipOverlay) { //create overlay only if necessary, to not interfere with custom events
+            UIImage *grayingImage = [self darkeningImageOfSize:_bannerView.frame.size];
         
-        [self addSubview:button];
+            UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+            [button setFrame:_bannerView.bounds];
+            [button addTarget:self action:@selector(tapThrough:) forControlEvents:UIControlEventTouchUpInside];
+            [button setImage:grayingImage forState:UIControlStateHighlighted];
+            button.alpha = 0.47;
         
+            button.center = CGPointMake(roundf(self.bounds.size.width / 2.0), roundf(self.bounds.size.height / 2.0));
+            button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
+            [self addSubview:button];
+        }
     }
     
     nextBannerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
