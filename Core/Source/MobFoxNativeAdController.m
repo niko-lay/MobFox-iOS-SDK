@@ -12,8 +12,6 @@
 #import "UIDevice+IdentifierAddition.h"
 #import <AdSupport/AdSupport.h>
 #import "NativeAd.h"
-#import "CustomEvent.h"
-#import "CustomEventNative.h"
 #import <UIKit/UIKit.h>
 #import "MobFoxNativeTrackingView.h"
 #import "MobFoxNativeAdRequestTask.h"
