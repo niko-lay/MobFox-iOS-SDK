@@ -9,6 +9,7 @@
 #import "CustomEventNative.h"
 #import "IMNative.h"
 #import "IMNativeDelegate.h"
+#import "InMobi.h"
 
 @interface InMobiCustomEventNative : CustomEventNative <IMNativeDelegate> {
     IMNative* inMobiNative;

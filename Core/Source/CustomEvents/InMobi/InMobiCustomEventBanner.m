@@ -19,7 +19,8 @@
     self.trackingPixel = trackingPixel;
     
     Class bannerClass = NSClassFromString(@"IMBanner");
-    if(!bannerClass) {
+    Class sdkClass = NSClassFromString(@"InMobi");
+    if(!bannerClass || !sdkClass) {
         [self.delegate customEventBannerDidFailToLoadAd];
         return;
     }
@@ -36,6 +37,7 @@
     }
     
     
+    [sdkClass initialize:optionalParameters];
     
     self.banner = [[bannerClass alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)
                                             appId:optionalParameters

@@ -15,11 +15,12 @@
     self.trackingPixel = trackingPixel;
     
     Class interstitialClass = NSClassFromString(@"IMInterstitial");
-    if(!interstitialClass) {
+    Class sdkClass = NSClassFromString(@"InMobi");
+    if(!interstitialClass || !sdkClass) {
         [self notifyAdFailed];
         return;
     }
-    
+    [sdkClass initialize:optionalParameters];
     interstitial = [[interstitialClass alloc]initWithAppId:optionalParameters];
     interstitial.delegate = self;
     [interstitial loadInterstitial];

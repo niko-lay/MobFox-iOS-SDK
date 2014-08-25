@@ -25,10 +25,13 @@ static NSString *const kInMobiActionURL = @"landing_url";
     [self addImpressionTrackerWithUrl:trackingPixel];
     
     Class imNativeClass = NSClassFromString(@"IMNative");
-    if (!imNativeClass) {
+    Class sdkClass = NSClassFromString(@"InMobi");
+    if (!imNativeClass || !sdkClass) {
         [self.delegate customEventNativeFailed];
         return;
     }
+    
+    [sdkClass initialize:optionalParameters];
     
     inMobiNative = [[imNativeClass alloc] initWithAppId:optionalParameters];
     inMobiNative.delegate = self;
