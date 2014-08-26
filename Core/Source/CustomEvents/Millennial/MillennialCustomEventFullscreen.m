@@ -40,8 +40,8 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillTerminateFromAd:)
-                                                 name:MillennialMediaAdWillTerminateApplication
+                                             selector:@selector(adWasTapped:)
+                                                 name:MillennialMediaAdWasTapped
                                                object:nil];
     
 #endif
@@ -79,7 +79,7 @@
     [self notifyAdWillClose];
 }
 
-- (void)applicationWillTerminateFromAd:(NSNotification *)notification {
+- (void)adWasTapped:(NSNotification *)notification {
     [self notifyAdWillLeaveApplication];
 }
 
