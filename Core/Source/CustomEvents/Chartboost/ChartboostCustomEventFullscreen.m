@@ -47,16 +47,16 @@
 
 -(void)didCacheInterstitial:(CBLocation)location {
     if(!self.didReportAvailability) {
-        [self notifyAdLoaded];
         self.didReportAvailability = YES;
+        [self notifyAdLoaded];
     }
     
 }
 
 -(void)didFailToLoadInterstitial:(CBLocation)location withError:(CBLoadError)error {
     if(!self.didReportAvailability) {
-        [self notifyAdFailed];
         self.didReportAvailability = YES;
+        [self notifyAdFailed];
     }
 
 }
