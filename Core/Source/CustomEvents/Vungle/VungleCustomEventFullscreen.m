@@ -44,6 +44,10 @@
 
 - (void)vungleSDKwillCloseAdWithViewInfo:(NSDictionary*)viewInfo willPresentProductSheet:(BOOL)willPresentProductSheet {
     if(!willPresentProductSheet) {
+        if([viewInfo[@"didDownload"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            [self notifyAdWillLeaveApplication];
+        }
+        
         [self notifyAdWillClose];
     }
 }
