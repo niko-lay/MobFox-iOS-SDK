@@ -600,6 +600,8 @@
 		90DD66061973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */; };
 		90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
 		90DD660C1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
+		90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
+		90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
 		A7992E8F1489362800E86AC8 /* DTXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E761489362800E86AC8 /* DTXMLDocument.h */; };
 		A7992E911489362800E86AC8 /* DTXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E771489362800E86AC8 /* DTXMLDocument.m */; };
 		A7992E931489362800E86AC8 /* DTXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E781489362800E86AC8 /* DTXMLElement.h */; };
@@ -973,6 +975,9 @@
 		90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventBanner.m; sourceTree = "<group>"; };
 		90DD66071973F3D500745A59 /* FlurryCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90F61C6119AF44C600547AE4 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UnityAds.framework; path = Core/Source/CustomEvents/Applifier/UnityAds.framework; sourceTree = "<group>"; };
+		90F61C6219AF454800547AE4 /* ApplifierCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplifierCustomEventFullscreen.h; sourceTree = "<group>"; };
+		90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplifierCustomEventFullscreen.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -1232,6 +1237,7 @@
 		909A5E9118B605EC00C929A5 /* CustomEvents */ = {
 			isa = PBXGroup;
 			children = (
+				90F61C5F19AF44C600547AE4 /* Applifier */,
 				9026A122198670C50055EF7C /* Chartboost */,
 				9024BCD51973D93800922327 /* Flurry */,
 				90B5C62A196564840013DC80 /* InMobi */,
@@ -1631,6 +1637,16 @@
 			path = SDK;
 			sourceTree = "<group>";
 		};
+		90F61C5F19AF44C600547AE4 /* Applifier */ = {
+			isa = PBXGroup;
+			children = (
+				90F61C6219AF454800547AE4 /* ApplifierCustomEventFullscreen.h */,
+				90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */,
+			);
+			name = Applifier;
+			path = CustomEvents/Applifier;
+			sourceTree = "<group>";
+		};
 		A7992E711489362800E86AC8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -1715,6 +1731,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90F61C6119AF44C600547AE4 /* UnityAds.framework */,
 				9047E8AA19582CD6006DDB1F /* AdColony.framework */,
 				90A79E221951C4C8001172D2 /* VungleSDK.framework */,
 				90A79E0719517E3C001172D2 /* MillennialMedia.framework */,
@@ -2305,6 +2322,7 @@
 				903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
+				90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60E19652C530013DC80 /* MPNativeAdRequestTargeting.m in Sources */,
 				90B5C5AA19652C530013DC80 /* MPLogging.m in Sources */,
 				90B5C5C219652C530013DC80 /* MPAdView.m in Sources */,
@@ -2447,6 +2465,7 @@
 				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
+				90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60F19652C530013DC80 /* MPNativeAdRequestTargeting.m in Sources */,
 				90B5C5AB19652C530013DC80 /* MPLogging.m in Sources */,
 				90B5C5C319652C530013DC80 /* MPAdView.m in Sources */,
@@ -2525,6 +2544,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -2568,6 +2588,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
