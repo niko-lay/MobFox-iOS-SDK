@@ -47,7 +47,7 @@
     [self notifyAdFailed];
 }
 
-- (void)interstitialDidAppear:(MPInterstitialAdController *)interstitial
+- (void)interstitialWillAppear:(MPInterstitialAdController *)interstitial
 {
     [self notifyAdWillAppear];
 }

@@ -18,13 +18,18 @@
 -(void)loadNativeAdWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel {
     [self addImpressionTrackerWithUrl:trackingPixel];
     MPNativeAdRequest *adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:optionalParameters];
+
+    [self performSelectorOnMainThread:@selector(loadMoPub:) withObject:adRequest waitUntilDone:YES];
     
+}
+
+- (void) loadMoPub:(MPNativeAdRequest *)adRequest {
     [adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
         if (error) {
             [self.delegate customEventNativeFailed];
         } else {
             self.moPubNativeAd = response;
-            // [self setClickUrl:[response.defaultActionURL absoluteString]]; //should be handled by handleClick.
+            [self setClickUrl:[response.defaultActionURL absoluteString]];
             
             [self addTextAsset:[response.properties objectForKey:kAdCTATextKey] withType:kCallToActionTextAsset];
             [self addTextAsset:[response.properties objectForKey:kAdTitleKey] withType:kHeadlineTextAsset];
@@ -35,10 +40,10 @@
                 NSString* starRating = [starRatingNum stringValue];
                 [self addTextAsset:starRating withType:kRatingTextAsset];
             }
-            
+
             [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdIconImageKey] andType:kIconImageAsset];
             [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdMainImageKey] andType:kMainImageAsset];
-            
+
             
             if([self isNativeAdValid]) {
                 [self.delegate customEventNativeLoaded:self];
@@ -47,6 +52,7 @@
             }
         }
     }];
+
     
 }
 
