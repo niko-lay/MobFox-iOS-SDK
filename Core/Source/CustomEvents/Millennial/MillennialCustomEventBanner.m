@@ -8,8 +8,6 @@
 
 #import "MillennialCustomEventBanner.h"
 
-#define COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS 0 //disabled, would cause errors without Millennial framework attached. Basic delegate methods (ad loaded/failed to load) will still work
-
 @interface MillennialCustomEventBanner()
 @property (nonatomic, strong) MMAdView* adView;
 @end
@@ -29,20 +27,15 @@
     
     self.adView = [[bannerClass alloc] initWithFrame:CGRectMake(0,0,size.width, size.height) apid:optionalParameters rootViewController:[self.delegate viewControllerForPresentingModalView]];
     
-    
-#if COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(adModalWillAppear:)
-                                                 name:MillennialMediaAdModalWillAppear
+                                                 name:@"MillennialMediaAdModalWillAppear"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(adModalWillDismiss:)
-                                                 name:MillennialMediaAdModalWillDismiss
+                                                 name:@"MillennialMediaAdModalWillDismiss"
                                                object:nil];
-    
-#endif
     
     MMRequest *request = [requestClass request];
     
@@ -75,18 +68,9 @@
 
 - (void)dealloc
 {
-#if COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-#endif
     
     self.adView = nil;
 }
-
-
-
-
-
-
-
 
 @end
