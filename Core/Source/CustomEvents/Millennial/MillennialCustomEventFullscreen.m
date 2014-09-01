@@ -8,7 +8,7 @@
 
 #import "MillennialCustomEventFullscreen.h"
 
-#define COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS 0 //disabled, would cause errors without Millennial framework attached. Basic delegate methods (ad loaded/failed to load) will still work
+#define COMPILE_MILLENNIAL 0 //disabled, would cause errors without Millennial framework attached. Basic delegate methods (ad loaded/failed to load) will still work
 
 @interface MillennialCustomEventFullscreen()
 @property (nonatomic, strong) NSString* adId;
@@ -19,6 +19,7 @@
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel
 {
+#if COMPILE_MILLENNIAL
     self.trackingPixel = trackingPixel;
     self.adId = optionalParameters;
     
@@ -31,7 +32,7 @@
     }
     [SDKClass initialize];
     
-#if COMPILE_MILLENNIAL_ADDITIONAL_NOTIFICATIONS
+
 
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -44,7 +45,7 @@
                                                  name:MillennialMediaAdWasTapped
                                                object:nil];
     
-#endif
+
 
     MMRequest *request = [requestClass request];
     
@@ -58,6 +59,11 @@
                                 [self notifyAdFailed];
                             }
                         }];
+    
+#else
+    [self notifyAdFailed];
+    return;
+#endif
     
 }
 
