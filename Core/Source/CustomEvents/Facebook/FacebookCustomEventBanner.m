@@ -27,9 +27,15 @@
         return;
     }
     
-    self.adBannerView = [[bannerClass alloc] initWithPlacementID:optionalParameters
-                                                      adSize:kFBAdSize320x50
-                                          rootViewController:[self.delegate viewControllerForPresentingModalView]];
+    if (size.height >= 90) {
+        self.adBannerView = [[bannerClass alloc] initWithPlacementID:optionalParameters
+                                                              adSize:kFBAdSizeHeight90Banner
+                                                  rootViewController:[self.delegate viewControllerForPresentingModalView]];
+    } else {
+        self.adBannerView = [[bannerClass alloc] initWithPlacementID:optionalParameters
+                                                              adSize:kFBAdSizeHeight50Banner
+                                                  rootViewController:[self.delegate viewControllerForPresentingModalView]];
+    }
     
     self.adBannerView.delegate = self;
     
