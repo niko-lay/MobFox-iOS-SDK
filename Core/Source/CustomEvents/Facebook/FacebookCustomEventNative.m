@@ -65,15 +65,14 @@
 }
 
 -(void)nativeAdDidFinishHandlingClick:(FBNativeAd *)nativeAd {
-    
 }
 
 -(void)nativeAdDidClick:(FBNativeAd *)nativeAd {
     
 }
 
--(void)prepareImpressionWithView:(UIView *)view {
-    [facebookNativeAd registerViewForInteraction:view];
+-(void)prepareImpressionWithView:(UIView *)view andViewController:(UIViewController *)viewController  {
+    [facebookNativeAd registerViewForInteraction:view withViewController:viewController];
 }
 
 @end
