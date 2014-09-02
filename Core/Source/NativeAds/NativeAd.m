@@ -37,7 +37,7 @@ NSString * const kImpressionTrackerType = @"impression";
     //custom events may implement this method    
 }
 
--(void)prepareImpressionWithView:(UIView *)view {
+-(void)prepareImpressionWithView:(UIView *)view andViewController:(UIViewController*)viewController{
     //custom events may implement this method        
 }
 

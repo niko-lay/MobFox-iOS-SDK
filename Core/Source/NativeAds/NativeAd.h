@@ -35,7 +35,7 @@ extern NSString * const kImpressionTrackerType;
 
 -(void)handleImpression;
 -(void)handleClick;
--(void)prepareImpressionWithView:(UIView *)view;
+-(void)prepareImpressionWithView:(UIView *)view andViewController:(UIViewController*)viewController;
 
 @end
 

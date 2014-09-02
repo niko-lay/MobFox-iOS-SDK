@@ -24,6 +24,8 @@
 
 - (void) nativeAdWasClicked;
 
+- (UIViewController*) viewControllerForNativeAds;
+
 @end
 
 @interface MobFoxNativeAdController : NSObject

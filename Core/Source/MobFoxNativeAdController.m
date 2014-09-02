@@ -333,7 +333,7 @@ int const MAX_STARS = 5;
     trackingView.nativeAd = response;
     trackingView.delegate = delegate;
     
-    [response prepareImpressionWithView:trackingView];
+    [response prepareImpressionWithView:trackingView andViewController:[self.delegate viewControllerForNativeAds]];
     [mainView addSubview:trackingView];
 
 
