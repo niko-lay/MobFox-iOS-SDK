@@ -16,7 +16,7 @@ static NSString *const kInMobiScreenshot = @"screenshots";
 static NSString *const kInMobiIcon = @"icon";
 
 static NSString *const kInMobiImageURL = @"url";
-static NSString *const kInMobiActionURL = @"landing_url";
+static NSString *const kInMobiActionURL = @"landingURL";
 
 
 @implementation InMobiCustomEventNative
@@ -30,16 +30,16 @@ static NSString *const kInMobiActionURL = @"landing_url";
         [self.delegate customEventNativeFailed];
         return;
     }
-    
     [sdkClass initialize:optionalParameters];
     
     inMobiNative = [[imNativeClass alloc] initWithAppId:optionalParameters];
     inMobiNative.delegate = self;
-    [inMobiNative loadAd];
     
+    [inMobiNative loadAd];
 }
 
 -(void)dealloc {
+    [inMobiNative detachFromView];
     inMobiNative.delegate = nil;
     inMobiNative = nil;
 }
@@ -51,6 +51,12 @@ static NSString *const kInMobiActionURL = @"landing_url";
 -(void)nativeAdDidFinishLoading:(IMNative *)native {
 
     inMobiNative = native;
+    
+    [self performSelectorInBackground:@selector(loadInMobiAssets) withObject:nil];
+    
+}
+
+-(void)loadInMobiAssets {
     NSDictionary *inMobiAssets = [self inMobiAssets];
     
     if([inMobiAssets objectForKey:kInMobiTitle]) {
@@ -78,12 +84,16 @@ static NSString *const kInMobiActionURL = @"landing_url";
         [self addImageAssetWithImageUrl:[iconDictionary objectForKey:kInMobiImageURL] andType:kMainImageAsset];
     }
     
+    if([inMobiAssets objectForKey:kInMobiActionURL]) {
+        [self setClickUrl:[inMobiAssets objectForKey:kInMobiActionURL]];
+    }
     
     if([self isNativeAdValid]) {
         [self.delegate customEventNativeLoaded:self];
     } else {
         [self.delegate customEventNativeFailed];
     }
+
 }
 
 - (NSDictionary *)inMobiAssets
@@ -102,11 +112,7 @@ static NSString *const kInMobiActionURL = @"landing_url";
     }
 }
 
-
--(void)handleImpression {
-}
-
--(void)prepareImpressionWithView:(UIView *)view {
+-(void)prepareImpressionWithView:(UIView *)view andViewController:(UIViewController*)viewController{
     [inMobiNative attachToView:view];
 }
 
