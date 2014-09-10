@@ -6,7 +6,7 @@
 //
 //
 
-#import "NativeAd.h"
+#import "MobFoxNativeAd.h"
 #import <UIKit/UIKit.h>
 
 NSString * const kIconImageAsset = @"icon";
@@ -18,7 +18,7 @@ NSString * const kAdvertiserTextAsset = @"advertiser";
 NSString * const kRatingTextAsset = @"rating";
 NSString * const kImpressionTrackerType = @"impression";
 
-@implementation NativeAd
+@implementation MobFoxNativeAd
 
 - (id)init {
     self = [super init];

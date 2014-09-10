@@ -11,7 +11,7 @@
 #import "NSURL+MobFox.h"
 #import "UIDevice+IdentifierAddition.h"
 #import <AdSupport/AdSupport.h>
-#import "NativeAd.h"
+#import "MobFoxNativeAd.h"
 #import <UIKit/UIKit.h>
 #import "MobFoxNativeTrackingView.h"
 #import "MobFoxNativeAdRequestTask.h"
@@ -315,7 +315,7 @@ int const MAX_STARS = 5;
 }
 
 
--(UIView *)getNativeAdViewForResponse:(NativeAd *)response xibName:(NSString *)name {
+-(UIView *)getNativeAdViewForResponse:(MobFoxNativeAd *)response xibName:(NSString *)name {
     
     if(!response) {
         return nil;

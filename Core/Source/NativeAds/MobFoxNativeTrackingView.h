@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MobFoxNativeAdController.h"
-#import "NativeAd.h"
+#import "MobFoxNativeAd.h"
 
 @interface MobFoxNativeTrackingView : UIView
 
 - (id)initWithFrame:(CGRect)frame andUserAgent:(NSString*)userAgent;
 
-@property (nonatomic, strong) NativeAd* nativeAd;
+@property (nonatomic, strong) MobFoxNativeAd* nativeAd;
 
 @property (nonatomic, weak) id <MobFoxNativeAdDelegate> delegate;
 

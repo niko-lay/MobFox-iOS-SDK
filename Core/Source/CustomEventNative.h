@@ -6,10 +6,10 @@
 //
 //
 
-#import "NativeAd.h"
+#import "MobFoxNativeAd.h"
 #import "CustomEventNativeDelegate.h"
 
-@interface CustomEventNative : NativeAd
+@interface CustomEventNative : MobFoxNativeAd
 
 -(void) loadNativeAdWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel;
 

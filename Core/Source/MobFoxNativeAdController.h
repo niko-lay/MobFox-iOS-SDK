@@ -10,13 +10,13 @@
 #import <UIKit/UIKit.h>
 
 @class MobFoxNativeAdController;
-@class NativeAd;
+@class MobFoxNativeAd;
 
 @protocol MobFoxNativeAdDelegate <NSObject>
 
 - (NSString *)publisherIdForMobFoxNativeAdController:(MobFoxNativeAdController *)controller;
 
-- (void) nativeAdDidLoad:(NativeAd *)ad;
+- (void) nativeAdDidLoad:(MobFoxNativeAd *)ad;
 
 - (void) nativeAdFailedToLoadWithError:(NSError *)error;
 
@@ -41,7 +41,7 @@
 
 - (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
-- (UIView*)getNativeAdViewForResponse:(NativeAd*)response xibName:(NSString*)name;
+- (UIView*)getNativeAdViewForResponse:(MobFoxNativeAd*)response xibName:(NSString*)name;
 
 - (void)requestAd;
 

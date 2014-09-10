@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class NativeAd;
+@class MobFoxNativeAd;
 
 @protocol CustomEventNativeDelegate <NSObject>
 
 -(void)customEventNativeFailed;
--(void)customEventNativeLoaded:(NativeAd*) nativeAd;
+-(void)customEventNativeLoaded:(MobFoxNativeAd*) nativeAd;
 
 @end

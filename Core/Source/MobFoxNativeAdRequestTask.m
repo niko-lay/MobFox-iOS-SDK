@@ -14,7 +14,7 @@
 @interface MobFoxNativeAdRequestTask()<CustomEventNativeDelegate> {
     
 }
-    @property (nonatomic, strong) NativeAd* nativeAd;
+    @property (nonatomic, strong) MobFoxNativeAd* nativeAd;
     @property (nonatomic, strong) CustomEventNative* customEventNative;
     @property (nonatomic, strong) NSDictionary *json;
 
@@ -78,7 +78,7 @@
 
 - (void)setupAdWithHeaders:(NSDictionary*)headers
 {
-    NativeAd *ad = [[NativeAd alloc]init];
+    MobFoxNativeAd *ad = [[MobFoxNativeAd alloc]init];
     
     if(headers)
     {
@@ -221,7 +221,7 @@
     }
 }
 
--(void)customEventNativeLoaded:(NativeAd *)nativeAd {
+-(void)customEventNativeLoaded:(MobFoxNativeAd *)nativeAd {
     [self performSelectorOnMainThread:@selector(reportSuccess:) withObject:_customEventNative waitUntilDone:YES];
 }
 
@@ -236,7 +236,7 @@
     }
 }
 
-- (void)reportSuccess:(NativeAd *)ad
+- (void)reportSuccess:(MobFoxNativeAd *)ad
 {
     if (self.customEventNative) {
         [self.customEventNative destroy];

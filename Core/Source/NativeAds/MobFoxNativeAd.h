@@ -13,7 +13,7 @@
 @class Tracker;
 @class UIImage;
 
-@interface NativeAd : NSObject
+@interface MobFoxNativeAd : NSObject
 extern NSString * const kIconImageAsset;
 extern NSString * const kMainImageAsset;
 extern NSString * const kHeadlineTextAsset;
