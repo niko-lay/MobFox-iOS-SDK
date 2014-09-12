@@ -2620,7 +2620,7 @@
 		A7992EC4148936E400E86AC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2628,11 +2628,12 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
@@ -2651,7 +2652,7 @@
 		A7992EC5148936E400E86AC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2659,11 +2660,12 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Volumes/MacintoshData/Xcodeprojects/MobFox-iOS-SDK/Core/Source",
