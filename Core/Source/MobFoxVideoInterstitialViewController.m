@@ -1858,9 +1858,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)applyFrameSize:(UIInterfaceOrientation)interfaceOrientation {
 
-    CGSize size = [UIScreen mainScreen].bounds.size;
+     CGSize size = [UIScreen mainScreen].bounds.size;
 
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation) ||
+        [[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending) { //version higher or equal to iOS 8
         self.view.frame = CGRectMake(0, 0, size.width, size.height);
     } else {
         self.view.frame = CGRectMake(0, 0, size.height, size.width);
