@@ -75,7 +75,7 @@
         [inLine.impressions addObject:impression];
     }
 
-    inLine.description = [element getNamedChild:@"Description"].text;
+    inLine.Description = [element getNamedChild:@"Description"].text;
     inLine.advertiser = [element getNamedChild:@"Advertiser"].text;
     inLine.error = [element getNamedChild:@"Error"].text;
     DTXMLElement *creatives = [element getNamedChild:@"Creatives"];

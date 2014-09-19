@@ -42,7 +42,7 @@
 
 @property (strong, nonatomic) VAST_AdSystem *adSystem;
 @property (strong, nonatomic) NSString *adTitle;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *Description;
 @property (strong, nonatomic) NSString *advertiser;
 @property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) NSMutableArray* impressions;
