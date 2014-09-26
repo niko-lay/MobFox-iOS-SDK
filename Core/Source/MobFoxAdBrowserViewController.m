@@ -5,14 +5,22 @@
 #import "NSURL+MobFox.h"
 #import "UIImage+MobFox.h"
 
-@interface MobFoxAdBrowserViewController ()
+@interface MobFoxAdBrowserViewController () {
+    UIActivityIndicatorView *activityView;
+    UIBarButtonItem *activityIndicator;
+    UIBarButtonItem *backButton;
+    UIBarButtonItem *forwardButton;
+    UIBarButtonItem *reloadButton;
+    UIBarButtonItem *safariButton;
+    UIActionSheet *actionSheet;
+}
 
 @property (nonatomic, strong) NSMutableData *receivedData;
 @property (nonatomic, strong) NSString *mimeType;
 @property (nonatomic, strong) NSString *textEncodingName;
 @property (nonatomic, strong) NSURL *url;
-
 @end
+
 
 @implementation MobFoxAdBrowserViewController
 
@@ -37,34 +45,49 @@
 - (void)dealloc 
 {
 	delegate = nil;
+    activityView = nil;
+    _webView = nil;
 }
 
 - (void)loadView 
 {
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     {
-        buttonSize = 30.0f;
+        barSize = 35.0f;
     }
     else
     {
-        buttonSize = 50.0f;
+        barSize = 45.0f;
     }
 
     CGRect mainFrame = [UIScreen mainScreen].applicationFrame;
 	self.view = [[UIView alloc] initWithFrame:mainFrame];
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.webView.frame = self.view.bounds;
-	[self.view addSubview:self.webView];
-	UIImage *image = [UIImage mobfoxSkipButtonImage];
 
-    float skipButtonSize = buttonSize +4.0f;
-
-	UIButton *btnClose=[UIButton buttonWithType:UIButtonTypeCustom];
-	[btnClose setImage:image forState:UIControlStateNormal];
-	[btnClose addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
-	[btnClose setFrame:CGRectMake(self.view.bounds.size.width - (skipButtonSize+10.0f), 10, skipButtonSize, skipButtonSize)];
-	btnClose.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-	[self.view addSubview:btnClose];
+    CGRect frame, remain;
+    CGRectDivide(self.view.bounds, &frame, &remain, barSize, CGRectMaxYEdge);
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:frame];
+    toolbar.barStyle = UIBarStyleBlack;
+    [toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin];
+    
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss:)];
+    safariButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openSafari:)];
+    activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    backButton = [[UIBarButtonItem alloc] initWithTitle:@"◁" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+    forwardButton = [[UIBarButtonItem alloc] initWithTitle:@"▷" style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)];
+    
+    reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
+    
+    NSArray *buttons = [NSArray arrayWithObjects: safariButton, flexibleSpace, backButton, flexibleSpace, forwardButton, flexibleSpace, reloadButton, flexibleSpace, activityIndicator, flexibleSpace, closeButton, nil];
+    [toolbar setItems:buttons animated:NO];
+    
+    [self.view addSubview:toolbar];
+    
+    self.webView.frame = remain;
+    [self.view addSubview:self.webView];
 }
 
 - (UIWebView *)webView
@@ -142,10 +165,17 @@
     [self dismiss:nil];
 }
 
+- (void)updateButtons
+{
+    forwardButton.enabled = _webView.canGoForward;
+    backButton.enabled = _webView.canGoBack;
+}
+
 #pragma mark Actions
 
 -(void)dismiss:(id)sender
 {
+    [self dismissActionSheet];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	if ([delegate respondsToSelector:@selector(mobfoxAdBrowserControllerDidDismiss:)])
 	{
@@ -155,6 +185,64 @@
 	{
 		[self dismissModalViewControllerAnimated:NO];
 	}
+}
+
+-(void)reload:(id)sender {
+    [self dismissActionSheet];
+    [_webView reload];
+}
+
+-(void)goBack:(id)sender {
+    [self dismissActionSheet];
+    [_webView goBack];
+}
+
+-(void)goForward:(id)sender {
+    [self dismissActionSheet];
+    [_webView goForward];
+    
+}
+
+-(void)openSafari:(id)sender {
+  
+    if (actionSheet)
+    {
+        [self dismissActionSheet];
+    }
+    else
+    {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Open in Safari", nil];
+        
+        if ([UIActionSheet instancesRespondToSelector:@selector(showFromBarButtonItem:animated:)]) {
+            [actionSheet showFromBarButtonItem:safariButton animated:YES];
+        } else {
+            [actionSheet showInView:self.webView];
+        }
+    }
+
+}
+
+- (void)dismissActionSheet
+{
+    if(actionSheet) {
+        [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+        actionSheet = nil;
+    }
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet2 clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    actionSheet = nil;
+    if (buttonIndex == 0)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _webView.request.URL.absoluteString]];
+    }
 }
 
 #pragma mark Web View Delegate
@@ -185,15 +273,20 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [activityView startAnimating];
+    [self updateButtons];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [activityView stopAnimating];
+    [self updateButtons];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-	return;
+    [activityView stopAnimating];
+    [self updateButtons];
 }
 
 #pragma mark Manual URL Loading for custom user agent

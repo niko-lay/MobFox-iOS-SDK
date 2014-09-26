@@ -8,7 +8,7 @@
 
 @end
 
-@interface MobFoxAdBrowserViewController : UIViewController <UIWebViewDelegate>
+@interface MobFoxAdBrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 {
 	UIWebView *_webView;
 	NSURL *_url;
@@ -16,7 +16,7 @@
 	NSString *mimeType;
 	NSString *textEncodingName;
 	NSMutableData *receivedData;
-    float buttonSize;
+    float barSize;
 
 	__unsafe_unretained id <MobFoxAdBrowserViewController> delegate;
 }
