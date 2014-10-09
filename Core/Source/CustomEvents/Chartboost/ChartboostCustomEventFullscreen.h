@@ -7,10 +7,11 @@
 //
 
 #import "CustomEventFullscreen.h"
-#import "Chartboost.h"
+#import <Chartboost/Chartboost.h>
+
 
 @interface ChartboostCustomEventFullscreen : CustomEventFullscreen <ChartboostDelegate> {
-    Chartboost* sdk;
+    Class sdk;
 }
 
 @end

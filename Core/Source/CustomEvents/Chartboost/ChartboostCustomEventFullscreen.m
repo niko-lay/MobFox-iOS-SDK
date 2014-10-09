@@ -19,25 +19,26 @@
 {
     self.trackingPixel = trackingPixel;
     NSArray *tmp=[optionalParameters componentsSeparatedByString:@";"];
-    Class SDKClass = NSClassFromString(@"Chartboost");
-    if(!SDKClass || [tmp count] != 2) {
+    sdk = NSClassFromString(@"Chartboost");
+    if(!sdk || [tmp count] < 2) {
         [self notifyAdFailed];
         return;
     }
     
     NSString* appID = [tmp objectAtIndex:0];
     NSString* appSignature = [tmp objectAtIndex:1];
-    [SDKClass startWithAppId:appID appSignature:appSignature delegate:self];
-    sdk = [SDKClass sharedChartboost];
+    [sdk startWithAppId:appID appSignature:appSignature delegate:self];
     self.didReportAvailability = NO;
-    [sdk cacheInterstitial];
+    [sdk setAutoCacheAds:NO];
+    
+    [sdk cacheInterstitial:@"Default"];
 }
 
 
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController
 {
     if(sdk) {
-        [sdk showInterstitial];
+        [sdk showInterstitial:@"Default"];
     }
 }
 
@@ -46,7 +47,7 @@
 }
 
 -(void)didCacheInterstitial:(CBLocation)location {
-    if(!self.didReportAvailability) {
+    if(!self.didReportAvailability && [location isEqualToString:@"Default"]) {
         self.didReportAvailability = YES;
         [self notifyAdLoaded];
     }
@@ -71,14 +72,9 @@
 
 -(void)finish {
     if(sdk) {
-        sdk.delegate = nil;
         sdk = nil;
     }
     [super finish];
-}
-
--(void)dealloc {
-    [self finish];
 }
 
 

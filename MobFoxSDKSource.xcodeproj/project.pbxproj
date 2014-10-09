@@ -112,18 +112,6 @@
 		9024BCE31973D93800922327 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDD1973D93800922327 /* FlurryAds.h */; };
 		9024BCE61973D95200922327 /* FlurryUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD91973D93800922327 /* FlurryUtil.h */; };
 		9024BCE71973D95500922327 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCD81973D93800922327 /* Flurry.h */; };
-		9026A12D198670C50055EF7C /* CBMoreAppsButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A124198670C50055EF7C /* CBMoreAppsButton.h */; };
-		9026A12E198670C50055EF7C /* CBMoreAppsButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A124198670C50055EF7C /* CBMoreAppsButton.h */; };
-		9026A12F198670C50055EF7C /* CBNewsfeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A125198670C50055EF7C /* CBNewsfeed.h */; };
-		9026A130198670C50055EF7C /* CBNewsfeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A125198670C50055EF7C /* CBNewsfeed.h */; };
-		9026A131198670C50055EF7C /* CBNewsfeedUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A126198670C50055EF7C /* CBNewsfeedUI.h */; };
-		9026A132198670C50055EF7C /* CBNewsfeedUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A126198670C50055EF7C /* CBNewsfeedUI.h */; };
-		9026A133198670C50055EF7C /* CBPostInstallAnalyticsTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A127198670C50055EF7C /* CBPostInstallAnalyticsTracker.h */; };
-		9026A134198670C50055EF7C /* CBPostInstallAnalyticsTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A127198670C50055EF7C /* CBPostInstallAnalyticsTracker.h */; };
-		9026A135198670C50055EF7C /* CBStory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A128198670C50055EF7C /* CBStory.h */; };
-		9026A136198670C50055EF7C /* CBStory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A128198670C50055EF7C /* CBStory.h */; };
-		9026A138198670C50055EF7C /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A12A198670C50055EF7C /* Chartboost.h */; };
-		9026A139198670C50055EF7C /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 9026A12A198670C50055EF7C /* Chartboost.h */; };
 		9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9026A13E198671800055EF7C /* ChartboostCustomEventFullscreen.m */; };
 		9026A142198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9026A13E198671800055EF7C /* ChartboostCustomEventFullscreen.m */; };
 		903ADEF918CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* CustomEventFullscreenDelegate.h */; };
@@ -697,13 +685,6 @@
 		9024BCDC1973D93800922327 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		9024BCDD1973D93800922327 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
 		9024BCDE1973D93800922327 /* libFlurryAds_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_5.0.0.a; sourceTree = "<group>"; };
-		9026A124198670C50055EF7C /* CBMoreAppsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMoreAppsButton.h; sourceTree = "<group>"; };
-		9026A125198670C50055EF7C /* CBNewsfeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNewsfeed.h; sourceTree = "<group>"; };
-		9026A126198670C50055EF7C /* CBNewsfeedUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNewsfeedUI.h; sourceTree = "<group>"; };
-		9026A127198670C50055EF7C /* CBPostInstallAnalyticsTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPostInstallAnalyticsTracker.h; sourceTree = "<group>"; };
-		9026A128198670C50055EF7C /* CBStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStory.h; sourceTree = "<group>"; };
-		9026A12A198670C50055EF7C /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
-		9026A12B198670C50055EF7C /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
 		9026A13D198671800055EF7C /* ChartboostCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostCustomEventFullscreen.h; sourceTree = "<group>"; };
 		9026A13E198671800055EF7C /* ChartboostCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostCustomEventFullscreen.m; sourceTree = "<group>"; };
 		903ADEF818CDABA50001F0E4 /* CustomEventFullscreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventFullscreenDelegate.h; path = CustomEvents/CustomEventFullscreenDelegate.h; sourceTree = "<group>"; };
@@ -720,6 +701,7 @@
 		905D81A6184CC1B8007AF71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		905D81A8184CC1BF007AF71F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		905D81A9184CC1BF007AF71F /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		905E49AA19E6888C0003FC99 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chartboost.framework; path = Core/Source/CustomEvents/Chartboost/SDK/Chartboost.framework; sourceTree = "<group>"; };
 		9078055B18D1C26E00427F7B /* iAdCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iAdCustomEventBanner.h; path = CustomEvents/iAd/iAdCustomEventBanner.h; sourceTree = "<group>"; };
 		9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iAdCustomEventBanner.m; path = CustomEvents/iAd/iAdCustomEventBanner.m; sourceTree = "<group>"; };
 		909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VASTXMLParser.h; sourceTree = "<group>"; };
@@ -1191,13 +1173,6 @@
 		9026A123198670C50055EF7C /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				9026A124198670C50055EF7C /* CBMoreAppsButton.h */,
-				9026A125198670C50055EF7C /* CBNewsfeed.h */,
-				9026A126198670C50055EF7C /* CBNewsfeedUI.h */,
-				9026A127198670C50055EF7C /* CBPostInstallAnalyticsTracker.h */,
-				9026A128198670C50055EF7C /* CBStory.h */,
-				9026A12A198670C50055EF7C /* Chartboost.h */,
-				9026A12B198670C50055EF7C /* libChartboost.a */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -1731,6 +1706,7 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				905E49AA19E6888C0003FC99 /* Chartboost.framework */,
 				90F61C6119AF44C600547AE4 /* UnityAds.framework */,
 				9047E8AA19582CD6006DDB1F /* AdColony.framework */,
 				90A79E221951C4C8001172D2 /* VungleSDK.framework */,
@@ -1795,7 +1771,6 @@
 				90B5C52919652C530013DC80 /* MPHTMLInterstitialViewController.h in Headers */,
 				90B5C4F719652C530013DC80 /* MPAdDestinationDisplayAgent.h in Headers */,
 				90B5C5AC19652C530013DC80 /* MPReachability.h in Headers */,
-				9026A12D198670C50055EF7C /* CBMoreAppsButton.h in Headers */,
 				90CCFB0A18F829E400D73FEB /* GADRequestError.h in Headers */,
 				90AC3AE1193C70300021402D /* GADBannerViewDelegate.h in Headers */,
 				90B5C4E419652C530013DC80 /* MPPrivateBannerCustomEventDelegate.h in Headers */,
@@ -1816,7 +1791,6 @@
 				90B5C56419652C530013DC80 /* MRBundleManager.h in Headers */,
 				90B5C4D219652C530013DC80 /* MPBannerAdManager.h in Headers */,
 				90B5C59C19652C530013DC80 /* MPError.h in Headers */,
-				9026A133198670C50055EF7C /* CBPostInstallAnalyticsTracker.h in Headers */,
 				A7992E971489362800E86AC8 /* MobFoxAdBrowserViewController.h in Headers */,
 				90B5C58019652C530013DC80 /* MRProperty.h in Headers */,
 				90B5C60219652C530013DC80 /* MPNativeAdError.h in Headers */,
@@ -1830,12 +1804,9 @@
 				909716D418AA5CF8007EEB4D /* VAST.h in Headers */,
 				90AC3AE3193C70300021402D /* GADInAppPurchase.h in Headers */,
 				90B5C5F419652C530013DC80 /* MPTableViewCellImpressionTracker.h in Headers */,
-				9026A12F198670C50055EF7C /* CBNewsfeed.h in Headers */,
 				90038F1D1846035D00446EAD /* CJSONSerializedData.h in Headers */,
 				90B5C5DA19652C530013DC80 /* UITableViewCell+MPNativeAd.h in Headers */,
 				90B5C61419652C530013DC80 /* MPNativeCustomEventDelegate.h in Headers */,
-				9026A135198670C50055EF7C /* CBStory.h in Headers */,
-				9026A131198670C50055EF7C /* CBNewsfeedUI.h in Headers */,
 				90B5C54919652C530013DC80 /* MPInstanceProvider.h in Headers */,
 				90B5C56C19652C530013DC80 /* MRCommand.h in Headers */,
 				A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */,
@@ -1843,7 +1814,6 @@
 				90B5C5EA19652C530013DC80 /* MPMoPubNativeCustomEvent.h in Headers */,
 				90B5C60619652C530013DC80 /* MPNativeAdRendering.h in Headers */,
 				90B5C55619652C530013DC80 /* MPMRAIDInterstitialViewController.h in Headers */,
-				9026A138198670C50055EF7C /* Chartboost.h in Headers */,
 				90C2E5721977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */,
 				90B5C65C196564BF0013DC80 /* IMBannerDelegate.h in Headers */,
 				9024BCE01973D93800922327 /* FlurryUtil.h in Headers */,
@@ -1969,7 +1939,6 @@
 				90B5C5AD19652C530013DC80 /* MPReachability.h in Headers */,
 				A7992EC81489373000E86AC8 /* NSString+MobFox.h in Headers */,
 				903ADEFA18CDABA50001F0E4 /* CustomEventFullscreenDelegate.h in Headers */,
-				9026A12E198670C50055EF7C /* CBMoreAppsButton.h in Headers */,
 				90B5C4E519652C530013DC80 /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				90B5C57D19652C530013DC80 /* MRPictureManager.h in Headers */,
 				90CCFB1318F829E700D73FEB /* GADRequestError.h in Headers */,
@@ -1990,7 +1959,6 @@
 				90B5C59D19652C530013DC80 /* MPError.h in Headers */,
 				90AC3AE0193C70300021402D /* GADBannerView.h in Headers */,
 				90B5C58119652C530013DC80 /* MRProperty.h in Headers */,
-				9026A134198670C50055EF7C /* CBPostInstallAnalyticsTracker.h in Headers */,
 				90B5C60319652C530013DC80 /* MPNativeAdError.h in Headers */,
 				90B5C5B519652C530013DC80 /* MPStoreKitProvider.h in Headers */,
 				90B5C4E119652C530013DC80 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
@@ -2004,12 +1972,9 @@
 				90B5C5F519652C530013DC80 /* MPTableViewCellImpressionTracker.h in Headers */,
 				90CCFB1118F829E700D73FEB /* GADInterstitialDelegate.h in Headers */,
 				90B5C5DB19652C530013DC80 /* UITableViewCell+MPNativeAd.h in Headers */,
-				9026A130198670C50055EF7C /* CBNewsfeed.h in Headers */,
 				90B5C61519652C530013DC80 /* MPNativeCustomEventDelegate.h in Headers */,
 				90B5C54A19652C530013DC80 /* MPInstanceProvider.h in Headers */,
 				90B5C56D19652C530013DC80 /* MRCommand.h in Headers */,
-				9026A136198670C50055EF7C /* CBStory.h in Headers */,
-				9026A132198670C50055EF7C /* CBNewsfeedUI.h in Headers */,
 				90B6D1251962B1A300061451 /* CustomEventNativeDelegate.h in Headers */,
 				90B5C5EB19652C530013DC80 /* MPMoPubNativeCustomEvent.h in Headers */,
 				90B5C60719652C530013DC80 /* MPNativeAdRendering.h in Headers */,
@@ -2017,7 +1982,6 @@
 				90B5C651196564BE0013DC80 /* IMBannerDelegate.h in Headers */,
 				90C2E5731977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */,
 				90B5C5D119652C530013DC80 /* MPInterstitialCustomEvent.h in Headers */,
-				9026A139198670C50055EF7C /* Chartboost.h in Headers */,
 				90987D3F18BCD32600148D09 /* CustomEventBanner.h in Headers */,
 				90A79E291951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */,
 				909FE95619336C060014597C /* MobFoxNativeTrackingView.h in Headers */,
@@ -2545,6 +2509,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -2589,6 +2554,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Vungle",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdColony",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
