@@ -1135,7 +1135,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionDidFinish:)])
 	{
-		[delegate mobfoxBannerViewActionWillFinish:self];
+		[delegate mobfoxBannerViewActionDidFinish:self];
 	}
 }
 

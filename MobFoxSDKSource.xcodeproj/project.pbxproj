@@ -2595,6 +2595,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
@@ -2627,6 +2628,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Facebook",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Millennial",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Applifier",
+					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
