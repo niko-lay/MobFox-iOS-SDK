@@ -464,6 +464,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
 		webView.backgroundColor = [UIColor clearColor];
 		webView.opaque = NO;
+        webView.scrollView.scrollsToTop = false;
 
 		_bannerView = webView;
 	}
