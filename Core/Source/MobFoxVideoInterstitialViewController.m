@@ -60,6 +60,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     BOOL videoWasPlaying;
     BOOL videoWasPlayingBeforeResign;
     float buttonSize;
+    float videoEndButtonWidth;
+    float videoEndButtonHeight;
     MobFoxAdType advertTypeCurrentlyPlaying;
     BOOL advertRequestInProgress;
     NSTimeInterval stalledVideoStartTime;
@@ -111,6 +113,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @property (nonatomic, strong) NSString *interstitialMarkup;
 @property (nonatomic, strong) UIButton *browserBackButton;
 @property (nonatomic, strong) UIButton *browserForwardButton;
+@property (nonatomic, strong) UIButton *videoReplayButton;
+@property (nonatomic, strong) UIButton *videoClickButton;
 @property (nonatomic, strong) NSString *interstitialURL;
 @property (nonatomic, strong) NSString *videoClickThrough;
 @property (nonatomic, strong) NSString *overlayClickThrough;
@@ -178,7 +182,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 @synthesize videoHTMLOverlayHTML, videoHTMLOverlayWebView;
 @synthesize timerStartTime, interstitialTimerLabel;
 @synthesize interstitialTopToolbar, interstitialBottomToolbar, interstitialTopToolbarButtons, interstitialSkipButton;
-@synthesize interstitialURL, interstitialHoldingView, interstitialWebView, interstitialMarkup, browserBackButton, browserForwardButton;
+@synthesize interstitialURL, interstitialHoldingView, interstitialWebView, interstitialMarkup, browserBackButton, browserForwardButton, videoClickButton, videoReplayButton;
 @synthesize userAgent;
 @synthesize vastAds, video_max_duration, video_min_duration;
 @synthesize userAge, userGender, keywords;
@@ -214,10 +218,14 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     {
         buttonSize = 40.0f;
+        videoEndButtonHeight = 50;
+        videoEndButtonWidth = 190;
     }
     else
     {
         buttonSize = 50.0f;
+        videoEndButtonHeight = 60;
+        videoEndButtonWidth = 220;
     }
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 
@@ -1230,6 +1238,9 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     vastAds = [VASTXMLParser parseVAST: videoElement];
     videoSkipButtonDisplayed = NO;
     
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
+    [self updateAllFrames:interfaceOrientation];
+    
     if(vastAds)
     {
         VAST_Ad *vastAd;
@@ -1439,6 +1450,42 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             [self.videoPlayer.view addSubview:coveringView];
 
         }
+        
+
+        UIColor *buttonBackground = [UIColor colorWithWhite:0.95 alpha:0.9f];
+        
+        videoClickButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        videoClickButton.userInteractionEnabled = NO; //video covering view will be clicked instead of button
+        [videoClickButton setTitle:@"Click here" forState:UIControlStateNormal];
+        videoClickButton.bounds = CGRectMake(0, 0, videoEndButtonWidth, videoEndButtonHeight);
+        videoClickButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+        videoClickButton.backgroundColor = buttonBackground;
+        videoClickButton.hidden = YES;
+        [videoClickButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [videoClickButton.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+        
+        UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, videoClickButton.frame.size.height - 1.0f, videoClickButton.frame.size.width, 1)];
+        bottomBorder.backgroundColor = [UIColor darkGrayColor];
+        [videoClickButton addSubview:bottomBorder];
+        
+        [self.videoPlayer.view addSubview:videoClickButton];
+        
+        videoReplayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [videoReplayButton addTarget:self action:@selector(videoReplayButtonAction:)
+                    forControlEvents:UIControlEventTouchUpInside];
+        [videoReplayButton setTitle:@"↻" forState:UIControlStateNormal];
+        videoReplayButton.bounds = CGRectMake(0, 0, videoEndButtonWidth, videoEndButtonHeight);
+        videoReplayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+        videoReplayButton.backgroundColor = buttonBackground;
+        videoReplayButton.hidden = YES;
+        [videoReplayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [videoReplayButton.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+        
+        UIView *topBorder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, videoReplayButton.frame.size.width, 1)];
+        topBorder.backgroundColor = [UIColor darkGrayColor];
+        [videoReplayButton addSubview:topBorder];
+        
+        [self.videoPlayer.view addSubview:videoReplayButton];
         
         
         if (videoVideoFailedToLoad) {
@@ -1786,6 +1833,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         self.videoHTMLOverlayWebView = nil;
         self.videoBottomToolbar = nil;
         self.videoTopToolbar = nil;
+        self.videoReplayButton = nil;
+        self.videoClickButton = nil;
 
         self.videoSkipButton = nil;
 
@@ -1840,6 +1889,12 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
     if (self.videoPlayer.view) {
         self.videoPlayer.view.frame = self.view.bounds;
+    }
+    if(videoClickButton) {
+        videoClickButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y - videoEndButtonHeight/2);
+    }
+    if(videoReplayButton) {
+        videoReplayButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y + videoEndButtonHeight/2);
     }
 
     if (self.videoHTMLOverlayWebView) {
@@ -1996,6 +2051,18 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     videoSkipButtonDisplayed = YES;
 }
 
+- (void)showOnVideoEndButtons {
+    videoClickButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y - videoEndButtonHeight/2);
+    videoReplayButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y + videoEndButtonHeight/2);
+    
+    videoClickButton.hidden = NO;
+    videoReplayButton.hidden = NO;
+}
+
+- (void) hideOnVideoEndButtons {
+    videoClickButton.hidden = YES;
+    videoReplayButton.hidden = YES;
+}
 - (void)showInterstitialSkipButton {
 
     if (interstitialSkipButtonDisplayed) {
@@ -2376,7 +2443,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 - (void)videoReplayButtonAction:(id)sender {
-
+    [self hideOnVideoEndButtons];
     [self advertActionTrackingEvent:@"replay"];
 
     [self.videoPlayer setCurrentPlaybackTime:0.0];
@@ -2385,6 +2452,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         [self updateVideoTimerLabel:0.00];
 
     }
+    [self.videoPlayer play];
 }
 
 - (void)interstitialSkipAction:(id)sender {
@@ -2470,6 +2538,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
         switch (reasonForFinish) {
             case MPMovieFinishReasonPlaybackEnded:
+                [self showOnVideoEndButtons];
+                break;
             case MPMovieFinishReasonUserExited:
                 if(!videoWasSkipped){
                     [self advertActionTrackingEvent:@"complete"];
