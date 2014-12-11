@@ -1487,6 +1487,23 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         
         [self.videoPlayer.view addSubview:videoReplayButton];
         
+        videoTimerShow = YES;
+        videoTimerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 33)];
+        [videoTimerLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        videoTimerLabel.backgroundColor = [UIColor blackColor];
+        videoTimerLabel.textColor = [UIColor whiteColor];
+        int minutes = floor(videoDuration/60);
+        int seconds = trunc(videoDuration - minutes * 60);
+        videoTimerLabel.text = [NSString stringWithFormat:@" -%i:%.2d ", minutes, seconds];
+        
+        [videoTimerLabel sizeToFit];
+        videoTimerLabel.layer.cornerRadius = 6;
+        videoTimerLabel.layer.masksToBounds = YES;
+        
+        videoTimerLabel.center = CGPointMake(self.videoPlayer.view.bounds.size.width - videoTimerLabel.frame.size.width/2, self.videoPlayer.view.bounds.size.height - videoTimerLabel.frame.size.height/2);
+        
+        [self.videoPlayer.view addSubview:videoTimerLabel];
+        
         
         if (videoVideoFailedToLoad) {
             return NO;
@@ -1835,6 +1852,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         self.videoTopToolbar = nil;
         self.videoReplayButton = nil;
         self.videoClickButton = nil;
+        self.videoTimerLabel = nil;
 
         self.videoSkipButton = nil;
 
@@ -1895,6 +1913,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
     if(videoReplayButton) {
         videoReplayButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y + videoEndButtonHeight/2);
+    }
+    
+    if(videoTimerLabel) {
+        videoTimerLabel.center = CGPointMake(self.videoPlayer.view.bounds.size.width - videoTimerLabel.frame.size.width/2, self.videoPlayer.view.bounds.size.height - videoTimerLabel.frame.size.height/2);
     }
 
     if (self.videoHTMLOverlayWebView) {
@@ -2052,16 +2074,18 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 - (void)showOnVideoEndButtons {
+    videoReplayButton.hidden = NO;
     videoClickButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y - videoEndButtonHeight/2);
     videoReplayButton.center = CGPointMake(self.videoPlayer.view.center.x, self.videoPlayer.view.center.y + videoEndButtonHeight/2);
     
+    videoTimerLabel.hidden = YES;
     videoClickButton.hidden = NO;
-    videoReplayButton.hidden = NO;
 }
 
 - (void) hideOnVideoEndButtons {
     videoClickButton.hidden = YES;
     videoReplayButton.hidden = YES;
+    videoTimerLabel.hidden = NO;
 }
 - (void)showInterstitialSkipButton {
 
@@ -2114,12 +2138,13 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)updateVideoTimerLabel:(NSTimeInterval)progress {
     if(videoTimerShow) {
-
         float countDownProgress = videoDuration - progress;
-
-        int minutes = floor(countDownProgress/60);
-        int seconds = trunc(countDownProgress - minutes * 60);
-        self.videoTimerLabel.text = [NSString stringWithFormat:@"%i:%.2d", minutes, seconds];
+        
+        if(countDownProgress >= 0) {
+            int minutes = floor(countDownProgress/60);
+            int seconds = trunc(countDownProgress - minutes * 60);
+            self.videoTimerLabel.text = [NSString stringWithFormat:@" -%i:%.2d ", minutes, seconds];
+        }
     }
 
 }
