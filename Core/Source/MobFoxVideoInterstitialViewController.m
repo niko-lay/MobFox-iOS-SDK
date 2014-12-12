@@ -1761,7 +1761,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	}
     
     [self advertTidyUpAfterAd:advertTypeCurrentlyPlaying];
-    [videoViewController dismissModalViewControllerAnimated:NO];
+    
+//    [videoViewController dismissModalViewControllerAnimated:NO];
     [self videoTidyUpAfterAd];
 }
 
@@ -2401,11 +2402,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     [self advertActionTrackingEvent:@"skip"];
     [self advertActionTrackingEvent:@"close"];
 
-    if (self.videoPlayer.playbackState != MPMoviePlaybackStateStopped ) {
-        [self.videoPlayer stop];
-    } else {
-        [self videoStopAdvert];
-    }
+    [self videoStopAdvert];
 }
 
 - (void)navIconAction:(id)sender {
@@ -2560,15 +2557,14 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         videoVideoFailedToLoad = YES;
 
     } else {
-
         switch (reasonForFinish) {
             case MPMovieFinishReasonPlaybackEnded:
-                [self showOnVideoEndButtons];
-                break;
-            case MPMovieFinishReasonUserExited:
                 if(!videoWasSkipped){
                     [self advertActionTrackingEvent:@"complete"];
+                    [self showOnVideoEndButtons];
                 }
+                break;
+            case MPMovieFinishReasonUserExited:
                 [self videoStopAdvert];
                 break;
         }
