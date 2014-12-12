@@ -1500,9 +1500,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         videoTimerLabel.layer.cornerRadius = 6;
         videoTimerLabel.layer.masksToBounds = YES;
         
-        videoTimerLabel.center = CGPointMake(self.videoPlayer.view.bounds.size.width - videoTimerLabel.frame.size.width/2, self.videoPlayer.view.bounds.size.height - videoTimerLabel.frame.size.height/2);
-        
-        [self.videoPlayer.view addSubview:videoTimerLabel];
+       [self.videoPlayer.view addSubview:videoTimerLabel];
         
         
         if (videoVideoFailedToLoad) {
@@ -1917,7 +1915,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
     
     if(videoTimerLabel) {
-        videoTimerLabel.center = CGPointMake(self.videoPlayer.view.bounds.size.width - videoTimerLabel.frame.size.width/2, self.videoPlayer.view.bounds.size.height - videoTimerLabel.frame.size.height/2);
+        videoTimerLabel.center = CGPointMake([self getResizedVideoFrame].size.width - videoTimerLabel.frame.size.width/2, self.videoPlayer.view.bounds.size.height/2 + [self getResizedVideoFrame].size.height/2 - videoTimerLabel.frame.size.height/2);
     }
 
     if (self.videoHTMLOverlayWebView) {
@@ -1971,6 +1969,15 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
     webFrame.origin.x = self.view.center.x - HTMLOverlayWidth/2;
     return webFrame;
+}
+
+-(CGRect)getResizedVideoFrame {
+    CGSize naturalSize = self.videoPlayer.naturalSize;
+    CGRect playerSize = self.videoPlayer.view.bounds;
+    
+    float resVi = naturalSize.width / naturalSize.height;
+    float resPl = playerSize.size.width / playerSize.size.height;
+    return (resPl > resVi ? CGRectMake(0, 0, naturalSize.width * playerSize.size.height/naturalSize.height, playerSize.size.height) : CGRectMake(0, 0,playerSize.size.width, naturalSize.height * playerSize.size.width/naturalSize.width));
 }
 
 
