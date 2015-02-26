@@ -39,7 +39,6 @@ enum {
 	NSString *advertisingSection;
 	BOOL bannerLoaded;
 	BOOL bannerViewActionInProgress;
-	UIViewAnimationTransition refreshAnimation;
 	__unsafe_unretained id <MobFoxBannerViewDelegate> delegate;
 
 	BOOL _tapThroughLeavesApp;

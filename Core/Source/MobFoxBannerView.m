@@ -54,7 +54,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setup
 {
-
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 
@@ -351,7 +350,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setupAdFromXml:(NSArray*)array
 {
-    _htmlString = nil;
     DTXMLDocument *xml = [array objectAtIndex:0];
     NSDictionary *headers;
     if([array count] > 1) {
@@ -394,7 +392,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	_shouldSkipLinkPreflight = [[xml.documentRoot getNamedChild:@"skippreflight"].text isEqualToString:@"yes"];
 	_bannerView = nil;
 	adType = [xml.documentRoot.attributes objectForKey:@"type"];
-    refreshAnimation = UIViewAnimationTransitionFlipFromLeft;
 	_refreshInterval = [[xml.documentRoot getNamedChild:@"refresh"].text intValue];
 	[self setRefreshTimerActive:YES];
 	if ([adType isEqualToString:@"imageAd"])
@@ -470,7 +467,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
     else if ([adType isEqualToString:@"mraidAd"])
 	{
-        refreshAnimation = UIViewAnimationTransitionNone;
         _refreshInterval = 0;
         [self setRefreshTimerActive:NO];
 
@@ -625,7 +621,12 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         [UIView beginAnimations:@"flip" context:nil];
         [UIView setAnimationDuration:1.5];
-        [UIView setAnimationTransition:refreshAnimation forView:self cache:NO];
+        if ([adType isEqualToString:@"mraidAd"])
+        {
+            [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self cache:NO];
+        } else {
+            [UIView setAnimationTransition:refreshAnimation forView:self cache:NO];
+        }
     }
     
     [self insertSubview:nextBannerView atIndex:0];
