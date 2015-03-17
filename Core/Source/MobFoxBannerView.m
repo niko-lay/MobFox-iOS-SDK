@@ -164,7 +164,12 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     
 	if (active && !bannerViewActionInProgress && _refreshInterval)
 	{
-        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
+        if(_customReloadTime) {
+            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_customReloadTime target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
+        } else {
+            _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
+        }
+        
 	}
 	else
 	{
