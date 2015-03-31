@@ -860,8 +860,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
-        NSDictionary *headers;
-
+        NSDictionary *headers = [NSDictionary dictionary];
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             headers = [(NSHTTPURLResponse *)response allHeaderFields];

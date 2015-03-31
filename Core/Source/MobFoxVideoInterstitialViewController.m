@@ -752,7 +752,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        NSDictionary *headers;
+        NSDictionary *headers = [NSDictionary dictionary];;
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
@@ -949,7 +949,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
         
         dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        NSDictionary *headers;
+        NSDictionary *headers = [NSDictionary dictionary];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
