@@ -262,21 +262,21 @@ int const MAX_STARS = 5;
         
         
         if([userGender isEqualToString:@"female"]) {
-            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo.gender=f",
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo_gender=f",
                                  requestStringWithLocation];
         } else if([userGender isEqualToString:@"male"]) {
-            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo.gender=m",
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo_gender=m",
                                  requestStringWithLocation];
         }
         if(userAge) {
             NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
-            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo.age=%@",
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo_age=%@",
                                  requestStringWithLocation,
                                  [age stringByUrlEncoding]];
         }
         if(keywords) {
             NSString *words = [keywords componentsJoinedByString:@","];
-            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+            requestStringWithLocation = [NSString stringWithFormat:@"%@&demo_keywords=%@",
                                  requestStringWithLocation,
                                  words];
             

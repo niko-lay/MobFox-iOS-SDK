@@ -639,7 +639,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+            requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -653,7 +653,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                            [random stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+			requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -667,7 +667,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+        requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -698,7 +698,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         
         NSString *fullRequestString;
 
-        fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+        fullRequestString = [NSString stringWithFormat:@"%@&adspace_width=%@&adspace_height=%@&adspace_strict=%@",
                                  requestStringWithLocation,
                                  [adWidth stringByUrlEncoding],
                                  [adHeight stringByUrlEncoding],
@@ -706,21 +706,21 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                                  ];
 
         if([userGender isEqualToString:@"female"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=f",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=f",
                                  fullRequestString];
         } else if([userGender isEqualToString:@"male"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=m",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=m",
                                  fullRequestString];
         }
         if(userAge) {
             NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_age=%@",
                                  fullRequestString,
                                  [age stringByUrlEncoding]];
         }
         if(keywords) {
             NSString *words = [keywords componentsJoinedByString:@","];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_keywords=%@",
                                  fullRequestString,
                                  words];
             
@@ -822,7 +822,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 }
             }
             
-            requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+            requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
 						   [mRaidCapable stringByUrlEncoding],
 						   [o_iosadvidlimit stringByUrlEncoding],
 						   [requestType stringByUrlEncoding],
@@ -836,7 +836,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                            [random stringByUrlEncoding]];
             
         } else {
-			requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+			requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                            [mRaidCapable stringByUrlEncoding],
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -850,7 +850,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
 #else
         
-        requestString=[NSString stringWithFormat:@"c.mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+        requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=video&r_resp=vast20&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
                        [mRaidCapable stringByUrlEncoding],
                        [requestType stringByUrlEncoding],
                        [self.userAgent stringByUrlEncoding],
@@ -881,7 +881,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         
         NSString *fullRequestString;
         
-        fullRequestString = [NSString stringWithFormat:@"%@&adspace.width=%@&adspace.height=%@&adspace.strict=%@",
+        fullRequestString = [NSString stringWithFormat:@"%@&adspace_width=%@&adspace_height=%@&adspace_strict=%@",
                              requestStringWithLocation,
                              [adWidth stringByUrlEncoding],
                              [adHeight stringByUrlEncoding],
@@ -889,21 +889,21 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                              ];
         
         if([userGender isEqualToString:@"female"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=f",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=f",
                                  fullRequestString];
         } else if([userGender isEqualToString:@"male"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.gender=m",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=m",
                                  fullRequestString];
         }
         if(userAge) {
             NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.age=%@",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_age=%@",
                                  fullRequestString,
                                  [age stringByUrlEncoding]];
         }
         if(keywords) {
             NSString *words = [keywords componentsJoinedByString:@","];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo.keywords=%@",
+            fullRequestString = [NSString stringWithFormat:@"%@&demo_keywords=%@",
                                  fullRequestString,
                                  words];
             
