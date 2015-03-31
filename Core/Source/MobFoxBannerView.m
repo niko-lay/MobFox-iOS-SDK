@@ -425,7 +425,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		NSString *html = [xml.documentRoot getNamedChild:@"htmlString"].text;
 
         CGSize bannerSize;
-        if(adspaceHeight && adspaceWidth)
+        if(adspaceHeight > 0 && adspaceWidth > 0)
         {
             bannerSize = CGSizeMake(adspaceWidth, adspaceHeight);
         }
@@ -483,7 +483,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
         
         CGSize size;
-        if(adspaceHeight && adspaceWidth)
+        if(adspaceHeight > 0 && adspaceWidth > 0)
         {
             size = CGSizeMake(adspaceWidth, adspaceHeight);
         }
@@ -649,7 +649,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 - (void)loadCustomEventBanner
 {
     CGSize size;
-    if(adspaceHeight && adspaceWidth)
+    if(adspaceHeight > 0 && adspaceWidth > 0)
     {
         size = CGSizeMake(adspaceWidth, adspaceHeight);
     }
@@ -801,7 +801,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         
         
         NSString *fullRequestString;
-        if(adspaceHeight && adspaceWidth)
+        if(adspaceHeight > 0 && adspaceWidth > 0)
         {
             fullRequestString = [NSString stringWithFormat:@"%@&adspace_width=%@&adspace_height=%@&adspace_strict=%@",
                                 requestStringWithLocation,
@@ -935,6 +935,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
+    if(adspaceWidth < 1 || adspaceHeight < 1) {
+        NSLog(@"For improved ad serving, it is highly recommended to set the adspace size.");
+    }
+    
 	[self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
 }
 
@@ -1156,7 +1160,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (CGSize)maximumAdSize
 {
-    if(adspaceWidth && adspaceHeight)
+    if(adspaceWidth > 0 && adspaceHeight > 0)
     {
         return CGSizeMake(adspaceWidth, adspaceHeight);
     }
@@ -1234,6 +1238,22 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 - (void) appWillResignActive:(NSNotification *)notification
 {
 	[self setRefreshTimerActive:NO];
+}
+
+-(void)setAdspaceHeight:(NSInteger)height {
+    if(height > 0) {
+        adspaceHeight = height;
+    } else {
+        NSLog(@"Adspace height must be greater than 0! Ignoring value: %li", (long)height);
+    }
+}
+
+-(void)setAdspaceWidth:(NSInteger)width {
+    if(width > 0) {
+        adspaceWidth = width;
+    } else {
+        NSLog(@"Adspace width must be greater than 0! Ignoring value: %li", (long)width);
+    }
 }
 
 @synthesize delegate;
