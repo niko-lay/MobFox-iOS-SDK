@@ -7,8 +7,7 @@
 //
 
 #import "CustomEventBanner.h"
-#import "GADBannerViewDelegate.h"
-#import "GADBannerView.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface AdMobCustomEventBanner : CustomEventBanner <GADBannerViewDelegate>
 

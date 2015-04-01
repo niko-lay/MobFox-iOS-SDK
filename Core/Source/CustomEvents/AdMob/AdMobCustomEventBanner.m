@@ -33,7 +33,6 @@
     
 
     GADRequest *request = [requestClass request];
-    request.testDevices = [NSArray arrayWithObjects: GAD_SIMULATOR_ID, nil];
     [_adBannerView loadRequest:request];
 }
 

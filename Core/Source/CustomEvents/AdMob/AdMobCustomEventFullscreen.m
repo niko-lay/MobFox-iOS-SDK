@@ -29,9 +29,7 @@
     interstitial_.adUnitID = optionalParameters;
     interstitial_.delegate = self;
     
-    GADRequest *request = [requestClass request];
-    request.testDevices = [NSArray arrayWithObjects: GAD_SIMULATOR_ID, nil];
-    
+    GADRequest *request = [requestClass request];    
     [interstitial_ loadRequest:request];
 }
 
