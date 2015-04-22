@@ -150,6 +150,8 @@
 		904F80951A14E59F0027E3EF /* IMNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 904F807C1A14E55F0027E3EF /* IMNativeDelegate.h */; };
 		904F80961A14E59F0027E3EF /* InMobi.h in Headers */ = {isa = PBXBuildFile; fileRef = 904F807D1A14E55F0027E3EF /* InMobi.h */; };
 		904F80971A14E59F0027E3EF /* InMobiAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 904F807E1A14E55F0027E3EF /* InMobiAnalytics.h */; };
+		9054A2EF1AE663C2005ABECF /* libs.js in Resources */ = {isa = PBXBuildFile; fileRef = 9054A2EE1AE663C2005ABECF /* libs.js */; };
+		9054A2F11AE66AAE005ABECF /* render_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 9054A2F01AE66AAE005ABECF /* render_template.html */; };
 		9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
 		9078056018D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
 		909716CE18AA4DDF007EEB4D /* VASTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 909716CC18AA4DDF007EEB4D /* VASTXMLParser.h */; };
@@ -560,17 +562,16 @@
 		90CC97941AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; };
 		90CC97951AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
 		90CC97961AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
-		90CC97AE1AE4EF7800B2907F /* canvasrenderer.js in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97A71AE4EF7800B2907F /* canvasrenderer.js */; };
-		90CC97AF1AE4EF7800B2907F /* detector.js in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97A81AE4EF7800B2907F /* detector.js */; };
 		90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */; };
 		90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */; };
-		90CC97B21AE4EF7800B2907F /* projector.js in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AB1AE4EF7800B2907F /* projector.js */; };
-		90CC97B31AE4EF7800B2907F /* stats.js in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AC1AE4EF7800B2907F /* stats.js */; };
-		90CC97B41AE4EF7800B2907F /* three.js in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AD1AE4EF7800B2907F /* three.js */; };
 		90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90CC97B61AE5107600B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; };
 		90CC97B81AE510DD00B2907F /* MobFoxNativeFormatCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */; };
 		90CC97B91AE510DD00B2907F /* MobFoxNativeFormatCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */; };
+		90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90CC98971AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */; };
+		90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
+		90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
 		90DD65FF1973D97D00745A59 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDC1973D93800922327 /* FlurryAdDelegate.h */; };
 		90DD66001973D98000745A59 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDD1973D93800922327 /* FlurryAds.h */; };
@@ -700,6 +701,8 @@
 		904F807D1A14E55F0027E3EF /* InMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobi.h; sourceTree = "<group>"; };
 		904F807E1A14E55F0027E3EF /* InMobiAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAnalytics.h; sourceTree = "<group>"; };
 		904F807F1A14E55F0027E3EF /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
+		9054A2EE1AE663C2005ABECF /* libs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = libs.js; sourceTree = "<group>"; };
+		9054A2F01AE66AAE005ABECF /* render_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = render_template.html; sourceTree = "<group>"; };
 		905D81A4184CC1B1007AF71F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		905D81A6184CC1B8007AF71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		905D81A8184CC1BF007AF71F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -933,14 +936,11 @@
 		90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatCreative.h; path = NativeFormat/MobFoxNativeFormatCreative.h; sourceTree = "<group>"; };
 		90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatCreativesManager.h; path = NativeFormat/MobFoxNativeFormatCreativesManager.h; sourceTree = "<group>"; };
 		90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreativesManager.m; path = NativeFormat/MobFoxNativeFormatCreativesManager.m; sourceTree = "<group>"; };
-		90CC97A71AE4EF7800B2907F /* canvasrenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = canvasrenderer.js; sourceTree = "<group>"; };
-		90CC97A81AE4EF7800B2907F /* detector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = detector.js; sourceTree = "<group>"; };
 		90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fallback_320x480.mustache; sourceTree = "<group>"; };
 		90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fallback_320x50.mustache; sourceTree = "<group>"; };
-		90CC97AB1AE4EF7800B2907F /* projector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = projector.js; sourceTree = "<group>"; };
-		90CC97AC1AE4EF7800B2907F /* stats.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = stats.js; sourceTree = "<group>"; };
-		90CC97AD1AE4EF7800B2907F /* three.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = three.js; sourceTree = "<group>"; };
 		90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreative.m; path = NativeFormat/MobFoxNativeFormatCreative.m; sourceTree = "<group>"; };
+		90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatView.h; path = NativeFormat/MobFoxNativeFormatView.h; sourceTree = "<group>"; };
+		90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatView.m; path = NativeFormat/MobFoxNativeFormatView.m; sourceTree = "<group>"; };
 		90DD66011973D9B000745A59 /* FlurryCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventBanner.h; sourceTree = "<group>"; };
 		90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventBanner.m; sourceTree = "<group>"; };
 		90DD66071973F3D500745A59 /* FlurryCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventFullscreen.h; sourceTree = "<group>"; };
@@ -1583,9 +1583,11 @@
 			children = (
 				90CC97A61AE4EF7800B2907F /* Resources */,
 				90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */,
+				90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */,
 				90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */,
 				90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */,
-				90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */,
+				90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */,
+				90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */,
 			);
 			name = NativeFormat;
 			sourceTree = "<group>";
@@ -1593,13 +1595,10 @@
 		90CC97A61AE4EF7800B2907F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				90CC97A71AE4EF7800B2907F /* canvasrenderer.js */,
-				90CC97A81AE4EF7800B2907F /* detector.js */,
+				9054A2F01AE66AAE005ABECF /* render_template.html */,
+				9054A2EE1AE663C2005ABECF /* libs.js */,
 				90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */,
 				90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */,
-				90CC97AB1AE4EF7800B2907F /* projector.js */,
-				90CC97AC1AE4EF7800B2907F /* stats.js */,
-				90CC97AD1AE4EF7800B2907F /* three.js */,
 			);
 			name = Resources;
 			path = NativeFormat/Resources;
@@ -1754,6 +1753,7 @@
 			files = (
 				90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
 				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
+				90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
@@ -2042,6 +2042,7 @@
 				90B5C57519652C530013DC80 /* MRImageDownloader.h in Headers */,
 				90B5C57119652C530013DC80 /* MRDimmingView.h in Headers */,
 				0F62B52114E938B20027BCB8 /* NSBundle+MobFox.h in Headers */,
+				90CC98971AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
 				0F62B52314E938B70027BCB8 /* UIImage+MobFox.h in Headers */,
 				90B5C52E19652C530013DC80 /* MPBaseInterstitialAdapter.h in Headers */,
 				90B5C52219652C530013DC80 /* MPHTMLBannerCustomEvent.h in Headers */,
@@ -2135,20 +2136,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CC97AE1AE4EF7800B2907F /* canvasrenderer.js in Resources */,
 				90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */,
 				90B5C61A19652C530013DC80 /* README.md in Resources */,
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserController.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
-				90CC97B21AE4EF7800B2907F /* projector.js in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
-				90CC97B31AE4EF7800B2907F /* stats.js in Resources */,
+				9054A2EF1AE663C2005ABECF /* libs.js in Resources */,
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */,
-				90CC97B41AE4EF7800B2907F /* three.js in Resources */,
 				90B5C54D19652C530013DC80 /* LICENSE in Resources */,
-				90CC97AF1AE4EF7800B2907F /* detector.js in Resources */,
+				9054A2F11AE66AAE005ABECF /* render_template.html in Resources */,
 				90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2207,6 +2205,7 @@
 				90B5C50F19652C530013DC80 /* MPLastResortDelegate.m in Sources */,
 				90B5C57219652C530013DC80 /* MRDimmingView.m in Sources */,
 				A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */,
+				90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
 				90B5C58619652C530013DC80 /* MRVideoPlayerManager.m in Sources */,
 				90BF0057196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */,
 				90B5C4E819652C530013DC80 /* MPAdAlertGestureRecognizer.m in Sources */,
@@ -2352,6 +2351,7 @@
 				90B5C51019652C530013DC80 /* MPLastResortDelegate.m in Sources */,
 				90B5C57319652C530013DC80 /* MRDimmingView.m in Sources */,
 				909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
+				90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
 				90B5C58719652C530013DC80 /* MRVideoPlayerManager.m in Sources */,
 				90BF0058196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */,
 				90B5C4E919652C530013DC80 /* MPAdAlertGestureRecognizer.m in Sources */,

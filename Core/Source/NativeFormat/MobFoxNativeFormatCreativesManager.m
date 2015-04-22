@@ -9,7 +9,7 @@
 #import "MobFoxNativeFormatCreativesManager.h"
 #import <UIKit/UIKit.h>
 
-NSString * const BASE_URL = @"http://static.starbolt.io/creatives10.json";
+NSString * const BASE_URL = @"http://static.starbolt.io/creatives20.json";
 
 @interface MobFoxNativeFormatCreativesManager()
     @property (nonatomic, strong) NSMutableArray* creatives;
