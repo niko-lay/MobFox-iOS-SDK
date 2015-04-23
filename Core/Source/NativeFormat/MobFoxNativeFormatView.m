@@ -218,6 +218,8 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     }
     self.shouldInjectJavascript = NO;
     
+    @try {
+        
     NSError *jsonError = nil;
     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:self.dataReply options:NSJSONReadingMutableContainers error:&jsonError];
     
@@ -263,11 +265,11 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSString* scriptString = [NSString stringWithFormat:@"renderTemplate(%@)",jsonString];
     
-    JSContext *ctx = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+        JSContext *ctx = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     ctx[@"console"][@"log"] = ^(JSValue * msg) {
         ctx[@"console"][@"log"] = nil;
     
-        [webView loadHTMLString:[msg toString] baseURL:nil];
+            [self.webView loadHTMLString:[msg toString] baseURL:nil];
     
         if ([delegate respondsToSelector:@selector(mobfoxNativeFormatDidLoad:)])
         {
@@ -276,7 +278,14 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     
     };
     
-    [webView stringByEvaluatingJavaScriptFromString:scriptString];
+        [self.webView stringByEvaluatingJavaScriptFromString:scriptString];
+        
+    }
+    @catch (NSException *exception) {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Exception when loading Native Format Ad." forKey:NSLocalizedDescriptionKey];
+        NSError *myerror = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
+        [self performSelectorOnMainThread:@selector(reportError:) withObject:myerror waitUntilDone:YES];
+    }
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
