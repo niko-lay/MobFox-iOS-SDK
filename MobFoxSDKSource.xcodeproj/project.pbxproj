@@ -558,17 +558,17 @@
 		90C2E5731977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */; };
 		90C2E5741977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */; };
 		90C2E5751977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */; };
-		90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; };
 		90CC97941AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; };
 		90CC97951AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
 		90CC97961AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
 		90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */; };
 		90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */; };
-		90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; };
 		90CC97B61AE5107600B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; };
 		90CC97B81AE510DD00B2907F /* MobFoxNativeFormatCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */; };
 		90CC97B91AE510DD00B2907F /* MobFoxNativeFormatCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */; };
-		90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */; };
 		90CC98971AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */; };
 		90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
@@ -1751,15 +1751,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
-				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
-				90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
 				90B5C5C419652C530013DC80 /* MPBannerCustomEvent.h in Headers */,
 				901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
 				90B5C55C19652C530013DC80 /* MRAdView.h in Headers */,
+				90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
+				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
+				90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
 				90B5C50319652C530013DC80 /* MPFacebookKeywordProvider.h in Headers */,
 				90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */,
 				904F80851A14E55F0027E3EF /* IMInterstitial.h in Headers */,

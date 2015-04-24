@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MobFoxNativeFormatCreative.h"
 
 @class MobFoxNativeFormatView;
 
 @protocol MobFoxNativeFormatViewDelegate <NSObject>
-
-- (NSString *)publisherIdForMobFoxNativeFormatView:(MobFoxNativeFormatView *)nativeFormatView;
-
-@optional
 
 - (void)mobfoxNativeFormatDidLoad:(MobFoxNativeFormatView *)nativeFormatView;
 
@@ -26,16 +23,13 @@
 
 - (void)mobfoxNativeFormatActionDidFinish;
 
-
 @end
 
 
 @interface MobFoxNativeFormatView : UIView
 
 @property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxNativeFormatViewDelegate> delegate;
-@property (nonatomic, assign) NSInteger adspaceWidth;
-@property (nonatomic, assign) NSInteger adspaceHeight;
 
-- (void)requestAd;
+-(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId;
 
 @end

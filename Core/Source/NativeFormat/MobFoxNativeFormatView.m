@@ -7,7 +7,6 @@
 //
 
 #import "MobFoxNativeFormatView.h"
-#import "MobFoxNativeFormatCreativesManager.h"
 #import <AdSupport/AdSupport.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "NSString+MobFox.h"
@@ -19,7 +18,6 @@ NSString * const MobFoxNativeFormatAdErrorDomain = @"MobFoxNativeFormatAd";
 NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 @interface MobFoxNativeFormatView() <UIWebViewDelegate, MobFoxAdBrowserViewController>
-@property (nonatomic, strong) MobFoxNativeFormatCreativesManager* creativeManager;
 @property (nonatomic, strong) UIWebView* webView;
 @property (nonatomic, strong) NSString* userAgent;
 
@@ -45,7 +43,6 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 }
 
 -(void) setup {
-    self.creativeManager = [MobFoxNativeFormatCreativesManager sharedManager];
     self.backgroundColor = [UIColor clearColor];
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -55,44 +52,9 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 
 
--(void)requestAd {
-    if (!delegate)
-    {
-        return;
-    }
-    if (![delegate respondsToSelector:@selector(publisherIdForMobFoxNativeAdController:)])
-    {
-        return;
-    }
-    NSString *publisherId = [delegate publisherIdForMobFoxNativeFormatView:self];
-    if (![publisherId length])
-    {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid publsher ID supplied" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        
-        return;
-    }
-    
-    NSInteger width = self.adspaceWidth;
-    NSInteger height = self.adspaceHeight;
-    
-    if (width <= 0)
-        width = 320;
-    if (height <= 0)
-        height = 480;
-    
-    MobFoxNativeFormatCreative* chosenCreative = [self.creativeManager getCreativeWithWidth:width andHeight:height];
-    if (!chosenCreative) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Cannot find creative template for requested size" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        
-        return;
+-(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId {
 
-    }
-    
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, creative.width, creative.height)];
     
     self.webView.delegate = self;
     self.webView.scrollView.scrollsToTop = false;
@@ -100,7 +62,7 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     self.webView.scrollView.bounces = NO;
     self.webView.scalesPageToFit = YES;
     
-    self.templateString = chosenCreative.templateString;
+    self.templateString = creative.templateString;
     
     self.shouldInjectJavascript = YES;
     
@@ -220,63 +182,63 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     
     @try {
         
-    NSError *jsonError = nil;
-    NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:self.dataReply options:NSJSONReadingMutableContainers error:&jsonError];
+        NSError *jsonError = nil;
+        NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:self.dataReply options:NSJSONReadingMutableContainers error:&jsonError];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"libs" ofType: @"js"];
-    if (!path) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Cannot load javascript libraries" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        return;
-    }
+        NSString *path = [[NSBundle mainBundle] pathForResource: @"libs" ofType: @"js"];
+        if (!path) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Cannot load javascript libraries" forKey:NSLocalizedDescriptionKey];
+            NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
     
-    NSError* error;
-    NSString *libsString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-    if(error) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error reading bundled javascript libraries" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        return;
-    }
+        NSError* error;
+        NSString *libsString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        if(error) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error reading bundled javascript libraries" forKey:NSLocalizedDescriptionKey];
+            NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
     
-    NSMutableDictionary* inp = [NSMutableDictionary dictionary];
-    [inp setObject:self.templateString forKey:@"template"];
+        NSMutableDictionary* inp = [NSMutableDictionary dictionary];
+        [inp setObject:self.templateString forKey:@"template"];
     
-    libsString = [NSString stringWithFormat:@"<script type='text/javascript'>%@</script>", libsString];
+        libsString = [NSString stringWithFormat:@"<script type='text/javascript'>%@</script>", libsString];
     
-    [json setObject:libsString forKey:@"libs"];
+        [json setObject:libsString forKey:@"libs"];
     
-    [inp setObject:json forKey:@"data"];
-
+        [inp setObject:json forKey:@"data"];
     
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:inp
+    
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:inp
                                                        options:0
                                                          error:&error];
     
     
-    if (! jsonData || error) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error creating JSON string" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        return;
-    }
+        if (! jsonData || error) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error creating JSON string" forKey:NSLocalizedDescriptionKey];
+            NSError *error = [NSError errorWithDomain:MobFoxNativeFormatAdErrorDomain code:0 userInfo:userInfo];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+            return;
+        }
     
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSString* scriptString = [NSString stringWithFormat:@"renderTemplate(%@)",jsonString];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString* scriptString = [NSString stringWithFormat:@"renderTemplate(%@)",jsonString];
     
         JSContext *ctx = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    ctx[@"console"][@"log"] = ^(JSValue * msg) {
-        ctx[@"console"][@"log"] = nil;
+        ctx[@"console"][@"log"] = ^(JSValue * msg) {
+            ctx[@"console"][@"log"] = nil;
     
             [self.webView loadHTMLString:[msg toString] baseURL:nil];
     
-        if ([delegate respondsToSelector:@selector(mobfoxNativeFormatDidLoad:)])
-        {
-            [delegate mobfoxNativeFormatDidLoad:self];
-        }
+            if ([delegate respondsToSelector:@selector(mobfoxNativeFormatDidLoad:)])
+            {
+                [delegate mobfoxNativeFormatDidLoad:self];
+            }
     
-    };
+        };
     
         [self.webView stringByEvaluatingJavaScriptFromString:scriptString];
         
@@ -341,7 +303,6 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 - (void)dealloc {
     delegate = nil;
-    self.creativeManager = nil;
     self.webView = nil;
     self.userAgent = nil;
     self.dataReply = nil;
