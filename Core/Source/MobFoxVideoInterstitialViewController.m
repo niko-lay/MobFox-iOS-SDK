@@ -50,6 +50,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     BOOL interstitialTimerShow;
     BOOL readyToPlaySecondaryInterstitial;
     BOOL alreadyRequestedInterstitial;
+    BOOL alreadyRequestedNativeFormatInterstitial;
     BOOL alreadyRequestedVideo;
     
     UIInterfaceOrientation requestedAdOrientation;
@@ -562,6 +563,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	}
     advertRequestInProgress = YES;
     alreadyRequestedInterstitial = NO;
+    alreadyRequestedNativeFormatInterstitial = NO;
     alreadyRequestedVideo = NO;
     
     if (enableInterstitialAds && !prioritizeVideoAds) {
@@ -776,7 +778,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         }
         
         [self performSelectorOnMainThread:@selector(advertCreateFromXML:) withObject:@[xml, headers] waitUntilDone:YES];
-        
 	}
     
 }
@@ -989,7 +990,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         headers = [array objectAtIndex:1];
     }
     
-    
 	if ([xml.documentRoot.name isEqualToString:@"error"])
 	{
         if (enableInterstitialAds && !alreadyRequestedInterstitial) {
@@ -998,7 +998,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
         } else if (enableVideoAds && !alreadyRequestedVideo) {
             NSString *publisherId = [delegate publisherIdForMobFoxVideoInterstitialView:self];
             [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
-        } else {
+        } else if(!alreadyRequestedNativeFormatInterstitial && enableInterstitialAds) {
+            [self interstitialFromBannerCreateAdvert:xml];
+        }
+        else {
             NSString *errorMsg = xml.documentRoot.text;
 
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
@@ -1083,23 +1086,16 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             
         case MobFoxAdTypeText:
         case MobFoxAdTypeImage:
-        case MobFoxAdTypeMraid: {
-            if ([self interstitialFromBannerCreateAdvert:xml]) {
-                if(!_customEventFullscreen) {
-                    [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
-                } else {
-                    self.advertLoaded = YES;
-                }
-            } else if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
-                [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
-            } else if(!_customEventFullscreen){
-                [self videoFailedToLoad];
-            }
+        case MobFoxAdTypeMraid:{
+            [self interstitialFromBannerCreateAdvert:xml];
             break;
         }
             
         case MobFoxAdTypeNoAdInventory:{
-            if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
+            if(!alreadyRequestedNativeFormatInterstitial && enableInterstitialAds) {
+                [self interstitialFromBannerCreateAdvert:xml];
+            }
+            else if (alreadyRequestedInterstitial && enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:publisherId];
             } else if (alreadyRequestedVideo && enableInterstitialAds && !alreadyRequestedInterstitial && !_customEventFullscreen) {
                 [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
@@ -1109,11 +1105,14 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorInventoryUnavailable userInfo:userInfo];
                 [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             }
-                return;
+            return;
 
             break;
         }
         case MobFoxAdTypeError:{
+            if(!alreadyRequestedNativeFormatInterstitial && enableInterstitialAds) {
+                [self interstitialFromBannerCreateAdvert:xml];
+            }
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Unknown error" forKey:NSLocalizedDescriptionKey];
 
             NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
@@ -1162,9 +1161,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
 }
 
-- (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
+- (void)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
     interstitialAutoCloseDisabled = YES;
     interstitialSkipButtonDisplayed = NO;
+    alreadyRequestedNativeFormatInterstitial = YES;
     
     self.mobFoxInterstitialPlayerViewController = [[MobFoxInterstitialPlayerViewController alloc] init];
 
@@ -1193,8 +1193,27 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
     bannerView.allowDelegateAssigmentToRequestAd = NO;
     bannerView.delegate = self;
-    bannerView.adspaceHeight = interstitialHoldingView.bounds.size.height;
-    bannerView.adspaceWidth = interstitialHoldingView.bounds.size.width;
+    
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+    {
+        if (UIInterfaceOrientationIsPortrait(requestedAdOrientation)) {
+            bannerView.adspaceHeight = 480;
+            bannerView.adspaceWidth = 320;
+        } else {
+            bannerView.adspaceHeight = 320;
+            bannerView.adspaceWidth = 480;
+        }
+    }
+    else
+    {
+        if (UIInterfaceOrientationIsPortrait(requestedAdOrientation)) {
+            bannerView.adspaceHeight = 1024;
+            bannerView.adspaceWidth = 768;
+        } else {
+            bannerView.adspaceHeight = 768;
+            bannerView.adspaceWidth = 1024;
+        }
+    }
 
     bannerView.refreshTimerOff = YES;
     
@@ -1203,6 +1222,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     [bannerView performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:@[document] waitUntilDone:YES];
     
     [self.interstitialHoldingView addSubview:bannerView];
+    
+    bannerView.center = self.interstitialHoldingView.center;
     
     interstitialSkipButtonShow = YES;
     
@@ -1219,7 +1240,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
   
     self.interstitialSkipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self showInterstitialSkipButton];
-    return [bannerView isBannerLoaded];
+
 }
 
 
@@ -2956,6 +2977,30 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 #pragma mark Banner View Delegate
+
+-(void)mobfoxBannerViewDidLoadMobFoxAd:(MobFoxBannerView *)banner {
+    if(!_customEventFullscreen) {
+        
+        if(advertTypeCurrentlyPlaying != MobFoxAdTypeText && advertTypeCurrentlyPlaying != MobFoxAdTypeImage && advertTypeCurrentlyPlaying != MobFoxAdTypeMraid) {
+            advertTypeCurrentlyPlaying = MobFoxAdTypeText; //for fallback native format ads.
+        }
+        
+        [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
+    } else {
+        self.advertLoaded = YES;
+    }
+}
+
+
+-(void)mobfoxBannerView:(MobFoxBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    if (enableVideoAds && !alreadyRequestedVideo && !_customEventFullscreen) {
+        [self performSelectorInBackground:@selector(asyncRequestVideoAdWithPublisherId:) withObject:[delegate publisherIdForMobFoxVideoInterstitialView:self]];
+    } else if(!_customEventFullscreen){
+        [self videoFailedToLoad];
+    }
+
+}
+
 
 -(void) mobfoxBannerViewActionWillPresent:(MobFoxBannerView *)banner {
     if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
