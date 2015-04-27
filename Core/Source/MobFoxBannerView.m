@@ -159,17 +159,12 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setRefreshTimerActive:(BOOL)active
 {
+    [_refreshTimer invalidate], _refreshTimer = nil;
     if (refreshTimerOff) {
         return;
     }
     
-    BOOL currentlyActive = (_refreshTimer!=nil);
-	if (active == currentlyActive)
-	{
-		return;
-	}
-    
-	if (active && !bannerViewActionInProgress && _refreshInterval)
+	if (active && !bannerViewActionInProgress && (_refreshInterval || _customReloadTime))
 	{
         if(_customReloadTime) {
             _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_customReloadTime target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
@@ -177,10 +172,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_refreshInterval target:self selector:@selector(requestAd) userInfo:nil repeats:YES];
         }
         
-	}
-	else
-	{
-		[_refreshTimer invalidate], _refreshTimer = nil;
 	}
 }
 
@@ -627,7 +618,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                     
                     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
                 
-                    _refreshInterval = 20;
+                    _refreshInterval = 15;
                     [self setRefreshTimerActive:YES];
                 
                     NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
@@ -1243,7 +1234,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
         
-        _refreshInterval = 20;
+        _refreshInterval = 15;
         [self setRefreshTimerActive:YES];
         
         NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
@@ -1269,12 +1260,17 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 #pragma mark MobFoxNativeFormatViewDelegate
 - (void)mobfoxNativeFormatDidLoad:(MobFoxNativeFormatView *)nativeFormatView {
+    
+    _refreshInterval = 30; //enable automatic refresh for native format ads
+    [self setRefreshTimerActive:YES];
+    
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
     [self showBannerView:nativeFormatView withPreviousSubviews:previousSubviews];
 }
 
 - (void)mobfoxNativeFormatDidFailToLoadWithError:(NSError *)error {
-    _refreshInterval = 20;
+
+    _refreshInterval = 15;
     [self setRefreshTimerActive:YES];
     
     [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
