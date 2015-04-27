@@ -674,6 +674,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
     }
     
+    nextBannerView.center = self.center;
     [self insertSubview:nextBannerView atIndex:0];
     [previousSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
