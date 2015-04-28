@@ -581,6 +581,10 @@
 		90DD660C1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
 		90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
 		90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
+		90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
+		90FEE52A1AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
+		90FEE52B1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */; };
+		90FEE52C1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */; };
 		A7992E8F1489362800E86AC8 /* DTXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E761489362800E86AC8 /* DTXMLDocument.h */; };
 		A7992E911489362800E86AC8 /* DTXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E771489362800E86AC8 /* DTXMLDocument.m */; };
 		A7992E931489362800E86AC8 /* DTXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E781489362800E86AC8 /* DTXMLElement.h */; };
@@ -948,6 +952,8 @@
 		90F61C6119AF44C600547AE4 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UnityAds.framework; path = Core/Source/CustomEvents/Applifier/UnityAds.framework; sourceTree = "<group>"; };
 		90F61C6219AF454800547AE4 /* ApplifierCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplifierCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplifierCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativesQueueManager.h; sourceTree = "<group>"; };
+		90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativesQueueManager.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
@@ -1634,22 +1640,14 @@
 				909716CB18AA4DAA007EEB4D /* VAST */,
 				A7992EB41489363E00E86AC8 /* Helpers */,
 				A7992EB31489363000E86AC8 /* DTXML */,
-				A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */,
-				A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */,
 				A7992E7C1489362800E86AC8 /* MobFoxBannerView.h */,
 				A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */,
-				909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */,
 				901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */,
 				901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */,
-				909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */,
-				90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */,
-				90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */,
 				0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */,
 				0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */,
-				0F3B1917159456940035D3EF /* MobFoxVideoPlayerViewController.h */,
-				0F3B1918159456940035D3EF /* MobFoxVideoPlayerViewController.m */,
-				0F3567F4165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.h */,
-				0F3567F5165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m */,
+				90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */,
+				90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1668,6 +1666,16 @@
 		A7992EB41489363E00E86AC8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */,
+				A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */,
+				909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */,
+				909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */,
+				90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */,
+				90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */,
+				0F3B1917159456940035D3EF /* MobFoxVideoPlayerViewController.h */,
+				0F3B1918159456940035D3EF /* MobFoxVideoPlayerViewController.m */,
+				0F3567F4165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.h */,
+				0F3567F5165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m */,
 				90A5C8BE192F677700978746 /* UIView+MobFox.h */,
 				90A5C8BF192F677700978746 /* UIView+MobFox.m */,
 				90038EF21846035D00446EAD /* TouchJSON */,
@@ -1853,6 +1861,7 @@
 				90B5C60819652C530013DC80 /* MPNativeAdRequest.h in Headers */,
 				90B5C4FF19652C530013DC80 /* MPAdServerURLBuilder.h in Headers */,
 				90038F291846035D00446EAD /* CJSONDeserializer.h in Headers */,
+				90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
 				90B5C50719652C530013DC80 /* MPKeywordProvider.h in Headers */,
 				90B5C60C19652C530013DC80 /* MPNativeAdRequestTargeting.h in Headers */,
 				90038F2D1846035D00446EAD /* CJSONScanner.h in Headers */,
@@ -2012,6 +2021,7 @@
 				90038F1A1846035D00446EAD /* CJSONSerialization.h in Headers */,
 				A7992ED01489373000E86AC8 /* DTXMLDocument.h in Headers */,
 				90B5C59119652C530013DC80 /* UIViewController+MPAdditions.h in Headers */,
+				90FEE52A1AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
 				909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */,
 				A7992ED21489373000E86AC8 /* DTXMLElement.h in Headers */,
 				A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */,
@@ -2264,6 +2274,7 @@
 				90B5C54B19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BE19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BA19652C530013DC80 /* MPTimer.m in Sources */,
+				90FEE52B1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				903ADF0D18CDFDAA0001F0E4 /* CustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
@@ -2410,6 +2421,7 @@
 				90B5C54C19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BF19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BB19652C530013DC80 /* MPTimer.m in Sources */,
+				90FEE52C1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */,
 				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
