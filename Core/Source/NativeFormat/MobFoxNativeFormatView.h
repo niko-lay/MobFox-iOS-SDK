@@ -17,6 +17,8 @@
 
 - (void)mobfoxNativeFormatDidFailToLoadWithError:(NSError *)error;
 
+@optional
+
 - (void)mobfoxNativeFormatWillPresent;
 
 - (void)mobfoxNativeFormatActionWillFinish;
