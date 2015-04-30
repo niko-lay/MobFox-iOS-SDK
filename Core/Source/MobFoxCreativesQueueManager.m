@@ -34,7 +34,7 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
     self = [super init];
     if (self) {
         [self initQueuesWithFallbackData];
-        
+        srand48(arc4random());
         [self performSelectorInBackground:@selector(downloadQueuesFromServer) withObject:nil];
     }
     
@@ -92,8 +92,6 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
         NSLog(@"Error parsing creatives queue JSON for interstitials!");
     }
     
-    
-    
 }
 
 -(void) loadQueue:(NSArray*)array fromJson:(NSArray*)json {
@@ -115,7 +113,7 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
             NSLog(@"Unknown creative type: %@", typeString);
             continue;
         }
-        float prob = [dictionary[@"prob"] floatValue];
+        double prob = [dictionary[@"prob"] doubleValue];
         MobFoxCreative* creative = [[MobFoxCreative alloc]initWithType:type andProb:prob];
         
         [creativesArray addObject:creative];
@@ -136,9 +134,8 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
 
 -(MobFoxCreative*)getCreativeFromQueue:(NSMutableArray*)queue {
     MobFoxCreative* chosenCreative = nil;
-    srand48(arc4random());
     double random = drand48();
-    
+      
     for (int i=0; i < [queue count]; i++) {
         MobFoxCreative* creative = queue[0];
         if(creative.prob >= random) {
@@ -146,14 +143,14 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
             [queue removeObjectAtIndex:0];
             break;
         } else {
-            MobFoxCreative* item = creative;
+            MobFoxCreative* item = [[MobFoxCreative alloc]initWithType:creative.type andProb:1];
             [queue removeObjectAtIndex:0];
-            item.prob = 1;
             [queue addObject:item];
         }
         
         i++;
     }
+    
     
     if (!chosenCreative) { //choose fallback creative
         chosenCreative = [queue lastObject];
