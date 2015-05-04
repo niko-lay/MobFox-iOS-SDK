@@ -1153,7 +1153,6 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
                 NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorInventoryUnavailable userInfo:userInfo];
                 [self performSelectorOnMainThread:@selector(interstitialFailedWithError:) withObject:error waitUntilDone:YES];
-                [self interstitialFailedWithError:error];
                 return;
                 break;
         }
