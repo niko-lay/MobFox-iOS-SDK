@@ -809,9 +809,10 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 -(void) requestNativeFormatInterstitial {
     
-    [self prepareInterstitialView];
-    
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    requestedAdOrientation = interfaceOrientation;
+    
+    [self prepareInterstitialView];
     
     NSInteger width, height;
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -1267,7 +1268,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 }
 
 - (void) createInterstitialFromView:(UIView*)view {
-    
+
     [self.interstitialHoldingView addSubview:view];
     
     view.center = self.interstitialHoldingView.center;
