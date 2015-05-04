@@ -148,7 +148,6 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
             [queue addObject:item];
         }
         
-        i++;
     }
     
     
