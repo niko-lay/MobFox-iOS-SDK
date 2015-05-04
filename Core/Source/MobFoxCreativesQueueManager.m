@@ -136,7 +136,7 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
     MobFoxCreative* chosenCreative = nil;
     double random = drand48();
       
-    for (int i=0; i < [queue count]; i++) {
+    for (int i=0; i <= [queue count]; i++) {
         MobFoxCreative* creative = queue[0];
         if(creative.prob >= random) {
             chosenCreative = creative;
