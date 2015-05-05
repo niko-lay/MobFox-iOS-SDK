@@ -9,9 +9,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "AdMobCustomEventBanner.h"
 #import "iAdCustomEventBanner.h"
-#import "MobFoxNativeFormatCreativesManager.h"
-#import "MobFoxNativeFormatView.h"
-#import "MobFoxCreativesQueueManager.h"
+
 
 #import <AdSupport/AdSupport.h>
 #import "MobFoxMRAIDBannerAdapter.h"
@@ -24,7 +22,7 @@
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate, UIGestureRecognizerDelegate, MobFoxNativeFormatViewDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate, UIGestureRecognizerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
     NSMutableArray *customEvents;
@@ -44,9 +42,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, strong) CustomEventBanner *customEventBanner;
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
-@property (nonatomic, strong) MobFoxNativeFormatCreativesManager* nativeFormatCreativesManager;
-@property (nonatomic, strong) MobFoxCreativesQueueManager* queueManager;
-@property (nonatomic, strong) NSMutableArray* adQueue;
 
 @end
 
@@ -70,9 +65,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     self.allowDelegateAssigmentToRequestAd = YES;
 
     customEvents = [[NSMutableArray alloc] init];
-    
-    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManager];
-    self.queueManager = [MobFoxCreativesQueueManager sharedManager];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -345,20 +337,9 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)bannerFailedWithError:(NSError *)error
-{
-    if(self.adQueue.count > 0) {
-        [self requestAd];
-    } else {
-        [self reportError:error];
-    }
-}
-
-
 - (void)reportError:(NSError *)error
 {
 	bannerLoaded = NO;
-    self.adQueue = nil;
 	if ([delegate respondsToSelector:@selector(mobfoxBannerView:didFailToReceiveAdWithError:)])
 	{
 		[delegate mobfoxBannerView:self didFailToReceiveAdWithError:error];
@@ -380,7 +361,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
 
 		NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
@@ -416,7 +397,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		{
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error loading banner image" forKey:NSLocalizedDescriptionKey];
 			NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-			[self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+			[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 			return;
 		}
 
@@ -532,7 +513,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Unknown error" forKey:NSLocalizedDescriptionKey];
 
 		NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
 	else
@@ -540,7 +521,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Unknown ad type '%@'", adType] forKey:NSLocalizedDescriptionKey];
 
 		NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 		return;
 	}
 
@@ -599,7 +580,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                     [self setRefreshTimerActive:YES];
                 
                     NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
-                    [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+                    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
 
                 }
             } else {
@@ -654,7 +635,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     nextBannerView.center = self.center;
     [self insertSubview:nextBannerView atIndex:0];
     [previousSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    self.adQueue = nil;
     
     if ([previousSubviews count]) {
         [UIView commitAnimations];
@@ -861,7 +841,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
 
             NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-            [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
 
@@ -892,7 +872,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing xml response from server" forKey:NSLocalizedDescriptionKey];
 
             NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-            [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
         
@@ -956,72 +936,8 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         NSLog(@"For improved ad serving, it is highly recommended to set the adspace size.");
     }
     
-    if(!self.adQueue) {
-        self.adQueue = [self.queueManager getCreativesQueueForBanner];
-    }
-    if (self.adQueue.count < 1) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No ad types in queue!" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-        return;
-    }
-
-
-    MobFoxCreative* chosenCreative = [self.queueManager getCreativeFromQueue:self.adQueue];
-    
-    switch (chosenCreative.type) {
-        case MobFoxCreativeBanner: {
-            [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
-            break;
-        }
-            
-        case MobFoxCreativeNativeFormat: {
-            [self requestNativeFormatBanner];
-            break;
-        }
-            
-        default: {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Chosen creative type not supported for banners!" forKey:NSLocalizedDescriptionKey];
-            NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
-            [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
-        }
-    }
-    
-    
+    [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
 	
-}
-
-- (void) requestNativeFormatBanner
-{
-    NSInteger width, height;
-    if(adspaceHeight > 0 && adspaceWidth > 0)
-    {
-        height = adspaceHeight;
-        width = adspaceWidth;
-    }
-    else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
-    {
-        width = 728;
-        height = 90;
-    }
-    else
-    {
-        width = 320;
-        height = 50;
-    }
-
-    MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreativeWithWidth:width andHeight:height];
-    if (!chosenCreative) {
-        NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
-        NSError* error = [NSError errorWithDomain:MobFoxErrorDomain code:0 userInfo:userInfo];
-        [self bannerFailedWithError:error];
-        return;
-    }
-    MobFoxNativeFormatView* nativeFormatView = [[MobFoxNativeFormatView alloc]init];
-    nativeFormatView.delegate = self;
-    [nativeFormatView requestAdWithCreative:chosenCreative andPublisherId:[self.delegate publisherIdForMobFoxBannerView:self]];
-    self.bannerView = nativeFormatView;
 }
 
 
@@ -1281,7 +1197,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         [self setRefreshTimerActive:YES];
         
         NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorInventoryUnavailable userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
     }
 }
 
@@ -1299,45 +1215,6 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	{
 		[delegate mobfoxBannerViewActionWillFinish:self];
 	}
-}
-
-#pragma mark MobFoxNativeFormatViewDelegate
-- (void)mobfoxNativeFormatDidLoad:(MobFoxNativeFormatView *)nativeFormatView {
-    
-    _refreshInterval = 30; //enable automatic refresh for native format ads
-    [self setRefreshTimerActive:YES];
-    
-    NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
-    [self showBannerView:nativeFormatView withPreviousSubviews:previousSubviews];
-}
-
-- (void)mobfoxNativeFormatDidFailToLoadWithError:(NSError *)error {
-
-    _refreshInterval = 15;
-    [self setRefreshTimerActive:YES];
-    
-    [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
-}
-
-- (void)mobfoxNativeFormatWillPresent {
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillPresent:)])
-    {
-        [delegate mobfoxBannerViewActionWillPresent:self];
-    }
-}
-
-- (void)mobfoxNativeFormatActionWillFinish {
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillFinish:)])
-    {
-        [delegate mobfoxBannerViewActionWillFinish:self];
-    }
-}
-
-- (void)mobfoxNativeFormatActionDidFinish {
-    if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionDidFinish:)])
-    {
-        [delegate mobfoxBannerViewActionDidFinish:self];
-    }
 }
 
 #pragma mark Notifications
