@@ -60,7 +60,10 @@
     if (self.advertRequestInProgress) {
         return;
     }
-    
+    [self requestAdInternal];
+}
+
+-(void) requestAdInternal {
     if (!self.delegate)
     {
         
@@ -125,15 +128,16 @@
 
 - (void) requestStaticInterstitial {
     self.videoInterstitialViewController.requestURL = @"http://my.mobfox.com/request.php";
-#warning disable video
+    self.videoInterstitialViewController.enableInterstitialAds = YES;
+    self.videoInterstitialViewController.enableVideoAds = NO;
     [self.videoInterstitialViewController requestAd];
 }
 
 - (void) requestVideo {
-    
-#warning disable static, enable video
-    
     self.videoInterstitialViewController.requestURL = @"http://my.mobfox.com/request.php";
+    self.videoInterstitialViewController.enableVideoAds = YES;
+    self.videoInterstitialViewController.prioritizeVideoAds = YES;
+    self.videoInterstitialViewController.enableInterstitialAds = NO;
     [self.videoInterstitialViewController requestAd];
 }
 
@@ -177,7 +181,7 @@
 {
 
     if(self.adQueue.count > 0) {
-        [self requestAd];
+        [self requestAdInternal];
     } else {
         self.adQueue = nil;
         self.advertRequestInProgress = NO;
@@ -216,7 +220,6 @@
 }
 
 - (void)mobfoxVideoInterstitialViewDidLoadMobFoxAd:(MobFoxVideoInterstitialViewController *)videoInterstitial advertTypeLoaded:(MobFoxAdType)advertType {
-    
     if (advertType == MobFoxAdTypeVideo) {
         self.loadedCreativeType = MobFoxCreativeVideo;
     } else {
