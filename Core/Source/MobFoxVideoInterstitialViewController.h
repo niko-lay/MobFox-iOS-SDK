@@ -71,7 +71,9 @@ typedef enum {
 @property (nonatomic, readonly, getter=isAdvertViewActionInProgress) BOOL advertViewActionInProgress;
 
 @property (nonatomic, assign) BOOL locationAwareAdverts;
-
+@property (nonatomic, assign) BOOL enableInterstitialAds;
+@property (nonatomic, assign) BOOL enableVideoAds;
+@property (nonatomic, assign) BOOL prioritizeVideoAds;
 @property (nonatomic, assign) NSInteger video_min_duration;
 @property (nonatomic, assign) NSInteger video_max_duration;
 
