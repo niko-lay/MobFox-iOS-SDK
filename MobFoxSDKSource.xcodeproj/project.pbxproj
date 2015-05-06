@@ -577,6 +577,14 @@
 		90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
+		90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90DB89051AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */; };
+		90DB89061AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */; };
+		90DB89071AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */; };
+		90DB890A1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
+		90DB890B1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
+		90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
+		90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
 		90DD65FF1973D97D00745A59 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDC1973D93800922327 /* FlurryAdDelegate.h */; };
 		90DD66001973D98000745A59 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9024BCDD1973D93800922327 /* FlurryAds.h */; };
 		90DD66051973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */; };
@@ -951,6 +959,10 @@
 		90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreative.m; path = NativeFormat/MobFoxNativeFormatCreative.m; sourceTree = "<group>"; };
 		90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatView.h; path = NativeFormat/MobFoxNativeFormatView.h; sourceTree = "<group>"; };
 		90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatView.m; path = NativeFormat/MobFoxNativeFormatView.m; sourceTree = "<group>"; };
+		90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxWaterfallInterstitialViewController.h; sourceTree = "<group>"; };
+		90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxWaterfallInterstitialViewController.m; sourceTree = "<group>"; };
+		90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatInterstitial.h; path = NativeFormat/MobFoxNativeFormatInterstitial.h; sourceTree = "<group>"; };
+		90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatInterstitial.m; path = NativeFormat/MobFoxNativeFormatInterstitial.m; sourceTree = "<group>"; };
 		90DD66011973D9B000745A59 /* FlurryCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventBanner.h; sourceTree = "<group>"; };
 		90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCustomEventBanner.m; sourceTree = "<group>"; };
 		90DD66071973F3D500745A59 /* FlurryCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventFullscreen.h; sourceTree = "<group>"; };
@@ -1600,6 +1612,8 @@
 				90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */,
 				90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */,
 				90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */,
+				90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */,
+				90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */,
 			);
 			name = NativeFormat;
 			sourceTree = "<group>";
@@ -1653,6 +1667,8 @@
 				0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */,
 				0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */,
 				90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */,
+				90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */,
+				90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */,
 				90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */,
 				9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */,
 				9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */,
@@ -1767,6 +1783,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
 				9098B52D1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
@@ -1776,6 +1793,7 @@
 				90B5C55C19652C530013DC80 /* MRAdView.h in Headers */,
 				90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
 				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
+				90DB890A1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */,
 				90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
 				90B5C50319652C530013DC80 /* MPFacebookKeywordProvider.h in Headers */,
 				90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */,
@@ -1966,6 +1984,7 @@
 				90B5C60319652C530013DC80 /* MPNativeAdError.h in Headers */,
 				90B5C5B519652C530013DC80 /* MPStoreKitProvider.h in Headers */,
 				90B5C4E119652C530013DC80 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
+				90DB890B1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */,
 				90B5C5EF19652C530013DC80 /* MPNativeAd+Internal.h in Headers */,
 				90B5C5E319652C530013DC80 /* MPImageDownloadQueue.h in Headers */,
 				90A5C8C1192F677700978746 /* UIView+MobFox.h in Headers */,
@@ -1996,6 +2015,7 @@
 				90B6D1291962B67200061451 /* CustomEventNative.h in Headers */,
 				90987D3E18BCD32600148D09 /* CustomEventBannerDelegate.h in Headers */,
 				90B5C5D719652C530013DC80 /* UIImageView+MPNativeAd.h in Headers */,
+				90DB89051AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
 				90B5C5CB19652C530013DC80 /* MPConstants.h in Headers */,
 				90B5C5C919652C530013DC80 /* MPBannerCustomEventDelegate.h in Headers */,
 				90DD65FF1973D97D00745A59 /* FlurryAdDelegate.h in Headers */,
@@ -2281,6 +2301,7 @@
 				9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewController.m in Sources */,
 				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
+				90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54B19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BE19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BA19652C530013DC80 /* MPTimer.m in Sources */,
@@ -2321,6 +2342,7 @@
 				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90B5C60A19652C530013DC80 /* MPNativeAdRequest.m in Sources */,
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
+				90DB89061AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */,
 				90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
@@ -2429,6 +2451,7 @@
 				9026A142198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55919652C530013DC80 /* MPMRAIDInterstitialViewController.m in Sources */,
 				90BF0052196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
+				90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54C19652C530013DC80 /* MPInstanceProvider.m in Sources */,
 				90B5C5BF19652C530013DC80 /* MPAdConversionTracker.m in Sources */,
 				90B5C5BB19652C530013DC80 /* MPTimer.m in Sources */,
@@ -2469,6 +2492,7 @@
 				0F0EB65F1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */,
 				90B5C60B19652C530013DC80 /* MPNativeAdRequest.m in Sources */,
 				90038F101846035D00446EAD /* CDataScanner.m in Sources */,
+				90DB89071AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */,
 				909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90038F301846035D00446EAD /* CJSONScanner.m in Sources */,
 				90B090BD19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
