@@ -66,14 +66,17 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     
     self.shouldInjectJavascript = YES;
     
-    [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
+    [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:@[publisherId, creative.name]];
 }
 
-- (void)asyncRequestAdWithPublisherId:(NSString*)publisherId
+- (void)asyncRequestAdWithPublisherId:(NSArray*)array
 {
     
     @autoreleasepool
     {
+        NSString *publisherId = array[0];
+        NSString *templateName = array[1];
+        
         NSString *osVersion = [UIDevice currentDevice].systemVersion;
         
         NSString *requestString;
@@ -95,7 +98,7 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
         if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
             iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
             
-            requestString=[NSString stringWithFormat:@"r_type=native&rt=%@&r_resp=json&n_img=icon&n_txt=headline&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&rt=%@&r_resp=json&n_img=icon&n_txt=headline&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&r_random=%@&template_name=%@",
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -104,10 +107,11 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
                            [SDK_VERSION stringByUrlEncoding],
                            [publisherId stringByUrlEncoding],
                            [osVersion stringByUrlEncoding],
-                           [random stringByUrlEncoding]];
+                           [random stringByUrlEncoding],
+                           [templateName stringByUrlEncoding]];
             
         } else {
-            requestString=[NSString stringWithFormat:@"r_type=native&rt=%@&r_resp=json&n_img=icon&n_txt=headline&u=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@&r_random=%@",
+            requestString=[NSString stringWithFormat:@"r_type=native&rt=%@&r_resp=json&n_img=icon&n_txt=headline&u=%@&u_wv=%@&u_br=%@&&v=%@&s=%@&iphone_osversion=%@&r_random=%@&template_name=%@",
                            [requestType stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
                            [self.userAgent stringByUrlEncoding],
@@ -115,7 +119,8 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
                            [SDK_VERSION stringByUrlEncoding],
                            [publisherId stringByUrlEncoding],
                            [osVersion stringByUrlEncoding],
-                           [random stringByUrlEncoding]];
+                           [random stringByUrlEncoding],
+                           [templateName stringByUrlEncoding]];
         }
         
 
