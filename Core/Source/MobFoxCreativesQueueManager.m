@@ -21,21 +21,21 @@ NSString * const QUEUE_URL = @"http://static.starbolt.io/waterfalls2.json";
 
 static MobFoxCreativesQueueManager* sharedManager = nil;
 
-+(id)sharedManager {
++(id)sharedManagerWithPublisherId:(NSString*)publisherId {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        sharedManager = [[self alloc] init];
+        sharedManager = [[self alloc] initWithPublisherId:publisherId];
     });
     
     return sharedManager;
 }
 
--(instancetype)init {
+-(instancetype)initWithPublisherId:(NSString*)publisherId {
     self = [super init];
     if (self) {
         [self initQueuesWithFallbackData];
         srand48(arc4random());
-        [self performSelectorInBackground:@selector(downloadQueuesFromServer) withObject:nil];
+        [self performSelectorInBackground:@selector(downloadQueuesFromServer:) withObject:publisherId];
     }
     
     return self;
@@ -50,18 +50,19 @@ static MobFoxCreativesQueueManager* sharedManager = nil;
     self.queueForFullscreen = [NSArray arrayWithObjects:bannerCreative, videoCreative, nativeFormatCreative, nil];
 }
 
--(void) downloadQueuesFromServer {
+-(void) downloadQueuesFromServer:(NSString*)publisherId {
     NSMutableURLRequest *request;
     NSError *error;
     NSURLResponse *response;
     NSData *dataReply;
     
-    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:QUEUE_URL]];
+    NSString *requestString = [NSString stringWithFormat:@"%@?p=%@",QUEUE_URL,publisherId];
+    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod: @"GET"];
     
     dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    if(!dataReply || error || [dataReply length] == 0) {
+    if(!dataReply || error || [dataReply length] == 0) {      
         NSLog(@"Failed to load creatives queue from server!");
         return;
     }

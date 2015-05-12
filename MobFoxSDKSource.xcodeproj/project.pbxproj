@@ -1667,9 +1667,9 @@
 				0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */,
 				0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */,
 				90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */,
+				90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */,
 				90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */,
 				90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */,
-				90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */,
 				9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */,
 				9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */,
 			);

@@ -32,7 +32,6 @@
     self.backgroundColor = [UIColor clearColor];
     
     self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManager];
-    self.queueManager = [MobFoxCreativesQueueManager sharedManager];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -67,8 +66,20 @@
     self.delegate = nil;
 }
 
+-(void)setDelegate:(id<MobFoxWaterfallBannerViewDelegate>)delegate {
+    _delegate = delegate;
+    self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
+}
+
 -(void)requestAd
 {
+    if (!self.delegate)
+    {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Delegate for waterfall banner not set!" forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
+        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
+        return;
+    }
     
     if(!self.adQueue) {
         self.adQueue = [self.queueManager getCreativesQueueForBanner];

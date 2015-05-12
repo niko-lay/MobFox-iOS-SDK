@@ -25,7 +25,7 @@ typedef enum {
 
 @interface MobFoxCreativesQueueManager : NSObject
 
-+ (id) sharedManager;
++(id)sharedManagerWithPublisherId:(NSString*)publisherId;
 
 - (NSMutableArray*) getCreativesQueueForBanner;
 

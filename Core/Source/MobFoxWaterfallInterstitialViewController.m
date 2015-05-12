@@ -45,7 +45,6 @@
 
 
 - (void)setup {
-    self.queueManager = [MobFoxCreativesQueueManager sharedManager];
     
     self.videoInterstitialViewController = [[MobFoxVideoInterstitialViewController alloc] init];
     self.videoInterstitialViewController.delegate = self;
@@ -139,6 +138,11 @@
     self.videoInterstitialViewController.prioritizeVideoAds = YES;
     self.videoInterstitialViewController.enableInterstitialAds = NO;
     [self.videoInterstitialViewController requestAd];
+}
+
+-(void)setDelegate:(id<MobFoxWaterfallInterstitialDelegate>)delegate {
+    _delegate = delegate;
+    self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallInterstitial]];
 }
 
 - (void) requestNativeFormatInterstitial {
