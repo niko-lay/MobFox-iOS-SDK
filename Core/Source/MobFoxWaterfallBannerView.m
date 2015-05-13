@@ -30,8 +30,6 @@
 {
     self.autoresizingMask = UIViewAutoresizingNone;
     self.backgroundColor = [UIColor clearColor];
-    
-    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManager];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -69,6 +67,7 @@
 -(void)setDelegate:(id<MobFoxWaterfallBannerViewDelegate>)delegate {
     _delegate = delegate;
     self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
+    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
 }
 
 -(void)requestAd

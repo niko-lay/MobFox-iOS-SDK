@@ -30,9 +30,9 @@
 
 @implementation MobFoxNativeFormatInterstitial
 
--(instancetype)init {
+-(instancetype)initWithPublisherId:(NSString*)publisherId {
     self = [super init];
-    [self setup];
+    [self setupWithPublisherId:publisherId];
     return self;
 }
 
@@ -45,10 +45,10 @@
     self.viewController = nil;
 }
 
-- (void)setup {
-    
-    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManager];
+- (void)setupWithPublisherId:(NSString*)publisherId {
 
+    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManagerWithPublisherId:publisherId];
+    
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     {
         buttonSize = 40.0f;
@@ -60,8 +60,7 @@
 }
 
 
-
--(void) requestAdWithPublisherId:(NSString *)publisherId andViewController:(UIViewController*)controller{
+-(void) requestAdWithPublisherId:(NSString *)publisherId andViewController:(UIViewController*)controller {
     
     adLoaded = NO;
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];

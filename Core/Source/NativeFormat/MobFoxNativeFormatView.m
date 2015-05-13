@@ -46,8 +46,6 @@ NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
     self.backgroundColor = [UIColor clearColor];
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    
-    //TODO: javascript interface for "dismissListener" - if will be really needed
 }
 
 

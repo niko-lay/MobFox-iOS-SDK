@@ -11,7 +11,7 @@
 
 @interface MobFoxNativeFormatCreativesManager : NSObject
 
-+ (id) sharedManager;
++ (id) sharedManagerWithPublisherId:(NSString*)publisherId;
 
 - (MobFoxNativeFormatCreative *) getCreativeWithWidth:(NSInteger)width andHeight:(NSInteger)height;
 

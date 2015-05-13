@@ -20,16 +20,16 @@ NSString * const BASE_URL = @"http://static.starbolt.io/creatives20.json";
 
 static MobFoxNativeFormatCreativesManager* sharedManager = nil;
 
-+(id)sharedManager {
++(id)sharedManagerWithPublisherId:(NSString*)publisherId {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        sharedManager = [[self alloc] init];
+        sharedManager = [[self alloc] initWithPublisherId:publisherId];
     });
     
     return sharedManager;
 }
 
--(instancetype)init {
+-(instancetype)initWithPublisherId:(NSString*)publisherId {
     self = [super init];
     if (self) {
         self.creatives = [NSMutableArray array];
@@ -42,21 +42,25 @@ static MobFoxNativeFormatCreativesManager* sharedManager = nil;
         UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
         NSString* userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 
-        [self performSelectorInBackground:@selector(downloadCreatives:) withObject:userAgent];
+        [self performSelectorInBackground:@selector(downloadCreatives:) withObject:@[userAgent,publisherId]];
     }
     return self;
 }
 
-- (void) downloadCreatives:(NSString *)userAgent {
+- (void) downloadCreatives:(NSArray *)array {
+    
+    NSString* userAgent = array[0];
+    NSString* publisherId = array[1];
     
     NSMutableURLRequest *request;
     NSError *error;
     NSURLResponse *response;
     NSData *dataReply;
    
-    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:BASE_URL]];
+    NSString *requestString = [NSString stringWithFormat:@"%@?p=%@",BASE_URL,publisherId];
+    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod: @"GET"];
-    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"]; //TODO: required?
+    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
    
     dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
    

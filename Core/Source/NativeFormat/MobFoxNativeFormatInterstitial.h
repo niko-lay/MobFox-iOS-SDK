@@ -24,6 +24,8 @@
 
 @property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxNativeFormatInterstitialDelegate> delegate;
 
+-(instancetype)initWithPublisherId:(NSString*)publisherId;
+
 -(void) requestAdWithPublisherId:(NSString *)publisherId andViewController:(UIViewController*)controller;
 
 -(void) showAd;
