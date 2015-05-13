@@ -41,7 +41,7 @@ NSString * const kImpressionTrackerType = @"impression";
     //custom events may implement this method        
 }
 
--(void)addImageAsset:(ImageAsset *)asset withType:(NSString *)type {
+-(void)addImageAsset:(MFImageAsset *)asset withType:(NSString *)type {
     if(asset && type) {
         [self.imageAssets setObject:asset forKey:type];
     }
@@ -57,8 +57,8 @@ NSString * const kImpressionTrackerType = @"impression";
     BOOL textAssetsOK = NO;
     BOOL imageAssetsOK = NO;
     
-    ImageAsset* iconImageAsset = [self.imageAssets objectForKey:kIconImageAsset];
-    ImageAsset* mainImageAsset = [self.imageAssets objectForKey:kMainImageAsset];
+    MFImageAsset* iconImageAsset = [self.imageAssets objectForKey:kIconImageAsset];
+    MFImageAsset* mainImageAsset = [self.imageAssets objectForKey:kMainImageAsset];
     
     if(mainImageAsset && iconImageAsset && mainImageAsset.image && iconImageAsset.image) {
         imageAssetsOK = YES;
@@ -74,7 +74,7 @@ NSString * const kImpressionTrackerType = @"impression";
 
 @end
 
-@implementation ImageAsset
+@implementation MFImageAsset
 
 -(id)initWithUrl:(NSString*)url width:(NSString*)width height:(NSString*)height {
     self = [super init];
@@ -97,5 +97,5 @@ NSString * const kImpressionTrackerType = @"impression";
 
 @end
 
-@implementation Tracker
+@implementation MFTracker
 @end

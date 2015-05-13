@@ -18,7 +18,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIDevice+IdentifierAddition.h"
+#import "UIDevice+MFIdentifierAddition.h"
 
 #include "MobFoxVideoPlayerViewController.h" 
 #include "MobFoxInterstitialPlayerViewController.h"

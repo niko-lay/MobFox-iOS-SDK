@@ -9,7 +9,7 @@
 #import "MobFoxNativeAdController.h"
 #import "NSString+MobFox.h"
 #import "NSURL+MobFox.h"
-#import "UIDevice+IdentifierAddition.h"
+#import "UIDevice+MFIdentifierAddition.h"
 #import <AdSupport/AdSupport.h>
 #import "MobFoxNativeAd.h"
 #import <UIKit/UIKit.h>
@@ -359,7 +359,7 @@ int const MAX_STARS = 5;
                 ((UILabel*)child).text = text;
             }
         } else if(imageAssetName && [child isKindOfClass:[UIImageView class]]){
-            ImageAsset* asset = [response.imageAssets objectForKey:imageAssetName];
+            MFImageAsset* asset = [response.imageAssets objectForKey:imageAssetName];
             if(asset.image) {
                 ((UIImageView*)child).image = asset.image;
             }

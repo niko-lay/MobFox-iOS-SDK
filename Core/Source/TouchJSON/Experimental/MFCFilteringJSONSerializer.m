@@ -6,9 +6,9 @@
 //  Copyright 2010 toxicsoftware.com. All rights reserved.
 //
 
-#import "CFilteringJSONSerializer.h"
+#import "MFCFilteringJSONSerializer.h"
 
-@implementation CFilteringJSONSerializer
+@implementation MFCFilteringJSONSerializer
 
 @synthesize tests;
 @synthesize convertersByName;

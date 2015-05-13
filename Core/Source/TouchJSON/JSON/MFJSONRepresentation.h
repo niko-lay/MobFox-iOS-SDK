@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JSONRepresentation
+@protocol MFJSONRepresentation
 
 @optional
 - (id)initWithJSONDataRepresentation:(NSData *)inJSONData;

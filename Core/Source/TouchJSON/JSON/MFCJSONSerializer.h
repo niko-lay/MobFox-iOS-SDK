@@ -29,10 +29,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CJSONSerializer : NSObject {
+@interface MFCJSONSerializer : NSObject {
 }
 
-+ (CJSONSerializer *)serializer;
++ (MFCJSONSerializer *)serializer;
 
 - (BOOL)isValidJSONObject:(id)inObject;
 

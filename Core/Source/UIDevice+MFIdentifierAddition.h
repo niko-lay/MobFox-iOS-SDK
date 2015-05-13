@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIDevice (IdentifierAddition)
+@interface UIDevice (MFIdentifierAddition)
 
 // IPAddress Lookup
 

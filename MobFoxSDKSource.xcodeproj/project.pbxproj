@@ -11,10 +11,10 @@
 		0F09F46814E7F134001C23E2 /* UIBarButtonItem+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F09F46514E7F134001C23E2 /* UIBarButtonItem+MobFox.h */; };
 		0F09F46914E7F134001C23E2 /* UIBarButtonItem+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F09F46614E7F134001C23E2 /* UIBarButtonItem+MobFox.m */; };
 		0F09F46A14E7F134001C23E2 /* UIBarButtonItem+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F09F46614E7F134001C23E2 /* UIBarButtonItem+MobFox.m */; };
-		0F0EB65C1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F0EB65A1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h */; };
-		0F0EB65D1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F0EB65A1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h */; };
-		0F0EB65E1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EB65B1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m */; };
-		0F0EB65F1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EB65B1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m */; };
+		0F0EB65C1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F0EB65A1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h */; };
+		0F0EB65D1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F0EB65A1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h */; };
+		0F0EB65E1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */; };
+		0F0EB65F1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */; };
 		0F13654C14FB83A40029C8AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F13654914FB838D0029C8AF /* QuartzCore.framework */; };
 		0F34E1BE14DBEF04000F8713 /* MobFoxToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F34E1BC14DBEF04000F8713 /* MobFoxToolBar.h */; };
 		0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F34E1BC14DBEF04000F8713 /* MobFoxToolBar.h */; };
@@ -48,26 +48,26 @@
 		0FCEB20B150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FCEB20C150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FE28D7614E34B3000CEA1CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */; };
-		90038F0D1846035D00446EAD /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* CDataScanner.h */; };
-		90038F0E1846035D00446EAD /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* CDataScanner.h */; };
-		90038F0F1846035D00446EAD /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F101846035D00446EAD /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F111846035D00446EAD /* CFilteringJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF61846035D00446EAD /* CFilteringJSONSerializer.h */; };
-		90038F121846035D00446EAD /* CFilteringJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF61846035D00446EAD /* CFilteringJSONSerializer.h */; };
-		90038F131846035D00446EAD /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF71846035D00446EAD /* CFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F141846035D00446EAD /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF71846035D00446EAD /* CFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F0D1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
+		90038F0E1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
+		90038F0F1846035D00446EAD /* MFCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* MFCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F101846035D00446EAD /* MFCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* MFCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F111846035D00446EAD /* MFCFilteringJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF61846035D00446EAD /* MFCFilteringJSONSerializer.h */; };
+		90038F121846035D00446EAD /* MFCFilteringJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF61846035D00446EAD /* MFCFilteringJSONSerializer.h */; };
+		90038F131846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF71846035D00446EAD /* MFCFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F141846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF71846035D00446EAD /* MFCFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90038F151846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF81846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h */; };
 		90038F161846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF81846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h */; };
 		90038F171846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF91846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90038F181846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF91846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F191846035D00446EAD /* CJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFA1846035D00446EAD /* CJSONSerialization.h */; };
-		90038F1A1846035D00446EAD /* CJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFA1846035D00446EAD /* CJSONSerialization.h */; };
-		90038F1B1846035D00446EAD /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFB1846035D00446EAD /* CJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F1C1846035D00446EAD /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFB1846035D00446EAD /* CJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F1D1846035D00446EAD /* CJSONSerializedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFC1846035D00446EAD /* CJSONSerializedData.h */; };
-		90038F1E1846035D00446EAD /* CJSONSerializedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFC1846035D00446EAD /* CJSONSerializedData.h */; };
-		90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFD1846035D00446EAD /* CJSONSerializedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFD1846035D00446EAD /* CJSONSerializedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F191846035D00446EAD /* MFCJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFA1846035D00446EAD /* MFCJSONSerialization.h */; };
+		90038F1A1846035D00446EAD /* MFCJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFA1846035D00446EAD /* MFCJSONSerialization.h */; };
+		90038F1B1846035D00446EAD /* MFCJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFB1846035D00446EAD /* MFCJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F1C1846035D00446EAD /* MFCJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFB1846035D00446EAD /* MFCJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F1D1846035D00446EAD /* MFCJSONSerializedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFC1846035D00446EAD /* MFCJSONSerializedData.h */; };
+		90038F1E1846035D00446EAD /* MFCJSONSerializedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFC1846035D00446EAD /* MFCJSONSerializedData.h */; };
+		90038F1F1846035D00446EAD /* MFCJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFD1846035D00446EAD /* MFCJSONSerializedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F201846035D00446EAD /* MFCJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EFD1846035D00446EAD /* MFCJSONSerializedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90038F211846035D00446EAD /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFF1846035D00446EAD /* CDataScanner_Extensions.h */; };
 		90038F221846035D00446EAD /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EFF1846035D00446EAD /* CDataScanner_Extensions.h */; };
 		90038F231846035D00446EAD /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F001846035D00446EAD /* CDataScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -76,20 +76,20 @@
 		90038F261846035D00446EAD /* NSDictionary_JSONExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F011846035D00446EAD /* NSDictionary_JSONExtensions.h */; };
 		90038F271846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F021846035D00446EAD /* NSDictionary_JSONExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90038F281846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F021846035D00446EAD /* NSDictionary_JSONExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F291846035D00446EAD /* CJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F041846035D00446EAD /* CJSONDeserializer.h */; };
-		90038F2A1846035D00446EAD /* CJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F041846035D00446EAD /* CJSONDeserializer.h */; };
-		90038F2B1846035D00446EAD /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F051846035D00446EAD /* CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F2C1846035D00446EAD /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F051846035D00446EAD /* CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F2D1846035D00446EAD /* CJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F061846035D00446EAD /* CJSONScanner.h */; };
-		90038F2E1846035D00446EAD /* CJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F061846035D00446EAD /* CJSONScanner.h */; };
-		90038F2F1846035D00446EAD /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F071846035D00446EAD /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F301846035D00446EAD /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F071846035D00446EAD /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F311846035D00446EAD /* CJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F081846035D00446EAD /* CJSONSerializer.h */; };
-		90038F321846035D00446EAD /* CJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F081846035D00446EAD /* CJSONSerializer.h */; };
-		90038F331846035D00446EAD /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F091846035D00446EAD /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F341846035D00446EAD /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F091846035D00446EAD /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		90038F351846035D00446EAD /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F0A1846035D00446EAD /* JSONRepresentation.h */; };
-		90038F361846035D00446EAD /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F0A1846035D00446EAD /* JSONRepresentation.h */; };
+		90038F291846035D00446EAD /* MFCJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F041846035D00446EAD /* MFCJSONDeserializer.h */; };
+		90038F2A1846035D00446EAD /* MFCJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F041846035D00446EAD /* MFCJSONDeserializer.h */; };
+		90038F2B1846035D00446EAD /* MFCJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F051846035D00446EAD /* MFCJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F2C1846035D00446EAD /* MFCJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F051846035D00446EAD /* MFCJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F2D1846035D00446EAD /* MFCJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F061846035D00446EAD /* MFCJSONScanner.h */; };
+		90038F2E1846035D00446EAD /* MFCJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F061846035D00446EAD /* MFCJSONScanner.h */; };
+		90038F2F1846035D00446EAD /* MFCJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F071846035D00446EAD /* MFCJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F301846035D00446EAD /* MFCJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F071846035D00446EAD /* MFCJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F311846035D00446EAD /* MFCJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F081846035D00446EAD /* MFCJSONSerializer.h */; };
+		90038F321846035D00446EAD /* MFCJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F081846035D00446EAD /* MFCJSONSerializer.h */; };
+		90038F331846035D00446EAD /* MFCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F091846035D00446EAD /* MFCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F341846035D00446EAD /* MFCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038F091846035D00446EAD /* MFCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90038F351846035D00446EAD /* MFJSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F0A1846035D00446EAD /* MFJSONRepresentation.h */; };
+		90038F361846035D00446EAD /* MFJSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038F0A1846035D00446EAD /* MFJSONRepresentation.h */; };
 		90038F371846035D00446EAD /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90038F0B1846035D00446EAD /* LICENSE.txt */; };
 		90038F381846035D00446EAD /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 90038F0C1846035D00446EAD /* README.markdown */; };
 		9014FD30184DFD8C006746EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905D81A4184CC1B1007AF71F /* SystemConfiguration.framework */; };
@@ -637,8 +637,8 @@
 /* Begin PBXFileReference section */
 		0F09F46514E7F134001C23E2 /* UIBarButtonItem+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+MobFox.h"; sourceTree = "<group>"; };
 		0F09F46614E7F134001C23E2 /* UIBarButtonItem+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+MobFox.m"; sourceTree = "<group>"; };
-		0F0EB65A1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
-		0F0EB65B1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		0F0EB65A1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+MFIdentifierAddition.h"; sourceTree = "<group>"; };
+		0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+MFIdentifierAddition.m"; sourceTree = "<group>"; };
 		0F13654914FB838D0029C8AF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0F34E1BC14DBEF04000F8713 /* MobFoxToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxToolBar.h; sourceTree = "<group>"; };
 		0F34E1BD14DBEF04000F8713 /* MobFoxToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxToolBar.m; sourceTree = "<group>"; };
@@ -658,27 +658,27 @@
 		0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxVideoInterstitialViewController.h; sourceTree = "<group>"; };
 		0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxVideoInterstitialViewController.m; sourceTree = "<group>"; };
 		0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		90038EF31846035D00446EAD /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
-		90038EF41846035D00446EAD /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
-		90038EF61846035D00446EAD /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
-		90038EF71846035D00446EAD /* CFilteringJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFilteringJSONSerializer.m; sourceTree = "<group>"; };
+		90038EF31846035D00446EAD /* MFCDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCDataScanner.h; sourceTree = "<group>"; };
+		90038EF41846035D00446EAD /* MFCDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCDataScanner.m; sourceTree = "<group>"; };
+		90038EF61846035D00446EAD /* MFCFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCFilteringJSONSerializer.h; sourceTree = "<group>"; };
+		90038EF71846035D00446EAD /* MFCFilteringJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCFilteringJSONSerializer.m; sourceTree = "<group>"; };
 		90038EF81846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer_BlocksExtensions.h; sourceTree = "<group>"; };
 		90038EF91846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer_BlocksExtensions.m; sourceTree = "<group>"; };
-		90038EFA1846035D00446EAD /* CJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerialization.h; sourceTree = "<group>"; };
-		90038EFB1846035D00446EAD /* CJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerialization.m; sourceTree = "<group>"; };
-		90038EFC1846035D00446EAD /* CJSONSerializedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializedData.h; sourceTree = "<group>"; };
-		90038EFD1846035D00446EAD /* CJSONSerializedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializedData.m; sourceTree = "<group>"; };
+		90038EFA1846035D00446EAD /* MFCJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCJSONSerialization.h; sourceTree = "<group>"; };
+		90038EFB1846035D00446EAD /* MFCJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCJSONSerialization.m; sourceTree = "<group>"; };
+		90038EFC1846035D00446EAD /* MFCJSONSerializedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCJSONSerializedData.h; sourceTree = "<group>"; };
+		90038EFD1846035D00446EAD /* MFCJSONSerializedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCJSONSerializedData.m; sourceTree = "<group>"; };
 		90038EFF1846035D00446EAD /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
 		90038F001846035D00446EAD /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
 		90038F011846035D00446EAD /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
 		90038F021846035D00446EAD /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
-		90038F041846035D00446EAD /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
-		90038F051846035D00446EAD /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
-		90038F061846035D00446EAD /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
-		90038F071846035D00446EAD /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
-		90038F081846035D00446EAD /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
-		90038F091846035D00446EAD /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
-		90038F0A1846035D00446EAD /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		90038F041846035D00446EAD /* MFCJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCJSONDeserializer.h; sourceTree = "<group>"; };
+		90038F051846035D00446EAD /* MFCJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCJSONDeserializer.m; sourceTree = "<group>"; };
+		90038F061846035D00446EAD /* MFCJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCJSONScanner.h; sourceTree = "<group>"; };
+		90038F071846035D00446EAD /* MFCJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCJSONScanner.m; sourceTree = "<group>"; };
+		90038F081846035D00446EAD /* MFCJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCJSONSerializer.h; sourceTree = "<group>"; };
+		90038F091846035D00446EAD /* MFCJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCJSONSerializer.m; sourceTree = "<group>"; };
+		90038F0A1846035D00446EAD /* MFJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSONRepresentation.h; sourceTree = "<group>"; };
 		90038F0B1846035D00446EAD /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		90038F0C1846035D00446EAD /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		9014FD32184DFDA2006746EC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1065,8 +1065,8 @@
 		90038EF21846035D00446EAD /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
-				90038EF31846035D00446EAD /* CDataScanner.h */,
-				90038EF41846035D00446EAD /* CDataScanner.m */,
+				90038EF31846035D00446EAD /* MFCDataScanner.h */,
+				90038EF41846035D00446EAD /* MFCDataScanner.m */,
 				90038EF51846035D00446EAD /* Experimental */,
 				90038EFE1846035D00446EAD /* Extensions */,
 				90038F031846035D00446EAD /* JSON */,
@@ -1079,14 +1079,14 @@
 		90038EF51846035D00446EAD /* Experimental */ = {
 			isa = PBXGroup;
 			children = (
-				90038EF61846035D00446EAD /* CFilteringJSONSerializer.h */,
-				90038EF71846035D00446EAD /* CFilteringJSONSerializer.m */,
+				90038EF61846035D00446EAD /* MFCFilteringJSONSerializer.h */,
+				90038EF71846035D00446EAD /* MFCFilteringJSONSerializer.m */,
 				90038EF81846035D00446EAD /* CJSONDeserializer_BlocksExtensions.h */,
 				90038EF91846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m */,
-				90038EFA1846035D00446EAD /* CJSONSerialization.h */,
-				90038EFB1846035D00446EAD /* CJSONSerialization.m */,
-				90038EFC1846035D00446EAD /* CJSONSerializedData.h */,
-				90038EFD1846035D00446EAD /* CJSONSerializedData.m */,
+				90038EFA1846035D00446EAD /* MFCJSONSerialization.h */,
+				90038EFB1846035D00446EAD /* MFCJSONSerialization.m */,
+				90038EFC1846035D00446EAD /* MFCJSONSerializedData.h */,
+				90038EFD1846035D00446EAD /* MFCJSONSerializedData.m */,
 			);
 			path = Experimental;
 			sourceTree = "<group>";
@@ -1105,13 +1105,13 @@
 		90038F031846035D00446EAD /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				90038F041846035D00446EAD /* CJSONDeserializer.h */,
-				90038F051846035D00446EAD /* CJSONDeserializer.m */,
-				90038F061846035D00446EAD /* CJSONScanner.h */,
-				90038F071846035D00446EAD /* CJSONScanner.m */,
-				90038F081846035D00446EAD /* CJSONSerializer.h */,
-				90038F091846035D00446EAD /* CJSONSerializer.m */,
-				90038F0A1846035D00446EAD /* JSONRepresentation.h */,
+				90038F041846035D00446EAD /* MFCJSONDeserializer.h */,
+				90038F051846035D00446EAD /* MFCJSONDeserializer.m */,
+				90038F061846035D00446EAD /* MFCJSONScanner.h */,
+				90038F071846035D00446EAD /* MFCJSONScanner.m */,
+				90038F081846035D00446EAD /* MFCJSONSerializer.h */,
+				90038F091846035D00446EAD /* MFCJSONSerializer.m */,
+				90038F0A1846035D00446EAD /* MFJSONRepresentation.h */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -1704,8 +1704,8 @@
 				90A5C8BF192F677700978746 /* UIView+MobFox.m */,
 				90038EF21846035D00446EAD /* TouchJSON */,
 				90038DE11846019400446EAD /* MoPubSDK */,
-				0F0EB65A1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h */,
-				0F0EB65B1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m */,
+				0F0EB65A1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h */,
+				0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */,
 				A7992E801489362800E86AC8 /* NSString+MobFox.h */,
 				A7992E811489362800E86AC8 /* NSString+MobFox.m */,
 				A7992E821489362800E86AC8 /* NSURL+MobFox.h */,
@@ -1816,7 +1816,7 @@
 				90B5C4FB19652C530013DC80 /* MPAdServerCommunicator.h in Headers */,
 				904F80831A14E55F0027E3EF /* IMError.h in Headers */,
 				90B5C4EE19652C530013DC80 /* MPAdBrowserController.h in Headers */,
-				90038F111846035D00446EAD /* CFilteringJSONSerializer.h in Headers */,
+				90038F111846035D00446EAD /* MFCFilteringJSONSerializer.h in Headers */,
 				90B5C61019652C530013DC80 /* MPNativeCustomEvent.h in Headers */,
 				90B5C5D419652C530013DC80 /* MPInterstitialCustomEventDelegate.h in Headers */,
 				90B5C59819652C530013DC80 /* MPAnalyticsTracker.h in Headers */,
@@ -1833,12 +1833,12 @@
 				90B5C4E019652C530013DC80 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
 				A7992E9B1489362800E86AC8 /* MobFoxBannerView.h in Headers */,
 				90B5C5EE19652C530013DC80 /* MPNativeAd+Internal.h in Headers */,
-				90038F311846035D00446EAD /* CJSONSerializer.h in Headers */,
+				90038F311846035D00446EAD /* MFCJSONSerializer.h in Headers */,
 				90B5C5E219652C530013DC80 /* MPImageDownloadQueue.h in Headers */,
 				A7992EA31489362800E86AC8 /* NSString+MobFox.h in Headers */,
 				909716D418AA5CF8007EEB4D /* VAST.h in Headers */,
 				90B5C5F419652C530013DC80 /* MPTableViewCellImpressionTracker.h in Headers */,
-				90038F1D1846035D00446EAD /* CJSONSerializedData.h in Headers */,
+				90038F1D1846035D00446EAD /* MFCJSONSerializedData.h in Headers */,
 				90B5C5DA19652C530013DC80 /* UITableViewCell+MPNativeAd.h in Headers */,
 				90B5C61419652C530013DC80 /* MPNativeCustomEventDelegate.h in Headers */,
 				90B5C54919652C530013DC80 /* MPInstanceProvider.h in Headers */,
@@ -1866,7 +1866,7 @@
 				90B5C5CA19652C530013DC80 /* MPConstants.h in Headers */,
 				90B5C5C819652C530013DC80 /* MPBannerCustomEventDelegate.h in Headers */,
 				90B5C4F319652C530013DC80 /* MPAdConfiguration.h in Headers */,
-				90038F191846035D00446EAD /* CJSONSerialization.h in Headers */,
+				90038F191846035D00446EAD /* MFCJSONSerialization.h in Headers */,
 				90A5C8C0192F677700978746 /* UIView+MobFox.h in Headers */,
 				90B5C53719652C530013DC80 /* MPInterstitialCustomEventAdapter.h in Headers */,
 				90B5C58C19652C530013DC80 /* NSURL+MPAdditions.h in Headers */,
@@ -1887,11 +1887,11 @@
 				90B5C52519652C530013DC80 /* MPHTMLInterstitialCustomEvent.h in Headers */,
 				90B5C60819652C530013DC80 /* MPNativeAdRequest.h in Headers */,
 				90B5C4FF19652C530013DC80 /* MPAdServerURLBuilder.h in Headers */,
-				90038F291846035D00446EAD /* CJSONDeserializer.h in Headers */,
+				90038F291846035D00446EAD /* MFCJSONDeserializer.h in Headers */,
 				90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
 				90B5C50719652C530013DC80 /* MPKeywordProvider.h in Headers */,
 				90B5C60C19652C530013DC80 /* MPNativeAdRequestTargeting.h in Headers */,
-				90038F2D1846035D00446EAD /* CJSONScanner.h in Headers */,
+				90038F2D1846035D00446EAD /* MFCJSONScanner.h in Headers */,
 				90B5C5CC19652C530013DC80 /* MPInterstitialAdController.h in Headers */,
 				90987D3D18BCD32500148D09 /* MFCustomEventBanner.h in Headers */,
 				90A79E281951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */,
@@ -1904,7 +1904,7 @@
 				90B5C5A419652C530013DC80 /* MPIdentityProvider.h in Headers */,
 				0F66D50614F30E9400FD6569 /* UIButton+MobFox.h in Headers */,
 				904F80841A14E55F0027E3EF /* IMIncentivisedDelegate.h in Headers */,
-				0F0EB65C1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h in Headers */,
+				0F0EB65C1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h in Headers */,
 				90B5C5BC19652C530013DC80 /* MPAdConversionTracker.h in Headers */,
 				904F80891A14E55F0027E3EF /* InMobi.h in Headers */,
 				903ADF0B18CDFDAA0001F0E4 /* MFCustomEvent.h in Headers */,
@@ -1926,8 +1926,8 @@
 				90B5C52119652C530013DC80 /* MPHTMLBannerCustomEvent.h in Headers */,
 				909716CE18AA4DDF007EEB4D /* MFVASTXMLParser.h in Headers */,
 				90B5C56819652C530013DC80 /* MRCalendarManager.h in Headers */,
-				90038F0D1846035D00446EAD /* CDataScanner.h in Headers */,
-				90038F351846035D00446EAD /* JSONRepresentation.h in Headers */,
+				90038F0D1846035D00446EAD /* MFCDataScanner.h in Headers */,
+				90038F351846035D00446EAD /* MFJSONRepresentation.h in Headers */,
 				904F80881A14E55F0027E3EF /* IMNativeDelegate.h in Headers */,
 				90038F211846035D00446EAD /* CDataScanner_Extensions.h in Headers */,
 				90B5C5FC19652C530013DC80 /* MPNativeAdAdapter.h in Headers */,
@@ -2022,7 +2022,7 @@
 				90B5C4F419652C530013DC80 /* MPAdConfiguration.h in Headers */,
 				909716CF18AA4DDF007EEB4D /* MFVASTXMLParser.h in Headers */,
 				901FCEEA192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
-				90038F1E1846035D00446EAD /* CJSONSerializedData.h in Headers */,
+				90038F1E1846035D00446EAD /* MFCJSONSerializedData.h in Headers */,
 				90B5C53819652C530013DC80 /* MPInterstitialCustomEventAdapter.h in Headers */,
 				90B5C58D19652C530013DC80 /* NSURL+MPAdditions.h in Headers */,
 				90B5C51E19652C530013DC80 /* MPAdWebViewAgent.h in Headers */,
@@ -2047,7 +2047,7 @@
 				90B5C60D19652C530013DC80 /* MPNativeAdRequestTargeting.h in Headers */,
 				A7992ECE1489373000E86AC8 /* UIView+FindViewController.h in Headers */,
 				90B5C5CD19652C530013DC80 /* MPInterstitialAdController.h in Headers */,
-				90038F1A1846035D00446EAD /* CJSONSerialization.h in Headers */,
+				90038F1A1846035D00446EAD /* MFCJSONSerialization.h in Headers */,
 				A7992ED01489373000E86AC8 /* MFDTXMLDocument.h in Headers */,
 				90B5C59119652C530013DC80 /* UIViewController+MPAdditions.h in Headers */,
 				90FEE52A1AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
@@ -2064,21 +2064,21 @@
 				9024BCE71973D95500922327 /* Flurry.h in Headers */,
 				904F80911A14E59F0027E3EF /* IMIncentivisedDelegate.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTracker.h in Headers */,
-				90038F361846035D00446EAD /* JSONRepresentation.h in Headers */,
+				90038F361846035D00446EAD /* MFJSONRepresentation.h in Headers */,
 				904F80961A14E59F0027E3EF /* InMobi.h in Headers */,
 				90CC97941AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
-				90038F2E1846035D00446EAD /* CJSONScanner.h in Headers */,
+				90038F2E1846035D00446EAD /* MFCJSONScanner.h in Headers */,
 				90B5C59519652C530013DC80 /* UIWebView+MPAdditions.h in Headers */,
 				90B5C56119652C530013DC80 /* MRAdViewDisplayController.h in Headers */,
 				90B5C4DD19652C530013DC80 /* MPBaseBannerAdapter.h in Headers */,
-				90038F2A1846035D00446EAD /* CJSONDeserializer.h in Headers */,
-				90038F121846035D00446EAD /* CFilteringJSONSerializer.h in Headers */,
+				90038F2A1846035D00446EAD /* MFCJSONDeserializer.h in Headers */,
+				90038F121846035D00446EAD /* MFCFilteringJSONSerializer.h in Headers */,
 				90B5C55319652C530013DC80 /* MPMRAIDInterstitialCustomEvent.h in Headers */,
 				90B5C51619652C530013DC80 /* MPURLResolver.h in Headers */,
 				90B5C58919652C530013DC80 /* NSJSONSerialization+MPAdditions.h in Headers */,
 				0F09F46814E7F134001C23E2 /* UIBarButtonItem+MobFox.h in Headers */,
 				9098B52E1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
-				90038F0E1846035D00446EAD /* CDataScanner.h in Headers */,
+				90038F0E1846035D00446EAD /* MFCDataScanner.h in Headers */,
 				90B5C57519652C530013DC80 /* MRImageDownloader.h in Headers */,
 				90B5C57119652C530013DC80 /* MRDimmingView.h in Headers */,
 				0F62B52114E938B20027BCB8 /* NSBundle+MobFox.h in Headers */,
@@ -2086,12 +2086,12 @@
 				0F62B52314E938B70027BCB8 /* UIImage+MobFox.h in Headers */,
 				90B5C52E19652C530013DC80 /* MPBaseInterstitialAdapter.h in Headers */,
 				90B5C52219652C530013DC80 /* MPHTMLBannerCustomEvent.h in Headers */,
-				90038F321846035D00446EAD /* CJSONSerializer.h in Headers */,
+				90038F321846035D00446EAD /* MFCJSONSerializer.h in Headers */,
 				90B5C56919652C530013DC80 /* MRCalendarManager.h in Headers */,
 				90038F261846035D00446EAD /* NSDictionary_JSONExtensions.h in Headers */,
 				0F66D50714F30E9400FD6569 /* UIButton+MobFox.h in Headers */,
 				904F80951A14E59F0027E3EF /* IMNativeDelegate.h in Headers */,
-				0F0EB65D1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.h in Headers */,
+				0F0EB65D1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h in Headers */,
 				0F3B191C159456A50035D3EF /* MobFoxVideoPlayerViewController.h in Headers */,
 				90B5C5FD19652C530013DC80 /* MPNativeAdAdapter.h in Headers */,
 				90B5C5B119652C530013DC80 /* MPSessionTracker.h in Headers */,
@@ -2239,7 +2239,7 @@
 				90B5C59E19652C530013DC80 /* MPError.m in Sources */,
 				90B5C5F219652C530013DC80 /* MPNativeCache.m in Sources */,
 				A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
-				90038F1B1846035D00446EAD /* CJSONSerialization.m in Sources */,
+				90038F1B1846035D00446EAD /* MFCJSONSerialization.m in Sources */,
 				A7992E9D1489362800E86AC8 /* MobFoxBannerView.m in Sources */,
 				90B5C5DC19652C530013DC80 /* UITableViewCell+MPNativeAd.m in Sources */,
 				90B5C50F19652C530013DC80 /* MPLastResortDelegate.m in Sources */,
@@ -2297,7 +2297,7 @@
 				90B5C53319652C530013DC80 /* MPInterstitialAdManager.m in Sources */,
 				90B5C51F19652C530013DC80 /* MPAdWebViewAgent.m in Sources */,
 				90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */,
-				90038F2F1846035D00446EAD /* CJSONScanner.m in Sources */,
+				90038F2F1846035D00446EAD /* MFCJSONScanner.m in Sources */,
 				9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewController.m in Sources */,
 				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
@@ -2307,7 +2307,7 @@
 				90B5C5BA19652C530013DC80 /* MPTimer.m in Sources */,
 				90FEE52B1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				903ADF0D18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */,
-				90038F1F1846035D00446EAD /* CJSONSerializedData.m in Sources */,
+				90038F1F1846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
 				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
 				90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60E19652C530013DC80 /* MPNativeAdRequestTargeting.m in Sources */,
@@ -2323,7 +2323,7 @@
 				90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				90B5C57619652C530013DC80 /* MRImageDownloader.m in Sources */,
 				90B5C66A196565550013DC80 /* InMobiCustomEventNative.m in Sources */,
-				0F0EB65E1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */,
+				0F0EB65E1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */,
 				909FE95719336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
 				90B5C4E219652C530013DC80 /* MPLegacyBannerCustomEventAdapter.m in Sources */,
 				0FCEB20B150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */,
@@ -2336,7 +2336,7 @@
 				90B5C4FD19652C530013DC80 /* MPAdServerCommunicator.m in Sources */,
 				90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */,
 				90B5C5E419652C530013DC80 /* MPImageDownloadQueue.m in Sources */,
-				90038F0F1846035D00446EAD /* CDataScanner.m in Sources */,
+				90038F0F1846035D00446EAD /* MFCDataScanner.m in Sources */,
 				90B5C4F519652C530013DC80 /* MPAdConfiguration.m in Sources */,
 				90B5C5E019652C530013DC80 /* MPDiskLRUCache.m in Sources */,
 				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
@@ -2354,15 +2354,15 @@
 				9098B52F1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */,
 				90B5C56219652C530013DC80 /* MRAdViewDisplayController.m in Sources */,
 				90B5C4F019652C530013DC80 /* MPAdBrowserController.m in Sources */,
-				90038F131846035D00446EAD /* CFilteringJSONSerializer.m in Sources */,
+				90038F131846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */,
 				90038F271846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */,
 				90B5C628196535A80013DC80 /* MoPubCustomEventNative.m in Sources */,
-				90038F331846035D00446EAD /* CJSONSerializer.m in Sources */,
+				90038F331846035D00446EAD /* MFCJSONSerializer.m in Sources */,
 				90C2E5741977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */,
 				90038F231846035D00446EAD /* CDataScanner_Extensions.m in Sources */,
 				90B5C52B19652C530013DC80 /* MPHTMLInterstitialViewController.m in Sources */,
 				901FCEEB192C8E4900D22785 /* MobFoxNativeAd.m in Sources */,
-				90038F2B1846035D00446EAD /* CJSONDeserializer.m in Sources */,
+				90038F2B1846035D00446EAD /* MFCJSONDeserializer.m in Sources */,
 				909A5E9D18B6168500C929A5 /* MFCustomEventBanner.m in Sources */,
 				90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */,
 				90B5C53D19652C530013DC80 /* MPInterstitialViewController.m in Sources */,
@@ -2457,7 +2457,7 @@
 				90B5C5BB19652C530013DC80 /* MPTimer.m in Sources */,
 				90FEE52C1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
-				90038F201846035D00446EAD /* CJSONSerializedData.m in Sources */,
+				90038F201846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
 				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
 				90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60F19652C530013DC80 /* MPNativeAdRequestTargeting.m in Sources */,
@@ -2474,9 +2474,9 @@
 				90B5C57719652C530013DC80 /* MRImageDownloader.m in Sources */,
 				90B5C66B196565550013DC80 /* InMobiCustomEventNative.m in Sources */,
 				0F62B52214E938B40027BCB8 /* NSBundle+MobFox.m in Sources */,
-				90038F141846035D00446EAD /* CFilteringJSONSerializer.m in Sources */,
+				90038F141846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */,
 				90B5C4E319652C530013DC80 /* MPLegacyBannerCustomEventAdapter.m in Sources */,
-				90038F2C1846035D00446EAD /* CJSONDeserializer.m in Sources */,
+				90038F2C1846035D00446EAD /* MFCJSONDeserializer.m in Sources */,
 				901FCEF5192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */,
 				0F62B52414E938BA0027BCB8 /* UIImage+MobFox.m in Sources */,
 				90B5C55519652C530013DC80 /* MPMRAIDInterstitialCustomEvent.m in Sources */,
@@ -2489,12 +2489,12 @@
 				90038F281846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */,
 				90B5C4F619652C530013DC80 /* MPAdConfiguration.m in Sources */,
 				90B5C5E119652C530013DC80 /* MPDiskLRUCache.m in Sources */,
-				0F0EB65F1503B40D00EEC4C3 /* UIDevice+IdentifierAddition.m in Sources */,
+				0F0EB65F1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */,
 				90B5C60B19652C530013DC80 /* MPNativeAdRequest.m in Sources */,
-				90038F101846035D00446EAD /* CDataScanner.m in Sources */,
+				90038F101846035D00446EAD /* MFCDataScanner.m in Sources */,
 				90DB89071AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */,
 				909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
-				90038F301846035D00446EAD /* CJSONScanner.m in Sources */,
+				90038F301846035D00446EAD /* MFCJSONScanner.m in Sources */,
 				90B090BD19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
 				90B5C55119652C530013DC80 /* MPMRAIDBannerCustomEvent.m in Sources */,
 				90B5C57B19652C530013DC80 /* MRJavaScriptEventEmitter.m in Sources */,
@@ -2504,12 +2504,12 @@
 				9098B5301AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */,
 				90B5C56319652C530013DC80 /* MRAdViewDisplayController.m in Sources */,
 				90B5C4F119652C530013DC80 /* MPAdBrowserController.m in Sources */,
-				90038F1C1846035D00446EAD /* CJSONSerialization.m in Sources */,
+				90038F1C1846035D00446EAD /* MFCJSONSerialization.m in Sources */,
 				901FCEEC192C8E4900D22785 /* MobFoxNativeAd.m in Sources */,
 				90B5C629196535A80013DC80 /* MoPubCustomEventNative.m in Sources */,
 				0F3B191D159456A50035D3EF /* MobFoxVideoPlayerViewController.m in Sources */,
 				90C2E5751977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */,
-				90038F341846035D00446EAD /* CJSONSerializer.m in Sources */,
+				90038F341846035D00446EAD /* MFCJSONSerializer.m in Sources */,
 				90B5C52C19652C530013DC80 /* MPHTMLInterstitialViewController.m in Sources */,
 				909A5E9F18B6168B00C929A5 /* MFCustomEventBanner.m in Sources */,
 				0F3567F9165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,

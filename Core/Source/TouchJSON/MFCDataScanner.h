@@ -31,7 +31,7 @@
 
 // NSScanner
 
-@interface CDataScanner : NSObject {
+@interface MFCDataScanner : NSObject {
 	NSData *data;
 
 	u_int8_t *start;

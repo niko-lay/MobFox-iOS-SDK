@@ -6,7 +6,7 @@
 #import "NSURL+MobFox.h"
 #import "MobFoxAdBrowserViewController.h"
 #import "MFRedirectChecker.h"
-#import "UIDevice+IdentifierAddition.h"
+#import "UIDevice+MFIdentifierAddition.h"
 #import "AdMobCustomEventBanner.h"
 #import "iAdCustomEventBanner.h"
 

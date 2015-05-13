@@ -27,21 +27,21 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "CJSONSerializer.h"
+#import "MFCJSONSerializer.h"
 
-#import "JSONRepresentation.h"
+#import "MFJSONRepresentation.h"
 
 static NSData *kNULL = NULL;
 static NSData *kFalse = NULL;
 static NSData *kTrue = NULL;
 
-@implementation CJSONSerializer
+@implementation MFCJSONSerializer
 
 + (void)initialize
     {
     NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
-    if (self == [CJSONSerializer class])
+    if (self == [MFCJSONSerializer class])
         {
         if (kNULL == NULL)
             kNULL = [[NSData alloc] initWithBytesNoCopy:(void *)"null" length:4 freeWhenDone:NO];
@@ -54,7 +54,7 @@ static NSData *kTrue = NULL;
         }
     }
 
-+ (CJSONSerializer *)serializer
++ (MFCJSONSerializer *)serializer
     {
     return([[[self alloc] init] autorelease]);
     }

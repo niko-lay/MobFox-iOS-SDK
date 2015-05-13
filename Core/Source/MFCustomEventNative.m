@@ -18,14 +18,14 @@
 
 -(void)addImageAssetWithImageUrl:(NSString*)url andType:(NSString*)type {
     if(url && type) {
-        ImageAsset* asset = [[ImageAsset alloc]initWithUrl:url width:0 height:0];
+        MFImageAsset* asset = [[MFImageAsset alloc]initWithUrl:url width:0 height:0];
         [self addImageAsset:asset withType:type];
     }
 }
 
 -(void)addImpressionTrackerWithUrl:(NSString*)url {
     if(url && url.length > 0) {
-        Tracker* tracker = [[Tracker alloc]init];
+        MFTracker* tracker = [[MFTracker alloc]init];
         tracker.type = kImpressionTrackerType;
         tracker.url = url;
         [self.trackers addObject:tracker];

@@ -146,7 +146,7 @@
         NSString* imageUrl = assetObject[@"url"];
         NSString* width =  assetObject[@"width"];
         NSString* height = assetObject[@"height"];
-        ImageAsset* asset = [[ImageAsset alloc]initWithUrl:imageUrl width:width height:height];
+        MFImageAsset* asset = [[MFImageAsset alloc]initWithUrl:imageUrl width:width height:height];
         [self.nativeAd addImageAsset:asset withType:key];
     }
     
@@ -159,7 +159,7 @@
     
     NSArray* trackersArray = self.json[@"trackers"];
     for (NSDictionary* trackerObject in trackersArray){
-        Tracker* tracker = [[Tracker alloc]init];
+        MFTracker* tracker = [[MFTracker alloc]init];
         tracker.type = trackerObject[@"type"];
         tracker.url = trackerObject[@"url"];
         [self.nativeAd.trackers addObject:tracker];

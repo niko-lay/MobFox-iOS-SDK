@@ -27,11 +27,11 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "CDataScanner.h"
+#import "MFCDataScanner.h"
 
 #import "CDataScanner_Extensions.h"
 
-@interface CDataScanner ()
+@interface MFCDataScanner ()
 @end
 
 #pragma mark -
@@ -51,7 +51,7 @@ inline static unichar CharacterAtPointer(void *start, void *end)
 
     static NSCharacterSet *sDoubleCharacters = NULL;
 
-    @implementation CDataScanner
+    @implementation MFCDataScanner
 
 - (id)init
     {

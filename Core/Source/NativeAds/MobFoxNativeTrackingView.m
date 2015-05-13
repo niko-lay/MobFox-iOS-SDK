@@ -41,7 +41,7 @@
         [nativeAd handleImpression];
         
         NSMutableArray* impressionTrackers = [[NSMutableArray alloc]init];
-        for (Tracker* t in nativeAd.trackers) {
+        for (MFTracker* t in nativeAd.trackers) {
             if([t.type isEqualToString:@"impression"]) {
                 [impressionTrackers addObject:t.url];
             }

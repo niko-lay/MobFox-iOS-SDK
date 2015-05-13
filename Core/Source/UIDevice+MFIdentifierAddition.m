@@ -7,7 +7,7 @@
 //
 //  With additional IP Address Lookup Code
 
-#import "UIDevice+IdentifierAddition.h"
+#import "UIDevice+MFIdentifierAddition.h"
 #import "NSString+MobFox.h"
 
 #include <sys/socket.h> // Per msqr
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation UIDevice (IdentifierAddition)
+@implementation UIDevice (MFIdentifierAddition)
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
