@@ -12,11 +12,11 @@
 
 - (NSString*)publisherIdForMobFoxWaterfallInterstitial;
 
+@optional
+
 - (void)mobfoxWaterfallInterstitialDidLoad;
 
 - (void)mobfoxWaterfallDidFailToLoadWithError:(NSError *)error;
-
-@optional
 
 - (void)mobfoxWaterfallInterstitialWillPresent;
 
