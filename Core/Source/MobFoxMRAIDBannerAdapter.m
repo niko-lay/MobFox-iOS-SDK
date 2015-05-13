@@ -1,5 +1,5 @@
 #import "MobFoxMRAIDBannerAdapter.h"
-#import "MPAdConfiguration.h"
+#import "MPAdConfigurationMF.h"
 
 
 @implementation MobFoxMRAIDBannerAdapter
@@ -7,7 +7,7 @@
 @synthesize adView = _adView;
 @synthesize configuration = _configuration;
 
-- (void)getAdWithConfiguration:(MPAdConfiguration *)configuration containerSize:(CGSize)size
+- (void)getAdWithConfiguration:(MPAdConfigurationMF *)configuration containerSize:(CGSize)size
 {
     CGRect adViewFrame = CGRectZero;
     if ([configuration hasPreferredSize]) {
@@ -15,7 +15,7 @@
                                  configuration.preferredSize.height);
     }
     
-    self.adView = [[MRAdView alloc] initWithFrame:adViewFrame
+    self.adView = [[MRAdViewMF alloc] initWithFrame:adViewFrame
                                  allowsExpansion:YES
                                 closeButtonStyle:MRAdViewCloseButtonStyleAdControlled
                                    placementType:MRAdViewPlacementTypeInline];
@@ -45,7 +45,7 @@
     return [self.delegate viewControllerForPresentingModalView];
 }
 
-- (MPAdConfiguration *)adConfiguration
+- (MPAdConfigurationMF *)adConfiguration
 {
     return self.configuration;
 }
@@ -59,22 +59,22 @@
     return nil;
 }
 
-- (void)adDidLoad:(MRAdView *)adView
+- (void)adDidLoad:(MRAdViewMF *)adView
 {
     [self.delegate adapter:self didFinishLoadingAd:adView];
 }
 
-- (void)adDidFailToLoad:(MRAdView *)adView
+- (void)adDidFailToLoad:(MRAdViewMF *)adView
 {
     [self.delegate adapter:self didFailToLoadAdWithError:nil];
 }
 
-- (void)appShouldSuspendForAd:(MRAdView *)adView
+- (void)appShouldSuspendForAd:(MRAdViewMF *)adView
 {
     [self.delegate userActionWillBeginForAdapter:self];
 }
 
-- (void)appShouldResumeFromAd:(MRAdView *)adView
+- (void)appShouldResumeFromAd:(MRAdViewMF *)adView
 {
     [self.delegate userActionDidFinishForAdapter:self];
 }

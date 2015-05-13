@@ -7,8 +7,8 @@
 //
 
 #import "MFCustomEventNative.h"
-#import "MPNativeAd.h"
-#import "MPNativeAdRequest.h"
+#import "MPNativeAdMF.h"
+#import "MPNativeAdRequestMF.h"
 
 @interface MoPubCustomEventNative : MFCustomEventNative
 

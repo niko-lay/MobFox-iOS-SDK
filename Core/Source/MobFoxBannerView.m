@@ -13,16 +13,16 @@
 
 #import <AdSupport/AdSupport.h>
 #import "MobFoxMRAIDBannerAdapter.h"
-#import "MPBaseBannerAdapter.h"
-#import "MPAdView.h"
-#import "MPAdConfiguration.h"
+#import "MPBaseBannerAdapterMF.h"
+#import "MPAdViewMF.h"
+#import "MPAdConfigurationMF.h"
 #import "MFCustomEvent.h"
 
 
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegateMF, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
     NSMutableArray *customEvents;
@@ -494,7 +494,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         }
         
         
-        MPAdConfiguration *mPAdConfiguration = [[MPAdConfiguration alloc] init];
+        MPAdConfigurationMF *mPAdConfiguration = [[MPAdConfigurationMF alloc] init];
 
         mPAdConfiguration.adResponseData = _data;
         mPAdConfiguration.preferredSize = size;
@@ -1112,11 +1112,11 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 #pragma mark -
 #pragma mark MPBannerAdapterDelegate
-- (MPAdView *)banner{
-    return (MPAdView *)self;
+- (MPAdViewMF *)banner{
+    return (MPAdViewMF *)self;
 }
 
-- (id<MPAdViewDelegate>)bannerDelegate{
+- (id<MPAdViewDelegateMF>)bannerDelegate{
     return nil;
 }
 
@@ -1124,15 +1124,15 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     return nil;
 }
 
-- (void)adapter:(MPBaseBannerAdapter *)adapter didFinishLoadingAd:(UIView *)ad
+- (void)adapter:(MPBaseBannerAdapterMF *)adapter didFinishLoadingAd:(UIView *)ad
 {
 }
 
-- (void)adapter:(MPBaseBannerAdapter *)adapter didFailToLoadAdWithError:(NSError *)error
+- (void)adapter:(MPBaseBannerAdapterMF *)adapter didFailToLoadAdWithError:(NSError *)error
 {
 }
 
-- (void)userActionWillBeginForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userActionWillBeginForAdapter:(MPBaseBannerAdapterMF *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillPresent:)])
     {
@@ -1140,7 +1140,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     }
 }
 
-- (void)userActionDidFinishForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userActionDidFinishForAdapter:(MPBaseBannerAdapterMF *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionDidFinish:)])
 	{
@@ -1148,7 +1148,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
 }
 
-- (void)userWillLeaveApplicationFromAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userWillLeaveApplicationFromAdapter:(MPBaseBannerAdapterMF *)adapter
 {
     if ([delegate respondsToSelector:@selector(mobfoxBannerViewActionWillLeaveApplication:)])
     {

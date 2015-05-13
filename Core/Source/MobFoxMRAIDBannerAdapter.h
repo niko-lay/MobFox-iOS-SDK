@@ -1,11 +1,11 @@
 
-#import "MPBaseBannerAdapter.h"
-#import "MRAdView.h"
+#import "MPBaseBannerAdapterMF.h"
+#import "MRAdViewMF.h"
 
-@interface MobFoxMRAIDBannerAdapter : MPBaseBannerAdapter <MRAdViewDelegate> {
-    MRAdView *_adView;
+@interface MobFoxMRAIDBannerAdapter : MPBaseBannerAdapterMF <MRAdViewDelegateMF> {
+    MRAdViewMF *_adView;
 }
-@property(nonatomic,retain) MRAdView* adView;
-@property(nonatomic,retain) MPAdConfiguration* configuration;
+@property(nonatomic,retain) MRAdViewMF* adView;
+@property(nonatomic,retain) MPAdConfigurationMF* configuration;
 
 @end

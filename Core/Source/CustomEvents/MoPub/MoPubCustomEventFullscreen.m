@@ -15,7 +15,7 @@
 {
     self.trackingPixel = trackingPixel;
     
-    interstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:optionalParameters];
+    interstitial = [MPInterstitialAdControllerMF interstitialAdControllerForAdUnitId:optionalParameters];
     
     interstitial.delegate = self;
     
@@ -37,22 +37,22 @@
 }
 
 #pragma mark delegate methods
-- (void)interstitialDidLoadAd:(MPInterstitialAdController *)interstitial
+- (void)interstitialDidLoadAd:(MPInterstitialAdControllerMF *)interstitial
 {
     [self notifyAdLoaded];
 }
 
-- (void)interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial
+- (void)interstitialDidFailToLoadAd:(MPInterstitialAdControllerMF *)interstitial
 {
     [self notifyAdFailed];
 }
 
-- (void)interstitialWillAppear:(MPInterstitialAdController *)interstitial
+- (void)interstitialWillAppear:(MPInterstitialAdControllerMF *)interstitial
 {
     [self notifyAdWillAppear];
 }
 
-- (void)interstitialWillDisappear:(MPInterstitialAdController *)interstitial
+- (void)interstitialWillDisappear:(MPInterstitialAdControllerMF *)interstitial
 {
     [self notifyAdWillClose];
 }

@@ -9,7 +9,7 @@
 #import "MoPubCustomEventBanner.h"
 
 @interface MoPubCustomEventBanner()
-@property (nonatomic, retain) MPAdView* adBannerView;
+@property (nonatomic, retain) MPAdViewMF* adBannerView;
 @end
 
 @implementation MoPubCustomEventBanner
@@ -18,7 +18,7 @@
 {
     self.trackingPixel = trackingPixel;
     
-    self.adBannerView = [[MPAdView alloc]initWithAdUnitId:optionalParameters size:CGSizeMake(size.width, size.height)];
+    self.adBannerView = [[MPAdViewMF alloc]initWithAdUnitId:optionalParameters size:CGSizeMake(size.width, size.height)];
     self.adBannerView.delegate = self;
     self.adBannerView.frame = CGRectMake(0, 0, size.width, size.height);
     
@@ -44,23 +44,23 @@
     return [self.delegate viewControllerForPresentingModalView];
 }
 
-- (void)adViewDidLoadAd:(MPAdView *)view
+- (void)adViewDidLoadAd:(MPAdViewMF *)view
 {
     [self didDisplayAd];
     [self.delegate customEventBannerDidLoadAd:self.adBannerView];
 }
 
-- (void)adViewDidFailToLoadAd:(MPAdView *)view
+- (void)adViewDidFailToLoadAd:(MPAdViewMF *)view
 {
     [self.delegate customEventBannerDidFailToLoadAd];
 }
 
-- (void)willPresentModalViewForAd:(MPAdView *)view
+- (void)willPresentModalViewForAd:(MPAdViewMF *)view
 {
     [self.delegate customEventBannerWillExpand];
 }
 
-- (void)didDismissModalViewForAd:(MPAdView *)view
+- (void)didDismissModalViewForAd:(MPAdViewMF *)view
 {
     [self.delegate customEventBannerWillClose];
 }

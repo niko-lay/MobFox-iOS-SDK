@@ -6,15 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPInterstitialCustomEventDelegate.h"
+#import "MPInterstitialCustomEventDelegateMF.h"
 
-@class MPAdConfiguration;
+@class MPAdConfigurationMF;
 @class CLLocation;
 
-@protocol MPPrivateInterstitialCustomEventDelegate <MPInterstitialCustomEventDelegate>
+@protocol MPPrivateInterstitialCustomEventDelegateMF <MPInterstitialCustomEventDelegateMF>
 
 - (NSString *)adUnitId;
-- (MPAdConfiguration *)configuration;
+- (MPAdConfigurationMF *)configuration;
 - (id)interstitialDelegate;
 
 @end

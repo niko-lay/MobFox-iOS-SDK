@@ -7,33 +7,33 @@
 //
 
 #import "MoPubCustomEventNative.h"
-#import "MPNativeAdConstants.h"
+#import "MPNativeAdConstantsMF.h"
 
 @interface MoPubCustomEventNative()
-@property (nonatomic, strong) MPNativeAd* moPubNativeAd;
+@property (nonatomic, strong) MPNativeAdMF* moPubNativeAd;
 @end
 
 @implementation MoPubCustomEventNative
 
 -(void)loadNativeAdWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel {
     [self addImpressionTrackerWithUrl:trackingPixel];
-    MPNativeAdRequest *adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:optionalParameters];
+    MPNativeAdRequestMF *adRequest = [MPNativeAdRequestMF requestWithAdUnitIdentifier:optionalParameters];
 
     [self performSelectorOnMainThread:@selector(loadMoPub:) withObject:adRequest waitUntilDone:YES];
     
 }
 
-- (void) loadMoPub:(MPNativeAdRequest *)adRequest {
-    [adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
+- (void) loadMoPub:(MPNativeAdRequestMF *)adRequest {
+    [adRequest startWithCompletionHandler:^(MPNativeAdRequestMF *request, MPNativeAdMF *response, NSError *error) {
         if (error) {
             [self.delegate customEventNativeFailed];
         } else {
             self.moPubNativeAd = response;
             [self setClickUrl:[response.defaultActionURL absoluteString]];
             
-            [self addTextAsset:[response.properties objectForKey:kAdCTATextKey] withType:kCallToActionTextAsset];
-            [self addTextAsset:[response.properties objectForKey:kAdTitleKey] withType:kHeadlineTextAsset];
-            [self addTextAsset:[response.properties objectForKey:kAdTextKey] withType:kDescriptionTextAsset];
+            [self addTextAsset:[response.properties objectForKey:kAdCTATextKeyMF] withType:kCallToActionTextAsset];
+            [self addTextAsset:[response.properties objectForKey:kAdTitleKeyMF] withType:kHeadlineTextAsset];
+            [self addTextAsset:[response.properties objectForKey:kAdTextKeyMF] withType:kDescriptionTextAsset];
             
             NSNumber *starRatingNum = response.starRating;
             if(starRatingNum) {
@@ -41,8 +41,8 @@
                 [self addTextAsset:starRating withType:kRatingTextAsset];
             }
 
-            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdIconImageKey] andType:kIconImageAsset];
-            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdMainImageKey] andType:kMainImageAsset];
+            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdIconImageKeyMF] andType:kIconImageAsset];
+            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdMainImageKeyMF] andType:kMainImageAsset];
 
             
             if([self isNativeAdValid]) {
