@@ -6,11 +6,11 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import "Flurry.h"
 #import "FlurryAds.h"
 #import "FlurryAdDelegate.h"
 
-@interface FlurryCustomEventBanner : CustomEventBanner <FlurryAdDelegate>
+@interface FlurryCustomEventBanner : MFCustomEventBanner <FlurryAdDelegate>
 
 @end

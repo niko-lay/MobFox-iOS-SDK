@@ -9,9 +9,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "CustomEventFullscreenDelegate.h"
+#import "MFCustomEventFullscreenDelegate.h"
 
-@interface CustomEventFullscreen : NSObject
+@interface MFCustomEventFullscreen : NSObject
 
 - (void)loadFullscreenWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel;
 
@@ -30,7 +30,7 @@
 - (void)finish;
 
 
-@property (nonatomic, assign) id<CustomEventFullscreenDelegate> delegate;
+@property (nonatomic, assign) id<MFCustomEventFullscreenDelegate> delegate;
 @property (nonatomic, retain) NSString* trackingPixel;
 
 @end

@@ -1,12 +1,12 @@
-#import "RedirectChecker.h"
+#import "MFRedirectChecker.h"
 
-@implementation RedirectChecker
+@implementation MFRedirectChecker
 
 @synthesize delegate = _delegate;
 @synthesize mimeType;
 @synthesize textEncodingName;
 
-- (id)initWithURL:(NSURL *)url userAgent:(NSString *)userAgent delegate:(id<RedirectCheckerDelegate>) delegate
+- (id)initWithURL:(NSURL *)url userAgent:(NSString *)userAgent delegate:(id<MFRedirectCheckerDelegate>) delegate
 {
 	if (self = [super init])
 	{

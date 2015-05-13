@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <UnityAds/UnityAds.h>
 
-@interface ApplifierCustomEventFullscreen : CustomEventFullscreen <UnityAdsDelegate> {
+@interface ApplifierCustomEventFullscreen : MFCustomEventFullscreen <UnityAdsDelegate> {
     UnityAds* sdk;
 }
 

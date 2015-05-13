@@ -7,9 +7,9 @@
 //
 
 #import "MobFoxNativeAd.h"
-#import "CustomEventNativeDelegate.h"
+#import "MFCustomEventNativeDelegate.h"
 
-@interface CustomEventNative : MobFoxNativeAd
+@interface MFCustomEventNative : MobFoxNativeAd
 
 -(void) loadNativeAdWithOptionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel;
 
@@ -21,6 +21,6 @@
 
 -(void)destroy;
 
-@property (nonatomic, strong) id<CustomEventNativeDelegate> delegate;
+@property (nonatomic, strong) id<MFCustomEventNativeDelegate> delegate;
 
 @end

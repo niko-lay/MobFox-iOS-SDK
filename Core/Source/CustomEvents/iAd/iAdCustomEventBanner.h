@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import <iAd/iAd.h>
 
-@interface iAdCustomEventBanner : CustomEventBanner <ADBannerViewDelegate>
+@interface iAdCustomEventBanner : MFCustomEventBanner <ADBannerViewDelegate>
 
 @end

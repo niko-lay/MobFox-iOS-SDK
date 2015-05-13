@@ -6,8 +6,8 @@
 //
 //
 
-#import "CustomEvent.h"
+#import "MFCustomEvent.h"
 
-@implementation CustomEvent
+@implementation MFCustomEvent
 
 @end

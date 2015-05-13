@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <AdColony/AdColony.h>
 
-@interface AdColonyCustomEventFullscreen : CustomEventFullscreen <AdColonyDelegate, AdColonyAdDelegate> {
+@interface AdColonyCustomEventFullscreen : MFCustomEventFullscreen <AdColonyDelegate, AdColonyAdDelegate> {
 
 }
 

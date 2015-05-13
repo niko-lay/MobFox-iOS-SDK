@@ -6,11 +6,11 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <Chartboost/Chartboost.h>
 
 
-@interface ChartboostCustomEventFullscreen : CustomEventFullscreen <ChartboostDelegate> {
+@interface ChartboostCustomEventFullscreen : MFCustomEventFullscreen <ChartboostDelegate> {
     Class sdk;
 }
 

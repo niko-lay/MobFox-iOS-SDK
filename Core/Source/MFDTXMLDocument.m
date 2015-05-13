@@ -1,27 +1,27 @@
-#import "DTXMLDocument.h"
-#import "DTXMLElement.h"
+#import "MFDTXMLDocument.h"
+#import "MFDTXMLElement.h"
 
-@implementation DTXMLDocument
+@implementation MFDTXMLDocument
 
 #pragma mark Factory Methods
-+ (DTXMLDocument *) documentWithData:(NSData *)data
++ (MFDTXMLDocument *) documentWithData:(NSData *)data
 {
-	return [[DTXMLDocument alloc] initWithData:data];
+	return [[MFDTXMLDocument alloc] initWithData:data];
 }
 
-+ (DTXMLDocument *) documentWithContentsOfFile:(NSString *)path
++ (MFDTXMLDocument *) documentWithContentsOfFile:(NSString *)path
 {
-	return [[DTXMLDocument alloc] initWithContentsOfFile:path];
+	return [[MFDTXMLDocument alloc] initWithContentsOfFile:path];
 }
 
-+ (DTXMLDocument *) documentWithContentsOfFile:(NSString *)path delegate:(id<DTXMLDocumentDelegate>)delegate
++ (MFDTXMLDocument *) documentWithContentsOfFile:(NSString *)path delegate:(id<MFDTXMLDocumentDelegate>)delegate
 {
-	return [[DTXMLDocument alloc] initWithContentsOfFile:path delegate:delegate];
+	return [[MFDTXMLDocument alloc] initWithContentsOfFile:path delegate:delegate];
 }
 
-+ (DTXMLDocument *) documentWithContentsOfURL:(NSURL *)url delegate:(id<DTXMLDocumentDelegate>)delegate
++ (MFDTXMLDocument *) documentWithContentsOfURL:(NSURL *)url delegate:(id<MFDTXMLDocumentDelegate>)delegate
 {
-	return [[DTXMLDocument alloc] initWithContentsOfURL:url delegate:delegate];
+	return [[MFDTXMLDocument alloc] initWithContentsOfURL:url delegate:delegate];
 }
 
 #pragma mark Initializer
@@ -82,7 +82,7 @@
 	return self;
 }
 
-- (id) initWithContentsOfFile:(NSString *)path delegate:(id<DTXMLDocumentDelegate>)delegate
+- (id) initWithContentsOfFile:(NSString *)path delegate:(id<MFDTXMLDocumentDelegate>)delegate
 {
 	if (self = [super init])
 	{
@@ -106,7 +106,7 @@
 	return self;
 }
 
-- (id) initWithContentsOfURL:(NSURL *)url delegate:(id<DTXMLDocumentDelegate>)xmlDelegate
+- (id) initWithContentsOfURL:(NSURL *)url delegate:(id<MFDTXMLDocumentDelegate>)xmlDelegate
 {
 	if (self = [super init])
 	{
@@ -130,7 +130,7 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {	
-	DTXMLElement *newElement = [[DTXMLElement alloc] initWithName:elementName];
+	MFDTXMLElement *newElement = [[MFDTXMLElement alloc] initWithName:elementName];
 	newElement.attributes = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
 
 	if (!currentElement)

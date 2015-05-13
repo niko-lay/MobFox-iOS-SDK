@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface AdMobCustomEventFullscreen : CustomEventFullscreen <GADInterstitialDelegate> {
+@interface AdMobCustomEventFullscreen : MFCustomEventFullscreen <GADInterstitialDelegate> {
     
     GADInterstitial *interstitial_;
 }

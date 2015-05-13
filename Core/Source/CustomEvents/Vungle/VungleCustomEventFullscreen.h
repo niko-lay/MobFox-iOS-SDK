@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <VungleSDK/VungleSDK.h>
 
-@interface VungleCustomEventFullscreen : CustomEventFullscreen <VungleSDKDelegate> {
+@interface VungleCustomEventFullscreen : MFCustomEventFullscreen <VungleSDKDelegate> {
     VungleSDK* sdk;
     NSTimer *checkStatusTimer;
 }

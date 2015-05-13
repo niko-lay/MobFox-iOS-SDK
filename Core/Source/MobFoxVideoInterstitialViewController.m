@@ -3,9 +3,9 @@
 #import "MobFoxVideoInterstitialViewController.h"
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import "NSString+MobFox.h"
-#import "DTXMLDocument.h"
-#import "DTXMLElement.h"
-#import "VASTXMLParser.h"
+#import "MFDTXMLDocument.h"
+#import "MFDTXMLElement.h"
+#import "MFVASTXMLParser.h"
 
 #import "NSURL+MobFox.h"
 #import "MobFoxAdBrowserViewController.h"
@@ -26,11 +26,11 @@
 #import <AdSupport/AdSupport.h>
 #import "AdMobCustomEventFullscreen.h"
 #import "iAdCustomEventFullscreen.h"
-#import "CustomEvent.h"
+#import "MFCustomEvent.h"
 
 NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial";
 
-@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, CustomEventFullscreenDelegate, MobFoxBannerViewDelegate> {
+@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, MFCustomEventFullscreenDelegate, MobFoxBannerViewDelegate> {
     BOOL videoSkipButtonShow;
     NSTimeInterval videoSkipButtonDisplayDelay;
     BOOL videoTimerShow;
@@ -100,7 +100,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @property (nonatomic, strong) MobFoxInterstitialPlayerViewController *mobFoxInterstitialPlayerViewController;
 
-@property (nonatomic, strong) CustomEventFullscreen *customEventFullscreen;
+@property (nonatomic, strong) MFCustomEventFullscreen *customEventFullscreen;
 
 @property (nonatomic, strong) MobFoxToolBar *interstitialTopToolbar;
 @property (nonatomic, strong) MobFoxToolBar *interstitialBottomToolbar;
@@ -135,7 +135,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
-- (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement;
+- (BOOL)videoCreateAdvert:(MFDTXMLElement*)videoElement;
 - (void)videoReplayButtonAction:(id)sender;
 - (void)videoStartTimer;
 - (void)videoStopTimer;
@@ -757,7 +757,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
         
-        DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
+        MFDTXMLDocument *xml = [MFDTXMLDocument documentWithData:dataReply];
         
         if (!xml)
         {
@@ -954,7 +954,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
 
-        DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
+        MFDTXMLDocument *xml = [MFDTXMLDocument documentWithData:dataReply];
         
         if (!xml)
         {
@@ -983,7 +983,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 - (void)advertCreateFromXML:(NSArray*)array
 {
-    DTXMLDocument *xml = [array objectAtIndex:0];
+    MFDTXMLDocument *xml = [array objectAtIndex:0];
     NSDictionary *headers;
     if([array count] > 1) {
         headers = [array objectAtIndex:1];
@@ -1039,7 +1039,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
                     if(error) {
                         continue;
                     }
-                    CustomEvent *customEvent = [[CustomEvent alloc] init];
+                    MFCustomEvent *customEvent = [[MFCustomEvent alloc] init];
                     customEvent.className = [json objectForKey:@"class"];
                     customEvent.optionalParameter = [json objectForKey:@"parameter"];
                     customEvent.pixelUrl = [json objectForKey:@"pixel"];
@@ -1141,7 +1141,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     {
         @try
         {
-            CustomEvent *event = [customEvents objectAtIndex:0];
+            MFCustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
             NSString* className = [NSString stringWithFormat:@"%@CustomEventFullscreen",event.className];
             Class customClass = NSClassFromString(className);
@@ -1162,7 +1162,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     }
 }
 
-- (BOOL)interstitialFromBannerCreateAdvert:(DTXMLDocument*)document {
+- (BOOL)interstitialFromBannerCreateAdvert:(MFDTXMLDocument*)document {
     interstitialAutoCloseDisabled = YES;
     interstitialSkipButtonDisplayed = NO;
     
@@ -1234,8 +1234,8 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     return (hours * 60 * 60) + (minutes * 60) + seconds;
 }
 
-- (BOOL)videoCreateAdvert:(DTXMLElement*)videoElement {
-    vastAds = [VASTXMLParser parseVAST: videoElement];
+- (BOOL)videoCreateAdvert:(MFDTXMLElement*)videoElement {
+    vastAds = [MFVASTXMLParser parseVAST: videoElement];
     videoSkipButtonDisplayed = NO;
     
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
@@ -1564,7 +1564,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     return self;
 }
 
-- (void)customEventFullscreenDidLoadAd:(CustomEventFullscreen *)fullscreen
+- (void)customEventFullscreenDidLoadAd:(MFCustomEventFullscreen *)fullscreen
 {
     [self advertCreatedSuccessfully:advertTypeCurrentlyPlaying];
 }

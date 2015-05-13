@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventNative.h"
+#import "MFCustomEventNative.h"
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-@interface FacebookCustomEventNative : CustomEventNative <FBNativeAdDelegate> {
+@interface FacebookCustomEventNative : MFCustomEventNative <FBNativeAdDelegate> {
     FBNativeAd* facebookNativeAd;
 }
 

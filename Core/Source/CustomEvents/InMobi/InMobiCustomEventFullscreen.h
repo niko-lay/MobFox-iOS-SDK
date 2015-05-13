@@ -6,11 +6,11 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import "IMInterstitial.h"
 #import "IMInterstitialDelegate.h"
 
-@interface InMobiCustomEventFullscreen : CustomEventFullscreen <IMInterstitialDelegate> {
+@interface InMobiCustomEventFullscreen : MFCustomEventFullscreen <IMInterstitialDelegate> {
     IMInterstitial* interstitial;    
 }
 

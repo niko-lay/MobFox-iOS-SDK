@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface AdMobCustomEventBanner : CustomEventBanner <GADBannerViewDelegate>
+@interface AdMobCustomEventBanner : MFCustomEventBanner <GADBannerViewDelegate>
 
 @end

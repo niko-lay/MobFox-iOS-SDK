@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-@interface FacebookCustomEventFullscreen : CustomEventFullscreen <FBInterstitialAdDelegate> {
+@interface FacebookCustomEventFullscreen : MFCustomEventFullscreen <FBInterstitialAdDelegate> {
     FBInterstitialAd *interstitial;
 }
 

@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTXMLElement.h"
+#import "MFDTXMLElement.h"
 #import "VAST.h"
 
-@interface VASTXMLParser : NSObject
+@interface MFVASTXMLParser : NSObject
 
-+(NSMutableArray*) parseVAST:(DTXMLElement*) vastElement;
++(NSMutableArray*) parseVAST:(MFDTXMLElement*) vastElement;
 
 @end

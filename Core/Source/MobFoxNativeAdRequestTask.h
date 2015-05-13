@@ -6,7 +6,7 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import "MobFoxNativeAdController.h"
 
 @interface MobFoxNativeAdRequestTask : NSObject

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class CustomEventFullscreen;
+@class MFCustomEventFullscreen;
 
-@protocol CustomEventFullscreenDelegate <NSObject>
+@protocol MFCustomEventFullscreenDelegate <NSObject>
 
 - (UIViewController *)viewControllerForPresentingModalView;
 
-- (void)customEventFullscreenDidLoadAd:(CustomEventFullscreen *)fullscreen;
+- (void)customEventFullscreenDidLoadAd:(MFCustomEventFullscreen *)fullscreen;
 
 - (void)customEventFullscreenDidFailToLoadAd;
 

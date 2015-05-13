@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventNative.h"
+#import "MFCustomEventNative.h"
 
-@implementation CustomEventNative
+@implementation MFCustomEventNative
 
 @synthesize delegate;
 

@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 
-@implementation CustomEventFullscreen
+@implementation MFCustomEventFullscreen
 
 @synthesize delegate;
 @synthesize trackingPixel;

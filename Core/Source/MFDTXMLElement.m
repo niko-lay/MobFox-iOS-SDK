@@ -1,6 +1,6 @@
-#import "DTXMLElement.h"
+#import "MFDTXMLElement.h"
 
-@implementation DTXMLElement
+@implementation MFDTXMLElement
 
 @synthesize name, text, children, attributes, parent;
 
@@ -26,7 +26,7 @@
 	{
 		NSMutableString *childrenString = [NSMutableString string];
 
-		for (DTXMLElement *oneChild in children)
+		for (MFDTXMLElement *oneChild in children)
 		{
 			[childrenString appendFormat:@"%@", oneChild];
 		}
@@ -38,9 +38,9 @@
 	}
 }
 
-- (DTXMLElement *) getNamedChild:(NSString *)childName
+- (MFDTXMLElement *) getNamedChild:(NSString *)childName
 {
-	for (DTXMLElement *oneChild in self.children)
+	for (MFDTXMLElement *oneChild in self.children)
 	{
 		if ([oneChild.name isEqualToString:childName])
 		{
@@ -53,7 +53,7 @@
 - (NSArray *) getNamedChildren:(NSString *)childName
 {
 	NSMutableArray *tmpArray = [NSMutableArray array];
-	for (DTXMLElement *oneChild in self.children)
+	for (MFDTXMLElement *oneChild in self.children)
 	{
 		if ([oneChild.name isEqualToString:childName])
 		{
@@ -65,19 +65,19 @@
 
 - (void) removeNamedChild:(NSString *)childName
 {
-	DTXMLElement *childToDelete = [self getNamedChild:childName];
+	MFDTXMLElement *childToDelete = [self getNamedChild:childName];
 	[self.children removeObject:childToDelete];
 }
 
 - (void) changeTextForNamedChild:(NSString *)childName toText:(NSString *)newText
 {
-	DTXMLElement *childToModify = [self getNamedChild:childName];
+	MFDTXMLElement *childToModify = [self getNamedChild:childName];
 	[childToModify.text setString:newText];
 }
 
-- (DTXMLElement *) addChildWithName:(NSString *)childName text:(NSString *)childText
+- (MFDTXMLElement *) addChildWithName:(NSString *)childName text:(NSString *)childText
 {
-	DTXMLElement *newChild = [[DTXMLElement alloc] initWithName:childName];
+	MFDTXMLElement *newChild = [[MFDTXMLElement alloc] initWithName:childName];
 	if (childText)
 	{
 		newChild.text = [NSString stringWithString:childText];
@@ -90,7 +90,7 @@
 #pragma mark virtual properties
 - (NSString *)title
 {
-	DTXMLElement *titleElement = [self getNamedChild:@"title"];
+	MFDTXMLElement *titleElement = [self getNamedChild:@"title"];
 	return titleElement.text;
 }
 
@@ -114,7 +114,7 @@
 
 - (NSURL *)link
 {
-	DTXMLElement *linkElement = [self getNamedChild:@"link"];
+	MFDTXMLElement *linkElement = [self getNamedChild:@"link"];
 	NSString *linkString = [linkElement.attributes objectForKey:@"href"];
 
 	return linkString?[NSURL URLWithString:linkString]:nil;
@@ -127,7 +127,7 @@
 
 - (id) valueForKey:(NSString *)key
 {
-	DTXMLElement *titleElement = [self getNamedChild:key];
+	MFDTXMLElement *titleElement = [self getNamedChild:key];
 	return titleElement.text;
 }
 

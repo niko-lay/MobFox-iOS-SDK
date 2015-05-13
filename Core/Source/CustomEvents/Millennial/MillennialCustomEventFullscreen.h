@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <MillennialMedia/MMInterstitial.h>
 
-@interface MillennialCustomEventFullscreen : CustomEventFullscreen
+@interface MillennialCustomEventFullscreen : MFCustomEventFullscreen
 
 @end

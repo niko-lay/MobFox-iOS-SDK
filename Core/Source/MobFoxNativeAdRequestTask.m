@@ -7,15 +7,15 @@
 //
 
 #import "MobFoxNativeAdRequestTask.h"
-#import "CustomEvent.h"
-#import "CustomEventNative.h"
+#import "MFCustomEvent.h"
+#import "MFCustomEventNative.h"
 
 
-@interface MobFoxNativeAdRequestTask()<CustomEventNativeDelegate> {
+@interface MobFoxNativeAdRequestTask()<MFCustomEventNativeDelegate> {
     
 }
     @property (nonatomic, strong) MobFoxNativeAd* nativeAd;
-    @property (nonatomic, strong) CustomEventNative* customEventNative;
+    @property (nonatomic, strong) MFCustomEventNative* customEventNative;
     @property (nonatomic, strong) NSDictionary *json;
 
 @end
@@ -94,7 +94,7 @@
                     if(error) {
                         continue;
                     }
-                    CustomEvent *customEvent = [[CustomEvent alloc] init];
+                    MFCustomEvent *customEvent = [[MFCustomEvent alloc] init];
                     customEvent.className = [json objectForKey:@"class"];
                     customEvent.optionalParameter = [json objectForKey:@"parameter"];
                     customEvent.pixelUrl = [json objectForKey:@"pixel"];
@@ -174,7 +174,7 @@
     {
         @try
         {
-            CustomEvent *event = [_nativeAd.customEvents objectAtIndex:0];
+            MFCustomEvent *event = [_nativeAd.customEvents objectAtIndex:0];
             [_nativeAd.customEvents removeObjectAtIndex:0];
             
             NSString* className = [NSString stringWithFormat:@"%@CustomEventNative",event.className];

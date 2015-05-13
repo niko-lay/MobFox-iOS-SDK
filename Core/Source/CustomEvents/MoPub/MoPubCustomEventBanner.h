@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import "MPAdView.h"
 
-@interface MoPubCustomEventBanner : CustomEventBanner <MPAdViewDelegate>
+@interface MoPubCustomEventBanner : MFCustomEventBanner <MPAdViewDelegate>
 
 @end

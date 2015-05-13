@@ -6,11 +6,11 @@
 //
 //
 
-#import "CustomEventNative.h"
+#import "MFCustomEventNative.h"
 #import "MPNativeAd.h"
 #import "MPNativeAdRequest.h"
 
-@interface MoPubCustomEventNative : CustomEventNative
+@interface MoPubCustomEventNative : MFCustomEventNative
 
 
 

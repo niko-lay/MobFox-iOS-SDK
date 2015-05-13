@@ -1,11 +1,11 @@
 #import "MobFoxBannerView.h"
 #import "NSString+MobFox.h"
-#import "DTXMLDocument.h"
-#import "DTXMLElement.h"
+#import "MFDTXMLDocument.h"
+#import "MFDTXMLElement.h"
 #import "UIView+FindViewController.h"
 #import "NSURL+MobFox.h"
 #import "MobFoxAdBrowserViewController.h"
-#import "RedirectChecker.h"
+#import "MFRedirectChecker.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "AdMobCustomEventBanner.h"
 #import "iAdCustomEventBanner.h"
@@ -16,13 +16,13 @@
 #import "MPBaseBannerAdapter.h"
 #import "MPAdView.h"
 #import "MPAdConfiguration.h"
-#import "CustomEvent.h"
+#import "MFCustomEvent.h"
 
 
 
 NSString * const MobFoxErrorDomain = @"MobFox";
 
-@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, CustomEventBannerDelegate, UIGestureRecognizerDelegate> {
+@interface MobFoxBannerView () <UIWebViewDelegate, MPBannerAdapterDelegate, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
     NSMutableArray *customEvents;
@@ -39,7 +39,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 @property (nonatomic, strong) NSString* htmlString;
 
 @property (nonatomic, retain) UIView *bannerView;
-@property (nonatomic, strong) CustomEventBanner *customEventBanner;
+@property (nonatomic, strong) MFCustomEventBanner *customEventBanner;
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
@@ -49,7 +49,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 @implementation MobFoxBannerView
 {
-	RedirectChecker *redirectChecker;
+	MFRedirectChecker *redirectChecker;
 }
 
 
@@ -348,7 +348,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setupAdFromXml:(NSArray*)array
 {
-    DTXMLDocument *xml = [array objectAtIndex:0];
+    MFDTXMLDocument *xml = [array objectAtIndex:0];
     NSDictionary *headers;
     if([array count] > 1) {
         headers = [array objectAtIndex:1];
@@ -366,7 +366,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	}
     NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
 
-    DTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
+    MFDTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
     self.skipOverlay = [htmlElement.attributes objectForKey:@"skipoverlaybutton"];
 
 	NSString *clickType = [xml.documentRoot getNamedChild:@"clicktype"].text;
@@ -542,7 +542,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
                     if(error) {
                         continue;
                     }
-                    CustomEvent *customEvent = [[CustomEvent alloc] init];
+                    MFCustomEvent *customEvent = [[MFCustomEvent alloc] init];
                     customEvent.className = [json objectForKey:@"class"];
                     customEvent.optionalParameter = [json objectForKey:@"parameter"];
                     customEvent.pixelUrl = [json objectForKey:@"pixel"];
@@ -666,7 +666,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     {
         @try
         {
-            CustomEvent *event = [customEvents objectAtIndex:0];
+            MFCustomEvent *event = [customEvents objectAtIndex:0];
             [customEvents removeObjectAtIndex:0];
             
             NSString* className = [NSString stringWithFormat:@"%@CustomEventBanner",event.className];
@@ -865,7 +865,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
         
-        DTXMLDocument *xml = [DTXMLDocument documentWithData:dataReply];
+        MFDTXMLDocument *xml = [MFDTXMLDocument documentWithData:dataReply];
 
         if (!xml)
         {
@@ -943,7 +943,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 #pragma mark Interaction
 
-- (void)checker:(RedirectChecker *)checker detectedRedirectionTo:(NSURL *)redirectURL
+- (void)checker:(MFRedirectChecker *)checker detectedRedirectionTo:(NSURL *)redirectURL
 {
 	if ([redirectURL isDeviceSupported])
 	{
@@ -964,7 +964,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	bannerViewActionInProgress = YES;
 }
 
-- (void)checker:(RedirectChecker *)checker didFinishWithData:(NSData *)data
+- (void)checker:(MFRedirectChecker *)checker didFinishWithData:(NSData *)data
 {
 	UIViewController *viewController = [self firstAvailableUIViewController];
 	MobFoxAdBrowserViewController *browser = [[MobFoxAdBrowserViewController alloc] initWithUrl:nil];
@@ -985,7 +985,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	bannerViewActionInProgress = YES;
 }
 
-- (void)checker:(RedirectChecker *)checker didFailWithError:(NSError *)error
+- (void)checker:(MFRedirectChecker *)checker didFailWithError:(NSError *)error
 {
 	bannerViewActionInProgress = NO;
 }
@@ -1020,7 +1020,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 	[self setRefreshTimerActive:NO];
 	if (!_shouldSkipLinkPreflight)
 	{
-		redirectChecker = [[RedirectChecker alloc] initWithURL:_tapThroughURL userAgent:self.userAgent delegate:(id)self];
+		redirectChecker = [[MFRedirectChecker alloc] initWithURL:_tapThroughURL userAgent:self.userAgent delegate:(id)self];
 		return;
 	}
 	MobFoxAdBrowserViewController *browser = [[MobFoxAdBrowserViewController alloc] initWithUrl:_tapThroughURL];

@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 
 
-@interface FacebookCustomEventBanner : CustomEventBanner <FBAdViewDelegate>
+@interface FacebookCustomEventBanner : MFCustomEventBanner <FBAdViewDelegate>
 
 @end

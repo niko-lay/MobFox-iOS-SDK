@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CustomEvent : NSObject
+@interface MFCustomEvent : NSObject
 @property (nonatomic, strong) NSString* className;
 @property (nonatomic, strong) NSString* optionalParameter;
 @property (nonatomic, strong) NSString* pixelUrl;

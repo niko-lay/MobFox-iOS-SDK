@@ -6,11 +6,11 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import "FlurryAdDelegate.h"
 #import "FlurryAds.h"
 #import "Flurry.h"
 
-@interface FlurryCustomEventFullscreen : CustomEventFullscreen <FlurryAdDelegate>
+@interface FlurryCustomEventFullscreen : MFCustomEventFullscreen <FlurryAdDelegate>
 
 @end

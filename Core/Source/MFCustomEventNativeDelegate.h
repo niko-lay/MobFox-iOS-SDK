@@ -10,7 +10,7 @@
 
 @class MobFoxNativeAd;
 
-@protocol CustomEventNativeDelegate <NSObject>
+@protocol MFCustomEventNativeDelegate <NSObject>
 
 -(void)customEventNativeFailed;
 -(void)customEventNativeLoaded:(MobFoxNativeAd*) nativeAd;

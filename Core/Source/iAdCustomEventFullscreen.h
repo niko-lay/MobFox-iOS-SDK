@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import <iAd/AdInterstitialAd.h>
 
-@interface iAdCustomEventFullscreen : CustomEventFullscreen <ADInterstitialAdDelegate> {
+@interface iAdCustomEventFullscreen : MFCustomEventFullscreen <ADInterstitialAdDelegate> {
     
 }
 

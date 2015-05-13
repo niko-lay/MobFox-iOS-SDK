@@ -6,9 +6,9 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 
-@implementation CustomEventBanner
+@implementation MFCustomEventBanner
 
 @synthesize delegate;
 @synthesize trackingPixel;

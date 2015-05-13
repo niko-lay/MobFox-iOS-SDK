@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CustomEventBannerDelegate.h"
+#import "MFCustomEventBannerDelegate.h"
 
-@interface CustomEventBanner : NSObject
+@interface MFCustomEventBanner : NSObject
 
 - (void)loadBannerWithSize:(CGSize)size optionalParameters:(NSString *)optionalParameters trackingPixel:(NSString *)trackingPixel;
 
 - (void)didDisplayAd;
 
-@property (nonatomic, assign) id<CustomEventBannerDelegate> delegate;
+@property (nonatomic, assign) id<MFCustomEventBannerDelegate> delegate;
 @property (nonatomic, retain) NSString* trackingPixel;
 
 @end

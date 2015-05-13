@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import <MillennialMedia/MMAdView.h>
 #import <MillennialMedia/MMRequest.h>
 
-@interface MillennialCustomEventBanner : CustomEventBanner
+@interface MillennialCustomEventBanner : MFCustomEventBanner
 
 @end

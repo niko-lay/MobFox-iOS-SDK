@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventBanner.h"
+#import "MFCustomEventBanner.h"
 #import "IMBanner.h"
 #import "IMBannerDelegate.h"
 
-@interface InMobiCustomEventBanner : CustomEventBanner <IMBannerDelegate>
+@interface InMobiCustomEventBanner : MFCustomEventBanner <IMBannerDelegate>
 
 @end

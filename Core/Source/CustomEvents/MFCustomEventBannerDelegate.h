@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class CustomEventBanner;
+@class MFCustomEventBanner;
 
-@protocol CustomEventBannerDelegate <NSObject>
+@protocol MFCustomEventBannerDelegate <NSObject>
 
 - (UIViewController *)viewControllerForPresentingModalView;
 

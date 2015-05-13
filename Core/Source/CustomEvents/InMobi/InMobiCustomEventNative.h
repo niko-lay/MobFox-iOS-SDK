@@ -6,12 +6,12 @@
 //
 //
 
-#import "CustomEventNative.h"
+#import "MFCustomEventNative.h"
 #import "IMNative.h"
 #import "IMNativeDelegate.h"
 #import "InMobi.h"
 
-@interface InMobiCustomEventNative : CustomEventNative <IMNativeDelegate> {
+@interface InMobiCustomEventNative : MFCustomEventNative <IMNativeDelegate> {
     IMNative* inMobiNative;
 }
 

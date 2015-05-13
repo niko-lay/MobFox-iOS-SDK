@@ -7,7 +7,7 @@
 //
 
 #import "iAdCustomEventFullscreen.h"
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 
 @implementation iAdCustomEventFullscreen
 static ADInterstitialAd *interstitial_;

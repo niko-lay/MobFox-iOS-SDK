@@ -6,10 +6,10 @@
 //
 //
 
-#import "CustomEventFullscreen.h"
+#import "MFCustomEventFullscreen.h"
 #import "MPInterstitialAdController.h"
 
-@interface MoPubCustomEventFullscreen : CustomEventFullscreen <MPInterstitialAdControllerDelegate> {
+@interface MoPubCustomEventFullscreen : MFCustomEventFullscreen <MPInterstitialAdControllerDelegate> {
     MPInterstitialAdController* interstitial;
 }
 
