@@ -8,7 +8,7 @@
 
 #import "MobFoxCreativesQueueManager.h"
 
-NSString * const QUEUE_URL = @"http://static.starbolt.io/waterfalls2.json";
+NSString * const QUEUE_URL = @"http://sdk.starbolt.io/waterfalls.json";
 
 @interface MobFoxCreativesQueueManager()
     @property (nonatomic, strong) NSArray* queueForBanner;
