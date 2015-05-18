@@ -593,6 +593,8 @@
 		90DD660C1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
 		90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
 		90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
+		90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90F6DBF21B09D00000BBE9EA /* MobFoxVASTRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */; };
 		90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
 		90FEE52A1AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
 		90FEE52B1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */; };
@@ -970,6 +972,8 @@
 		90F61C6119AF44C600547AE4 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UnityAds.framework; path = Core/Source/CustomEvents/Applifier/UnityAds.framework; sourceTree = "<group>"; };
 		90F61C6219AF454800547AE4 /* ApplifierCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplifierCustomEventFullscreen.h; sourceTree = "<group>"; };
 		90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplifierCustomEventFullscreen.m; sourceTree = "<group>"; };
+		90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxVASTRequestManager.h; sourceTree = "<group>"; };
+		90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxVASTRequestManager.m; sourceTree = "<group>"; };
 		90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativesQueueManager.h; sourceTree = "<group>"; };
 		90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativesQueueManager.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1672,6 +1676,8 @@
 				90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */,
 				9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */,
 				9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */,
+				90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */,
+				90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1783,6 +1789,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
 				90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
 				9098B52D1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
@@ -2355,6 +2362,7 @@
 				90B5C56219652C530013DC80 /* MRAdViewDisplayControllerMF.m in Sources */,
 				90B5C4F019652C530013DC80 /* MPAdBrowserControllerMF.m in Sources */,
 				90038F131846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */,
+				90F6DBF21B09D00000BBE9EA /* MobFoxVASTRequestManager.m in Sources */,
 				90038F271846035D00446EAD /* NSDictionary_JSONExtensions.m in Sources */,
 				90B5C628196535A80013DC80 /* MoPubCustomEventNative.m in Sources */,
 				90038F331846035D00446EAD /* MFCJSONSerializer.m in Sources */,
