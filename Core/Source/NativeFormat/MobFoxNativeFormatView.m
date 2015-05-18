@@ -15,7 +15,7 @@
 
 
 NSString * const MobFoxNativeFormatAdErrorDomain = @"MobFoxNativeFormatAd";
-NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
+static NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 @interface MobFoxNativeFormatView() <UIWebViewDelegate, MobFoxAdBrowserViewController>
 @property (nonatomic, strong) UIWebView* webView;
