@@ -597,7 +597,7 @@ NSString * const MobFoxErrorDomain = @"MobFox";
         
         [(UIWebView*)nextBannerView loadHTMLString:_htmlString baseURL:nil];
         
-        if(!skipOverlay) { //create overlay only if necessary, to not interfere with custom events
+        if(![skipOverlay isEqualToString:@"1"]) { //create overlay only if necessary, to not interfere with custom events
             UIImage *grayingImage = [self darkeningImageOfSize:self.bannerView.frame.size];
         
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
