@@ -50,7 +50,7 @@
     }
     Class flurryAdsClass = NSClassFromString(@"FlurryAds");
     [self didDisplayAd];
-    [flurryAdsClass displayAdForSpace:_adSpace onView:_bannerView];
+ //   [flurryAdsClass displayAdForSpace:_adSpace onView:_bannerView];
     [self.delegate customEventBannerDidLoadAd:self.bannerView];
 }
 

@@ -95,7 +95,9 @@ NSString * const MobFoxErrorDomain = @"MobFox";
     self.bannerView = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate = nil;
-	[_refreshTimer invalidate], _refreshTimer = nil;
+    if(_refreshTimer){
+        [_refreshTimer invalidate], _refreshTimer = nil;
+    }
 }
 
 #pragma mark Utilities
@@ -154,7 +156,10 @@ NSString * const MobFoxErrorDomain = @"MobFox";
 
 - (void)setRefreshTimerActive:(BOOL)active
 {
-    [_refreshTimer invalidate], _refreshTimer = nil;
+    if(_refreshTimer){
+        [_refreshTimer invalidate], _refreshTimer = nil;
+    }
+    
     if (refreshTimerOff) {
         return;
     }
