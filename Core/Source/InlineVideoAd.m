@@ -91,6 +91,13 @@
                        self.latitude,@"latitude",
                        self.demo_gender,@"demo_gender",
                        self.demo_age,@"demo_age",
+                       self.s_subid,@"s_subid",
+                       self.sub_name,@"sub_name",
+                       self.sub_domain,@"sub_domain",
+                       self.sub_storeurl,@"sub_storeurl",
+                       self.v_dur_min,@"v_dur_min",
+                       self.v_dur_max,@"v_dur_max",
+                       self.r_floor,@"r_floor",
                        nil]
      
      responseCallback:^(id responseData) {
