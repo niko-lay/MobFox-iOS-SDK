@@ -35,6 +35,9 @@
     self.mediaPlaybackRequiresUserAction = false;
     self.hidden = YES;
 
+    self.autoplay = true;
+    self.skip = true;
+    
     return self;
 }
 
@@ -82,8 +85,20 @@
    
     NSString *pubId = [self.adDelegate publisherIdForInlineVideoAd:self];
     
-    
+    /*
+     javascript: {
+     i = "8.8.8.8";
+     "o_iosadvid" = "2B64AD48-8E94-4115-8F5F-BCF855F4F8D8";
+     "r_resp" = vast20;
+     "r_type" = video;
+     rt = api;
+     s = 80187188f458cfde788d961b6882fd53;
+     u = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F69";
+     }
+     */
     [self.bridge send:[NSDictionary dictionaryWithObjectsAndKeys:
+                       self.autoplay ? @"true" : @"false",@"autoplay",
+                       self.skip ? @"true" : @"false" ,@"skip",
                        pubId, @"s",
                        idfaString,@"o_iosadvid",
                        ipString,@"i",

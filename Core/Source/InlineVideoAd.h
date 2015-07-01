@@ -43,6 +43,8 @@
     @property NSString* v_dur_min;
     @property NSString* v_dur_max;
     @property NSString* r_floor;
+    @property BOOL autoplay;
+    @property BOOL skip;
 
 
 - (NSString *)getIPAddress;
