@@ -38,7 +38,8 @@
 - (void)showFullscreenFromRootViewController:(UIViewController *)rootViewController
 {
     Class flurryAdsClass = NSClassFromString(@"FlurryAds");
-    [flurryAdsClass displayAdForSpace:_adSpace onView:rootViewController.view];
+    [flurryAdsClass displayAdForSpace:_adSpace onView:rootViewController.view viewControllerForPresentation:nil];
+
 }
 
 - (void)dealloc {

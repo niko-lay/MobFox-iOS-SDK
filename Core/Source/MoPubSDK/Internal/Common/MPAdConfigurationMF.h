@@ -37,9 +37,10 @@ extern NSString * const kPrecacheRequiredKeyMF;
 extern NSString * const kInterstitialAdTypeHeaderKeyMF;
 extern NSString * const kOrientationTypeHeaderKeyMF;
 
-extern NSString * const kAdTypeHtml;
-extern NSString * const kAdTypeInterstitial;
-extern NSString * const kAdTypeMraid;
+extern NSString * const mobfox_kAdTypeHtml;
+extern NSString * const mobfox_kAdTypeInterstitial;
+extern NSString * const mobfox_kAdTypeMraid;
+
 extern NSString * const kAdTypeClearMF;
 extern NSString * const kAdTypeNativeMF;
 
