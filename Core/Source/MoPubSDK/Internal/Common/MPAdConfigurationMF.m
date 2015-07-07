@@ -34,9 +34,10 @@ NSString * const kPrecacheRequiredKeyMF = @"X-PrecacheRequired";
 NSString * const kInterstitialAdTypeHeaderKeyMF = @"X-Fulladtype";
 NSString * const kOrientationTypeHeaderKeyMF = @"X-Orientation";
 
-NSString * const kAdTypeHtml = @"html";
-NSString * const kAdTypeInterstitial = @"interstitial";
-NSString * const kAdTypeMraid = @"mraid";
+NSString * const mobfox_kAdTypeHtml = @"html";
+NSString * const mobfox_kAdTypeInterstitial = @"interstitial";
+NSString * const mobfox_kAdTypeMraid = @"mraid";
+
 NSString * const kAdTypeClearMF = @"clear";
 NSString * const kAdTypeNativeMF = @"json";
 
