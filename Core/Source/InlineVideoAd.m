@@ -101,7 +101,7 @@
                        self.skip ? @"true" : @"false" ,@"skip",
                        pubId, @"s",
                        idfaString,@"o_iosadvid",
-                       ipString,@"i",
+                       ipString,@"i", 
                        self.longitude,@"longitude",
                        self.latitude,@"latitude",
                        self.demo_gender,@"demo_gender",
