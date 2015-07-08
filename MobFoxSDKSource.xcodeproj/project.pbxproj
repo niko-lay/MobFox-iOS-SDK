@@ -607,7 +607,6 @@
 		E79426DE1B2729B700759B64 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426DC1B2729B700759B64 /* AdColony.framework */; };
 		E79426E11B2729DE00759B64 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426DF1B2729DE00759B64 /* Chartboost.framework */; };
 		E79426E41B2729F500759B64 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426E21B2729F500759B64 /* UnityAds.framework */; };
-		E79426E71B272A0B00759B64 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426E51B272A0B00759B64 /* VungleSDK.framework */; };
 		E79426EA1B272A4C00759B64 /* MillennialMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426E81B272A4C00759B64 /* MillennialMedia.framework */; };
 		E79426ED1B272A7900759B64 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79426EB1B272A7900759B64 /* FBAudienceNetwork.framework */; };
 		E79427051B2733AE00759B64 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = E79427021B2733AE00759B64 /* Flurry.h */; };
@@ -656,6 +655,13 @@
 		E7C4CF1D1B283CF700C030BC /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7C4CF191B283CF700C030BC /* WebViewJavascriptBridge.js.txt */; };
 		E7C4CF1E1B283CF700C030BC /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C4CF1A1B283CF700C030BC /* WebViewJavascriptBridge.m */; };
 		E7C4CF1F1B283CF700C030BC /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C4CF1A1B283CF700C030BC /* WebViewJavascriptBridge.m */; };
+		E7D13C6D1B4D0404008F6D18 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C661B4D0404008F6D18 /* __vungle.db */; };
+		E7D13C6E1B4D0404008F6D18 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C671B4D0404008F6D18 /* vg_close.png */; };
+		E7D13C6F1B4D0404008F6D18 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C681B4D0404008F6D18 /* vg_cta.png */; };
+		E7D13C701B4D0404008F6D18 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C691B4D0404008F6D18 /* vg_mute_off.png */; };
+		E7D13C711B4D0404008F6D18 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C6A1B4D0404008F6D18 /* vg_mute_on.png */; };
+		E7D13C721B4D0404008F6D18 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D13C6B1B4D0404008F6D18 /* vg_timer.png */; };
+		E7D13C731B4D0404008F6D18 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D13C6C1B4D0404008F6D18 /* VungleSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1000,7 +1006,6 @@
 		E79426DC1B2729B700759B64 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
 		E79426DF1B2729DE00759B64 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		E79426E21B2729F500759B64 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
-		E79426E51B272A0B00759B64 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		E79426E81B272A4C00759B64 /* MillennialMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MillennialMedia.framework; sourceTree = "<group>"; };
 		E79426EB1B272A7900759B64 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		E79427021B2733AE00759B64 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
@@ -1039,6 +1044,13 @@
 		E7C4CF181B283CF700C030BC /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		E7C4CF191B283CF700C030BC /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		E7C4CF1A1B283CF700C030BC /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		E7D13C661B4D0404008F6D18 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		E7D13C671B4D0404008F6D18 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		E7D13C681B4D0404008F6D18 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		E7D13C691B4D0404008F6D18 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		E7D13C6A1B4D0404008F6D18 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		E7D13C6B1B4D0404008F6D18 /* vg_timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_timer.png; sourceTree = "<group>"; };
+		E7D13C6C1B4D0404008F6D18 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1046,6 +1058,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7D13C731B4D0404008F6D18 /* VungleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,7 +1075,6 @@
 				E79426EA1B272A4C00759B64 /* MillennialMedia.framework in Frameworks */,
 				0F8D9CB8160A5DEC00C330F8 /* AdSupport.framework in Frameworks */,
 				E79426DE1B2729B700759B64 /* AdColony.framework in Frameworks */,
-				E79426E71B272A0B00759B64 /* VungleSDK.framework in Frameworks */,
 				E79426E11B2729DE00759B64 /* Chartboost.framework in Frameworks */,
 				0F9B947D161F15F500348628 /* StoreKit.framework in Frameworks */,
 				9014FD34184DFDAD006746EC /* EventKit.framework in Frameworks */,
@@ -1746,10 +1758,10 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7D13C641B4D0404008F6D18 /* VungleSDK.embeddedframework */,
 				E79427721B2741C500759B64 /* WebKit.framework */,
 				E79426EB1B272A7900759B64 /* FBAudienceNetwork.framework */,
 				E79426E81B272A4C00759B64 /* MillennialMedia.framework */,
-				E79426E51B272A0B00759B64 /* VungleSDK.framework */,
 				E79426E21B2729F500759B64 /* UnityAds.framework */,
 				E79426DF1B2729DE00759B64 /* Chartboost.framework */,
 				E79426DC1B2729B700759B64 /* AdColony.framework */,
@@ -1912,6 +1924,28 @@
 				E7C4CF1A1B283CF700C030BC /* WebViewJavascriptBridge.m */,
 			);
 			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
+		E7D13C641B4D0404008F6D18 /* VungleSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				E7D13C651B4D0404008F6D18 /* Resources */,
+				E7D13C6C1B4D0404008F6D18 /* VungleSDK.framework */,
+			);
+			path = VungleSDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		E7D13C651B4D0404008F6D18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E7D13C661B4D0404008F6D18 /* __vungle.db */,
+				E7D13C671B4D0404008F6D18 /* vg_close.png */,
+				E7D13C681B4D0404008F6D18 /* vg_cta.png */,
+				E7D13C691B4D0404008F6D18 /* vg_mute_off.png */,
+				E7D13C6A1B4D0404008F6D18 /* vg_mute_on.png */,
+				E7D13C6B1B4D0404008F6D18 /* vg_timer.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2327,17 +2361,23 @@
 				90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */,
 				90B5C61A19652C530013DC80 /* README.md in Resources */,
 				E7C4CF141B283CB800C030BC /* inline-video.js in Resources */,
+				E7D13C6F1B4D0404008F6D18 /* vg_cta.png in Resources */,
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				E7C4CF1D1B283CF700C030BC /* WebViewJavascriptBridge.js.txt in Resources */,
 				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
+				E7D13C721B4D0404008F6D18 /* vg_timer.png in Resources */,
 				E7C4CF161B283CC600C030BC /* index.html in Resources */,
+				E7D13C701B4D0404008F6D18 /* vg_mute_off.png in Resources */,
+				E7D13C6E1B4D0404008F6D18 /* vg_close.png in Resources */,
 				9054A2EF1AE663C2005ABECF /* libs.js in Resources */,
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */,
 				90B5C54D19652C530013DC80 /* LICENSE in Resources */,
+				E7D13C711B4D0404008F6D18 /* vg_mute_on.png in Resources */,
 				9054A2F11AE66AAE005ABECF /* render_template.html in Resources */,
+				E7D13C6D1B4D0404008F6D18 /* __vungle.db in Resources */,
 				90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2701,6 +2741,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -2752,6 +2793,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/Chartboost/SDK",
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
