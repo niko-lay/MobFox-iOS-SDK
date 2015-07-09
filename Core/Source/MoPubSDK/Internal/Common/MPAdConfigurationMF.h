@@ -15,34 +15,34 @@ enum {
 };
 typedef NSUInteger MPAdType;
 
-extern NSString * const kAdTypeHeaderKeyMF;
-extern NSString * const kClickthroughHeaderKeyMF;
-extern NSString * const kCustomSelectorHeaderKeyMF;
-extern NSString * const kCustomEventClassNameHeaderKeyMF;
-extern NSString * const kCustomEventClassDataHeaderKeyMF;
-extern NSString * const kFailUrlHeaderKeyMF;
-extern NSString * const kHeightHeaderKeyMF;
-extern NSString * const kImpressionTrackerHeaderKeyMF;
-extern NSString * const kInterceptLinksHeaderKeyMF;
-extern NSString * const kLaunchpageHeaderKeyMFMF;
-extern NSString * const kNativeSDKParametersHeaderKeyMF;
-extern NSString * const kNetworkTypeHeaderKey;
-extern NSString * const kRefreshTimeHeaderKeyMF;
-extern NSString * const kAdTimeoutHeaderKeyMF;
-extern NSString * const kScrollableHeaderKeyMF;
-extern NSString * const kWidthHeaderKeyMF;
-extern NSString * const kDspCreativeIdKeyMF;
-extern NSString * const kPrecacheRequiredKeyMF;
+extern NSString * const mobfox_kAdTypeHeaderKeyMF;
+extern NSString * const mobfox_kClickthroughHeaderKeyMF;
+extern NSString * const mobfox_kCustomSelectorHeaderKeyMF;
+extern NSString * const mobfox_kCustomEventClassNameHeaderKeyMF;
+extern NSString * const mobfox_kCustomEventClassDataHeaderKeyMF;
+extern NSString * const mobfox_kFailUrlHeaderKeyMF;
+extern NSString * const mobfox_kHeightHeaderKeyMF;
+extern NSString * const mobfox_kImpressionTrackerHeaderKeyMF;
+extern NSString * const mobfox_kInterceptLinksHeaderKeyMF;
+extern NSString * const mobfox_kLaunchpageHeaderKeyMFMF;
+extern NSString * const mobfox_kNativeSDKParametersHeaderKeyMF;
+extern NSString * const mobfox_kNetworkTypeHeaderKey;
+extern NSString * const mobfox_kRefreshTimeHeaderKeyMF;
+extern NSString * const mobfox_kAdTimeoutHeaderKeyMF;
+extern NSString * const mobfox_kScrollableHeaderKeyMF;
+extern NSString * const mobfox_kWidthHeaderKeyMF;
+extern NSString * const mobfox_kDspCreativeIdKeyMF;
+extern NSString * const mobfox_kPrecacheRequiredKeyMF;
 
-extern NSString * const kInterstitialAdTypeHeaderKeyMF;
-extern NSString * const kOrientationTypeHeaderKeyMF;
+extern NSString * const mobfox_kInterstitialAdTypeHeaderKeyMF;
+extern NSString * const mobofx_kOrientationTypeHeaderKeyMF;
 
 extern NSString * const mobfox_kAdTypeHtml;
 extern NSString * const mobfox_kAdTypeInterstitial;
 extern NSString * const mobfox_kAdTypeMraid;
 
-extern NSString * const kAdTypeClearMF;
-extern NSString * const kAdTypeNativeMF;
+extern NSString * const mobfox_kAdTypeClearMF;
+extern NSString * const mobofx_kAdTypeNativeMF;
 
 @interface MPAdConfigurationMF : NSObject
 

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSInteger const kMPAdAlertGestureMaxAllowedYAxisMovement;
+extern NSInteger const mobfox_kMPAdAlertGestureMaxAllowedYAxisMovement;
 
 typedef enum
 {

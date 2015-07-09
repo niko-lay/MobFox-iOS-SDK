@@ -13,7 +13,7 @@
 #define kDefaultMinTrackedDistance 100
 #define kDefaultNumZigZagsForRecognition 4
 
-NSInteger const kMPAdAlertGestureMaxAllowedYAxisMovement = 50;
+NSInteger const mobfox_kMPAdAlertGestureMaxAllowedYAxisMovement = 50;
 
 @interface MPAdAlertGestureRecognizerMF ()
 
@@ -238,7 +238,7 @@ NSInteger const kMPAdAlertGestureMaxAllowedYAxisMovement = 50;
 {
     CGPoint nowPoint = [touches.anyObject locationInView:self.view];
     
-    return abs(nowPoint.y - self.startingPoint.y) <= kMPAdAlertGestureMaxAllowedYAxisMovement;
+    return abs(nowPoint.y - self.startingPoint.y) <= mobfox_kMPAdAlertGestureMaxAllowedYAxisMovement;
 }
 
 - (BOOL)touchIsWithinBoundsForTouches:(NSSet *)touches

@@ -11,7 +11,7 @@
 #import "MpLoggingMF.h"
 #import "MPCoreInstanceProviderMF.h"
 
-const NSTimeInterval kRequestTimeoutInterval = 10.0;
+const NSTimeInterval mobfox_kRequestTimeoutInterval = 10.0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,7 +134,7 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
 {
     NSMutableURLRequest *request = [[MPCoreInstanceProviderMF sharedProvider] buildConfiguredURLRequestWithURL:URL];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
-    [request setTimeoutInterval:kRequestTimeoutInterval];
+    [request setTimeoutInterval:mobfox_kRequestTimeoutInterval];
     return request;
 }
 

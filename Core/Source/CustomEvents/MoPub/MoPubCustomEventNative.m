@@ -31,9 +31,9 @@
             self.moPubNativeAd = response;
             [self setClickUrl:[response.defaultActionURL absoluteString]];
             
-            [self addTextAsset:[response.properties objectForKey:kAdCTATextKeyMF] withType:kCallToActionTextAsset];
-            [self addTextAsset:[response.properties objectForKey:kAdTitleKeyMF] withType:kHeadlineTextAsset];
-            [self addTextAsset:[response.properties objectForKey:kAdTextKeyMF] withType:kDescriptionTextAsset];
+            [self addTextAsset:[response.properties objectForKey:mobfox_kAdCTATextKeyMF] withType:kCallToActionTextAsset];
+            [self addTextAsset:[response.properties objectForKey:mobfox_kAdTitleKeyMF] withType:kHeadlineTextAsset];
+            [self addTextAsset:[response.properties objectForKey:mobfox_kAdTextKeyMF] withType:kDescriptionTextAsset];
             
             NSNumber *starRatingNum = response.starRating;
             if(starRatingNum) {
@@ -41,8 +41,8 @@
                 [self addTextAsset:starRating withType:kRatingTextAsset];
             }
 
-            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdIconImageKeyMF] andType:kIconImageAsset];
-            [self addImageAssetWithImageUrl:[response.properties objectForKey:kAdMainImageKeyMF] andType:kMainImageAsset];
+            [self addImageAssetWithImageUrl:[response.properties objectForKey:mobfox_kAdIconImageKeyMF] andType:kIconImageAsset];
+            [self addImageAssetWithImageUrl:[response.properties objectForKey:mobfox_kAdMainImageKeyMF] andType:kMainImageAsset];
 
             
             if([self isNativeAdValid]) {

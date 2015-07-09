@@ -210,7 +210,7 @@
         return;
     }
 
-    if ([configuration.networkType isEqualToString:kAdTypeClearMF]) {
+    if ([configuration.networkType isEqualToString:mobfox_kAdTypeClearMF]) {
         MPLogInfoMF(@"Ad server response indicated no ad available.");
 
         [self didFailToLoadAdapterWithError:[MPErrorMF errorWithCode:MPErrorNoInventory]];

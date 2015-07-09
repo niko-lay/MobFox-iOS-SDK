@@ -112,7 +112,7 @@
 {
     MPLogInfoMF(@"Looking for custom event class named %@.", configuration.customEventClass);\
     // Adserver doesn't return a customEventClass for MoPub native ads
-    if([configuration.networkType isEqualToString:kAdTypeNativeMF] && configuration.customEventClass == nil) {
+    if([configuration.networkType isEqualToString:mobofx_kAdTypeNativeMF] && configuration.customEventClass == nil) {
         configuration.customEventClass = [MPMoPubNativeCustomEventMF class];
         NSDictionary *classData = [NSJSONSerialization mp_JSONObjectWithData:configuration.adResponseData options:0 clearNullObjects:YES error:nil];
         configuration.customEventClassData = classData;
@@ -147,7 +147,7 @@
 {
     self.adConfiguration = configuration;
 
-    if ([configuration.networkType isEqualToString:kAdTypeClearMF]) {
+    if ([configuration.networkType isEqualToString:mobfox_kAdTypeClearMF]) {
         MPLogInfoMF(@"No inventory available for ad unit: %@", self.adUnitIdentifier);
 
         [self completeAdRequestWithAdObject:nil error:[NSError errorWithDomain:MoPubNativeAdsSDKDomainMF code:MPNativeAdErrorNoInventory userInfo:nil]];

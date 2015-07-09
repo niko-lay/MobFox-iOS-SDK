@@ -18,12 +18,12 @@
     if (_desiredAssets != desiredAssets) {
         [_desiredAssets release];
 
-        NSMutableSet *allowedAdAssets = [NSMutableSet setWithObjects:kAdTitleKeyMF,
-                                         kAdTextKeyMF,
-                                         kAdIconImageKeyMF,
-                                         kAdMainImageKeyMF,
-                                         kAdCTATextKeyMF,
-                                         kAdStarRatingKeyMF,
+        NSMutableSet *allowedAdAssets = [NSMutableSet setWithObjects:mobfox_kAdTitleKeyMF,
+                                         mobfox_kAdTextKeyMF,
+                                         mobfox_kAdIconImageKeyMF,
+                                         mobfox_kAdMainImageKeyMF,
+                                         mobfox_kAdCTATextKeyMF,
+                                         mobfox_kAdStarRatingKeyMF,
                                          nil];
         [allowedAdAssets intersectSet:desiredAssets];
         _desiredAssets = [allowedAdAssets retain];

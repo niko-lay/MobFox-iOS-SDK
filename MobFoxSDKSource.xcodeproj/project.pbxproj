@@ -604,6 +604,12 @@
 		A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */; };
 		A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E745E9651B4D119500A79DF9 /* __vungle.db */; };
+		E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9661B4D119500A79DF9 /* vg_close.png */; };
+		E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9671B4D119500A79DF9 /* vg_cta.png */; };
+		E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9681B4D119500A79DF9 /* vg_mute_off.png */; };
+		E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9691B4D119500A79DF9 /* vg_mute_on.png */; };
+		E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E96A1B4D119500A79DF9 /* vg_timer.png */; };
 		E7570B901B4C05520076F46C /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570B841B4C05520076F46C /* IMBanner.h */; };
 		E7570B911B4C05520076F46C /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570B851B4C05520076F46C /* IMBannerDelegate.h */; };
 		E7570B921B4C05520076F46C /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570B861B4C05520076F46C /* IMConstants.h */; };
@@ -629,12 +635,6 @@
 		E7570BC11B4C05940076F46C /* FlurryAdTargeting.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570BB01B4C05930076F46C /* FlurryAdTargeting.h */; };
 		E7570BC21B4C05940076F46C /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570BB21B4C05930076F46C /* FlurryAdDelegate.h */; };
 		E7570BC31B4C05940076F46C /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = E7570BB31B4C05930076F46C /* FlurryAds.h */; };
-		E7570BD71B4C0FC00076F46C /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E7570BCB1B4C0FC00076F46C /* __vungle.db */; };
-		E7570BD81B4C0FC00076F46C /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E7570BCC1B4C0FC00076F46C /* vg_close.png */; };
-		E7570BD91B4C0FC00076F46C /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E7570BCD1B4C0FC00076F46C /* vg_cta.png */; };
-		E7570BDA1B4C0FC00076F46C /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E7570BCE1B4C0FC00076F46C /* vg_mute_off.png */; };
-		E7570BDB1B4C0FC00076F46C /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E7570BCF1B4C0FC00076F46C /* vg_mute_on.png */; };
-		E7570BDC1B4C0FC00076F46C /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E7570BD01B4C0FC00076F46C /* vg_timer.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -976,6 +976,13 @@
 		A7992E871489362800E86AC8 /* UIView+FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindViewController.m"; sourceTree = "<group>"; };
 		A7992EB9148936E400E86AC8 /* libMobFox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobFox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992EBB148936E400E86AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		E745E9661B4D119500A79DF9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		E745E9671B4D119500A79DF9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		E745E9681B4D119500A79DF9 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		E745E9691B4D119500A79DF9 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		E745E96A1B4D119500A79DF9 /* vg_timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_timer.png; sourceTree = "<group>"; };
+		E745E96B1B4D119500A79DF9 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		E7570B841B4C05520076F46C /* IMBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBanner.h; sourceTree = "<group>"; };
 		E7570B851B4C05520076F46C /* IMBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBannerDelegate.h; sourceTree = "<group>"; };
 		E7570B861B4C05520076F46C /* IMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMConstants.h; sourceTree = "<group>"; };
@@ -1009,13 +1016,6 @@
 		E7570BC61B4C0FC00076F46C /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		E7570BC71B4C0FC00076F46C /* MillennialMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MillennialMedia.framework; sourceTree = "<group>"; };
 		E7570BC81B4C0FC00076F46C /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
-		E7570BCB1B4C0FC00076F46C /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
-		E7570BCC1B4C0FC00076F46C /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
-		E7570BCD1B4C0FC00076F46C /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
-		E7570BCE1B4C0FC00076F46C /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
-		E7570BCF1B4C0FC00076F46C /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
-		E7570BD01B4C0FC00076F46C /* vg_timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_timer.png; sourceTree = "<group>"; };
-		E7570BD11B4C0FC00076F46C /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1706,12 +1706,12 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E745E9631B4D119500A79DF9 /* VungleSDK.embeddedframework */,
 				E7570BC41B4C0FC00076F46C /* AdColony.framework */,
 				E7570BC51B4C0FC00076F46C /* Chartboost.framework */,
 				E7570BC61B4C0FC00076F46C /* FBAudienceNetwork.framework */,
 				E7570BC71B4C0FC00076F46C /* MillennialMedia.framework */,
 				E7570BC81B4C0FC00076F46C /* UnityAds.framework */,
-				E7570BC91B4C0FC00076F46C /* VungleSDK.embeddedframework */,
 				904E04151ACBE8720080C634 /* GoogleMobileAds.framework */,
 				90987D0218BCB96E00148D09 /* CoreGraphics.framework */,
 				90987D0018BCB96400148D09 /* AVFoundation.framework */,
@@ -1749,6 +1749,29 @@
 				A7992EB9148936E400E86AC8 /* libMobFox.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E745E9631B4D119500A79DF9 /* VungleSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				E745E9641B4D119500A79DF9 /* Resources */,
+				E745E96B1B4D119500A79DF9 /* VungleSDK.framework */,
+			);
+			name = VungleSDK.embeddedframework;
+			path = "../ios-deps/VungleSDK.embeddedframework";
+			sourceTree = "<group>";
+		};
+		E745E9641B4D119500A79DF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E745E9651B4D119500A79DF9 /* __vungle.db */,
+				E745E9661B4D119500A79DF9 /* vg_close.png */,
+				E745E9671B4D119500A79DF9 /* vg_cta.png */,
+				E745E9681B4D119500A79DF9 /* vg_mute_off.png */,
+				E745E9691B4D119500A79DF9 /* vg_mute_on.png */,
+				E745E96A1B4D119500A79DF9 /* vg_timer.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E7570B831B4C05520076F46C /* SDK */ = {
@@ -1849,28 +1872,6 @@
 				E7570BB31B4C05930076F46C /* FlurryAds.h */,
 			);
 			path = StaticAPI;
-			sourceTree = "<group>";
-		};
-		E7570BC91B4C0FC00076F46C /* VungleSDK.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				E7570BCA1B4C0FC00076F46C /* Resources */,
-				E7570BD11B4C0FC00076F46C /* VungleSDK.framework */,
-			);
-			path = VungleSDK.embeddedframework;
-			sourceTree = "<group>";
-		};
-		E7570BCA1B4C0FC00076F46C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E7570BCB1B4C0FC00076F46C /* __vungle.db */,
-				E7570BCC1B4C0FC00076F46C /* vg_close.png */,
-				E7570BCD1B4C0FC00076F46C /* vg_cta.png */,
-				E7570BCE1B4C0FC00076F46C /* vg_mute_off.png */,
-				E7570BCF1B4C0FC00076F46C /* vg_mute_on.png */,
-				E7570BD01B4C0FC00076F46C /* vg_timer.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2269,19 +2270,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7570BDC1B4C0FC00076F46C /* vg_timer.png in Resources */,
-				E7570BD71B4C0FC00076F46C /* __vungle.db in Resources */,
+				E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */,
+				E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */,
 				90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */,
 				90B5C61A19652C530013DC80 /* README.md in Resources */,
-				E7570BDA1B4C0FC00076F46C /* vg_mute_off.png in Resources */,
+				E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */,
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
-				E7570BD91B4C0FC00076F46C /* vg_cta.png in Resources */,
+				E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
-				E7570BD81B4C0FC00076F46C /* vg_close.png in Resources */,
+				E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */,
 				9054A2EF1AE663C2005ABECF /* libs.js in Resources */,
-				E7570BDB1B4C0FC00076F46C /* vg_mute_on.png in Resources */,
+				E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */,
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */,
 				90B5C54D19652C530013DC80 /* LICENSE in Resources */,
@@ -2646,6 +2647,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+					"/Users/nabriski/projects/ios-deps/VungleSDK.embeddedframework",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -2698,6 +2700,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+					"/Users/nabriski/projects/ios-deps/VungleSDK.embeddedframework",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;

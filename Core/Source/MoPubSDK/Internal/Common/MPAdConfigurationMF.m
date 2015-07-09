@@ -12,34 +12,34 @@
 #import "math.h"
 #import "NSJSONSerialization+MPAdditionsMF.h"
 
-NSString * const kAdTypeHeaderKeyMF = @"X-Adtype";
-NSString * const kClickthroughHeaderKeyMF = @"X-Clickthrough";
-NSString * const kCustomSelectorHeaderKeyMF = @"X-Customselector";
-NSString * const kCustomEventClassNameHeaderKeyMF = @"X-Custom-Event-Class-Name";
-NSString * const kCustomEventClassDataHeaderKeyMF = @"X-Custom-Event-Class-Data";
-NSString * const kFailUrlHeaderKeyMF = @"X-Failurl";
-NSString * const kHeightHeaderKeyMF = @"X-Height";
-NSString * const kImpressionTrackerHeaderKeyMF = @"X-Imptracker";
-NSString * const kInterceptLinksHeaderKeyMF = @"X-Interceptlinks";
-NSString * const kLaunchpageHeaderKeyMFMF = @"X-Launchpage";
-NSString * const kNativeSDKParametersHeaderKeyMF = @"X-Nativeparams";
-NSString * const kNetworkTypeHeaderKey = @"X-Networktype";
-NSString * const kRefreshTimeHeaderKeyMF = @"X-Refreshtime";
-NSString * const kAdTimeoutHeaderKeyMF = @"X-AdTimeout";
-NSString * const kScrollableHeaderKeyMF = @"X-Scrollable";
-NSString * const kWidthHeaderKeyMF = @"X-Width";
-NSString * const kDspCreativeIdKeyMF = @"X-DspCreativeid";
-NSString * const kPrecacheRequiredKeyMF = @"X-PrecacheRequired";
+NSString * const mobfox_kAdTypeHeaderKeyMF = @"X-Adtype";
+NSString * const mobfox_kClickthroughHeaderKeyMF = @"X-Clickthrough";
+NSString * const mobfox_kCustomSelectorHeaderKeyMF = @"X-Customselector";
+NSString * const mobfox_kCustomEventClassNameHeaderKeyMF = @"X-Custom-Event-Class-Name";
+NSString * const mobfox_kCustomEventClassDataHeaderKeyMF = @"X-Custom-Event-Class-Data";
+NSString * const mobfox_kFailUrlHeaderKeyMF = @"X-Failurl";
+NSString * const mobfox_kHeightHeaderKeyMF = @"X-Height";
+NSString * const mobfox_kImpressionTrackerHeaderKeyMF = @"X-Imptracker";
+NSString * const mobfox_kInterceptLinksHeaderKeyMF = @"X-Interceptlinks";
+NSString * const mobfox_kLaunchpageHeaderKeyMFMF = @"X-Launchpage";
+NSString * const mobfox_kNativeSDKParametersHeaderKeyMF = @"X-Nativeparams";
+NSString * const mobfox_kNetworkTypeHeaderKey = @"X-Networktype";
+NSString * const mobfox_kRefreshTimeHeaderKeyMF = @"X-Refreshtime";
+NSString * const mobfox_kAdTimeoutHeaderKeyMF = @"X-AdTimeout";
+NSString * const mobfox_kScrollableHeaderKeyMF = @"X-Scrollable";
+NSString * const mobfox_kWidthHeaderKeyMF = @"X-Width";
+NSString * const mobfox_kDspCreativeIdKeyMF = @"X-DspCreativeid";
+NSString * const mobfox_kPrecacheRequiredKeyMF = @"X-PrecacheRequired";
 
-NSString * const kInterstitialAdTypeHeaderKeyMF = @"X-Fulladtype";
-NSString * const kOrientationTypeHeaderKeyMF = @"X-Orientation";
+NSString * const mobfox_kInterstitialAdTypeHeaderKeyMF = @"X-Fulladtype";
+NSString * const mobofx_kOrientationTypeHeaderKeyMF = @"X-Orientation";
 
 NSString * const mobfox_kAdTypeHtml = @"html";
 NSString * const mobfox_kAdTypeInterstitial = @"interstitial";
 NSString * const mobfox_kAdTypeMraid = @"mraid";
 
-NSString * const kAdTypeClearMF = @"clear";
-NSString * const kAdTypeNativeMF = @"json";
+NSString * const mobfox_kAdTypeClearMF = @"clear";
+NSString * const mobofx_kAdTypeNativeMF = @"json";
 
 @interface MPAdConfigurationMF ()
 
@@ -91,28 +91,28 @@ NSString * const kAdTypeNativeMF = @"json";
         self.networkType = [self networkTypeFromHeaders:headers];
         self.networkType = self.networkType ? self.networkType : @"";
 
-        self.preferredSize = CGSizeMake([[headers objectForKey:kWidthHeaderKeyMF] floatValue],
-                                        [[headers objectForKey:kHeightHeaderKeyMF] floatValue]);
+        self.preferredSize = CGSizeMake([[headers objectForKey:mobfox_kWidthHeaderKeyMF] floatValue],
+                                        [[headers objectForKey:mobfox_kHeightHeaderKeyMF] floatValue]);
 
         self.clickTrackingURL = [self URLFromHeaders:headers
-                                              forKey:kClickthroughHeaderKeyMF];
+                                              forKey:mobfox_kClickthroughHeaderKeyMF];
         self.impressionTrackingURL = [self URLFromHeaders:headers
-                                                   forKey:kImpressionTrackerHeaderKeyMF];
+                                                   forKey:mobfox_kImpressionTrackerHeaderKeyMF];
         self.failoverURL = [self URLFromHeaders:headers
-                                         forKey:kFailUrlHeaderKeyMF];
+                                         forKey:mobfox_kFailUrlHeaderKeyMF];
         self.interceptURLPrefix = [self URLFromHeaders:headers
-                                                forKey:kLaunchpageHeaderKeyMFMF];
+                                                forKey:mobfox_kLaunchpageHeaderKeyMFMF];
 
-        NSNumber *shouldInterceptLinks = [headers objectForKey:kInterceptLinksHeaderKeyMF];
+        NSNumber *shouldInterceptLinks = [headers objectForKey:mobfox_kInterceptLinksHeaderKeyMF];
         self.shouldInterceptLinks = shouldInterceptLinks ? [shouldInterceptLinks boolValue] : YES;
-        self.scrollable = [[headers objectForKey:kScrollableHeaderKeyMF] boolValue];
+        self.scrollable = [[headers objectForKey:mobfox_kScrollableHeaderKeyMF] boolValue];
         self.refreshInterval = [self refreshIntervalFromHeaders:headers];
         self.adTimeoutInterval = [self adTimeoutIntervalFromHeaders:headers];
 
 
         self.nativeSDKParameters = [self dictionaryFromHeaders:headers
-                                                        forKey:kNativeSDKParametersHeaderKeyMF];
-        self.customSelectorName = [headers objectForKey:kCustomSelectorHeaderKeyMF];
+                                                        forKey:mobfox_kNativeSDKParametersHeaderKeyMF];
+        self.customSelectorName = [headers objectForKey:mobfox_kCustomSelectorHeaderKeyMF];
 
         self.orientationType = [self orientationTypeFromHeaders:headers];
 
@@ -120,9 +120,9 @@ NSString * const kAdTypeNativeMF = @"json";
 
         self.customEventClassData = [self customEventClassDataFromHeaders:headers];
 
-        self.dspCreativeId = [headers objectForKey:kDspCreativeIdKeyMF];
+        self.dspCreativeId = [headers objectForKey:mobfox_kDspCreativeIdKeyMF];
 
-        self.precacheRequired = [[headers objectForKey:kPrecacheRequiredKeyMF] boolValue];
+        self.precacheRequired = [[headers objectForKey:mobfox_kPrecacheRequiredKeyMF] boolValue];
 
         self.creationTimestamp = [NSDate date];
     }
@@ -131,7 +131,7 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (Class)setUpCustomEventClassFromHeaders:(NSDictionary *)headers
 {
-    NSString *customEventClassName = [headers objectForKey:kCustomEventClassNameHeaderKeyMF];
+    NSString *customEventClassName = [headers objectForKey:mobfox_kCustomEventClassNameHeaderKeyMF];
 
     NSMutableDictionary *convertedCustomEvents = [NSMutableDictionary dictionary];
     if (self.adType == MPAdTypeBanner) {
@@ -164,9 +164,9 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (NSDictionary *)customEventClassDataFromHeaders:(NSDictionary *)headers
 {
-    NSDictionary *result = [self dictionaryFromHeaders:headers forKey:kCustomEventClassDataHeaderKeyMF];
+    NSDictionary *result = [self dictionaryFromHeaders:headers forKey:mobfox_kCustomEventClassDataHeaderKeyMF];
     if (!result) {
-        result = [self dictionaryFromHeaders:headers forKey:kNativeSDKParametersHeaderKeyMF];
+        result = [self dictionaryFromHeaders:headers forKey:mobfox_kNativeSDKParametersHeaderKeyMF];
     }
     return result;
 }
@@ -213,12 +213,12 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (MPAdType)adTypeFromHeaders:(NSDictionary *)headers
 {
-    NSString *adTypeString = [headers objectForKey:kAdTypeHeaderKeyMF];
+    NSString *adTypeString = [headers objectForKey:mobfox_kAdTypeHeaderKeyMF];
 
     if ([adTypeString isEqualToString:@"interstitial"]) {
         return MPAdTypeInterstitial;
     } else if (adTypeString &&
-               [headers objectForKey:kOrientationTypeHeaderKeyMF]) {
+               [headers objectForKey:mobofx_kOrientationTypeHeaderKeyMF]) {
         return MPAdTypeInterstitial;
     } else if (adTypeString) {
         return MPAdTypeBanner;
@@ -229,9 +229,9 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (NSString *)networkTypeFromHeaders:(NSDictionary *)headers
 {
-    NSString *adTypeString = [headers objectForKey:kAdTypeHeaderKeyMF];
+    NSString *adTypeString = [headers objectForKey:mobfox_kAdTypeHeaderKeyMF];
     if ([adTypeString isEqualToString:@"interstitial"]) {
-        return [headers objectForKey:kInterstitialAdTypeHeaderKeyMF];
+        return [headers objectForKey:mobfox_kInterstitialAdTypeHeaderKeyMF];
     } else {
         return adTypeString;
     }
@@ -255,7 +255,7 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (NSTimeInterval)refreshIntervalFromHeaders:(NSDictionary *)headers
 {
-    NSString *intervalString = [headers objectForKey:kRefreshTimeHeaderKeyMF];
+    NSString *intervalString = [headers objectForKey:mobfox_kRefreshTimeHeaderKeyMF];
     NSTimeInterval interval = -1;
     if (intervalString) {
         interval = [intervalString doubleValue];
@@ -268,7 +268,7 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (NSTimeInterval)adTimeoutIntervalFromHeaders:(NSDictionary *)headers
 {
-    NSString *intervalString = [headers objectForKey:kAdTimeoutHeaderKeyMF];
+    NSString *intervalString = [headers objectForKey:mobfox_kAdTimeoutHeaderKeyMF];
     NSTimeInterval interval = -1;
     if (intervalString) {
         int parsedInt = -1;
@@ -283,7 +283,7 @@ NSString * const kAdTypeNativeMF = @"json";
 
 - (MPInterstitialOrientationType)orientationTypeFromHeaders:(NSDictionary *)headers
 {
-    NSString *orientation = [headers objectForKey:kOrientationTypeHeaderKeyMF];
+    NSString *orientation = [headers objectForKey:mobofx_kOrientationTypeHeaderKeyMF];
     if ([orientation isEqualToString:@"p"]) {
         return MPInterstitialOrientationTypePortrait;
     } else if ([orientation isEqualToString:@"l"]) {

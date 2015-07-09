@@ -8,16 +8,16 @@
 
 /** @name ?? */
 
-extern const CGFloat kUniversalStarRatingScale;
-extern const CGFloat kStarRatingMaxValueMF;
-extern const CGFloat kStarRatingMinValueMF;
-extern const NSTimeInterval kDefaultRequiredSecondsForImpressionMF;
+extern const CGFloat mobfox_kUniversalStarRatingScale;
+extern const CGFloat mobfox_kStarRatingMaxValueMF;
+extern const CGFloat mobfox_kStarRatingMinValueMF;
+extern const NSTimeInterval mobfox_kDefaultRequiredSecondsForImpressionMF;
 
 /** @name MPNativeAd asset keys. */
 
-extern const NSString *kAdTitleKeyMF;
-extern const NSString *kAdTextKeyMF;
-extern const NSString *kAdIconImageKeyMF;
-extern const NSString *kAdMainImageKeyMF;
-extern const NSString *kAdCTATextKeyMF;
-extern const NSString *kAdStarRatingKeyMF;
+extern const NSString *mobfox_kAdTitleKeyMF;
+extern const NSString *mobfox_kAdTextKeyMF;
+extern const NSString *mobfox_kAdIconImageKeyMF;
+extern const NSString *mobfox_kAdMainImageKeyMF;
+extern const NSString *mobfox_kAdCTATextKeyMF;
+extern const NSString *mobfox_kAdStarRatingKeyMF;

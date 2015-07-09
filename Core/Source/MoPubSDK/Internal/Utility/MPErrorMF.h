@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kLaunchpageHeaderKeyMFMF;
+extern NSString * const mobfox_kLaunchpageHeaderKeyMFMF;
 
 typedef enum {
     MPErrorNoInventory = 0,

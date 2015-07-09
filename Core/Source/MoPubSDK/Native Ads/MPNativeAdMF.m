@@ -89,9 +89,9 @@
 
 - (NSNumber *)starRating
 {
-    NSNumber *starRatingNum = [self.properties objectForKey:kAdStarRatingKeyMF];
+    NSNumber *starRatingNum = [self.properties objectForKey:mobfox_kAdStarRatingKeyMF];
 
-    if (![starRatingNum isKindOfClass:[NSNumber class]] || starRatingNum.floatValue < kStarRatingMinValueMF || starRatingNum.floatValue > kStarRatingMaxValueMF) {
+    if (![starRatingNum isKindOfClass:[NSNumber class]] || starRatingNum.floatValue < mobfox_kStarRatingMinValueMF || starRatingNum.floatValue > mobfox_kStarRatingMaxValueMF) {
         starRatingNum = nil;
     }
 
@@ -114,7 +114,7 @@
         return self.adAdapter.requiredSecondsForImpression;
     }
 
-    return kDefaultRequiredSecondsForImpressionMF;
+    return mobfox_kDefaultRequiredSecondsForImpressionMF;
 }
 
 - (void)trackImpression
@@ -209,34 +209,34 @@
 
 - (void)loadIconIntoImageView:(UIImageView *)imageView
 {
-    NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:kAdIconImageKeyMF]];
+    NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:mobfox_kAdIconImageKeyMF]];
     [self loadImageForURL:imageURL intoImageView:imageView];
 }
 
 - (void)loadImageIntoImageView:(UIImageView *)imageView
 {
-    NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:kAdMainImageKeyMF]];
+    NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:mobfox_kAdMainImageKeyMF]];
     [self loadImageForURL:imageURL intoImageView:imageView];
 }
 
 - (void)loadTextIntoLabel:(UILabel *)label
 {
-    label.text = [self.properties objectForKey:kAdTextKeyMF];
+    label.text = [self.properties objectForKey:mobfox_kAdTextKeyMF];
 }
 
 - (void)loadTitleIntoLabel:(UILabel *)label
 {
-    label.text = [self.properties objectForKey:kAdTitleKeyMF];
+    label.text = [self.properties objectForKey:mobfox_kAdTitleKeyMF];
 }
 
 - (void)loadCallToActionTextIntoLabel:(UILabel *)label
 {
-    label.text = [self.properties objectForKey:kAdCTATextKeyMF];
+    label.text = [self.properties objectForKey:mobfox_kAdCTATextKeyMF];
 }
 
 - (void)loadCallToActionTextIntoButton:(UIButton *)button
 {
-    [button setTitle:[self.properties objectForKey:kAdCTATextKeyMF] forState:UIControlStateNormal];
+    [button setTitle:[self.properties objectForKey:mobfox_kAdCTATextKeyMF] forState:UIControlStateNormal];
 }
 
 - (void)loadImageForURL:(NSURL *)imageURL intoImageView:(UIImageView *)imageView
