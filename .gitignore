@@ -16,3 +16,6 @@ profile
 *.framework
 # Ignore OS X generated files
 .DS_Store
+deps
+Core/Source/CustomEvents/Flurry/SDK
+Core/Source/CustomEvents/InMobi/SDK

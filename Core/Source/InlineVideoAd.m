@@ -117,6 +117,8 @@
      
      responseCallback:^(id responseData) {
          
+         NSLog(@"ad callback: %@", responseData);
+         
          if([responseData  isEqual: @"ad loaded"]){//success
              self.hidden = NO;
              if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:InlineVideoAd:)]) {
