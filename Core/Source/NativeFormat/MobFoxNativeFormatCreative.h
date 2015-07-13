@@ -10,10 +10,9 @@
 
 @interface MobFoxNativeFormatCreative : NSObject
 
-@property (nonatomic, assign) NSInteger width;
-@property (nonatomic, assign) NSInteger height;
 @property (nonatomic, strong) NSString* templateString;
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* type;
 @property (nonatomic, assign) double prob;
 
 @end

@@ -52,7 +52,8 @@ static NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 -(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId {
 
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, creative.width, creative.height)];
+    //self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, creative.width, creative.height)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     
     self.webView.delegate = self;
     self.webView.scrollView.scrollsToTop = false;

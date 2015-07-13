@@ -85,8 +85,8 @@ static MobFoxNativeFormatCreativesManager* sharedManager = nil;
         MobFoxNativeFormatCreative* creative = [[MobFoxNativeFormatCreative alloc] init];
         creative.name = creativeJson[@"name"];
         creative.templateString = creativeJson[@"template"];
-        creative.width = [creativeJson[@"width"] integerValue];
-        creative.height = [creativeJson[@"height"] integerValue];
+        //creative.width = [creativeJson[@"width"] integerValue];
+        //creative.height = [creativeJson[@"height"] integerValue];
         creative.prob = [creativeJson[@"prob"] doubleValue];
         [self.creatives addObject:creative];
     }
@@ -111,8 +111,8 @@ static MobFoxNativeFormatCreativesManager* sharedManager = nil;
     
     MobFoxNativeFormatCreative* creative = [[MobFoxNativeFormatCreative alloc] init];
     creative.name = name;
-    creative.width = width;
-    creative.height = height;
+    //creative.width = width;
+    //creative.height = height;
     creative.prob = prob;
     creative.templateString = templateString;
     
@@ -124,9 +124,9 @@ static MobFoxNativeFormatCreativesManager* sharedManager = nil;
     
     NSMutableArray* filtered = [NSMutableArray array];
     for (MobFoxNativeFormatCreative* creative in self.creatives) {
-        if (creative.width == width && creative.height == height) {
-            [filtered addObject:creative];
-        }
+        //if (creative.width == width && creative.height == height) {
+        //    [filtered addObject:creative];
+       // }
     }
     
     if ([filtered count] == 0) {
