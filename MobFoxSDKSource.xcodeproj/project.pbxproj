@@ -607,6 +607,11 @@
 		E71DB8621B53D1D400E83634 /* JSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* JSONRetriever.m */; };
 		E71DB8651B53DD6C00E83634 /* JSONRetrieverDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */; };
 		E71DB8661B53DE6600E83634 /* JSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* JSONRetriever.m */; };
+		E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */; };
+		E71DB8691B53F43200E83634 /* MobFoxCreativeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */; };
+		E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
+		E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
+		E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E745E9651B4D119500A79DF9 /* __vungle.db */; };
 		E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9661B4D119500A79DF9 /* vg_close.png */; };
 		E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9671B4D119500A79DF9 /* vg_cta.png */; };
@@ -1005,6 +1010,8 @@
 		E71DB8611B53D1D400E83634 /* JSONRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetriever.m; sourceTree = "<group>"; };
 		E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRetrieverDummy.h; sourceTree = "<group>"; };
 		E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetrieverDummy.m; sourceTree = "<group>"; };
+		E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativeManager.h; sourceTree = "<group>"; };
+		E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativeManager.m; sourceTree = "<group>"; };
 		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
 		E745E9661B4D119500A79DF9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
 		E745E9671B4D119500A79DF9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
@@ -1638,6 +1645,8 @@
 				90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */,
 				90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */,
 				90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */,
+				E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */,
+				E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */,
 			);
 			name = NativeFormat;
 			sourceTree = "<group>";
@@ -1970,6 +1979,7 @@
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
+				E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */,
 				90B5C5C419652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
 				901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
 				90B5C55C19652C530013DC80 /* MRAdViewMF.h in Headers */,
@@ -2184,6 +2194,7 @@
 				90B5C5EB19652C530013DC80 /* MPMoPubNativeCustomEventMF.h in Headers */,
 				90CC97B61AE5107600B2907F /* MobFoxNativeFormatCreative.h in Headers */,
 				90B5C60719652C530013DC80 /* MPNativeAdRenderingMF.h in Headers */,
+				E71DB8691B53F43200E83634 /* MobFoxCreativeManager.h in Headers */,
 				90B5C55719652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.h in Headers */,
 				90C2E5731977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */,
 				90B5C5D119652C530013DC80 /* MPInterstitialCustomEventMF.h in Headers */,
@@ -2562,6 +2573,7 @@
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
 				90B5C55019652C530013DC80 /* MPMRAIDBannerCustomEventMF.m in Sources */,
+				E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
 				90B5C57A19652C530013DC80 /* MRJavaScriptEventEmitterMF.m in Sources */,
 				90B5C5CE19652C530013DC80 /* MPInterstitialAdControllerMF.m in Sources */,
 				901FCEF4192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */,
@@ -2620,6 +2632,7 @@
 				90B5C5B319652C530013DC80 /* MPSessionTrackerMF.m in Sources */,
 				903ADF0E18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */,
 				90B5C5FB19652C530013DC80 /* MPNativeAdMF.m in Sources */,
+				E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
 				90B5C57F19652C530013DC80 /* MRPictureManagerMF.m in Sources */,
 				90B5C50219652C530013DC80 /* MPAdServerURLBuilderMF.m in Sources */,
 				90B5C5A719652C530013DC80 /* MPIdentityProviderMF.m in Sources */,
@@ -2746,6 +2759,7 @@
 				E7E18F211B52A95F00222640 /* CreativeTests.m in Sources */,
 				E71DB8651B53DD6C00E83634 /* JSONRetrieverDummy.m in Sources */,
 				E71DB8661B53DE6600E83634 /* JSONRetriever.m in Sources */,
+				E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
