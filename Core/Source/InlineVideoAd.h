@@ -25,6 +25,8 @@
 
 - (void)InlineVideoAdClicked;
 
+- (void)InlineVideoAdFinished;
+
 @end
 
 @interface InlineVideoAd : UIWebView

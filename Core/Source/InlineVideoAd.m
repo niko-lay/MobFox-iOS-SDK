@@ -49,30 +49,35 @@
         self.bridge = [WebViewJavascriptBridge bridgeForWebView:self handler:^(id data, WVJBResponseCallback responseCallback) {
             NSLog(@"Received message from javascript: %@", data);
             NSDictionary *dict = (NSDictionary*)data;
-            id close = [dict objectForKey:@"close"];
-            if(close){
-                //close player ...
+            
+            if([dict objectForKey:@"close"]){
                 [self removeFromSuperview];
                 if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClosed)]) {
                     [self.adDelegate InlineVideoAdClosed];
                 }
                 
+            }
+            
+            if([dict objectForKey:@"finished"]){
+                //[self removeFromSuperview];
+                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdFinished)]) {
+                    [self.adDelegate InlineVideoAdFinished];
+                }
                 
             }
-            else{
-                id clickURL = [dict objectForKey:@"clickURL"];
-                if(clickURL){
-                    NSString* url = (NSString*)clickURL;
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-                    
+            
+            
+            if([dict objectForKey:@"clickURL"]){
+              
+                NSString* url = (NSString*)[dict objectForKey:@"clickURL"];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                   
-                    if ([self.adDelegate respondsToSelector:@selector
-                         (InlineVideoAdClicked)]) {
-                        [self.adDelegate InlineVideoAdClicked];
-                    }
-                    
+                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClicked)]) {
+                    [self.adDelegate InlineVideoAdClicked];
                 }
+                    
             }
+            
             
             //responseCallback(@"Right back atcha");
         }];
