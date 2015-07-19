@@ -11,6 +11,14 @@
 
 @implementation MobFoxCreativeManager
 
++ (JSONRetriever *)retriever {
+    static JSONRetriever *retriever = nil;
+    if (retriever == nil) {
+        // create retriever
+    }
+    return retriever;
+}
+
 -(id)initWithInventoryHash:(NSString *)invh
 {
     self = [super init];
@@ -20,9 +28,13 @@
     return self;
 }
 
--(MobFoxNativeFormatCreative *) getCreativeWithWidth:(NSInteger)width andHeight:(NSInteger)height
+-(MobFoxNativeFormatCreative *) getCreative:(NSString*)type width:(NSInteger)width height:(NSInteger)height
 {
-    return nil;
+    bool webgl = false;
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+        webgl  = true;
+    }
+    
 }
 
 @end

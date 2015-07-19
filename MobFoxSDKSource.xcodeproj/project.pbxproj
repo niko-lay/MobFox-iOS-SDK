@@ -612,6 +612,11 @@
 		E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
+		E742961C1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */; };
+		E742961D1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */; };
+		E742961F1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
+		E74296201B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
+		E74296211B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
 		E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E745E9651B4D119500A79DF9 /* __vungle.db */; };
 		E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9661B4D119500A79DF9 /* vg_close.png */; };
 		E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9671B4D119500A79DF9 /* vg_cta.png */; };
@@ -1008,10 +1013,12 @@
 		A7992EBB148936E400E86AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E71DB8601B53AD3C00E83634 /* JSONRetriever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONRetriever.h; sourceTree = "<group>"; };
 		E71DB8611B53D1D400E83634 /* JSONRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetriever.m; sourceTree = "<group>"; };
-		E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRetrieverDummy.h; sourceTree = "<group>"; };
-		E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetrieverDummy.m; sourceTree = "<group>"; };
+		E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONRetrieverDummy.h; path = ../Core/Source/JSONRetrieverDummy.h; sourceTree = "<group>"; };
+		E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONRetrieverDummy.m; path = ../Core/Source/JSONRetrieverDummy.m; sourceTree = "<group>"; };
 		E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativeManager.h; sourceTree = "<group>"; };
 		E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativeManager.m; sourceTree = "<group>"; };
+		E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRetrieverImpl.h; sourceTree = "<group>"; };
+		E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetrieverImpl.m; sourceTree = "<group>"; };
 		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
 		E745E9661B4D119500A79DF9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
 		E745E9671B4D119500A79DF9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
@@ -1820,8 +1827,8 @@
 			children = (
 				E71DB8601B53AD3C00E83634 /* JSONRetriever.h */,
 				E71DB8611B53D1D400E83634 /* JSONRetriever.m */,
-				E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */,
-				E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */,
+				E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */,
+				E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */,
 			);
 			name = networking;
 			sourceTree = "<group>";
@@ -1952,6 +1959,8 @@
 		E7E18F1D1B52A95F00222640 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */,
+				E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */,
 				E7E18F201B52A95F00222640 /* CreativeTests.m */,
 				E7E18F1E1B52A95F00222640 /* Supporting Files */,
 			);
@@ -2088,6 +2097,7 @@
 				E7E18D901B528EF800222640 /* FlurryAdInterstitial.h in Headers */,
 				90B5C4FF19652C530013DC80 /* MPAdServerURLBuilderMF.h in Headers */,
 				90038F291846035D00446EAD /* MFCJSONDeserializer.h in Headers */,
+				E742961C1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */,
 				90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
 				90B5C50719652C530013DC80 /* MPKeywordProvider.h in Headers */,
 				90B5C60C19652C530013DC80 /* MPNativeAdRequestTargetingMF.h in Headers */,
@@ -2172,6 +2182,7 @@
 				909716D518AA5CF8007EEB4D /* VAST.h in Headers */,
 				90B5C61119652C530013DC80 /* MPNativeCustomEventMF.h in Headers */,
 				90B5C5D519652C530013DC80 /* MPInterstitialCustomEventDelegateMF.h in Headers */,
+				E742961D1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */,
 				90B5C59919652C530013DC80 /* MPAnalyticsTrackerMF.h in Headers */,
 				90B5C54F19652C530013DC80 /* MPMRAIDBannerCustomEventMF.h in Headers */,
 				90B5C56519652C530013DC80 /* MRBundleManagerMF.h in Headers */,
@@ -2545,6 +2556,7 @@
 				90B5C4D419652C530013DC80 /* MPBannerAdManagerMF.m in Sources */,
 				9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				909716D018AA4DDF007EEB4D /* MFVASTXMLParser.m in Sources */,
+				E742961F1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
 				90B5C59219652C530013DC80 /* UIViewController+MPAdditionsMF.m in Sources */,
 				90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				90B5C57619652C530013DC80 /* MRImageDownloaderMF.m in Sources */,
@@ -2621,6 +2633,7 @@
 				903ADF0218CDAE460001F0E4 /* MFCustomEventFullscreen.m in Sources */,
 				90B5C5DD19652C530013DC80 /* UITableViewCell+MPNativeAdMF.m in Sources */,
 				90B5C51019652C530013DC80 /* MPLastResortDelegateMF.m in Sources */,
+				E74296201B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
 				90B5C57319652C530013DC80 /* MRDimmingViewMF.m in Sources */,
 				909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
@@ -2757,6 +2770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7E18F211B52A95F00222640 /* CreativeTests.m in Sources */,
+				E74296211B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
 				E71DB8651B53DD6C00E83634 /* JSONRetrieverDummy.m in Sources */,
 				E71DB8661B53DE6600E83634 /* JSONRetriever.m in Sources */,
 				E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
