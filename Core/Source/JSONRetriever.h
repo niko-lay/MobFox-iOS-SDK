@@ -16,7 +16,7 @@
 @interface JSONRetriever : NSObject
 
 
--(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSDictionary*)) cb;
+-(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSError*, NSDictionary*)) cb;
 
 @end
 

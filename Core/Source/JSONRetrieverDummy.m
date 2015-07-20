@@ -11,9 +11,9 @@
 
 @implementation JSONRetrieverDummy {}
 
--(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSDictionary*)) cb;
+-(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSError*,NSDictionary*)) cb;
 {
-    cb(self.data);
+    cb(nil,self.data);
 }
 
 @end

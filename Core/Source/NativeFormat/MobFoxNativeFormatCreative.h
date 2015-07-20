@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* type;
 @property (nonatomic, assign) double prob;
+@property (nonatomic, assign) bool webgl;
 
 @end

@@ -15,17 +15,21 @@
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+#define BASE_URL @"http://static.starbolt.io/creatives.new2.json";
+
 @interface MobFoxCreativeManager : NSObject
 
 @property NSString* invh;
+@property NSMutableArray* creatives;
 
 +(JSONRetriever *) retriever;
++(void) setRetriever:(JSONRetriever*)ret;
 
 -(id)initWithInventoryHash:(NSString *)invh;
 
 -(void) downloadCreatives;
 
--(MobFoxNativeFormatCreative *) getCreative:(NSString*)type width:(NSInteger)width height:(NSInteger)height;
+-(MobFoxNativeFormatCreative *) getCreative:(NSInteger)width height:(NSInteger)height;
 
 @end
 
