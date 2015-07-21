@@ -534,10 +534,6 @@
 		90C2E5731977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */; };
 		90C2E5741977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */; };
 		90C2E5751977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */; };
-		90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; };
-		90CC97941AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */; };
-		90CC97951AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
-		90CC97961AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */; };
 		90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */; };
 		90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */; };
 		90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */; };
@@ -604,19 +600,19 @@
 		A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */; };
 		A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E71DB8621B53D1D400E83634 /* JSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* JSONRetriever.m */; };
-		E71DB8651B53DD6C00E83634 /* JSONRetrieverDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */; };
-		E71DB8661B53DE6600E83634 /* JSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* JSONRetriever.m */; };
+		E71DB8621B53D1D400E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
+		E71DB8651B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8641B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m */; };
+		E71DB8661B53DE6600E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
 		E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */; };
 		E71DB8691B53F43200E83634 /* MobFoxCreativeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */; };
 		E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
-		E742961C1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */; };
-		E742961D1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */; };
-		E742961F1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
-		E74296201B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
-		E74296211B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */; };
+		E742961C1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
+		E742961D1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
+		E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
+		E74296201B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
+		E74296211B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
 		E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E745E9651B4D119500A79DF9 /* __vungle.db */; };
 		E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9661B4D119500A79DF9 /* vg_close.png */; };
 		E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9671B4D119500A79DF9 /* vg_cta.png */; };
@@ -967,8 +963,6 @@
 		90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxNativeAdRequestTask.h; sourceTree = "<group>"; };
 		90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxNativeAdRequestTask.m; sourceTree = "<group>"; };
 		90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatCreative.h; path = NativeFormat/MobFoxNativeFormatCreative.h; sourceTree = "<group>"; };
-		90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatCreativesManager.h; path = NativeFormat/MobFoxNativeFormatCreativesManager.h; sourceTree = "<group>"; };
-		90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreativesManager.m; path = NativeFormat/MobFoxNativeFormatCreativesManager.m; sourceTree = "<group>"; };
 		90CC97A91AE4EF7800B2907F /* fallback_320x480.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fallback_320x480.mustache; sourceTree = "<group>"; };
 		90CC97AA1AE4EF7800B2907F /* fallback_320x50.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fallback_320x50.mustache; sourceTree = "<group>"; };
 		90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreative.m; path = NativeFormat/MobFoxNativeFormatCreative.m; sourceTree = "<group>"; };
@@ -1011,14 +1005,14 @@
 		A7992E871489362800E86AC8 /* UIView+FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindViewController.m"; sourceTree = "<group>"; };
 		A7992EB9148936E400E86AC8 /* libMobFox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobFox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992EBB148936E400E86AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E71DB8601B53AD3C00E83634 /* JSONRetriever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONRetriever.h; sourceTree = "<group>"; };
-		E71DB8611B53D1D400E83634 /* JSONRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetriever.m; sourceTree = "<group>"; };
-		E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONRetrieverDummy.h; path = ../Core/Source/JSONRetrieverDummy.h; sourceTree = "<group>"; };
-		E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONRetrieverDummy.m; path = ../Core/Source/JSONRetrieverDummy.m; sourceTree = "<group>"; };
+		E71DB8601B53AD3C00E83634 /* MobFoxJSONRetriever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetriever.h; sourceTree = "<group>"; };
+		E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetriever.m; sourceTree = "<group>"; };
+		E71DB8631B53DC6600E83634 /* MobFoxJSONRetrieverDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxJSONRetrieverDummy.h; path = ../Core/Source/MobFoxJSONRetrieverDummy.h; sourceTree = "<group>"; };
+		E71DB8641B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxJSONRetrieverDummy.m; path = ../Core/Source/MobFoxJSONRetrieverDummy.m; sourceTree = "<group>"; };
 		E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativeManager.h; sourceTree = "<group>"; };
 		E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativeManager.m; sourceTree = "<group>"; };
-		E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRetrieverImpl.h; sourceTree = "<group>"; };
-		E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRetrieverImpl.m; sourceTree = "<group>"; };
+		E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetrieverImpl.h; sourceTree = "<group>"; };
+		E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetrieverImpl.m; sourceTree = "<group>"; };
 		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
 		E745E9661B4D119500A79DF9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
 		E745E9671B4D119500A79DF9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
@@ -1646,8 +1640,6 @@
 				90CC97A61AE4EF7800B2907F /* Resources */,
 				90CC97881AE4DA5B00B2907F /* MobFoxNativeFormatCreative.h */,
 				90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */,
-				90CC97911AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h */,
-				90CC97921AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m */,
 				90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */,
 				90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */,
 				90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */,
@@ -1825,10 +1817,10 @@
 		E71DB85F1B539A5100E83634 /* networking */ = {
 			isa = PBXGroup;
 			children = (
-				E71DB8601B53AD3C00E83634 /* JSONRetriever.h */,
-				E71DB8611B53D1D400E83634 /* JSONRetriever.m */,
-				E742961B1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h */,
-				E742961E1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m */,
+				E71DB8601B53AD3C00E83634 /* MobFoxJSONRetriever.h */,
+				E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */,
+				E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */,
+				E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */,
 			);
 			name = networking;
 			sourceTree = "<group>";
@@ -1959,8 +1951,8 @@
 		E7E18F1D1B52A95F00222640 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				E71DB8631B53DC6600E83634 /* JSONRetrieverDummy.h */,
-				E71DB8641B53DD6C00E83634 /* JSONRetrieverDummy.m */,
+				E71DB8631B53DC6600E83634 /* MobFoxJSONRetrieverDummy.h */,
+				E71DB8641B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m */,
 				E7E18F201B52A95F00222640 /* CreativeTests.m */,
 				E7E18F1E1B52A95F00222640 /* Supporting Files */,
 			);
@@ -1992,7 +1984,6 @@
 				90B5C5C419652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
 				901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
 				90B5C55C19652C530013DC80 /* MRAdViewMF.h in Headers */,
-				90CC97931AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
 				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
 				90DB890A1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */,
 				90CC98961AE5341000B2907F /* MobFoxNativeFormatView.h in Headers */,
@@ -2097,7 +2088,7 @@
 				E7E18D901B528EF800222640 /* FlurryAdInterstitial.h in Headers */,
 				90B5C4FF19652C530013DC80 /* MPAdServerURLBuilderMF.h in Headers */,
 				90038F291846035D00446EAD /* MFCJSONDeserializer.h in Headers */,
-				E742961C1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */,
+				E742961C1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */,
 				90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */,
 				90B5C50719652C530013DC80 /* MPKeywordProvider.h in Headers */,
 				90B5C60C19652C530013DC80 /* MPNativeAdRequestTargetingMF.h in Headers */,
@@ -2182,7 +2173,7 @@
 				909716D518AA5CF8007EEB4D /* VAST.h in Headers */,
 				90B5C61119652C530013DC80 /* MPNativeCustomEventMF.h in Headers */,
 				90B5C5D519652C530013DC80 /* MPInterstitialCustomEventDelegateMF.h in Headers */,
-				E742961D1B5C1B7C00EDBE61 /* JSONRetrieverImpl.h in Headers */,
+				E742961D1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */,
 				90B5C59919652C530013DC80 /* MPAnalyticsTrackerMF.h in Headers */,
 				90B5C54F19652C530013DC80 /* MPMRAIDBannerCustomEventMF.h in Headers */,
 				90B5C56519652C530013DC80 /* MRBundleManagerMF.h in Headers */,
@@ -2266,7 +2257,6 @@
 				0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTrackerMF.h in Headers */,
 				90038F361846035D00446EAD /* MFJSONRepresentation.h in Headers */,
-				90CC97941AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.h in Headers */,
 				90038F2E1846035D00446EAD /* MFCJSONScanner.h in Headers */,
 				90B5C59519652C530013DC80 /* UIWebView+MPAdditionsMF.h in Headers */,
 				90B5C56119652C530013DC80 /* MRAdViewDisplayControllerMF.h in Headers */,
@@ -2506,7 +2496,7 @@
 				90B5C56A19652C530013DC80 /* MRCalendarManagerMF.m in Sources */,
 				90B5C5D819652C530013DC80 /* UIImageView+MPNativeAdMF.m in Sources */,
 				90B5C59A19652C530013DC80 /* MPAnalyticsTrackerMF.m in Sources */,
-				E71DB8621B53D1D400E83634 /* JSONRetriever.m in Sources */,
+				E71DB8621B53D1D400E83634 /* MobFoxJSONRetriever.m in Sources */,
 				90B5C60019652C530013DC80 /* MPNativeAdConstantsMF.m in Sources */,
 				90A3F7C11935E02F00814208 /* MobFoxTableViewHelper.m in Sources */,
 				90B5C4EC19652C530013DC80 /* MPAdAlertManagerMF.m in Sources */,
@@ -2527,7 +2517,6 @@
 				90B5C50B19652C530013DC80 /* MPLastResortDelegateMF+EventKit.m in Sources */,
 				90B5C4DA19652C530013DC80 /* MPBannerCustomEventAdapterMF.m in Sources */,
 				90B5C52719652C530013DC80 /* MPHTMLInterstitialCustomEventMF.m in Sources */,
-				90CC97951AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */,
 				90B5C56E19652C530013DC80 /* MRCommandMF.m in Sources */,
 				90B5C51319652C530013DC80 /* MPProgressOverlayViewMF.m in Sources */,
 				909716D618AA5CF8007EEB4D /* VAST.m in Sources */,
@@ -2556,7 +2545,7 @@
 				90B5C4D419652C530013DC80 /* MPBannerAdManagerMF.m in Sources */,
 				9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				909716D018AA4DDF007EEB4D /* MFVASTXMLParser.m in Sources */,
-				E742961F1B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
+				E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */,
 				90B5C59219652C530013DC80 /* UIViewController+MPAdditionsMF.m in Sources */,
 				90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				90B5C57619652C530013DC80 /* MRImageDownloaderMF.m in Sources */,
@@ -2633,7 +2622,7 @@
 				903ADF0218CDAE460001F0E4 /* MFCustomEventFullscreen.m in Sources */,
 				90B5C5DD19652C530013DC80 /* UITableViewCell+MPNativeAdMF.m in Sources */,
 				90B5C51019652C530013DC80 /* MPLastResortDelegateMF.m in Sources */,
-				E74296201B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
+				E74296201B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */,
 				90B5C57319652C530013DC80 /* MRDimmingViewMF.m in Sources */,
 				909B6123194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
@@ -2682,7 +2671,6 @@
 				90B5C50C19652C530013DC80 /* MPLastResortDelegateMF+EventKit.m in Sources */,
 				90B5C4DB19652C530013DC80 /* MPBannerCustomEventAdapterMF.m in Sources */,
 				90B5C52819652C530013DC80 /* MPHTMLInterstitialCustomEventMF.m in Sources */,
-				90CC97961AE4E4BA00B2907F /* MobFoxNativeFormatCreativesManager.m in Sources */,
 				90B5C56F19652C530013DC80 /* MRCommandMF.m in Sources */,
 				90B5C51419652C530013DC80 /* MPProgressOverlayViewMF.m in Sources */,
 				A7992ED11489373000E86AC8 /* MFDTXMLDocument.m in Sources */,
@@ -2770,9 +2758,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7E18F211B52A95F00222640 /* CreativeTests.m in Sources */,
-				E74296211B5C1B9C00EDBE61 /* JSONRetrieverImpl.m in Sources */,
-				E71DB8651B53DD6C00E83634 /* JSONRetrieverDummy.m in Sources */,
-				E71DB8661B53DE6600E83634 /* JSONRetriever.m in Sources */,
+				E74296211B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */,
+				E71DB8651B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m in Sources */,
+				E71DB8661B53DE6600E83634 /* MobFoxJSONRetriever.m in Sources */,
 				E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

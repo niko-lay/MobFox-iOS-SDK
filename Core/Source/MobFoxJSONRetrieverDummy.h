@@ -9,9 +9,9 @@
 #ifndef MobFoxSDKSource_JSONRetrieverDummy_h
 #define MobFoxSDKSource_JSONRetrieverDummy_h
 
-#import "JSONRetriever.h"
+#import "MobFoxJSONRetriever.h"
 
-@interface JSONRetrieverDummy : JSONRetriever
+@interface MobFoxJSONRetrieverDummy : MobFoxJSONRetriever
 
 @property NSDictionary* data;
 

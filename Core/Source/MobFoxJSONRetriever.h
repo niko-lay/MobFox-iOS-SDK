@@ -9,12 +9,7 @@
 #ifndef MobFoxSDKSource_JSONRetriever_h
 #define MobFoxSDKSource_JSONRetriever_h
 
-@protocol JSONRetrieverDelegate
-    -(void) onJSONReturned: (NSDictionary*) JSONResponse;
-@end
-
-@interface JSONRetriever : NSObject
-
+@interface MobFoxJSONRetriever : NSObject
 
 -(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSError*, NSDictionary*)) cb;
 

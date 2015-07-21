@@ -8,7 +8,7 @@
 
 #import "MobFoxWaterfallBannerView.h"
 #import "MobFoxBannerView.h"
-#import "MobFoxNativeFormatCreativesManager.h"
+#import "MobFoxCreativeManager.h"
 #import "MobFoxNativeFormatView.h"
 #import "MobFoxCreativesQueueManager.h"
 
@@ -17,7 +17,7 @@
 @interface MobFoxWaterfallBannerView () <MobFoxBannerViewDelegate, MobFoxNativeFormatViewDelegate> {
 }
 
-@property (nonatomic, strong) MobFoxNativeFormatCreativesManager* nativeFormatCreativesManager;
+@property (nonatomic, strong) MobFoxCreativeManager* nativeFormatCreativesManager;
 @property (nonatomic, strong) MobFoxCreativesQueueManager* queueManager;
 @property (nonatomic, strong) NSMutableArray* adQueue;
 @property (nonatomic, strong) UIView* bannerView;
@@ -67,7 +67,7 @@
 -(void)setDelegate:(id<MobFoxWaterfallBannerViewDelegate>)delegate {
     _delegate = delegate;
     self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
-    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
+    self.nativeFormatCreativesManager = [MobFoxCreativeManager sharedManagerWithInventoryHash:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
 }
 
 -(void)requestAd
@@ -131,7 +131,7 @@
         height = 50;
     }
     
-    MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreativeWithWidth:width andHeight:height];
+    MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreative:width height:height];
     if (!chosenCreative) {
         NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];

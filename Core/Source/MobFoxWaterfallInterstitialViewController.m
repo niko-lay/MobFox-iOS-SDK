@@ -8,7 +8,7 @@
 
 #import "MobFoxWaterfallInterstitialViewController.h"
 #import "MobFoxCreativesQueueManager.h"
-#import "MobFoxNativeFormatCreativesManager.h"
+#import "MobFoxCreativeManager.h"
 #import "MobFoxNativeFormatView.h"
 #import "MobFoxVideoInterstitialViewController.h"
 #import "MobFoxInterstitialPlayerViewController.h"

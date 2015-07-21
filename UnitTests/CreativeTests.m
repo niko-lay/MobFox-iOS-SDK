@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "JSONRetrieverDummy.h"
+#import "MobFoxJSONRetrieverDummy.h"
 #import "MobFoxCreativeManager.h"
 
 @interface CreativeTests : XCTestCase
@@ -29,7 +29,7 @@
 
 - (void)testRetriever {
     
-    JSONRetrieverDummy* ret = [[JSONRetrieverDummy alloc] init];
+    MobFoxJSONRetrieverDummy* ret = [[MobFoxJSONRetrieverDummy alloc] init];
     ret.data = [[NSDictionary alloc] initWithObjectsAndKeys : @"loko", @"koko", nil];
     
     [ret retrieveJSON:@"dummy" jsonReturned:^void (NSError* err, NSDictionary* dict) {
@@ -77,16 +77,17 @@
     "]"
     "}";
     
-    JSONRetrieverDummy* ret = [[JSONRetrieverDummy alloc] init];
+    MobFoxJSONRetrieverDummy* ret = [[MobFoxJSONRetrieverDummy alloc] init];
     
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     ret.data = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
     [MobFoxCreativeManager setRetriever:ret];
-    MobFoxCreativeManager* man = [[MobFoxCreativeManager alloc] initWithInventoryHash:@"12345"];
+    MobFoxCreativeManager* man = [MobFoxCreativeManager sharedManagerWithInventoryHash:@"12345"];
 
     MobFoxNativeFormatCreative* c = [man getCreative:300 height:250];
     XCTAssert([c.type isEqualToString:@"block"]);
+    XCTAssert([c.name isEqualToString:@"particles"]);
     
     c = [man getCreative:320 height:50];
     XCTAssert([c.type isEqualToString:@"stripe"]);

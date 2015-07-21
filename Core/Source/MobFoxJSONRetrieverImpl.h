@@ -9,9 +9,9 @@
 #ifndef MobFoxSDKSource_JSONRetrieverImpl_h
 #define MobFoxSDKSource_JSONRetrieverImpl_h
 
-#import "JSONRetriever.h"
+#import "MobFoxJSONRetriever.h"
 
-@interface JSONRetrieverImpl : JSONRetriever
+@interface MobFoxJSONRetrieverImpl : MobFoxJSONRetriever
 @end
 
 #endif

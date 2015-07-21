@@ -8,14 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #include "MobFoxCreativeManager.h"
-#include "JSONRetrieverImpl.h"
+#include "MobFoxJSONRetrieverImpl.h"
 
 @implementation MobFoxCreativeManager
 
-static JSONRetriever* retriever = 0;
+static MobFoxJSONRetriever* retriever = 0;
+static MobFoxCreativeManager* sharedManager = nil;
 
-+ (JSONRetriever*) retriever { return retriever; }
-+ (void) setRetriever:(JSONRetriever*)value { retriever = value; }
++ (MobFoxJSONRetriever*) retriever { return retriever; }
++ (void) setRetriever:(MobFoxJSONRetriever*)value { retriever = value; }
+
++(id)sharedManagerWithInventoryHash:(NSString*)invh {
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        sharedManager = [[self alloc] initWithInventoryHash:invh];
+    });
+    
+    return sharedManager;
+}
 
 -(id)initWithInventoryHash:(NSString *)invh
 {

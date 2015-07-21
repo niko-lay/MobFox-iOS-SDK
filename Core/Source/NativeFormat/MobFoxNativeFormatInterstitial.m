@@ -8,7 +8,7 @@
 
 #import "MobFoxNativeFormatInterstitial.h"
 #import "MobFoxCreativesQueueManager.h"
-#import "MobFoxNativeFormatCreativesManager.h"
+#import "MobFoxCreativeManager.h"
 #import "MobFoxNativeFormatView.h"
 #import "MobFoxVideoInterstitialViewController.h"
 #import "MobFoxInterstitialPlayerViewController.h"
@@ -20,7 +20,7 @@
     BOOL adLoaded;
 }
 
-@property (nonatomic, strong) MobFoxNativeFormatCreativesManager* nativeFormatCreativesManager;
+@property (nonatomic, strong) MobFoxCreativeManager* nativeFormatCreativesManager;
 @property (nonatomic, strong) MobFoxInterstitialPlayerViewController *mobFoxInterstitialPlayerViewController;
 @property (nonatomic, strong) UIView *interstitialHoldingView;
 @property (nonatomic, strong) UIButton *interstitialSkipButton;
@@ -47,7 +47,7 @@
 
 - (void)setupWithPublisherId:(NSString*)publisherId {
 
-    self.nativeFormatCreativesManager = [MobFoxNativeFormatCreativesManager sharedManagerWithPublisherId:publisherId];
+    self.nativeFormatCreativesManager = [MobFoxCreativeManager sharedManagerWithInventoryHash:publisherId];
     
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
     {
@@ -92,7 +92,7 @@
     }
     
     
-    MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreativeWithWidth:width andHeight:height];
+    MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreative:width height:height];
     if (!chosenCreative) {
         NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];

@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 #include "MobFoxNativeFormatCreative.h"
-#include "JSONRetriever.h"
+#include "MobFoxJSONRetriever.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -19,11 +19,13 @@
 
 @interface MobFoxCreativeManager : NSObject
 
-@property NSString* invh;
-@property NSMutableArray* creatives;
+@property (nonatomic, strong) NSString* invh;
+@property (nonatomic, strong) NSMutableArray* creatives;
 
-+(JSONRetriever *) retriever;
-+(void) setRetriever:(JSONRetriever*)ret;
++(MobFoxJSONRetriever *) retriever;
++(void) setRetriever:(MobFoxJSONRetriever*)ret;
+
++(id) sharedManagerWithInventoryHash:(NSString*)invh;
 
 -(id)initWithInventoryHash:(NSString *)invh;
 

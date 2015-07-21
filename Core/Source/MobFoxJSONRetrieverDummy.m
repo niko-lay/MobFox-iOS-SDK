@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONRetrieverDummy.h"
+#import "MobFoxJSONRetrieverDummy.h"
 
-@implementation JSONRetrieverDummy {}
+@implementation MobFoxJSONRetrieverDummy {}
 
 -(void) retrieveJSON: (NSString*) url jsonReturned:(void (^)(NSError*,NSDictionary*)) cb;
 {
