@@ -608,6 +608,11 @@
 		E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
+		E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = E72137D81B5E8DCD004B9D44 /* WebViewJavascriptBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = E72137D91B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt */; };
+		E72137DD1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */; };
+		E72137E01B5E8DDA004B9D44 /* InlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E72137DE1B5E8DDA004B9D44 /* InlineVideoAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E72137E11B5E8DDA004B9D44 /* InlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E72137DF1B5E8DDA004B9D44 /* InlineVideoAd.m */; };
 		E742961C1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
 		E742961D1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
 		E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
@@ -619,11 +624,6 @@
 		E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9681B4D119500A79DF9 /* vg_mute_off.png */; };
 		E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9691B4D119500A79DF9 /* vg_mute_on.png */; };
 		E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E96A1B4D119500A79DF9 /* vg_timer.png */; };
-		E7E18D511B528BF000222640 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D4C1B528BF000222640 /* AdColony.framework */; };
-		E7E18D521B528BF000222640 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D4D1B528BF000222640 /* Chartboost.framework */; };
-		E7E18D531B528BF000222640 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D4E1B528BF000222640 /* FBAudienceNetwork.framework */; };
-		E7E18D541B528BF000222640 /* MillennialMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D4F1B528BF000222640 /* MillennialMedia.framework */; };
-		E7E18D551B528BF000222640 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D501B528BF000222640 /* UnityAds.framework */; };
 		E7E18D671B528EC500222640 /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5B1B528EC500222640 /* IMBanner.h */; };
 		E7E18D681B528EC500222640 /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5C1B528EC500222640 /* IMBannerDelegate.h */; };
 		E7E18D691B528EC500222640 /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5D1B528EC500222640 /* IMConstants.h */; };
@@ -635,10 +635,8 @@
 		E7E18D6F1B528EC500222640 /* IMNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D631B528EC500222640 /* IMNativeDelegate.h */; };
 		E7E18D701B528EC500222640 /* InMobi.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D641B528EC500222640 /* InMobi.h */; };
 		E7E18D711B528EC500222640 /* InMobiAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D651B528EC500222640 /* InMobiAnalytics.h */; };
-		E7E18D721B528EC500222640 /* libInMobi-4.5.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D661B528EC500222640 /* libInMobi-4.5.3.a */; };
 		E7E18D8B1B528EF800222640 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D751B528EF800222640 /* Flurry.h */; };
 		E7E18D8C1B528EF800222640 /* FlurryWatch.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D761B528EF800222640 /* FlurryWatch.h */; };
-		E7E18D8D1B528EF800222640 /* libFlurry_6.6.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D771B528EF800222640 /* libFlurry_6.6.0.a */; };
 		E7E18D8E1B528EF800222640 /* FlurryAdBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D7A1B528EF800222640 /* FlurryAdBanner.h */; };
 		E7E18D8F1B528EF800222640 /* FlurryAdBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D7B1B528EF800222640 /* FlurryAdBannerDelegate.h */; };
 		E7E18D901B528EF800222640 /* FlurryAdInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D7D1B528EF800222640 /* FlurryAdInterstitial.h */; };
@@ -647,7 +645,6 @@
 		E7E18D931B528EF800222640 /* FlurryAdNativeAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D811B528EF800222640 /* FlurryAdNativeAsset.h */; };
 		E7E18D941B528EF800222640 /* FlurryAdNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D821B528EF800222640 /* FlurryAdNativeDelegate.h */; };
 		E7E18D951B528EF800222640 /* FlurryAdNativeStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D831B528EF800222640 /* FlurryAdNativeStyle.h */; };
-		E7E18D961B528EF800222640 /* libFlurryAds_6.6.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E18D841B528EF800222640 /* libFlurryAds_6.6.0.a */; };
 		E7E18D971B528EF800222640 /* FlurryAdError.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D861B528EF800222640 /* FlurryAdError.h */; };
 		E7E18D981B528EF800222640 /* FlurryAdTargeting.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D871B528EF800222640 /* FlurryAdTargeting.h */; };
 		E7E18D991B528EF800222640 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D891B528EF800222640 /* FlurryAdDelegate.h */; };
@@ -656,6 +653,8 @@
 		E7E18DBA1B52A4B100222640 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E745E96B1B4D119500A79DF9 /* VungleSDK.framework */; };
 		E7E18F211B52A95F00222640 /* CreativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E18F201B52A95F00222640 /* CreativeTests.m */; };
 		E7E18F221B52A95F00222640 /* libMobFox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7992EB9148936E400E86AC8 /* libMobFox.a */; };
+		E7F6E1171B5E915200E7C14A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E7F6E1161B5E915200E7C14A /* index.html */; };
+		E7F6E11B1B5E97AB00E7C14A /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E7F6E11A1B5E97AB00E7C14A /* inline-video.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1011,6 +1010,11 @@
 		E71DB8641B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxJSONRetrieverDummy.m; path = ../Core/Source/MobFoxJSONRetrieverDummy.m; sourceTree = "<group>"; };
 		E71DB8671B53F43200E83634 /* MobFoxCreativeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativeManager.h; sourceTree = "<group>"; };
 		E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativeManager.m; sourceTree = "<group>"; };
+		E72137D81B5E8DCD004B9D44 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		E72137D91B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
+		E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		E72137DE1B5E8DDA004B9D44 /* InlineVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineVideoAd.h; sourceTree = "<group>"; };
+		E72137DF1B5E8DDA004B9D44 /* InlineVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineVideoAd.m; sourceTree = "<group>"; };
 		E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetrieverImpl.h; sourceTree = "<group>"; };
 		E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetrieverImpl.m; sourceTree = "<group>"; };
 		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
@@ -1057,6 +1061,8 @@
 		E7E18F1C1B52A95F00222640 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E18F1F1B52A95F00222640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7E18F201B52A95F00222640 /* CreativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreativeTests.m; sourceTree = "<group>"; };
+		E7F6E1161B5E915200E7C14A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		E7F6E11A1B5E97AB00E7C14A /* inline-video.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inline-video.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1064,14 +1070,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E18D721B528EC500222640 /* libInMobi-4.5.3.a in Frameworks */,
-				E7E18D551B528BF000222640 /* UnityAds.framework in Frameworks */,
-				E7E18D531B528BF000222640 /* FBAudienceNetwork.framework in Frameworks */,
-				E7E18D511B528BF000222640 /* AdColony.framework in Frameworks */,
-				E7E18D541B528BF000222640 /* MillennialMedia.framework in Frameworks */,
-				E7E18D961B528EF800222640 /* libFlurryAds_6.6.0.a in Frameworks */,
-				E7E18D8D1B528EF800222640 /* libFlurry_6.6.0.a in Frameworks */,
-				E7E18D521B528BF000222640 /* Chartboost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,6 +1684,11 @@
 		A7992E751489362800E86AC8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E7F6E11A1B5E97AB00E7C14A /* inline-video.js */,
+				E7F6E1161B5E915200E7C14A /* index.html */,
+				E72137DE1B5E8DDA004B9D44 /* InlineVideoAd.h */,
+				E72137DF1B5E8DDA004B9D44 /* InlineVideoAd.m */,
+				E72137D71B5E8DCD004B9D44 /* WebViewJavascriptBridge */,
 				E71DB85F1B539A5100E83634 /* networking */,
 				90CC97871AE4DA0A00B2907F /* NativeFormat */,
 				901FCEE6192C8D0200D22785 /* NativeAds */,
@@ -1823,6 +1826,16 @@
 				E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */,
 			);
 			name = networking;
+			sourceTree = "<group>";
+		};
+		E72137D71B5E8DCD004B9D44 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				E72137D81B5E8DCD004B9D44 /* WebViewJavascriptBridge.h */,
+				E72137D91B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt */,
+				E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
 		E745E9631B4D119500A79DF9 /* VungleSDK.embeddedframework */ = {
@@ -1974,6 +1987,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
+				E72137E01B5E8DDA004B9D44 /* InlineVideoAd.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
 				90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
 				9098B52D1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
@@ -2394,12 +2409,15 @@
 				90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */,
 				90B5C61A19652C530013DC80 /* README.md in Resources */,
 				E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */,
+				E7F6E1171B5E915200E7C14A /* index.html in Resources */,
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
 				E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */,
+				E7F6E11B1B5E97AB00E7C14A /* inline-video.js in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
 				E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */,
+				E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */,
 				9054A2EF1AE663C2005ABECF /* libs.js in Resources */,
 				E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */,
 				90038F381846035D00446EAD /* README.markdown in Resources */,
@@ -2526,6 +2544,7 @@
 				90038F2F1846035D00446EAD /* MFCJSONScanner.m in Sources */,
 				9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.m in Sources */,
+				E72137E11B5E8DDA004B9D44 /* InlineVideoAd.m in Sources */,
 				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
 				90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54B19652C530013DC80 /* MPInstanceProviderMF.m in Sources */,
@@ -2535,6 +2554,7 @@
 				903ADF0D18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
 				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
+				E72137DD1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m in Sources */,
 				90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60E19652C530013DC80 /* MPNativeAdRequestTargetingMF.m in Sources */,
 				90B5C5AA19652C530013DC80 /* MPLoggingMF.m in Sources */,
