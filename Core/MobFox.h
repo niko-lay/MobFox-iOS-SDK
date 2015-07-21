@@ -5,4 +5,4 @@
 #import "MobFoxWaterfallBannerView.h"
 #import "MobFoxWaterfallInterstitialViewController.h"
 #import "MobFoxVASTRequestManager.h"
-
+#import "InlineVideoAd.h"

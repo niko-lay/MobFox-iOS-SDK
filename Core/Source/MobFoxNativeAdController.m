@@ -170,6 +170,7 @@ int const MAX_STARS = 5;
 	{
 
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid publsher ID supplied" forKey:NSLocalizedDescriptionKey];
+        
         NSError *error = [NSError errorWithDomain:MobFoxNativeAdErrorDomain code:0 userInfo:userInfo];
         [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
         
