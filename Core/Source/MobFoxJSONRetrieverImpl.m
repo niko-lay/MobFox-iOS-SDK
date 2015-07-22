@@ -18,7 +18,6 @@
                        NSURL *req   = [NSURL URLWithString:url];
                        NSData *data = [NSData dataWithContentsOfURL:req];
                        
-
                        dispatch_sync(dispatch_get_main_queue(), ^{
                            
                            NSError *localError = nil;

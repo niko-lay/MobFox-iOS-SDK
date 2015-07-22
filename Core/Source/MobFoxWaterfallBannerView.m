@@ -99,6 +99,7 @@
         }
             
         case MobFoxCreativeNativeFormat: {
+            NSLog(@"asking for a native banner!!!");
             [self requestNativeFormatBanner];
             break;
         }
@@ -132,7 +133,10 @@
     }
     
     MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreative:width height:height];
+    
+    
     if (!chosenCreative) {
+        
         NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
         NSError* error = [NSError errorWithDomain:MobFoxErrorDomain code:0 userInfo:userInfo];
@@ -141,7 +145,8 @@
     }
     MobFoxNativeFormatView* nativeFormatView = [[MobFoxNativeFormatView alloc]init];
     nativeFormatView.delegate = self;
-    [nativeFormatView requestAdWithCreative:chosenCreative andPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self]];
+    
+    [nativeFormatView requestAdWithCreative:chosenCreative andPublisherId:[self.delegate publisherIdForMobFoxWaterfallBannerView:self] width:width height:height];
     self.bannerView = nativeFormatView;
 }
 

@@ -12,13 +12,17 @@
 
 @implementation MobFoxCreativeManager
 
-static MobFoxJSONRetriever* retriever = 0;
+static MobFoxJSONRetriever* retriever = nil;
 static MobFoxCreativeManager* sharedManager = nil;
 
 + (MobFoxJSONRetriever*) retriever { return retriever; }
 + (void) setRetriever:(MobFoxJSONRetriever*)value { retriever = value; }
 
 +(id)sharedManagerWithInventoryHash:(NSString*)invh {
+    
+    if(!retriever){
+        retriever = [[MobFoxJSONRetrieverImpl alloc] init];
+    }
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedManager = [[self alloc] initWithInventoryHash:invh];
@@ -29,11 +33,15 @@ static MobFoxCreativeManager* sharedManager = nil;
 
 -(id)initWithInventoryHash:(NSString *)invh
 {
+    
     self = [super init];
     self.creatives = [[NSMutableArray alloc] init];
+    [self addBundledCreativeWithName:@"fallback_320x50" type:@"stripe" prob:0];
+    [self addBundledCreativeWithName:@"fallback_320x480" type:@"block" prob:0];
     if (self) {
         self.invh =invh;
     }
+   
     [self downloadCreatives];
     return self;
 }
@@ -67,8 +75,8 @@ static MobFoxCreativeManager* sharedManager = nil;
     NSString* base = BASE_URL;
     NSString* url = [NSString stringWithFormat:@"%@?p=%@", base, self.invh];
     
+    
     [MobFoxCreativeManager.retriever retrieveJSON:url jsonReturned:^void (NSError* err, NSDictionary* json){
-        
         
         NSArray* jsonCreatives = (NSArray*)[json objectForKey:@"creatives"];
         for(NSDictionary* c_dict in  jsonCreatives){
@@ -83,7 +91,34 @@ static MobFoxCreativeManager* sharedManager = nil;
            
         }
     }];
+    
 }
 
+
+- (void) addBundledCreativeWithName:(NSString*)name type:(NSString*)type prob:(NSInteger) prob {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: name ofType: @"mustache"];
+    if (!path) {
+        NSLog(@"Cannot find resources for creative named: %@",name);
+        return;
+    }
+    
+    NSError* error;
+    NSString *templateString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    
+    if(error) {
+        NSLog(@"Cannot load bundled resource, %@",error.description);
+        return;
+    }
+    
+    MobFoxNativeFormatCreative* creative = [[MobFoxNativeFormatCreative alloc] init];
+    creative.name = name;
+    creative.type = type;
+    creative.prob = prob;
+    creative.webgl = false;
+    creative.templateString = templateString;
+    
+    [self.creatives addObject:creative];
+}
 
 @end

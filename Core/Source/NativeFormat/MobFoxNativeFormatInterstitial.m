@@ -92,7 +92,9 @@
     }
     
     
+    
     MobFoxNativeFormatCreative* chosenCreative = [self.nativeFormatCreativesManager getCreative:width height:height];
+    
     if (!chosenCreative) {
         NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
@@ -102,7 +104,7 @@
     }
     MobFoxNativeFormatView* nativeFormatView = [[MobFoxNativeFormatView alloc]init];
     nativeFormatView.delegate = self;
-    [nativeFormatView requestAdWithCreative:chosenCreative andPublisherId:publisherId];
+    [nativeFormatView requestAdWithCreative:chosenCreative andPublisherId:publisherId width:width height:height];
     
     [self createInterstitialFromView:nativeFormatView];
     

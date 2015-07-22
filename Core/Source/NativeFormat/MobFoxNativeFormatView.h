@@ -32,6 +32,6 @@
 
 @property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxNativeFormatViewDelegate> delegate;
 
--(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId;
+-(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId width:(NSInteger)width height:(NSInteger)height;
 
 @end

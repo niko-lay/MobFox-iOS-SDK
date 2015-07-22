@@ -50,10 +50,9 @@ static NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 
 
 
--(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId {
+-(void)requestAdWithCreative:(MobFoxNativeFormatCreative*)creative andPublisherId:(NSString*)publisherId width:(NSInteger)width height:(NSInteger)height {
 
-    //self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, creative.width, creative.height)];
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
     
     self.webView.delegate = self;
     self.webView.scrollView.scrollsToTop = false;
@@ -123,6 +122,7 @@ static NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
         }
         
 
+        
         
         NSURL *url;
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", SERVER_URL, requestString]];
