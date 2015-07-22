@@ -99,7 +99,6 @@
         }
             
         case MobFoxCreativeNativeFormat: {
-            NSLog(@"asking for a native banner!!!");
             [self requestNativeFormatBanner];
             break;
         }
