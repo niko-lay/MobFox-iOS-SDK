@@ -15,7 +15,7 @@
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-#define BASE_URL @"http://static.starbolt.io/creatives.new2.json";
+#define BASE_URL @"http://sdk.starbolt.io/creatives.json";
 
 @interface MobFoxCreativeManager : NSObject
 
