@@ -1,12 +1,12 @@
 //
-//  MobFoxWaterfallInterstitialViewController.m
+//  MobFoxInterstitialViewController.m
 //  MobFoxSDKSource
 //
 //  Created by Michał Kapuściński on 05.05.2015.
 //
 //
 
-#import "MobFoxWaterfallInterstitialViewController.h"
+#import "MobFoxInterstitialViewController.h"
 #import "MobFoxCreativesQueueManager.h"
 #import "MobFoxCreativeManager.h"
 #import "MobFoxNativeFormatView.h"
@@ -15,7 +15,7 @@
 #import "MobFoxNativeFormatInterstitial.h"
 #import "UIImage+MobFox.h"
 
-@interface MobFoxWaterfallInterstitialViewController () <MobFoxVideoInterstitialViewControllerDelegate, MobFoxNativeFormatInterstitialDelegate> {
+@interface MobFoxInterstitialViewController () <MobFoxVideoInterstitialViewControllerDelegate, MobFoxNativeFormatInterstitialDelegate> {
 }
 
 @property (nonatomic, strong) MobFoxCreativesQueueManager* queueManager;
@@ -31,7 +31,7 @@
 @end
 
 
-@implementation MobFoxWaterfallInterstitialViewController
+@implementation MobFoxInterstitialViewController
 
 
 @synthesize videoInterstitialViewController;
@@ -52,10 +52,10 @@
     [self.viewController.view addSubview:self.videoInterstitialViewController.view];
 }
 
--(void)setDelegate:(id<MobFoxWaterfallInterstitialDelegate>)delegate {
+-(void)setDelegate:(id<MobFoxInterstitialDelegate>)delegate {
     _delegate = delegate;
-    self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallInterstitial]];
-    self.nativeInterstitial = [[MobFoxNativeFormatInterstitial alloc]initWithPublisherId:[delegate publisherIdForMobFoxWaterfallInterstitial]];
+    self.queueManager = [MobFoxCreativesQueueManager sharedManagerWithPublisherId:[self.delegate publisherIdForMobFoxInterstitial]];
+    self.nativeInterstitial = [[MobFoxNativeFormatInterstitial alloc]initWithPublisherId:[delegate publisherIdForMobFoxInterstitial]];
     self.nativeInterstitial.delegate = self;
 }
 
@@ -70,7 +70,7 @@
     if (!self.delegate)
     {
         
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Delegate for waterfall interstitial not set!" forKey:NSLocalizedDescriptionKey];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Delegate for interstitial not set!" forKey:NSLocalizedDescriptionKey];
         
         NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorInventoryUnavailable userInfo:userInfo];
         [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
@@ -145,7 +145,7 @@
 }
 
 - (void) requestNativeFormatInterstitial {
-    [self.nativeInterstitial requestAdWithPublisherId:[self.delegate publisherIdForMobFoxWaterfallInterstitial] andViewController:self.viewController];
+    [self.nativeInterstitial requestAdWithPublisherId:[self.delegate publisherIdForMobFoxInterstitial] andViewController:self.viewController];
 }
 
 - (void) showAd {
@@ -168,7 +168,7 @@
         default: {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Cannot display interstitial, as it is not properly loaded." forKey:NSLocalizedDescriptionKey];
             NSError *error = [NSError errorWithDomain:MobFoxVideoInterstitialErrorDomain code:MobFoxInterstitialViewErrorUnknown userInfo:userInfo];
-            [self.delegate mobfoxWaterfallDidFailToLoadWithError:error];
+            [self.delegate mobfoxDidFailToLoadWithError:error];
         }
     }
 
@@ -177,7 +177,7 @@
 - (void) reportAdLoaded {
     self.adQueue = nil;
     self.advertRequestInProgress = NO;
-    [self.delegate mobfoxWaterfallInterstitialDidLoad];
+    [self.delegate mobfoxInterstitialDidLoad];
 }
 
 - (void)interstitialFailedWithError:(NSError *)error
@@ -188,7 +188,7 @@
     } else {
         self.adQueue = nil;
         self.advertRequestInProgress = NO;
-        [self.delegate mobfoxWaterfallDidFailToLoadWithError:error];
+        [self.delegate mobfoxDidFailToLoadWithError:error];
     }
 }
 
@@ -204,22 +204,22 @@
 }
 
 - (void)mobfoxNativeFormatInterstitialWillPresent {
-    if ([self.delegate respondsToSelector:@selector(mobfoxWaterfallInterstitialWillPresent)])
+    if ([self.delegate respondsToSelector:@selector(mobfoxInterstitialWillPresent)])
     {
-        [self.delegate mobfoxWaterfallInterstitialWillPresent];
+        [self.delegate mobfoxInterstitialWillPresent];
     }
 }
 
 - (void)mobfoxNativeFormatInterstitialActionWillFinish {
-    if ([self.delegate respondsToSelector:@selector(mobfoxWaterfallInterstitialActionWillFinish)])
+    if ([self.delegate respondsToSelector:@selector(mobfoxInterstitialActionWillFinish)])
     {
-        [self.delegate mobfoxWaterfallInterstitialActionWillFinish];
+        [self.delegate mobfoxInterstitialActionWillFinish];
     }
 }
 
 #pragma mark VideoInterstitialViewController delegate methods
 - (NSString *)publisherIdForMobFoxVideoInterstitialView:(MobFoxVideoInterstitialViewController *)videoInterstitial {
-    return [self.delegate publisherIdForMobFoxWaterfallInterstitial];
+    return [self.delegate publisherIdForMobFoxInterstitial];
 }
 
 - (void)mobfoxVideoInterstitialViewDidLoadMobFoxAd:(MobFoxVideoInterstitialViewController *)videoInterstitial advertTypeLoaded:(MobFoxAdType)advertType {
@@ -237,16 +237,16 @@
 }
 
 - (void)mobfoxVideoInterstitialViewActionWillPresentScreen:(MobFoxVideoInterstitialViewController *)videoInterstitial {
-    if ([self.delegate respondsToSelector:@selector(mobfoxWaterfallInterstitialWillPresent)])
+    if ([self.delegate respondsToSelector:@selector(mobfoxInterstitialWillPresent)])
     {
-        [self.delegate mobfoxWaterfallInterstitialWillPresent];
+        [self.delegate mobfoxInterstitialWillPresent];
     }
 }
 
 - (void)mobfoxVideoInterstitialViewWillDismissScreen:(MobFoxVideoInterstitialViewController *)videoInterstitial {
-    if ([self.delegate respondsToSelector:@selector(mobfoxWaterfallInterstitialActionWillFinish)])
+    if ([self.delegate respondsToSelector:@selector(mobfoxInterstitialActionWillFinish)])
     {
-        [self.delegate mobfoxWaterfallInterstitialActionWillFinish];
+        [self.delegate mobfoxInterstitialActionWillFinish];
     }
 }
 

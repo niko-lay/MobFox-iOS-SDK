@@ -11,7 +11,7 @@
 #import "MobFoxAdBrowserViewController.h"
 #import "MobFoxToolBar.h"
 
-#import "MobFoxBannerView.h"
+#import "MobFoxHTMLBannerView.h"
 
 #import "UIImage+MobFox.h"
 #import "UIButton+MobFox.h"
@@ -30,7 +30,7 @@
 
 NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial";
 
-@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, MFCustomEventFullscreenDelegate, MobFoxBannerViewDelegate> {
+@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, MFCustomEventFullscreenDelegate, MobFoxHTMLBannerViewDelegate> {
     BOOL videoSkipButtonShow;
     NSTimeInterval videoSkipButtonDisplayDelay;
     BOOL videoTimerShow;
@@ -1189,7 +1189,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     self.interstitialHoldingView.backgroundColor = [UIColor clearColor];
     self.interstitialHoldingView.autoresizesSubviews = YES;
     
-    MobFoxBannerView* bannerView = [[MobFoxBannerView alloc] initWithFrame:interstitialHoldingView.frame];
+    MobFoxHTMLBannerView* bannerView = [[MobFoxHTMLBannerView alloc] initWithFrame:interstitialHoldingView.frame];
 
     bannerView.allowDelegateAssigmentToRequestAd = NO;
     bannerView.delegate = self;
@@ -2957,21 +2957,21 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 #pragma mark Banner View Delegate
 
--(void) mobfoxBannerViewActionWillPresent:(MobFoxBannerView *)banner {
+-(void) mobfoxHTMLBannerViewActionWillPresent:(MobFoxHTMLBannerView *)banner {
     if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
     {
         [delegate mobfoxVideoInterstitialViewWasClicked:self];
     }
 }
 
--(void) mobfoxBannerViewActionWillLeaveApplication:(MobFoxBannerView *)banner {
+-(void) mobfoxHTMLBannerViewActionWillLeaveApplication:(MobFoxHTMLBannerView *)banner {
     if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillLeaveApplication:)])
     {
         [delegate mobfoxVideoInterstitialViewActionWillLeaveApplication:self];
     }
 }
 
--(NSString*) publisherIdForMobFoxBannerView:(MobFoxBannerView *)banner {
+-(NSString*) publisherIdForMobFoxHTMLBannerView:(MobFoxHTMLBannerView *)banner {
     return [delegate publisherIdForMobFoxVideoInterstitialView:self];
 }
 

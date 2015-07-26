@@ -143,10 +143,10 @@
 		90987D3D18BCD32500148D09 /* MFCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9A18B6168500C929A5 /* MFCustomEventBanner.h */; };
 		90987D3E18BCD32600148D09 /* MFCustomEventBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9718B60DC500C929A5 /* MFCustomEventBannerDelegate.h */; };
 		90987D3F18BCD32600148D09 /* MFCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9A18B6168500C929A5 /* MFCustomEventBanner.h */; };
-		9098B52D1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9098B52E1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */; };
-		9098B52F1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */; };
-		9098B5301AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */; };
+		9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9098B52E1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */; };
+		9098B52F1AF7AB1100173D75 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */; };
+		9098B5301AF7AB1100173D75 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */; };
 		909A5E9D18B6168500C929A5 /* MFCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* MFCustomEventBanner.m */; };
 		909A5E9F18B6168B00C929A5 /* MFCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* MFCustomEventBanner.m */; };
 		909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */; };
@@ -545,10 +545,10 @@
 		90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
-		90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90DB89051AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */; };
-		90DB89061AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */; };
-		90DB89071AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */; };
+		90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90DB89051AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */; };
+		90DB89061AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */; };
+		90DB89071AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */; };
 		90DB890A1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
 		90DB890B1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
 		90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
@@ -571,8 +571,8 @@
 		A7992E951489362800E86AC8 /* MFDTXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E791489362800E86AC8 /* MFDTXMLElement.m */; };
 		A7992E971489362800E86AC8 /* MobFoxAdBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */; settings = {ATTRIBUTES = (); }; };
 		A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
-		A7992E9B1489362800E86AC8 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7992E9D1489362800E86AC8 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */; };
+		A7992E9B1489362800E86AC8 /* MobFoxHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7992E9D1489362800E86AC8 /* MobFoxHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */; };
 		A7992EA31489362800E86AC8 /* NSString+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E801489362800E86AC8 /* NSString+MobFox.h */; };
 		A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E811489362800E86AC8 /* NSString+MobFox.m */; };
 		A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
@@ -596,8 +596,8 @@
 		A7992ED31489373000E86AC8 /* MFDTXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E791489362800E86AC8 /* MFDTXMLElement.m */; };
 		A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */; };
 		A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
-		A7992ED61489373000E86AC8 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */; };
+		A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7992ED71489373000E86AC8 /* MobFoxHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */; };
 		A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71DB8621B53D1D400E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
@@ -748,8 +748,8 @@
 		90987CFE18BCB95600148D09 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		90987D0018BCB96400148D09 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		90987D0218BCB96E00148D09 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxWaterfallBannerView.h; sourceTree = "<group>"; };
-		9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxWaterfallBannerView.m; sourceTree = "<group>"; };
+		9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxBannerView.h; sourceTree = "<group>"; };
+		9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxBannerView.m; sourceTree = "<group>"; };
 		909A5E9718B60DC500C929A5 /* MFCustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFCustomEventBannerDelegate.h; path = CustomEvents/MFCustomEventBannerDelegate.h; sourceTree = "<group>"; };
 		909A5E9A18B6168500C929A5 /* MFCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFCustomEventBanner.h; path = CustomEvents/MFCustomEventBanner.h; sourceTree = "<group>"; };
 		909A5E9B18B6168500C929A5 /* MFCustomEventBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFCustomEventBanner.m; path = CustomEvents/MFCustomEventBanner.m; sourceTree = "<group>"; };
@@ -967,8 +967,8 @@
 		90CC97B71AE510DD00B2907F /* MobFoxNativeFormatCreative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatCreative.m; path = NativeFormat/MobFoxNativeFormatCreative.m; sourceTree = "<group>"; };
 		90CC98941AE5341000B2907F /* MobFoxNativeFormatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatView.h; path = NativeFormat/MobFoxNativeFormatView.h; sourceTree = "<group>"; };
 		90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatView.m; path = NativeFormat/MobFoxNativeFormatView.m; sourceTree = "<group>"; };
-		90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxWaterfallInterstitialViewController.h; sourceTree = "<group>"; };
-		90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxWaterfallInterstitialViewController.m; sourceTree = "<group>"; };
+		90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxInterstitialViewController.h; sourceTree = "<group>"; };
+		90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxInterstitialViewController.m; sourceTree = "<group>"; };
 		90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobFoxNativeFormatInterstitial.h; path = NativeFormat/MobFoxNativeFormatInterstitial.h; sourceTree = "<group>"; };
 		90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobFoxNativeFormatInterstitial.m; path = NativeFormat/MobFoxNativeFormatInterstitial.m; sourceTree = "<group>"; };
 		90DD66011973D9B000745A59 /* FlurryCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCustomEventBanner.h; sourceTree = "<group>"; };
@@ -992,8 +992,8 @@
 		A7992E791489362800E86AC8 /* MFDTXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDTXMLElement.m; sourceTree = "<group>"; };
 		A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxAdBrowserViewController.h; sourceTree = "<group>"; };
 		A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxAdBrowserViewController.m; sourceTree = "<group>"; };
-		A7992E7C1489362800E86AC8 /* MobFoxBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxBannerView.h; sourceTree = "<group>"; };
-		A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxBannerView.m; sourceTree = "<group>"; };
+		A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxHTMLBannerView.h; sourceTree = "<group>"; };
+		A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxHTMLBannerView.m; sourceTree = "<group>"; };
 		A7992E801489362800E86AC8 /* NSString+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MobFox.h"; sourceTree = "<group>"; };
 		A7992E811489362800E86AC8 /* NSString+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MobFox.m"; sourceTree = "<group>"; };
 		A7992E821489362800E86AC8 /* NSURL+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MobFox.h"; sourceTree = "<group>"; };
@@ -1696,18 +1696,18 @@
 				909716CB18AA4DAA007EEB4D /* VAST */,
 				A7992EB41489363E00E86AC8 /* Helpers */,
 				A7992EB31489363000E86AC8 /* DTXML */,
-				A7992E7C1489362800E86AC8 /* MobFoxBannerView.h */,
-				A7992E7D1489362800E86AC8 /* MobFoxBannerView.m */,
+				A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */,
+				A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */,
 				901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */,
 				901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */,
 				0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */,
 				0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */,
 				90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */,
 				90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */,
-				90DB89021AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h */,
-				90DB89031AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.m */,
-				9098B52B1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h */,
-				9098B52C1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m */,
+				90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */,
+				90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */,
+				9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */,
+				9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */,
 				90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */,
 				90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */,
 			);
@@ -1990,8 +1990,8 @@
 				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
 				E72137E01B5E8DDA004B9D44 /* InlineVideoAd.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
-				90DB89041AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
-				9098B52D1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
+				90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
+				9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
@@ -2038,7 +2038,7 @@
 				90B5C60219652C530013DC80 /* MPNativeAdErrorMF.h in Headers */,
 				90B5C5B419652C530013DC80 /* MPStoreKitProviderMF.h in Headers */,
 				90B5C4E019652C530013DC80 /* MPLegacyBannerCustomEventAdapterMF.h in Headers */,
-				A7992E9B1489362800E86AC8 /* MobFoxBannerView.h in Headers */,
+				A7992E9B1489362800E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
 				E7E18D6B1B528EC500222640 /* IMIncentivisedDelegate.h in Headers */,
 				90B5C5EE19652C530013DC80 /* MPNativeAdMF+Internal.h in Headers */,
 				90038F311846035D00446EAD /* MFCJSONSerializer.h in Headers */,
@@ -2228,7 +2228,7 @@
 				90B6D1291962B67200061451 /* MFCustomEventNative.h in Headers */,
 				90987D3E18BCD32600148D09 /* MFCustomEventBannerDelegate.h in Headers */,
 				90B5C5D719652C530013DC80 /* UIImageView+MPNativeAdMF.h in Headers */,
-				90DB89051AF8AFD100C2DF18 /* MobFoxWaterfallInterstitialViewController.h in Headers */,
+				90DB89051AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
 				90B5C5CB19652C530013DC80 /* MPConstantsMF.h in Headers */,
 				90B5C5C919652C530013DC80 /* MPBannerCustomEventDelegateMF.h in Headers */,
 				90B5C4F419652C530013DC80 /* MPAdConfigurationMF.h in Headers */,
@@ -2268,7 +2268,7 @@
 				A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */,
 				90B5C51A19652C530013DC80 /* MPAdWebViewMF.h in Headers */,
 				90B5C5A519652C530013DC80 /* MPIdentityProviderMF.h in Headers */,
-				A7992ED61489373000E86AC8 /* MobFoxBannerView.h in Headers */,
+				A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
 				0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTrackerMF.h in Headers */,
 				90038F361846035D00446EAD /* MFJSONRepresentation.h in Headers */,
@@ -2282,7 +2282,7 @@
 				90B5C51619652C530013DC80 /* MPURLResolverMF.h in Headers */,
 				90B5C58919652C530013DC80 /* NSJSONSerialization+MPAdditionsMF.h in Headers */,
 				0F09F46814E7F134001C23E2 /* UIBarButtonItem+MobFox.h in Headers */,
-				9098B52E1AF7AB1100173D75 /* MobFoxWaterfallBannerView.h in Headers */,
+				9098B52E1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
 				90038F0E1846035D00446EAD /* MFCDataScanner.h in Headers */,
 				90B5C57519652C530013DC80 /* MRImageDownloaderMF.h in Headers */,
 				90B5C57119652C530013DC80 /* MRDimmingViewMF.h in Headers */,
@@ -2484,7 +2484,7 @@
 				90B5C5F219652C530013DC80 /* MPNativeCacheMF.m in Sources */,
 				A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
 				90038F1B1846035D00446EAD /* MFCJSONSerialization.m in Sources */,
-				A7992E9D1489362800E86AC8 /* MobFoxBannerView.m in Sources */,
+				A7992E9D1489362800E86AC8 /* MobFoxHTMLBannerView.m in Sources */,
 				90B5C5DC19652C530013DC80 /* UITableViewCell+MPNativeAdMF.m in Sources */,
 				90B5C50F19652C530013DC80 /* MPLastResortDelegateMF.m in Sources */,
 				90B5C57219652C530013DC80 /* MRDimmingViewMF.m in Sources */,
@@ -2589,7 +2589,7 @@
 				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90B5C60A19652C530013DC80 /* MPNativeAdRequestMF.m in Sources */,
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
-				90DB89061AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */,
+				90DB89061AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */,
 				90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
@@ -2599,7 +2599,7 @@
 				90B5C5CE19652C530013DC80 /* MPInterstitialAdControllerMF.m in Sources */,
 				901FCEF4192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */,
 				90B5C61819652C530013DC80 /* MPTableViewAdManagerMF.m in Sources */,
-				9098B52F1AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */,
+				9098B52F1AF7AB1100173D75 /* MobFoxBannerView.m in Sources */,
 				90B5C56219652C530013DC80 /* MRAdViewDisplayControllerMF.m in Sources */,
 				90B5C4F019652C530013DC80 /* MPAdBrowserControllerMF.m in Sources */,
 				90038F131846035D00446EAD /* MFCFilteringJSONSerializer.m in Sources */,
@@ -2708,7 +2708,7 @@
 				90FEE52C1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				909B611C194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90038F201846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
-				A7992ED71489373000E86AC8 /* MobFoxBannerView.m in Sources */,
+				A7992ED71489373000E86AC8 /* MobFoxHTMLBannerView.m in Sources */,
 				90F61C6719AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60F19652C530013DC80 /* MPNativeAdRequestTargetingMF.m in Sources */,
 				90B5C5AB19652C530013DC80 /* MPLoggingMF.m in Sources */,
@@ -2742,7 +2742,7 @@
 				0F0EB65F1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */,
 				90B5C60B19652C530013DC80 /* MPNativeAdRequestMF.m in Sources */,
 				90038F101846035D00446EAD /* MFCDataScanner.m in Sources */,
-				90DB89071AF8AFD200C2DF18 /* MobFoxWaterfallInterstitialViewController.m in Sources */,
+				90DB89071AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */,
 				909F363418487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
 				90038F301846035D00446EAD /* MFCJSONScanner.m in Sources */,
 				90B090BD19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
@@ -2751,7 +2751,7 @@
 				90B5C5CF19652C530013DC80 /* MPInterstitialAdControllerMF.m in Sources */,
 				0FCEB20C150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */,
 				90B5C61919652C530013DC80 /* MPTableViewAdManagerMF.m in Sources */,
-				9098B5301AF7AB1100173D75 /* MobFoxWaterfallBannerView.m in Sources */,
+				9098B5301AF7AB1100173D75 /* MobFoxBannerView.m in Sources */,
 				90B5C56319652C530013DC80 /* MRAdViewDisplayControllerMF.m in Sources */,
 				90B5C4F119652C530013DC80 /* MPAdBrowserControllerMF.m in Sources */,
 				90038F1C1846035D00446EAD /* MFCJSONSerialization.m in Sources */,
