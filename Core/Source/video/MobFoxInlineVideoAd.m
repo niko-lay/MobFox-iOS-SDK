@@ -126,7 +126,7 @@
          
          if([responseData  isEqual: @"ad loaded"]){//success
              self.hidden = NO;
-             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:InlineVideoAd:)]) {
+             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:MobFoxInlineVideoAd:)]) {
                  [self.adDelegate InlineVideoAdDidLoadMobFoxAd:self];
              }
              
