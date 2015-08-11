@@ -615,7 +615,7 @@
 		E740F2801B79E68300ECE9F9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E740F27B1B79E68300ECE9F9 /* index.html */; };
 		E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
 		E740F2821B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
-		E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; };
+		E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E740F2841B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; };
 		E740F2851B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
 		E740F2861B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
@@ -2000,6 +2000,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
 				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
 				90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
@@ -2150,7 +2151,6 @@
 				90B5C57019652C530013DC80 /* MRDimmingViewMF.h in Headers */,
 				90B6D1281962B67200061451 /* MFCustomEventNative.h in Headers */,
 				90987D3C18BCD32500148D09 /* MFCustomEventBannerDelegate.h in Headers */,
-				E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
 				90B5C52D19652C530013DC80 /* MPBaseInterstitialAdapterMF.h in Headers */,
 				E7E18D691B528EC500222640 /* IMConstants.h in Headers */,
 				90B5C52119652C530013DC80 /* MPHTMLBannerCustomEventMF.h in Headers */,
