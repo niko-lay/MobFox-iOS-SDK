@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Itamar Nabriski. All rights reserved.
 //
 
-#import "InlineVideoAd.h"
+#import "MobFoxInlineVideoAd.h"
 #import <AdSupport/ASIdentifierManager.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
 
-@implementation InlineVideoAd
+@implementation MobFoxInlineVideoAd
 
 /*
 // Only override drawRect: if you perform custom drawing.
