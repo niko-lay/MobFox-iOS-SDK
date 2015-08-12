@@ -126,7 +126,7 @@
          
          if([responseData  isEqual: @"ad loaded"]){//success
              self.hidden = NO;
-             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:MobFoxInlineVideoAd:)]) {
+             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:)]) {
                  [self.adDelegate InlineVideoAdDidLoadMobFoxAd:self];
              }
              
@@ -134,7 +134,7 @@
          else{//failure
              NSError* err = [NSError errorWithDomain:responseData code:0 userInfo:nil];
              
-             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidFailToReceiveAdWithError:NSError:)]) {
+             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidFailToReceiveAdWithError:)]) {
                     [self.adDelegate InlineVideoAdDidFailToReceiveAdWithError:err];
              }
          }
