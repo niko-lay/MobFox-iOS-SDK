@@ -631,6 +631,8 @@
 		E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9681B4D119500A79DF9 /* vg_mute_off.png */; };
 		E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9691B4D119500A79DF9 /* vg_mute_on.png */; };
 		E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E96A1B4D119500A79DF9 /* vg_timer.png */; };
+		E76B90FE1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E76B91001B7B371300D12C45 /* MobFoxInterstitialVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */; };
 		E7E18D671B528EC500222640 /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5B1B528EC500222640 /* IMBanner.h */; };
 		E7E18D681B528EC500222640 /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5C1B528EC500222640 /* IMBannerDelegate.h */; };
 		E7E18D691B528EC500222640 /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5D1B528EC500222640 /* IMConstants.h */; };
@@ -1031,6 +1033,8 @@
 		E745E9691B4D119500A79DF9 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
 		E745E96A1B4D119500A79DF9 /* vg_timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_timer.png; sourceTree = "<group>"; };
 		E745E96B1B4D119500A79DF9 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
+		E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxInterstitialVideo.h; sourceTree = "<group>"; };
+		E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxInterstitialVideo.m; sourceTree = "<group>"; };
 		E7E18D4C1B528BF000222640 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = "../ios-deps/AdColony.framework"; sourceTree = "<group>"; };
 		E7E18D4D1B528BF000222640 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chartboost.framework; path = "../ios-deps/Chartboost.framework"; sourceTree = "<group>"; };
 		E7E18D4E1B528BF000222640 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = "../ios-deps/FBAudienceNetwork.framework"; sourceTree = "<group>"; };
@@ -1847,6 +1851,8 @@
 				E740F27C1B79E68300ECE9F9 /* inline-video.js */,
 				E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */,
 				E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */,
+				E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */,
+				E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */,
 			);
 			path = video;
 			sourceTree = "<group>";
@@ -2002,6 +2008,7 @@
 			files = (
 				E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
 				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
+				E76B90FE1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
 				90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
 				9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
@@ -2522,6 +2529,7 @@
 				90B5C4DE19652C530013DC80 /* MPBaseBannerAdapterMF.m in Sources */,
 				9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				90B5C51719652C530013DC80 /* MPURLResolverMF.m in Sources */,
+				E76B91001B7B371300D12C45 /* MobFoxInterstitialVideo.m in Sources */,
 				90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
 				A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */,
 				90B5C53919652C530013DC80 /* MPInterstitialCustomEventAdapterMF.m in Sources */,

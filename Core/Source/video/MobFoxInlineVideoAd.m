@@ -22,10 +22,7 @@
 }
 */
 
--(id) initWithFrame:(CGRect)aRect
-{
-    self = [super initWithFrame:aRect];
-    
+- (void)_init {
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]];
     
     [self loadRequest:[NSURLRequest requestWithURL:url]];
@@ -34,10 +31,21 @@
     self.allowsInlineMediaPlayback = true;
     self.mediaPlaybackRequiresUserAction = false;
     self.hidden = YES;
-
+    
     self.autoplay = true;
     self.skip = true;
-    
+}
+
+-(id) init{
+    self = [super init];
+    [self _init];
+    return self;
+}
+
+-(id) initWithFrame:(CGRect)aRect
+{
+    self = [super initWithFrame:aRect];
+    [self _init];
     return self;
 }
 
