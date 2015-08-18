@@ -13,7 +13,9 @@
 
 
 @implementation MobFoxInlineVideoAd
-
+{
+    WebViewJavascriptBridge* bridge;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -45,8 +47,8 @@
     
      self.hidden = YES;
     
-    if(self.bridge == nil){
-        self.bridge = [WebViewJavascriptBridge bridgeForWebView:self handler:^(id data, WVJBResponseCallback responseCallback) {
+    if(bridge == nil){
+        bridge = [WebViewJavascriptBridge bridgeForWebView:self handler:^(id data, WVJBResponseCallback responseCallback) {
             NSLog(@"Received message from javascript: %@", data);
             NSDictionary *dict = (NSDictionary*)data;
             
@@ -101,7 +103,7 @@
      u = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F69";
      }
      */
-    [self.bridge send:[NSDictionary dictionaryWithObjectsAndKeys:
+    [bridge send:[NSDictionary dictionaryWithObjectsAndKeys:
                        self.autoplay ? @"true" : @"false",@"autoplay",
                        self.skip ? @"true" : @"false" ,@"skip",
                        pubId, @"s",
