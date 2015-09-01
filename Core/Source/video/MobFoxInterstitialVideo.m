@@ -69,7 +69,7 @@
 }
 
 -(void) loadAd{
-    [self.ad loadAd];
+    [self.ad loadVideoAd];
 }
 
 @end

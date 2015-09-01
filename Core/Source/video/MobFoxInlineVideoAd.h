@@ -29,7 +29,7 @@
 
 @end
 
-@interface MobFoxInlineVideoAd : UIWebView
+@interface MobFoxInlineVideoAd : UIWebView<UIWebViewDelegate>
 
 
     @property (nonatomic, assign) id<MobFoxInlineVideoDelegate> adDelegate;
@@ -53,7 +53,18 @@
 - (NSString *)getIPAddress;
 - (id) init;
 - (id) initWithFrame:(CGRect)aRect;
-- (void) loadAd;
+- (void) loadVideoAd;
+- (void) loadBannerAd;
+
+
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType;
+
+- (void)webViewDidStartLoad:(UIWebView *)webView;
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+- (void)webViewdidFailLoadWithError:(NSError *)error;
+
 
 @end
 
