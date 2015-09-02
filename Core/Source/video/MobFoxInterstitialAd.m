@@ -1,5 +1,5 @@
 //
-//  MobFoxInterstitialVideo.m
+//  MobFoxInterstitialAd.m
 //  MobFoxSDKSource
 //
 //  Created by Itamar Nabriski on 8/12/15.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "MobFoxInterstitialVideo.h"
+#include "MobFoxInterstitialAd.h"
 
-@implementation MobFoxInterstitialVideo{
+@implementation MobFoxInterstitialAd{
     UIViewController* _main;
 }
     
@@ -25,8 +25,7 @@
 
 - (NSString *)publisherIdForMobFoxAd:(MobFoxAd *)banner{
    
-    NSString* pubId =  [self.delegate publisherIdForInterstitialVideoAd:self];
-   
+    NSString* pubId =  [self.delegate publisherIdForMobFoxInterstitialAd:self];
     return pubId;
 }
 
@@ -35,36 +34,36 @@
     [vc.view addSubview:self.ad];
     [self->_main presentViewController:vc animated:TRUE completion:nil];
     
-    if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdDidLoadMobFoxAd:)]) {
-        [self.delegate InterstitialVideoAdDidLoadMobFoxAd:self];
+    if ([self.delegate respondsToSelector:@selector(MobFoxInterstitialAdDidLoad:)]) {
+        [self.delegate MobFoxInterstitialAdDidLoad:self];
     }
     
 }
 
 - (void)MobFoxAdDidFailToReceiveAdWithError:(NSError *)error{
-    if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdDidFailToReceiveAdWithError:)]) {
-        [self.delegate InterstitialVideoAdDidFailToReceiveAdWithError:error];
+    if ([self.delegate respondsToSelector:@selector(MobFoxInterstitialAdDidFailToReceiveAdWithError:)]) {
+        [self.delegate MobFoxInterstitialAdDidFailToReceiveAdWithError:error];
     }
 }
 
 - (void)MobFoxAdClosed{
     
     [self->_main dismissViewControllerAnimated:YES completion:nil];
-    if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdClosed)]) {
-        [self.delegate InterstitialVideoAdClosed];
+    if ([self.delegate respondsToSelector:@selector(MobFoxInterstitialAdClosed)]) {
+        [self.delegate MobFoxInterstitialAdClosed];
     }
 }
 
 - (void)MobFoxAdClicked{
-    if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdClicked)]) {
-        [self.delegate InterstitialVideoAdClicked];
+    if ([self.delegate respondsToSelector:@selector(MobFoxInterstitialAdClicked)]) {
+        [self.delegate MobFoxInterstitialAdClicked];
     }
 }
 
 - (void)MobFoxAdFinished{
     
-    if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdFinished)]) {
-        [self.delegate InterstitialVideoAdFinished];
+    if ([self.delegate respondsToSelector:@selector(MobFoxInterstitialAdFinished)]) {
+        [self.delegate MobFoxInterstitialAdFinished];
     }
 }
 
