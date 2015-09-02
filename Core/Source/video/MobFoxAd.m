@@ -1,18 +1,18 @@
 //
-//  InlineVideoAd.m
+//  MobFoxAd.m
 //  Test
 //
 //  Created by Itamar Nabriski on 6/4/15.
 //  Copyright (c) 2015 Itamar Nabriski. All rights reserved.
 //
 
-#import "MobFoxInlineVideoAd.h"
+#import "MobFoxAd.h"
 #import <AdSupport/ASIdentifierManager.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
 
-@implementation MobFoxInlineVideoAd
+@implementation MobFoxAd
 {
     WebViewJavascriptBridge* bridge;
 }
@@ -36,6 +36,44 @@
     
     self.autoplay = true;
     self.skip = true;
+    
+    bridge = [WebViewJavascriptBridge bridgeForWebView:self
+                                       webViewDelegate:self
+                                       handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"Received message from javascript: %@", data);
+        NSDictionary *dict = (NSDictionary*)data;
+        
+        if([dict objectForKey:@"close"]){
+            [self removeFromSuperview];
+            if ([self.adDelegate respondsToSelector:@selector(MobFoxAdClosed)]) {
+                [self.adDelegate MobFoxAdClosed];
+            }
+            
+        }
+        
+        if([dict objectForKey:@"finished"]){
+            //[self removeFromSuperview];
+            if ([self.adDelegate respondsToSelector:@selector(MobFoxAdFinished)]) {
+                [self.adDelegate MobFoxAdFinished];
+            }
+            
+        }
+        
+        
+        if([dict objectForKey:@"clickURL"]){
+            
+            NSString* url = (NSString*)[dict objectForKey:@"clickURL"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            
+            if ([self.adDelegate respondsToSelector:@selector(MobFoxAdClicked)]) {
+                [self.adDelegate MobFoxAdClicked];
+            }
+            
+        }
+        
+        
+        //responseCallback(@"Right back atcha");
+    }];
 
 }
 
@@ -53,52 +91,13 @@
 }
 
 
-
 - (void) loadVideoAd {
     
      self.hidden = YES;
     
-    if(bridge == nil){
-        bridge = [WebViewJavascriptBridge bridgeForWebView:self handler:^(id data, WVJBResponseCallback responseCallback) {
-            NSLog(@"Received message from javascript: %@", data);
-            NSDictionary *dict = (NSDictionary*)data;
-            
-            if([dict objectForKey:@"close"]){
-                [self removeFromSuperview];
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClosed)]) {
-                    [self.adDelegate InlineVideoAdClosed];
-                }
-                
-            }
-            
-            if([dict objectForKey:@"finished"]){
-                //[self removeFromSuperview];
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdFinished)]) {
-                    [self.adDelegate InlineVideoAdFinished];
-                }
-                
-            }
-            
-            
-            if([dict objectForKey:@"clickURL"]){
-              
-                NSString* url = (NSString*)[dict objectForKey:@"clickURL"];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-                  
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClicked)]) {
-                    [self.adDelegate InlineVideoAdClicked];
-                }
-                    
-            }
-            
-            
-            //responseCallback(@"Right back atcha");
-        }];
-    }
-    
     NSString *idfaString = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSString *ipString = [self getIPAddress];
-    NSString *pubId = [self.adDelegate publisherIdForInlineVideoAd:self];
+    NSString *pubId = [self.adDelegate publisherIdForMobFoxAd:self];
     NSString *type = @"video";
     
    
@@ -128,16 +127,16 @@
          
          if([responseData  isEqual: @"ad loaded"]){//success
              self.hidden = NO;
-             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:)]) {
-                 [self.adDelegate InlineVideoAdDidLoadMobFoxAd:self];
+             if ([self.adDelegate respondsToSelector:@selector(MobFoxAdDidLoad:)]) {
+                 [self.adDelegate MobFoxAdDidLoad:self];
              }
              
          }
          else{//failure
              NSError* err = [NSError errorWithDomain:responseData code:0 userInfo:nil];
              
-             if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidFailToReceiveAdWithError:)]) {
-                    [self.adDelegate InlineVideoAdDidFailToReceiveAdWithError:err];
+             if ([self.adDelegate respondsToSelector:@selector(MobFoxAdDidFailToReceiveAdWithError:)]) {
+                    [self.adDelegate MobFoxAdDidFailToReceiveAdWithError:err];
              }
          }
         
@@ -150,55 +149,12 @@
     
     self.hidden = YES;
     
-    if(bridge == nil){
-        bridge = [WebViewJavascriptBridge bridgeForWebView:self
-                  webViewDelegate:self
-                  handler:^(id data, WVJBResponseCallback responseCallback) {
-            NSLog(@"Received message from javascript: %@", data);
-            NSDictionary *dict = (NSDictionary*)data;
-            
-            if([dict objectForKey:@"close"]){
-                [self removeFromSuperview];
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClosed)]) {
-                    [self.adDelegate InlineVideoAdClosed];
-                }
-                
-            }
-            
-            if([dict objectForKey:@"finished"]){
-                //[self removeFromSuperview];
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdFinished)]) {
-                    [self.adDelegate InlineVideoAdFinished];
-                }
-                
-            }
-            
-            
-            if([dict objectForKey:@"clickURL"]){
-                
-                NSString* url = (NSString*)[dict objectForKey:@"clickURL"];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-                
-                if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClicked)]) {
-                    [self.adDelegate InlineVideoAdClicked];
-                }
-                
-            }
-            
-            
-            //responseCallback(@"Right back atcha");
-        }];
-    }
-    
     NSString *idfaString = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSString *ipString = [self getIPAddress];
-    NSString *pubId = [self.adDelegate publisherIdForInlineVideoAd:self];
+    NSString *pubId = [self.adDelegate publisherIdForMobFoxAd:self];
     
     /*
      
-     
-     
-   
      demo_keywords	No	Comma Separated	A comma-separated list of keywords. Example: sports, cars, finance, football
      adspace_strict	No	0 | 1	If this parameter is set to 1 and an adspace_height and adspace_width is provided, the ad server will only serve ads of these exact dimensions and will not serve any smaller-sized ads.
      no_markup	No	0 | 1	Should be passed as 1 if no markup ads should be returned. Setting this parameter to 1 will make sure that only image & text ads are being returned.
@@ -231,9 +187,9 @@
                   self.v_dur_min,@"v_dur_min",
                   self.v_dur_max,@"v_dur_max",
                   self.r_floor,@"r_floor",
-                  320,@"adspace_width",
-                  50,@"adspace_height",
-                  1,@"adspace_strict",
+                  self.frame.size.width,@"adspace_width",
+                  self.frame.size.height,@"adspace_height",
+                  //1,@"adspace_strict",
                   nil]
      
     responseCallback:^(id responseData) {
@@ -244,16 +200,16 @@
             
             self.hidden = NO;
             
-            if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidLoadMobFoxAd:)]) {
-                [self.adDelegate InlineVideoAdDidLoadMobFoxAd:self];
+            if ([self.adDelegate respondsToSelector:@selector(MobFoxAdDidLoad:)]) {
+                [self.adDelegate MobFoxAdDidLoad:self];
             }
         
         }
         else{//failure
             NSError* err = [NSError errorWithDomain:responseData code:0 userInfo:nil];
         
-            if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdDidFailToReceiveAdWithError:)]){
-                [self.adDelegate InlineVideoAdDidFailToReceiveAdWithError:err];
+            if ([self.adDelegate respondsToSelector:@selector(MobFoxAdDidFailToReceiveAdWithError:)]){
+                [self.adDelegate MobFoxAdDidFailToReceiveAdWithError:err];
             }
     }
     
@@ -300,11 +256,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType{
     
     if(navigationType == UIWebViewNavigationTypeLinkClicked){
-        
+       
         [[UIApplication sharedApplication] openURL:request.URL];
         
-        if ([self.adDelegate respondsToSelector:@selector(InlineVideoAdClicked)]) {
-            [self.adDelegate InlineVideoAdClicked];
+        if ([self.adDelegate respondsToSelector:@selector(MobFoxAdClicked)]) {
+            [self.adDelegate MobFoxAdClicked];
         }
         return NO;
     }

@@ -613,13 +613,11 @@
 		E72137DD1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */; };
 		E740F27F1B79E68300ECE9F9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E740F27B1B79E68300ECE9F9 /* index.html */; };
 		E740F2801B79E68300ECE9F9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E740F27B1B79E68300ECE9F9 /* index.html */; };
-		E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
-		E740F2821B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
-		E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E740F2841B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; };
-		E740F2851B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
-		E740F2861B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
-		E740F2871B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
+		E740F2831B79E68300ECE9F9 /* MobFoxAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E740F2841B79E68300ECE9F9 /* MobFoxAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxAd.h */; };
+		E740F2851B79E68300ECE9F9 /* MobFoxAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxAd.m */; };
+		E740F2861B79E68300ECE9F9 /* MobFoxAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxAd.m */; };
+		E740F2871B79E68300ECE9F9 /* MobFoxAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxAd.m */; };
 		E742961C1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
 		E742961D1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */; };
 		E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
@@ -633,6 +631,7 @@
 		E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E96A1B4D119500A79DF9 /* vg_timer.png */; };
 		E76B90FE1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E76B91001B7B371300D12C45 /* MobFoxInterstitialVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */; };
+		E7B386521B96BAED00AEC018 /* ad.js in Resources */ = {isa = PBXBuildFile; fileRef = E7B386511B96BAED00AEC018 /* ad.js */; };
 		E7E18D671B528EC500222640 /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5B1B528EC500222640 /* IMBanner.h */; };
 		E7E18D681B528EC500222640 /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5C1B528EC500222640 /* IMBannerDelegate.h */; };
 		E7E18D691B528EC500222640 /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5D1B528EC500222640 /* IMConstants.h */; };
@@ -1021,9 +1020,8 @@
 		E72137D91B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
 		E740F27B1B79E68300ECE9F9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		E740F27C1B79E68300ECE9F9 /* inline-video.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inline-video.js"; sourceTree = "<group>"; };
-		E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxInlineVideoAd.h; sourceTree = "<group>"; };
-		E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxInlineVideoAd.m; sourceTree = "<group>"; };
+		E740F27D1B79E68300ECE9F9 /* MobFoxAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxAd.h; sourceTree = "<group>"; };
+		E740F27E1B79E68300ECE9F9 /* MobFoxAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxAd.m; sourceTree = "<group>"; };
 		E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetrieverImpl.h; sourceTree = "<group>"; };
 		E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetrieverImpl.m; sourceTree = "<group>"; };
 		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
@@ -1035,6 +1033,7 @@
 		E745E96B1B4D119500A79DF9 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxInterstitialVideo.h; sourceTree = "<group>"; };
 		E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxInterstitialVideo.m; sourceTree = "<group>"; };
+		E7B386511B96BAED00AEC018 /* ad.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ad.js; sourceTree = "<group>"; };
 		E7E18D4C1B528BF000222640 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = "../ios-deps/AdColony.framework"; sourceTree = "<group>"; };
 		E7E18D4D1B528BF000222640 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chartboost.framework; path = "../ios-deps/Chartboost.framework"; sourceTree = "<group>"; };
 		E7E18D4E1B528BF000222640 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = "../ios-deps/FBAudienceNetwork.framework"; sourceTree = "<group>"; };
@@ -1693,7 +1692,7 @@
 		A7992E751489362800E86AC8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E740F27A1B79E68300ECE9F9 /* video */,
+				E740F27A1B79E68300ECE9F9 /* ad2 */,
 				E72137D71B5E8DCD004B9D44 /* WebViewJavascriptBridge */,
 				E71DB85F1B539A5100E83634 /* networking */,
 				90CC97871AE4DA0A00B2907F /* NativeFormat */,
@@ -1844,16 +1843,17 @@
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
-		E740F27A1B79E68300ECE9F9 /* video */ = {
+		E740F27A1B79E68300ECE9F9 /* ad2 */ = {
 			isa = PBXGroup;
 			children = (
+				E7B386511B96BAED00AEC018 /* ad.js */,
 				E740F27B1B79E68300ECE9F9 /* index.html */,
-				E740F27C1B79E68300ECE9F9 /* inline-video.js */,
-				E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */,
-				E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */,
+				E740F27D1B79E68300ECE9F9 /* MobFoxAd.h */,
+				E740F27E1B79E68300ECE9F9 /* MobFoxAd.m */,
 				E76B90FD1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h */,
 				E76B90FF1B7B371300D12C45 /* MobFoxInterstitialVideo.m */,
 			);
+			name = ad2;
 			path = video;
 			sourceTree = "<group>";
 		};
@@ -2006,7 +2006,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
+				E740F2831B79E68300ECE9F9 /* MobFoxAd.h in Headers */,
 				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
 				E76B90FE1B7B33DC00D12C45 /* MobFoxInterstitialVideo.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
@@ -2286,7 +2286,7 @@
 				909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */,
 				A7992ED21489373000E86AC8 /* MFDTXMLElement.h in Headers */,
 				A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */,
-				E740F2841B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
+				E740F2841B79E68300ECE9F9 /* MobFoxAd.h in Headers */,
 				90B5C51A19652C530013DC80 /* MPAdWebViewMF.h in Headers */,
 				90B5C5A519652C530013DC80 /* MPIdentityProviderMF.h in Headers */,
 				A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
@@ -2435,7 +2435,6 @@
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
 				E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */,
-				E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
 				E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */,
 				E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */,
@@ -2444,6 +2443,7 @@
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */,
 				90B5C54D19652C530013DC80 /* LICENSE in Resources */,
+				E7B386521B96BAED00AEC018 /* ad.js in Resources */,
 				9054A2F11AE66AAE005ABECF /* render_template.html in Resources */,
 				90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */,
 			);
@@ -2454,7 +2454,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E740F2801B79E68300ECE9F9 /* index.html in Resources */,
-				E740F2821B79E68300ECE9F9 /* inline-video.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2568,7 +2567,7 @@
 				90038F2F1846035D00446EAD /* MFCJSONScanner.m in Sources */,
 				9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.m in Sources */,
-				E740F2851B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */,
+				E740F2851B79E68300ECE9F9 /* MobFoxAd.m in Sources */,
 				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
 				90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54B19652C530013DC80 /* MPInstanceProviderMF.m in Sources */,
@@ -2725,7 +2724,7 @@
 				9026A142198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55919652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.m in Sources */,
 				90BF0052196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
-				E740F2861B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */,
+				E740F2861B79E68300ECE9F9 /* MobFoxAd.m in Sources */,
 				90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54C19652C530013DC80 /* MPInstanceProviderMF.m in Sources */,
 				90B5C5BF19652C530013DC80 /* MPAdConversionTrackerMF.m in Sources */,
@@ -2807,7 +2806,7 @@
 				E71DB8651B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m in Sources */,
 				E71DB8661B53DE6600E83634 /* MobFoxJSONRetriever.m in Sources */,
 				E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
-				E740F2871B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */,
+				E740F2871B79E68300ECE9F9 /* MobFoxAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

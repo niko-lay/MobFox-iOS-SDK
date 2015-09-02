@@ -9,7 +9,7 @@
 #ifndef MobFoxSDKSource_MobFoxInterstitialVideo_h
 #define MobFoxSDKSource_MobFoxInterstitialVideo_h
 
-#include "MobFoxInlineVideoAd.h"
+#include "MobFoxAd.h"
 
 @class MobFoxInterstitialVideo;
 
@@ -32,12 +32,12 @@
 @end
 
 
-@interface MobFoxInterstitialVideo : NSObject<MobFoxInlineVideoDelegate>
+@interface MobFoxInterstitialVideo : NSObject<MobFoxAdDelegate>
 
 
 
 @property (nonatomic, assign) id<MobFoxInterstitialVideoDelegate> delegate;
-@property MobFoxInlineVideoAd* ad;
+@property MobFoxAd* ad;
 
 
 -(id) initWithMainViewController:(UIViewController*)main;

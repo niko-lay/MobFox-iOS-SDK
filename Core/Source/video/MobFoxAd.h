@@ -9,30 +9,30 @@
 #import <UIKit/UIKit.h>
 #import "WebViewJavascriptBridge.h"
 
-@class MobFoxInlineVideoAd;
+@class MobFoxAd;
 
-@protocol MobFoxInlineVideoDelegate <NSObject>
+@protocol MobFoxAdDelegate <NSObject>
 
-- (NSString *)publisherIdForInlineVideoAd:(MobFoxInlineVideoAd *)banner;
+- (NSString *)publisherIdForMobFoxAd:(MobFoxAd *)banner;
 
 @optional
 
-- (void)InlineVideoAdDidLoadMobFoxAd:(MobFoxInlineVideoAd *)banner;
+- (void)MobFoxAdDidLoad:(MobFoxAd *)banner;
 
-- (void)InlineVideoAdDidFailToReceiveAdWithError:(NSError *)error;
+- (void)MobFoxAdDidFailToReceiveAdWithError:(NSError *)error;
 
-- (void)InlineVideoAdClosed;
+- (void)MobFoxAdClosed;
 
-- (void)InlineVideoAdClicked;
+- (void)MobFoxAdClicked;
 
-- (void)InlineVideoAdFinished;
+- (void)MobFoxAdFinished;
 
 @end
 
-@interface MobFoxInlineVideoAd : UIWebView<UIWebViewDelegate>
+@interface MobFoxAd : UIWebView<UIWebViewDelegate>
 
 
-    @property (nonatomic, assign) id<MobFoxInlineVideoDelegate> adDelegate;
+    @property (nonatomic, assign) id<MobFoxAdDelegate> adDelegate;
 
    
     @property (nonatomic, copy) NSString* longitude;
@@ -46,6 +46,7 @@
     @property (nonatomic, copy) NSString* v_dur_min;
     @property (nonatomic, copy) NSString* v_dur_max;
     @property (nonatomic, copy) NSString* r_floor;
+
     @property (nonatomic, assign) BOOL autoplay;
     @property (nonatomic, assign) BOOL skip;
 

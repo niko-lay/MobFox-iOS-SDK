@@ -15,7 +15,7 @@
     
 -(id) initWithMainViewController:(UIViewController*)main{
     self = [super init];
-    self.ad = [[MobFoxInlineVideoAd alloc] initWithFrame:CGRectMake(0,0,
+    self.ad = [[MobFoxAd alloc] initWithFrame:CGRectMake(0,0,
                                 [[UIScreen mainScreen] applicationFrame].size.width,
                                 [[UIScreen mainScreen] applicationFrame].size.height)];
     self.ad.adDelegate = self;
@@ -23,14 +23,14 @@
     return self;
 }
 
-- (NSString *)publisherIdForInlineVideoAd:(MobFoxInlineVideoAd *)banner{
+- (NSString *)publisherIdForMobFoxAd:(MobFoxAd *)banner{
    
     NSString* pubId =  [self.delegate publisherIdForInterstitialVideoAd:self];
    
     return pubId;
 }
 
-- (void)InlineVideoAdDidLoadMobFoxAd:(MobFoxInlineVideoAd *)banner{
+- (void)MobFoxAdDidLoad:(MobFoxAd *)banner{
     UIViewController* vc = [[UIViewController alloc] init];
     [vc.view addSubview:self.ad];
     [self->_main presentViewController:vc animated:TRUE completion:nil];
@@ -41,13 +41,13 @@
     
 }
 
-- (void)InlineVideoAdDidFailToReceiveAdWithError:(NSError *)error{
+- (void)MobFoxAdDidFailToReceiveAdWithError:(NSError *)error{
     if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdDidFailToReceiveAdWithError:)]) {
         [self.delegate InterstitialVideoAdDidFailToReceiveAdWithError:error];
     }
 }
 
-- (void)InlineVideoAdClosed{
+- (void)MobFoxAdClosed{
     
     [self->_main dismissViewControllerAnimated:YES completion:nil];
     if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdClosed)]) {
@@ -55,13 +55,13 @@
     }
 }
 
-- (void)InlineVideoAdClicked{
+- (void)MobFoxAdClicked{
     if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdClicked)]) {
         [self.delegate InterstitialVideoAdClicked];
     }
 }
 
-- (void)InlineVideoAdFinished{
+- (void)MobFoxAdFinished{
     
     if ([self.delegate respondsToSelector:@selector(InterstitialVideoAdFinished)]) {
         [self.delegate InterstitialVideoAdFinished];
