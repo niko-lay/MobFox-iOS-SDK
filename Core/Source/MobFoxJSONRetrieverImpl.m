@@ -20,11 +20,16 @@
                        
                        dispatch_sync(dispatch_get_main_queue(), ^{
                            
+                           if(!data){
+                               NSError* err = [[NSError alloc] initWithDomain:@"MobFox-Retrieve-JSON" code:20001 userInfo:nil];
+                               return cb(err,nil);
+                           }
+                           
                            NSError *localError = nil;
                            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
                            
                            if (localError != nil) {
-                               cb(localError,nil);
+                               return cb(localError,nil);
                            }
                            
                            cb(nil,parsedObject);
