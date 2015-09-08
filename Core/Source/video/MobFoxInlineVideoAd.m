@@ -39,6 +39,7 @@
 
     self.autoplay = true;
     self.skip = true;
+    self.adDelegate = nil;
     
     return self;
 }
@@ -177,6 +178,10 @@
     freeifaddrs(interfaces);
     return address;
     
+}
+
+- (void)dealloc {
+    self.adDelegate = nil;
 }
 
 @end

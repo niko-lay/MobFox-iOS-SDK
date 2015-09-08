@@ -32,7 +32,7 @@
 @interface MobFoxInlineVideoAd : UIWebView
 
 
-    @property (nonatomic, assign) id<MobFoxInlineVideoDelegate> adDelegate;
+    @property (nonatomic, weak) id<MobFoxInlineVideoDelegate> adDelegate;
 
    
     @property (nonatomic, copy) NSString* longitude;
