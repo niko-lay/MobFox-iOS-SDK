@@ -108,7 +108,6 @@
 		901FCEF3192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		901FCEF4192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
 		901FCEF5192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
-		9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9026A13E198671800055EF7C /* ChartboostCustomEventFullscreen.m */; };
 		903ADEF918CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h */; };
 		903ADEFA18CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h */; };
 		903ADEFF18CDAE460001F0E4 /* MFCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEFD18CDAE460001F0E4 /* MFCustomEventFullscreen.h */; };
@@ -150,8 +149,6 @@
 		9098B5301AF7AB1100173D75 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */; };
 		909A5E9D18B6168500C929A5 /* MFCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* MFCustomEventBanner.m */; };
 		909A5E9F18B6168B00C929A5 /* MFCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909A5E9B18B6168500C929A5 /* MFCustomEventBanner.m */; };
-		909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B6118194F091700B413A5 /* FacebookCustomEventBanner.m */; };
-		909B6122194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B611F194F237300B413A5 /* FacebookCustomEventFullscreen.m */; };
 		909F363118487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363218487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */; };
 		909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F363018487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m */; };
@@ -169,16 +166,12 @@
 		90A5C8C1192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
 		90A5C8C2192F677700978746 /* UIView+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5C8BF192F677700978746 /* UIView+MobFox.m */; };
 		90A5C8C3192F677700978746 /* UIView+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5C8BF192F677700978746 /* UIView+MobFox.m */; };
-		90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E0A19518033001172D2 /* MillennialCustomEventBanner.m */; };
-		90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E111951A0D7001172D2 /* MillennialCustomEventFullscreen.m */; };
 		90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */; };
 		90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
 		90A79E1F1951B710001172D2 /* MoPubCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E181951B16A001172D2 /* MoPubCustomEventBanner.m */; };
 		90A79E201951B716001172D2 /* MoPubCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E1C1951B708001172D2 /* MoPubCustomEventFullscreen.m */; };
 		90A79E281951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */; };
 		90A79E291951C5AF001172D2 /* VungleCustomEventFullscreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A79E261951C5AF001172D2 /* VungleCustomEventFullscreen.h */; };
-		90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A79E271951C5AF001172D2 /* VungleCustomEventFullscreen.m */; };
-		90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B090B919669D4400809340 /* FacebookCustomEventNative.m */; };
 		90B5C4D219652C530013DC80 /* MPBannerAdManagerMF.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B5C41E19652C530013DC80 /* MPBannerAdManagerMF.h */; };
 		90B5C4D319652C530013DC80 /* MPBannerAdManagerMF.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B5C41E19652C530013DC80 /* MPBannerAdManagerMF.h */; };
 		90B5C4D419652C530013DC80 /* MPBannerAdManagerMF.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C41F19652C530013DC80 /* MPBannerAdManagerMF.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -507,12 +500,9 @@
 		90B5C61819652C530013DC80 /* MPTableViewAdManagerMF.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C4CC19652C530013DC80 /* MPTableViewAdManagerMF.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90B5C61919652C530013DC80 /* MPTableViewAdManagerMF.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C4CC19652C530013DC80 /* MPTableViewAdManagerMF.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90B5C61A19652C530013DC80 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4CD19652C530013DC80 /* README.md */; };
-		90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4CF19652C530013DC80 /* MPCloseButtonX.png */; };
-		90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4D019652C530013DC80 /* MPCloseButtonX@2x.png */; };
 		90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C4D119652C530013DC80 /* MRAID.bundle */; };
 		90B5C628196535A80013DC80 /* MoPubCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */; };
 		90B5C629196535A80013DC80 /* MoPubCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C625196535A80013DC80 /* MoPubCustomEventNative.m */; };
-		90B5C66A196565550013DC80 /* InMobiCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B5C667196565550013DC80 /* InMobiCustomEventNative.m */; };
 		90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B5C43019652C530013DC80 /* MPAdBrowserControllerMF.xib */; };
 		90B6D1241962B1A300061451 /* MFCustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* MFCustomEventNativeDelegate.h */; };
 		90B6D1251962B1A300061451 /* MFCustomEventNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1231962B1A300061451 /* MFCustomEventNativeDelegate.h */; };
@@ -520,8 +510,6 @@
 		90B6D1291962B67200061451 /* MFCustomEventNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B6D1261962B67200061451 /* MFCustomEventNative.h */; };
 		90B6D12A1962B67200061451 /* MFCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* MFCustomEventNative.m */; };
 		90B6D12B1962B67200061451 /* MFCustomEventNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B6D1271962B67200061451 /* MFCustomEventNative.m */; };
-		90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF004E196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m */; };
-		90BF0057196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BF0054196C026D00D4FF06 /* InMobiCustomEventBanner.m */; };
 		90C2E5721977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */; };
 		90C2E5731977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C2E5701977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.h */; };
 		90C2E5741977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C2E5711977AD4D00D6B7A8 /* MobFoxNativeAdRequestTask.m */; };
@@ -545,9 +533,6 @@
 		90DB890B1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
 		90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
 		90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
-		90DD66051973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66021973D9B000745A59 /* FlurryCustomEventBanner.m */; };
-		90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD66081973F3D500745A59 /* FlurryCustomEventFullscreen.m */; };
-		90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F61C6319AF454800547AE4 /* ApplifierCustomEventFullscreen.m */; };
 		90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90F6DBF21B09D00000BBE9EA /* MobFoxVASTRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */; };
 		90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
@@ -614,12 +599,6 @@
 		E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
 		E74296201B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
 		E74296211B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */; };
-		E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = E745E9651B4D119500A79DF9 /* __vungle.db */; };
-		E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9661B4D119500A79DF9 /* vg_close.png */; };
-		E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9671B4D119500A79DF9 /* vg_cta.png */; };
-		E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9681B4D119500A79DF9 /* vg_mute_off.png */; };
-		E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E9691B4D119500A79DF9 /* vg_mute_on.png */; };
-		E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E745E96A1B4D119500A79DF9 /* vg_timer.png */; };
 		E7E18D671B528EC500222640 /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5B1B528EC500222640 /* IMBanner.h */; };
 		E7E18D681B528EC500222640 /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5C1B528EC500222640 /* IMBannerDelegate.h */; };
 		E7E18D691B528EC500222640 /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D5D1B528EC500222640 /* IMConstants.h */; };
@@ -2397,27 +2376,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E745E9711B4D119500A79DF9 /* vg_timer.png in Resources */,
-				E745E96C1B4D119500A79DF9 /* __vungle.db in Resources */,
 				90CC97B11AE4EF7800B2907F /* fallback_320x50.mustache in Resources */,
 				90B5C61A19652C530013DC80 /* README.md in Resources */,
-				E745E96F1B4D119500A79DF9 /* vg_mute_off.png in Resources */,
 				E740F27F1B79E68300ECE9F9 /* index.html in Resources */,
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
-				90B5C61C19652C530013DC80 /* MPCloseButtonX@2x.png in Resources */,
-				E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */,
 				E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
-				E745E96D1B4D119500A79DF9 /* vg_close.png in Resources */,
 				E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */,
 				9054A2EF1AE663C2005ABECF /* libs.js in Resources */,
-				E745E9701B4D119500A79DF9 /* vg_mute_on.png in Resources */,
 				90038F381846035D00446EAD /* README.markdown in Resources */,
 				90B5C61D19652C530013DC80 /* MRAID.bundle in Resources */,
 				90B5C54D19652C530013DC80 /* LICENSE in Resources */,
 				9054A2F11AE66AAE005ABECF /* render_template.html in Resources */,
-				90B5C61B19652C530013DC80 /* MPCloseButtonX.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2457,7 +2428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sf \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n#LIBTOOL_PATH=\"$PLATFORM_DEVELOPER_BIN_DIR\"\nLIBTOOL_PATH=\"$DT_TOOLCHAIN_DIR/usr/bin\"\n\necho \"$LIBTOOL_PATH/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$LIBTOOL_PATH/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sf \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2486,7 +2457,6 @@
 				A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */,
 				90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
 				90B5C58619652C530013DC80 /* MRVideoPlayerManagerMF.m in Sources */,
-				90BF0057196C026D00D4FF06 /* InMobiCustomEventBanner.m in Sources */,
 				90B5C4E819652C530013DC80 /* MPAdAlertGestureRecognizerMF.m in Sources */,
 				A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */,
 				90038F171846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
@@ -2501,7 +2471,6 @@
 				90B5C4DE19652C530013DC80 /* MPBaseBannerAdapterMF.m in Sources */,
 				9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				90B5C51719652C530013DC80 /* MPURLResolverMF.m in Sources */,
-				90A79E2A1951C5AF001172D2 /* VungleCustomEventFullscreen.m in Sources */,
 				A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */,
 				90B5C53919652C530013DC80 /* MPInterstitialCustomEventAdapterMF.m in Sources */,
 				90B5C51B19652C530013DC80 /* MPAdWebViewMF.m in Sources */,
@@ -2515,7 +2484,6 @@
 				90B5C4EC19652C530013DC80 /* MPAdAlertManagerMF.m in Sources */,
 				0F34E1C014DBEF04000F8713 /* MobFoxToolBar.m in Sources */,
 				903ADF0118CDAE460001F0E4 /* MFCustomEventFullscreen.m in Sources */,
-				90DD66051973D9B000745A59 /* FlurryCustomEventBanner.m in Sources */,
 				90B5C58219652C530013DC80 /* MRPropertyMF.m in Sources */,
 				90B5C55E19652C530013DC80 /* MRAdViewMF.m in Sources */,
 				90B5C5B619652C530013DC80 /* MPStoreKitProviderMF.m in Sources */,
@@ -2523,7 +2491,6 @@
 				90B5C5F619652C530013DC80 /* MPTableViewCellImpressionTrackerMF.m in Sources */,
 				0F09F46914E7F134001C23E2 /* UIBarButtonItem+MobFox.m in Sources */,
 				90B5C5AE19652C530013DC80 /* MPReachabilityMF.m in Sources */,
-				909B6122194F237300B413A5 /* FacebookCustomEventFullscreen.m in Sources */,
 				0F62B51B14E92D4A0027BCB8 /* UIImage+MobFox.m in Sources */,
 				0F62B52014E92E3D0027BCB8 /* NSBundle+MobFox.m in Sources */,
 				90B5C56619652C530013DC80 /* MRBundleManagerMF.m in Sources */,
@@ -2537,10 +2504,8 @@
 				90B5C51F19652C530013DC80 /* MPAdWebViewAgentMF.m in Sources */,
 				90A79E1A1951B16A001172D2 /* MoPubCustomEventBanner.m in Sources */,
 				90038F2F1846035D00446EAD /* MFCJSONScanner.m in Sources */,
-				9026A141198671800055EF7C /* ChartboostCustomEventFullscreen.m in Sources */,
 				90B5C55819652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.m in Sources */,
 				E740F2851B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */,
-				90BF0051196BEF3A00D4FF06 /* InMobiCustomEventFullscreen.m in Sources */,
 				90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54B19652C530013DC80 /* MPInstanceProviderMF.m in Sources */,
 				90B5C5BE19652C530013DC80 /* MPAdConversionTrackerMF.m in Sources */,
@@ -2548,9 +2513,7 @@
 				90FEE52B1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				903ADF0D18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */,
 				90038F1F1846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
-				90A79E0D19518033001172D2 /* MillennialCustomEventBanner.m in Sources */,
 				E72137DD1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m in Sources */,
-				90F61C6619AF454800547AE4 /* ApplifierCustomEventFullscreen.m in Sources */,
 				90B5C60E19652C530013DC80 /* MPNativeAdRequestTargetingMF.m in Sources */,
 				90B5C5AA19652C530013DC80 /* MPLoggingMF.m in Sources */,
 				90B5C5C219652C530013DC80 /* MPAdViewMF.m in Sources */,
@@ -2562,9 +2525,7 @@
 				909716D018AA4DDF007EEB4D /* MFVASTXMLParser.m in Sources */,
 				E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */,
 				90B5C59219652C530013DC80 /* UIViewController+MPAdditionsMF.m in Sources */,
-				90A79E141951A0D7001172D2 /* MillennialCustomEventFullscreen.m in Sources */,
 				90B5C57619652C530013DC80 /* MRImageDownloaderMF.m in Sources */,
-				90B5C66A196565550013DC80 /* InMobiCustomEventNative.m in Sources */,
 				0F0EB65E1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m in Sources */,
 				909FE95719336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
 				90B5C4E219652C530013DC80 /* MPLegacyBannerCustomEventAdapterMF.m in Sources */,
@@ -2581,13 +2542,11 @@
 				90038F0F1846035D00446EAD /* MFCDataScanner.m in Sources */,
 				90B5C4F519652C530013DC80 /* MPAdConfigurationMF.m in Sources */,
 				90B5C5E019652C530013DC80 /* MPDiskLRUCacheMF.m in Sources */,
-				909B611B194F091700B413A5 /* FacebookCustomEventBanner.m in Sources */,
 				90B5C60A19652C530013DC80 /* MPNativeAdRequestMF.m in Sources */,
 				0F3567F8165F9DC500BED5FA /* MobFoxInterstitialPlayerViewController.m in Sources */,
 				90DB89061AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */,
 				90A79E1E1951B708001172D2 /* MoPubCustomEventFullscreen.m in Sources */,
 				909F363318487AB200080BD3 /* MobFoxMRAIDBannerAdapter.m in Sources */,
-				90B090BC19669D4400809340 /* FacebookCustomEventNative.m in Sources */,
 				90B5C55019652C530013DC80 /* MPMRAIDBannerCustomEventMF.m in Sources */,
 				E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */,
 				90B5C57A19652C530013DC80 /* MRJavaScriptEventEmitterMF.m in Sources */,
@@ -2608,7 +2567,6 @@
 				901FCEEB192C8E4900D22785 /* MobFoxNativeAd.m in Sources */,
 				90038F2B1846035D00446EAD /* MFCJSONDeserializer.m in Sources */,
 				909A5E9D18B6168500C929A5 /* MFCustomEventBanner.m in Sources */,
-				90DD660B1973F3D500745A59 /* FlurryCustomEventFullscreen.m in Sources */,
 				90B5C53D19652C530013DC80 /* MPInterstitialViewControllerMF.m in Sources */,
 				90B5C60419652C530013DC80 /* MPNativeAdErrorMF.m in Sources */,
 				90CC97B81AE510DD00B2907F /* MobFoxNativeFormatCreative.m in Sources */,
