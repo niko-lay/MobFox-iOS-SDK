@@ -53,8 +53,8 @@
 		E7E7233C1B651A530094C550 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E7E723261B651A530094C550 /* LICENSE */; };
 		E7E7233D1B651A530094C550 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7E723271B651A530094C550 /* LICENSE.txt */; };
 		E7E7233E1B651A530094C550 /* MPAdBrowserControllerMF.nib in Resources */ = {isa = PBXBuildFile; fileRef = E7E723281B651A530094C550 /* MPAdBrowserControllerMF.nib */; };
-		E7E7233F1B651A530094C550 /* MPCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E723291B651A530094C550 /* MPCloseButtonX.png */; };
-		E7E723401B651A530094C550 /* MPCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E7232A1B651A530094C550 /* MPCloseButtonX@2x.png */; };
+		E7E7233F1B651A530094C550 /* MobFoxMPCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E723291B651A530094C550 /* MobFoxMPCloseButtonX.png */; };
+		E7E723401B651A530094C550 /* MobFoxMPCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E7232A1B651A530094C550 /* MobFoxMPCloseButtonX@2x.png */; };
 		E7E723411B651A530094C550 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E7E7232B1B651A530094C550 /* MRAID.bundle */; };
 		E7E723421B651A530094C550 /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = E7E7232C1B651A530094C550 /* README.markdown */; };
 		E7E723431B651A530094C550 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E7E7232D1B651A530094C550 /* README.md */; };
@@ -121,8 +121,8 @@
 		E7E723261B651A530094C550 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E7E723271B651A530094C550 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		E7E723281B651A530094C550 /* MPAdBrowserControllerMF.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MPAdBrowserControllerMF.nib; sourceTree = "<group>"; };
-		E7E723291B651A530094C550 /* MPCloseButtonX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPCloseButtonX.png; sourceTree = "<group>"; };
-		E7E7232A1B651A530094C550 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
+		E7E723291B651A530094C550 /* MobFoxMPCloseButtonX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MobFoxMPCloseButtonX.png; sourceTree = "<group>"; };
+		E7E7232A1B651A530094C550 /* MobFoxMPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobFoxMPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		E7E7232B1B651A530094C550 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		E7E7232C1B651A530094C550 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		E7E7232D1B651A530094C550 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 				E7E723261B651A530094C550 /* LICENSE */,
 				E7E723271B651A530094C550 /* LICENSE.txt */,
 				E7E723281B651A530094C550 /* MPAdBrowserControllerMF.nib */,
-				E7E723291B651A530094C550 /* MPCloseButtonX.png */,
-				E7E7232A1B651A530094C550 /* MPCloseButtonX@2x.png */,
+				E7E723291B651A530094C550 /* MobFoxMPCloseButtonX.png */,
+				E7E7232A1B651A530094C550 /* MobFoxMPCloseButtonX@2x.png */,
 				E7E7232B1B651A530094C550 /* MRAID.bundle */,
 				E7E7232C1B651A530094C550 /* README.markdown */,
 				E7E7232D1B651A530094C550 /* README.md */,
@@ -350,7 +350,7 @@
 				90AC3AC8193C64AD0021402D /* ViewController_iPad.xib in Resources */,
 				E7E723371B651A530094C550 /* fallback_320x480.mustache in Resources */,
 				9070CB501A64076500125324 /* Images.xcassets in Resources */,
-				E7E7233F1B651A530094C550 /* MPCloseButtonX.png in Resources */,
+				E7E7233F1B651A530094C550 /* MobFoxMPCloseButtonX.png in Resources */,
 				E7E7233C1B651A530094C550 /* LICENSE in Resources */,
 				E7E723391B651A530094C550 /* index.html in Resources */,
 				90AC3AC7193C64AD0021402D /* NativeAdView_small.xib in Resources */,
@@ -360,7 +360,7 @@
 				902483C91A35EA1F00DEF74D /* ConfigurePublisherIdsView.xib in Resources */,
 				E7E7234A1B651A530094C550 /* WebViewJavascriptBridge.js.txt in Resources */,
 				E7E7233B1B651A530094C550 /* libs.js in Resources */,
-				E7E723401B651A530094C550 /* MPCloseButtonX@2x.png in Resources */,
+				E7E723401B651A530094C550 /* MobFoxMPCloseButtonX@2x.png in Resources */,
 				E7E723481B651A530094C550 /* vg_mute_on.png in Resources */,
 				E7E723411B651A530094C550 /* MRAID.bundle in Resources */,
 				9070CB521A650FB500125324 /* MobFox_Logo@2x.png in Resources */,

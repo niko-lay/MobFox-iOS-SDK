@@ -12,7 +12,7 @@
 #import "UIViewController+MPAdditionsMF.h"
 
 static const CGFloat kCloseButtonPadding = 6.0;
-static NSString * const kCloseButtonXImageName = @"MPCloseButtonX.png";
+static NSString * const kCloseButtonXImageName = @"MobFoxMPCloseButtonX.png";
 
 @interface MPInterstitialViewControllerMF ()
 

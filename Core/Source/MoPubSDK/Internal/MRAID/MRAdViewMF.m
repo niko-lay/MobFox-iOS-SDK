@@ -21,7 +21,7 @@
 #import "MRBundleManagerMF.h"
 #import "NSURL+MPAdditionsMF.h"
 
-static NSString *const kExpandableCloseButtonImageName = @"MPCloseButtonX.png";
+static NSString *const kExpandableCloseButtonImageName = @"MobFoxMPCloseButtonX.png";
 static NSString *const kMraidURLScheme = @"mraid";
 static NSString *const kMoPubURLScheme = @"mopub";
 static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
