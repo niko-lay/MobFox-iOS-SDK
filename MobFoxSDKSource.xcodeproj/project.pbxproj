@@ -48,8 +48,14 @@
 		0FCEB20B150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FCEB20C150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FE28D7614E34B3000CEA1CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */; };
-		23B5671A1BCD573200AC5505 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B567191BCD573200AC5505 /* AdColony.framework */; settings = {ASSET_TAGS = (); }; };
-		23B5671B1BCD573200AC5505 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B567191BCD573200AC5505 /* AdColony.framework */; settings = {ASSET_TAGS = (); }; };
+		23EF3BED1C08B0DA005760ED /* NSDictionary+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEC1C08B0DA005760ED /* NSDictionary+Bizzclick.h */; };
+		23EF3BEE1C08B0DA005760ED /* NSDictionary+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEC1C08B0DA005760ED /* NSDictionary+Bizzclick.h */; };
+		23EF3BF11C08B28D005760ED /* NSString+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */; };
+		23EF3BF21C08B28D005760ED /* NSString+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */; };
+		23EF3BF31C08B28D005760ED /* NSString+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */; };
+		23EF3BF41C08B28D005760ED /* NSString+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */; };
+		23EF3BF61C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */; };
+		23EF3BF71C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */; };
 		90038F0D1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
 		90038F0E1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
 		90038F0F1846035D00446EAD /* MFCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* MFCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -120,8 +126,6 @@
 		903ADF0C18CDFDAA0001F0E4 /* MFCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADF0918CDFDAA0001F0E4 /* MFCustomEvent.h */; };
 		903ADF0D18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* MFCustomEvent.m */; };
 		903ADF0E18CDFDAA0001F0E4 /* MFCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 903ADF0A18CDFDAA0001F0E4 /* MFCustomEvent.m */; };
-		9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */; };
-		9047E8B119583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */; };
 		9054A2EF1AE663C2005ABECF /* libs.js in Resources */ = {isa = PBXBuildFile; fileRef = 9054A2EE1AE663C2005ABECF /* libs.js */; };
 		9054A2F11AE66AAE005ABECF /* render_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 9054A2F01AE66AAE005ABECF /* render_template.html */; };
 		9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9078055C18D1C26E00427F7B /* iAdCustomEventBanner.m */; };
@@ -549,8 +553,6 @@
 		A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
 		A7992E9B1489362800E86AC8 /* MobFoxHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7992E9D1489362800E86AC8 /* MobFoxHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */; };
-		A7992EA31489362800E86AC8 /* NSString+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E801489362800E86AC8 /* NSString+MobFox.h */; };
-		A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E811489362800E86AC8 /* NSString+MobFox.m */; };
 		A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
 		A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+MobFox.m */; };
 		A7992EAB1489362800E86AC8 /* MFRedirectChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E841489362800E86AC8 /* MFRedirectChecker.h */; };
@@ -558,8 +560,6 @@
 		A7992EAF1489362800E86AC8 /* UIView+FindViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E861489362800E86AC8 /* UIView+FindViewController.h */; };
 		A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E871489362800E86AC8 /* UIView+FindViewController.m */; };
 		A7992EBC148936E400E86AC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7992EBB148936E400E86AC8 /* Foundation.framework */; };
-		A7992EC81489373000E86AC8 /* NSString+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E801489362800E86AC8 /* NSString+MobFox.h */; };
-		A7992EC91489373000E86AC8 /* NSString+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E811489362800E86AC8 /* NSString+MobFox.m */; };
 		A7992ECA1489373000E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
 		A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+MobFox.m */; };
 		A7992ECC1489373000E86AC8 /* MFRedirectChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E841489362800E86AC8 /* MFRedirectChecker.h */; };
@@ -665,6 +665,10 @@
 		0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxVideoInterstitialViewController.m; sourceTree = "<group>"; };
 		0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		23B567191BCD573200AC5505 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = "../ios-deps/AdColony.framework"; sourceTree = "<group>"; };
+		23EF3BEC1C08B0DA005760ED /* NSDictionary+Bizzclick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bizzclick.h"; sourceTree = "<group>"; };
+		23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bizzclick.h"; sourceTree = "<group>"; };
+		23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bizzclick.m"; sourceTree = "<group>"; };
+		23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bizzclick.m"; sourceTree = "<group>"; };
 		90038EF31846035D00446EAD /* MFCDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCDataScanner.h; sourceTree = "<group>"; };
 		90038EF41846035D00446EAD /* MFCDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCDataScanner.m; sourceTree = "<group>"; };
 		90038EF61846035D00446EAD /* MFCFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -702,8 +706,6 @@
 		903ADF0418CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdMobCustomEventFullscreen.m; path = CustomEvents/AdMob/AdMobCustomEventFullscreen.m; sourceTree = "<group>"; };
 		903ADF0918CDFDAA0001F0E4 /* MFCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCustomEvent.h; sourceTree = "<group>"; };
 		903ADF0A18CDFDAA0001F0E4 /* MFCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFCustomEvent.m; sourceTree = "<group>"; };
-		9047E8AC19583181006DDB1F /* AdColonyCustomEventFullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyCustomEventFullscreen.h; sourceTree = "<group>"; };
-		9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyCustomEventFullscreen.m; sourceTree = "<group>"; };
 		904E04151ACBE8720080C634 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Core/Source/CustomEvents/AdMob/SDK/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		9054A2EE1AE663C2005ABECF /* libs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = libs.js; sourceTree = "<group>"; };
 		9054A2F01AE66AAE005ABECF /* render_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = render_template.html; sourceTree = "<group>"; };
@@ -968,8 +970,6 @@
 		A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxAdBrowserViewController.m; sourceTree = "<group>"; };
 		A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxHTMLBannerView.h; sourceTree = "<group>"; };
 		A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxHTMLBannerView.m; sourceTree = "<group>"; };
-		A7992E801489362800E86AC8 /* NSString+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MobFox.h"; sourceTree = "<group>"; };
-		A7992E811489362800E86AC8 /* NSString+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MobFox.m"; sourceTree = "<group>"; };
 		A7992E821489362800E86AC8 /* NSURL+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MobFox.h"; sourceTree = "<group>"; };
 		A7992E831489362800E86AC8 /* NSURL+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MobFox.m"; sourceTree = "<group>"; };
 		A7992E841489362800E86AC8 /* MFRedirectChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRedirectChecker.h; sourceTree = "<group>"; };
@@ -1039,7 +1039,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B5671A1BCD573200AC5505 /* AdColony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,7 +1050,6 @@
 				9014FD31184DFD99006746EC /* MessageUI.framework in Frameworks */,
 				90987D0318BCB96E00148D09 /* CoreGraphics.framework in Frameworks */,
 				90987D0118BCB96400148D09 /* AVFoundation.framework in Frameworks */,
-				23B5671B1BCD573200AC5505 /* AdColony.framework in Frameworks */,
 				90987CFF18BCB95600148D09 /* AudioToolbox.framework in Frameworks */,
 				9014FD36184DFDD2006746EC /* CoreLocation.framework in Frameworks */,
 				0F8D9CB8160A5DEC00C330F8 /* AdSupport.framework in Frameworks */,
@@ -1207,16 +1205,6 @@
 			path = SDK;
 			sourceTree = "<group>";
 		};
-		9047E8A919582CD6006DDB1F /* AdColony */ = {
-			isa = PBXGroup;
-			children = (
-				9047E8AC19583181006DDB1F /* AdColonyCustomEventFullscreen.h */,
-				9047E8AD19583181006DDB1F /* AdColonyCustomEventFullscreen.m */,
-			);
-			name = AdColony;
-			path = CustomEvents/AdColony;
-			sourceTree = "<group>";
-		};
 		9078055A18D1BFAD00427F7B /* iAd */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,7 +1234,6 @@
 				9026A122198670C50055EF7C /* Chartboost */,
 				9024BCD51973D93800922327 /* Flurry */,
 				90B5C62A196564840013DC80 /* InMobi */,
-				9047E8A919582CD6006DDB1F /* AdColony */,
 				90A79E211951C4C8001172D2 /* Vungle */,
 				90A79E161951B110001172D2 /* MoPub */,
 				90A79E0619517E3C001172D2 /* Millennial */,
@@ -1710,8 +1697,8 @@
 				90038DE11846019400446EAD /* MoPubSDK */,
 				0F0EB65A1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.h */,
 				0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */,
-				A7992E801489362800E86AC8 /* NSString+MobFox.h */,
-				A7992E811489362800E86AC8 /* NSString+MobFox.m */,
+				23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */,
+				23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */,
 				A7992E821489362800E86AC8 /* NSURL+MobFox.h */,
 				A7992E831489362800E86AC8 /* NSURL+MobFox.m */,
 				A7992E841489362800E86AC8 /* MFRedirectChecker.h */,
@@ -1728,6 +1715,8 @@
 				0F62B51914E92D4A0027BCB8 /* UIImage+MobFox.m */,
 				0F66D50414F30E9400FD6569 /* UIButton+MobFox.h */,
 				0F66D50514F30E9400FD6569 /* UIButton+MobFox.m */,
+				23EF3BEC1C08B0DA005760ED /* NSDictionary+Bizzclick.h */,
+				23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1996,6 +1985,7 @@
 				90B5C4FB19652C530013DC80 /* MPAdServerCommunicatorMF.h in Headers */,
 				90B5C4EE19652C530013DC80 /* MPAdBrowserControllerMF.h in Headers */,
 				90038F111846035D00446EAD /* MFCFilteringJSONSerializer.h in Headers */,
+				23EF3BED1C08B0DA005760ED /* NSDictionary+Bizzclick.h in Headers */,
 				90B5C61019652C530013DC80 /* MPNativeCustomEventMF.h in Headers */,
 				90B5C5D419652C530013DC80 /* MPInterstitialCustomEventDelegateMF.h in Headers */,
 				E7E18D991B528EF800222640 /* FlurryAdDelegate.h in Headers */,
@@ -2017,7 +2007,6 @@
 				90038F311846035D00446EAD /* MFCJSONSerializer.h in Headers */,
 				E7E18D681B528EC500222640 /* IMBannerDelegate.h in Headers */,
 				90B5C5E219652C530013DC80 /* MPImageDownloadQueueMF.h in Headers */,
-				A7992EA31489362800E86AC8 /* NSString+MobFox.h in Headers */,
 				909716D418AA5CF8007EEB4D /* VAST.h in Headers */,
 				90B5C5F419652C530013DC80 /* MPTableViewCellImpressionTrackerMF.h in Headers */,
 				90038F1D1846035D00446EAD /* MFCJSONSerializedData.h in Headers */,
@@ -2053,6 +2042,7 @@
 				E7E18D941B528EF800222640 /* FlurryAdNativeDelegate.h in Headers */,
 				E7E18D8C1B528EF800222640 /* FlurryWatch.h in Headers */,
 				90B5C58C19652C530013DC80 /* NSURL+MPAdditionsMF.h in Headers */,
+				23EF3BF11C08B28D005760ED /* NSString+Bizzclick.h in Headers */,
 				E7E18D921B528EF800222640 /* FlurryAdNative.h in Headers */,
 				90B5C51D19652C530013DC80 /* MPAdWebViewAgentMF.h in Headers */,
 				E7E18D9A1B528EF800222640 /* FlurryAds.h in Headers */,
@@ -2149,7 +2139,6 @@
 				90B5C52A19652C530013DC80 /* MPHTMLInterstitialViewControllerMF.h in Headers */,
 				90B5C4F819652C530013DC80 /* MPAdDestinationDisplayAgentMF.h in Headers */,
 				90B5C5AD19652C530013DC80 /* MPReachabilityMF.h in Headers */,
-				A7992EC81489373000E86AC8 /* NSString+MobFox.h in Headers */,
 				903ADEFA18CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h in Headers */,
 				90B5C4E519652C530013DC80 /* MPPrivateBannerCustomEventDelegateMF.h in Headers */,
 				90B5C57D19652C530013DC80 /* MRPictureManagerMF.h in Headers */,
@@ -2245,6 +2234,8 @@
 				A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
 				0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTrackerMF.h in Headers */,
+				23EF3BF21C08B28D005760ED /* NSString+Bizzclick.h in Headers */,
+				23EF3BEE1C08B0DA005760ED /* NSDictionary+Bizzclick.h in Headers */,
 				90038F361846035D00446EAD /* MFJSONRepresentation.h in Headers */,
 				90038F2E1846035D00446EAD /* MFCJSONScanner.h in Headers */,
 				90B5C59519652C530013DC80 /* UIWebView+MPAdditionsMF.h in Headers */,
@@ -2384,7 +2375,6 @@
 				90B5C66C19657B8B0013DC80 /* MPAdBrowserControllerMF.xib in Resources */,
 				90CC97B01AE4EF7800B2907F /* fallback_320x480.mustache in Resources */,
 				90B5C61C19652C530013DC80 /* MobFoxMPCloseButtonX@2x.png in Resources */,
-				E745E96E1B4D119500A79DF9 /* vg_cta.png in Resources */,
 				E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */,
 				90038F371846035D00446EAD /* LICENSE.txt in Resources */,
 				E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */,
@@ -2448,6 +2438,7 @@
 				90A5C8C2192F677700978746 /* UIView+MobFox.m in Sources */,
 				90B5C52F19652C530013DC80 /* MPBaseInterstitialAdapterMF.m in Sources */,
 				90B5C58E19652C530013DC80 /* NSURL+MPAdditionsMF.m in Sources */,
+				23EF3BF61C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */,
 				90B5C5EC19652C530013DC80 /* MPMoPubNativeCustomEventMF.m in Sources */,
 				A7992E951489362800E86AC8 /* MFDTXMLElement.m in Sources */,
 				90B5C5C619652C530013DC80 /* MPBannerCustomEventMF.m in Sources */,
@@ -2459,7 +2450,6 @@
 				90B5C5DC19652C530013DC80 /* UITableViewCell+MPNativeAdMF.m in Sources */,
 				90B5C50F19652C530013DC80 /* MPLastResortDelegateMF.m in Sources */,
 				90B5C57219652C530013DC80 /* MRDimmingViewMF.m in Sources */,
-				A7992EA51489362800E86AC8 /* NSString+MobFox.m in Sources */,
 				90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
 				90B5C58619652C530013DC80 /* MRVideoPlayerManagerMF.m in Sources */,
 				90B5C4E819652C530013DC80 /* MPAdAlertGestureRecognizerMF.m in Sources */,
@@ -2474,7 +2464,6 @@
 				90B5C5D219652C530013DC80 /* MPInterstitialCustomEventMF.m in Sources */,
 				90B5C54719652C530013DC80 /* MPCoreInstanceProviderMF.m in Sources */,
 				90B5C4DE19652C530013DC80 /* MPBaseBannerAdapterMF.m in Sources */,
-				9047E8B019583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				90B5C51719652C530013DC80 /* MPURLResolverMF.m in Sources */,
 				A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */,
 				90B5C53919652C530013DC80 /* MPInterstitialCustomEventAdapterMF.m in Sources */,
@@ -2526,6 +2515,7 @@
 				0F66D50814F30E9400FD6569 /* UIButton+MobFox.m in Sources */,
 				90B5C4F919652C530013DC80 /* MPAdDestinationDisplayAgentMF.m in Sources */,
 				90B5C4D419652C530013DC80 /* MPBannerAdManagerMF.m in Sources */,
+				23EF3BF31C08B28D005760ED /* NSString+Bizzclick.m in Sources */,
 				9078055F18D1C26E00427F7B /* iAdCustomEventBanner.m in Sources */,
 				909716D018AA4DDF007EEB4D /* MFVASTXMLParser.m in Sources */,
 				E742961F1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m in Sources */,
@@ -2587,7 +2577,6 @@
 				90B6D12B1962B67200061451 /* MFCustomEventNative.m in Sources */,
 				90A5C8C3192F677700978746 /* UIView+MobFox.m in Sources */,
 				90B5C58B19652C530013DC80 /* NSJSONSerialization+MPAdditionsMF.m in Sources */,
-				9047E8B119583181006DDB1F /* AdColonyCustomEventFullscreen.m in Sources */,
 				90B5C53019652C530013DC80 /* MPBaseInterstitialAdapterMF.m in Sources */,
 				90B5C58F19652C530013DC80 /* NSURL+MPAdditionsMF.m in Sources */,
 				90B5C5ED19652C530013DC80 /* MPMoPubNativeCustomEventMF.m in Sources */,
@@ -2627,11 +2616,11 @@
 				90B5C60119652C530013DC80 /* MPNativeAdConstantsMF.m in Sources */,
 				909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */,
 				90B5C4ED19652C530013DC80 /* MPAdAlertManagerMF.m in Sources */,
-				A7992EC91489373000E86AC8 /* NSString+MobFox.m in Sources */,
 				903ADF0818CDB4D20001F0E4 /* AdMobCustomEventFullscreen.m in Sources */,
 				90B5C58319652C530013DC80 /* MRPropertyMF.m in Sources */,
 				90B5C55F19652C530013DC80 /* MRAdViewMF.m in Sources */,
 				90B5C5B719652C530013DC80 /* MPStoreKitProviderMF.m in Sources */,
+				23EF3BF41C08B28D005760ED /* NSString+Bizzclick.m in Sources */,
 				90B5C59719652C530013DC80 /* UIWebView+MPAdditionsMF.m in Sources */,
 				90B5C5F719652C530013DC80 /* MPTableViewCellImpressionTrackerMF.m in Sources */,
 				A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */,
@@ -2651,6 +2640,7 @@
 				A7992ED31489373000E86AC8 /* MFDTXMLElement.m in Sources */,
 				A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
 				90B5C55919652C530013DC80 /* MPMRAIDInterstitialViewControllerMF.m in Sources */,
+				23EF3BF71C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */,
 				E740F2861B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */,
 				90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */,
 				90B5C54C19652C530013DC80 /* MPInstanceProviderMF.m in Sources */,

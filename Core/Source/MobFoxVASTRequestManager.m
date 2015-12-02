@@ -8,7 +8,7 @@
 
 #import "MobFoxVASTRequestManager.h"
 #import <AdSupport/AdSupport.h>
-#import "NSString+MobFox.h"
+#import "NSString+Bizzclick.h"
 
 static NSString * const SERVER_URL = @"http://my.mobfox.com/request.php";
 static NSString * const MobFoxVASTRequestlErrorDomain = @"MobFoxVASTRequest";

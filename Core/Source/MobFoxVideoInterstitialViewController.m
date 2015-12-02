@@ -2,7 +2,7 @@
 
 #import "MobFoxVideoInterstitialViewController.h"
 #import <MediaPlayer/MPMoviePlayerController.h>
-#import "NSString+MobFox.h"
+#import "NSString+Bizzclick.h"
 #import "MFDTXMLDocument.h"
 #import "MFDTXMLElement.h"
 #import "MFVASTXMLParser.h"
@@ -28,9 +28,10 @@
 #import "iAdCustomEventFullscreen.h"
 #import "MFCustomEvent.h"
 
+
 NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial";
 
-@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, MFCustomEventFullscreenDelegate, MobFoxHTMLBannerViewDelegate> {
+@interface MobFoxVideoInterstitialViewController ()<UIGestureRecognizerDelegate, UIActionSheetDelegate, MFCustomEventFullscreenDelegate, BizzclickHTMLBannerViewDelegate> {
     BOOL videoSkipButtonShow;
     NSTimeInterval videoSkipButtonDisplayDelay;
     BOOL videoTimerShow;
@@ -585,18 +586,18 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 	@autoreleasepool
 	{
         NSString *mRaidCapable = @"1";
-        
-        
+
+
         NSString *adWidth;
         NSString *adHeight;
-        
+
         int r = arc4random_uniform(50000);
         NSString *random = [NSString stringWithFormat:@"%d", r];
-        
+
         UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 
         NSString *adStrict = @"0";
-        
+
         NSString *requestType;
         requestedAdOrientation = interfaceOrientation;
         if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -622,11 +623,11 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
             requestType = @"ipad_app";
         }
-        
+
         NSString *osVersion = [UIDevice currentDevice].systemVersion;
-        
+
         NSString *requestString;
-        
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
         NSString *iosadvid;
         if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
@@ -1191,7 +1192,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     
     MobFoxHTMLBannerView* bannerView = [[MobFoxHTMLBannerView alloc] initWithFrame:interstitialHoldingView.frame];
 
-    bannerView.allowDelegateAssigmentToRequestAd = NO;
+
     bannerView.delegate = self;
     bannerView.adspaceHeight = interstitialHoldingView.bounds.size.height;
     bannerView.adspaceWidth = interstitialHoldingView.bounds.size.width;

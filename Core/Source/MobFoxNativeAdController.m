@@ -7,7 +7,7 @@
 //
 
 #import "MobFoxNativeAdController.h"
-#import "NSString+MobFox.h"
+#import "NSString+Bizzclick.h"
 #import "NSURL+MobFox.h"
 #import "UIDevice+MFIdentifierAddition.h"
 #import <AdSupport/AdSupport.h>

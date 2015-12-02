@@ -8,7 +8,7 @@
 //  With additional IP Address Lookup Code
 
 #import "UIDevice+MFIdentifierAddition.h"
-#import "NSString+MobFox.h"
+
 
 #include <sys/socket.h> // Per msqr
 #include <sys/sysctl.h>

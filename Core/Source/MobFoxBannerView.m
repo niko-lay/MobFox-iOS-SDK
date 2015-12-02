@@ -14,7 +14,7 @@
 
 
 
-@interface MobFoxBannerView () <MobFoxHTMLBannerViewDelegate, MobFoxNativeFormatViewDelegate> {
+@interface MobFoxBannerView () <BizzclickHTMLBannerViewDelegate, MobFoxNativeFormatViewDelegate> {
 }
 
 @property (nonatomic, strong) MobFoxCreativeManager* nativeFormatCreativesManager;
@@ -75,7 +75,7 @@
     if (!self.delegate)
     {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Delegate for banner not set!" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
         [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
         return;
     }
@@ -85,7 +85,7 @@
     }
     if (self.adQueue.count < 1) {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No ad types in queue!" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
         [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
         return;
     }
@@ -105,7 +105,7 @@
             
         default: {
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Chosen creative type not supported for banners!" forKey:NSLocalizedDescriptionKey];
-            NSError *error = [NSError errorWithDomain:MobFoxErrorDomain code:MobFoxErrorUnknown userInfo:userInfo];
+            NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
             [self performSelectorOnMainThread:@selector(bannerFailedWithError:) withObject:error waitUntilDone:YES];
         }
     }
@@ -138,7 +138,7 @@
         
         NSString* errorString = [NSString stringWithFormat:@"Cannot find creative template for requested size: %li x %li", (long)width, (long)height];
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
-        NSError* error = [NSError errorWithDomain:MobFoxErrorDomain code:0 userInfo:userInfo];
+        NSError* error = [NSError errorWithDomain:ErrorDomain code:0 userInfo:userInfo];
         [self bannerFailedWithError:error];
         return;
     }
@@ -151,10 +151,9 @@
 
 -(void) requestClassicBanner {
     MobFoxHTMLBannerView* banner = [[MobFoxHTMLBannerView alloc] initWithFrame:self.frame];
-    banner.allowDelegateAssigmentToRequestAd = NO;
-    
+
     banner.delegate = self;
-    banner.requestURL = @"http://my.mobfox.com/request.php";
+  //  banner.requestURL = @"http://my.mobfox.com/request.php";
     
     if(self.adspaceHeight > 0 && self.adspaceWidth > 0)
     {
@@ -162,7 +161,6 @@
         banner.adspaceWidth = self.adspaceWidth;
     }
     banner.refreshTimerOff = YES;
-    [banner requestAd];
     self.bannerView = banner;
 }
 

@@ -1,18 +1,22 @@
 
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 enum {
-    MobFoxErrorUnknown = 0,
-    MobFoxErrorServerFailure = 1,
-    MobFoxErrorInventoryUnavailable = 2,
+    BizzClickErrorUnknown = 0,
+    BizzClickErrorServerFailure = 1,
+    BizzClickErrorInventoryUnavailable = 2,
+    BizzClickErrorWrongInput = 3,
 };
 
 @class MobFoxHTMLBannerView;
 
-@protocol MobFoxHTMLBannerViewDelegate <NSObject>
+@protocol BizzclickHTMLBannerViewDelegate <NSObject>
 
 - (NSString *)publisherIdForMobFoxHTMLBannerView:(MobFoxHTMLBannerView *)banner;
+- (NSUUID *)appKeyForBizzclickHTMLBanner:(MobFoxHTMLBannerView *)banner;
+
 
 @optional
 
@@ -34,7 +38,7 @@ enum {
 
 @end
 
-@interface MobFoxHTMLBannerView : UIView 
+@interface MobFoxHTMLBannerView : UIView
 {
 	NSString *advertisingSection;
 	BOOL bannerLoaded;
@@ -47,10 +51,9 @@ enum {
 	NSURL *_tapThroughURL;
     NSInteger _refreshInterval;
 	NSTimer *_refreshTimer;
-
 }
 
-@property (nonatomic, assign) IBOutlet __unsafe_unretained id <MobFoxHTMLBannerViewDelegate> delegate;
+@property (nonatomic, assign) IBOutlet __unsafe_unretained id <BizzclickHTMLBannerViewDelegate> delegate;
 @property (nonatomic, copy) NSString *advertisingSection;
 @property (nonatomic, assign) UIViewAnimationTransition refreshAnimation;
 
@@ -64,21 +67,20 @@ enum {
 @property (nonatomic, assign) BOOL refreshTimerOff;
 @property (nonatomic, assign) NSInteger customReloadTime;
 @property (nonatomic, retain) UIImage *_bannerImage;
-@property (strong, nonatomic) NSString *requestURL;
-
+@property (nonatomic, readonly ) NSString *requestURL;
 @property (nonatomic, assign) NSInteger userAge;
 @property (nonatomic, strong) NSString* userGender;
 @property (nonatomic, retain) NSArray* keywords;
 
-@property (nonatomic, assign) BOOL allowDelegateAssigmentToRequestAd;
-
 @property (nonatomic, assign) BOOL locationAwareAdverts;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 
-- (void)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
+- (bool)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
-- (void)requestAd;
+//- (void)requestAd;
+- (BOOL)requestAd: (NSNumber*) adspaceID;
 
 @end
 
-extern NSString * const MobFoxErrorDomain;
+extern NSString * const ErrorDomain;

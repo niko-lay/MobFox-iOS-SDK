@@ -1,4 +1,4 @@
-#import "NSString+MobFox.h"
+#import "NSString+Bizzclick.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (MobFox)

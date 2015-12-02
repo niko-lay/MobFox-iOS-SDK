@@ -9,7 +9,7 @@
 #import "MobFoxNativeFormatView.h"
 #import <AdSupport/AdSupport.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "NSString+MobFox.h"
+#import "NSString+Bizzclick.h"
 #import "UIView+FindViewController.h"
 #import "MobFoxAdBrowserViewController.h"
 
