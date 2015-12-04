@@ -551,8 +551,8 @@
 		A7992E951489362800E86AC8 /* MFDTXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E791489362800E86AC8 /* MFDTXMLElement.m */; };
 		A7992E971489362800E86AC8 /* MobFoxAdBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */; settings = {ATTRIBUTES = (); }; };
 		A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
-		A7992E9B1489362800E86AC8 /* MobFoxHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7992E9D1489362800E86AC8 /* MobFoxHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */; };
+		A7992E9B1489362800E86AC8 /* BizzclickHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7992E9D1489362800E86AC8 /* BizzclickHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */; };
 		A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
 		A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+MobFox.m */; };
 		A7992EAB1489362800E86AC8 /* MFRedirectChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E841489362800E86AC8 /* MFRedirectChecker.h */; };
@@ -572,8 +572,8 @@
 		A7992ED31489373000E86AC8 /* MFDTXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E791489362800E86AC8 /* MFDTXMLElement.m */; };
 		A7992ED41489373000E86AC8 /* MobFoxAdBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */; };
 		A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
-		A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7992ED71489373000E86AC8 /* MobFoxHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */; };
+		A7992ED61489373000E86AC8 /* BizzclickHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7992ED71489373000E86AC8 /* BizzclickHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */; };
 		A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71DB8621B53D1D400E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
@@ -968,8 +968,8 @@
 		A7992E791489362800E86AC8 /* MFDTXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDTXMLElement.m; sourceTree = "<group>"; };
 		A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxAdBrowserViewController.h; sourceTree = "<group>"; };
 		A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxAdBrowserViewController.m; sourceTree = "<group>"; };
-		A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxHTMLBannerView.h; sourceTree = "<group>"; };
-		A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxHTMLBannerView.m; sourceTree = "<group>"; };
+		A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BizzclickHTMLBannerView.h; sourceTree = "<group>"; };
+		A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BizzclickHTMLBannerView.m; sourceTree = "<group>"; };
 		A7992E821489362800E86AC8 /* NSURL+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MobFox.h"; sourceTree = "<group>"; };
 		A7992E831489362800E86AC8 /* NSURL+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MobFox.m"; sourceTree = "<group>"; };
 		A7992E841489362800E86AC8 /* MFRedirectChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRedirectChecker.h; sourceTree = "<group>"; };
@@ -1649,8 +1649,8 @@
 				909716CB18AA4DAA007EEB4D /* VAST */,
 				A7992EB41489363E00E86AC8 /* Helpers */,
 				A7992EB31489363000E86AC8 /* DTXML */,
-				A7992E7C1489362800E86AC8 /* MobFoxHTMLBannerView.h */,
-				A7992E7D1489362800E86AC8 /* MobFoxHTMLBannerView.m */,
+				A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */,
+				A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */,
 				901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */,
 				901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */,
 				0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */,
@@ -2001,7 +2001,7 @@
 				90B5C60219652C530013DC80 /* MPNativeAdErrorMF.h in Headers */,
 				90B5C5B419652C530013DC80 /* MPStoreKitProviderMF.h in Headers */,
 				90B5C4E019652C530013DC80 /* MPLegacyBannerCustomEventAdapterMF.h in Headers */,
-				A7992E9B1489362800E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
+				A7992E9B1489362800E86AC8 /* BizzclickHTMLBannerView.h in Headers */,
 				E7E18D6B1B528EC500222640 /* IMIncentivisedDelegate.h in Headers */,
 				90B5C5EE19652C530013DC80 /* MPNativeAdMF+Internal.h in Headers */,
 				90038F311846035D00446EAD /* MFCJSONSerializer.h in Headers */,
@@ -2231,7 +2231,7 @@
 				E740F2841B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
 				90B5C51A19652C530013DC80 /* MPAdWebViewMF.h in Headers */,
 				90B5C5A519652C530013DC80 /* MPIdentityProviderMF.h in Headers */,
-				A7992ED61489373000E86AC8 /* MobFoxHTMLBannerView.h in Headers */,
+				A7992ED61489373000E86AC8 /* BizzclickHTMLBannerView.h in Headers */,
 				0F34E1BF14DBEF04000F8713 /* MobFoxToolBar.h in Headers */,
 				90B5C5BD19652C530013DC80 /* MPAdConversionTrackerMF.h in Headers */,
 				23EF3BF21C08B28D005760ED /* NSString+Bizzclick.h in Headers */,
@@ -2446,7 +2446,7 @@
 				90B5C5F219652C530013DC80 /* MPNativeCacheMF.m in Sources */,
 				A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */,
 				90038F1B1846035D00446EAD /* MFCJSONSerialization.m in Sources */,
-				A7992E9D1489362800E86AC8 /* MobFoxHTMLBannerView.m in Sources */,
+				A7992E9D1489362800E86AC8 /* BizzclickHTMLBannerView.m in Sources */,
 				90B5C5DC19652C530013DC80 /* UITableViewCell+MPNativeAdMF.m in Sources */,
 				90B5C50F19652C530013DC80 /* MPLastResortDelegateMF.m in Sources */,
 				90B5C57219652C530013DC80 /* MRDimmingViewMF.m in Sources */,
@@ -2648,7 +2648,7 @@
 				90B5C5BB19652C530013DC80 /* MPTimerMF.m in Sources */,
 				90FEE52C1AEF7F49006B72CF /* MobFoxCreativesQueueManager.m in Sources */,
 				90038F201846035D00446EAD /* MFCJSONSerializedData.m in Sources */,
-				A7992ED71489373000E86AC8 /* MobFoxHTMLBannerView.m in Sources */,
+				A7992ED71489373000E86AC8 /* BizzclickHTMLBannerView.m in Sources */,
 				90B5C60F19652C530013DC80 /* MPNativeAdRequestTargetingMF.m in Sources */,
 				90B5C5AB19652C530013DC80 /* MPLoggingMF.m in Sources */,
 				90B5C5C319652C530013DC80 /* MPAdViewMF.m in Sources */,

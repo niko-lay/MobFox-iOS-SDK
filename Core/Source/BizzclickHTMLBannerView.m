@@ -1,4 +1,4 @@
-#import "MobFoxHTMLBannerView.h"
+#import "BizzclickHTMLBannerView.h"
 #import "NSString+Bizzclick.h"
 #import "MFDTXMLDocument.h"
 #import "MFDTXMLElement.h"
@@ -23,7 +23,7 @@
 
 NSString * const ErrorDomain = @"BizzClickSDKError";
 
-@interface MobFoxHTMLBannerView () <UIWebViewDelegate, MPBannerAdapterDelegateMF, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate> {
+@interface BizzclickHTMLBannerView () <UIWebViewDelegate, MPBannerAdapterDelegateMF, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate> {
     int ddLogLevel;
     NSString *skipOverlay;
     NSMutableArray *customEvents;
@@ -53,7 +53,7 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 
 
-@implementation MobFoxHTMLBannerView
+@implementation BizzclickHTMLBannerView
 {
 	MFRedirectChecker *redirectChecker;
 }
@@ -163,7 +163,6 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 - (NSURL *)serverURL
 {
     return [NSURL URLWithString:@"http://ad.bizzclick.com:9080/ad.php"];
-//    return [NSURL URLWithString:@"http://my.mobfox.com/request.php"];
 }
 
 #pragma mark Properties
@@ -438,26 +437,26 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 - (void)reportSuccess
 {
 	bannerLoaded = YES;
-	if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewDidLoadMobFoxAd:)])
+	if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewDidLoadAd:)])
 	{
-		[delegate mobfoxHTMLBannerViewDidLoadMobFoxAd:self];
+		[delegate bizzclickHTMLBannerViewDidLoadAd:self];
 	}
 }
 
 - (void)reportRefresh
 {
-	if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewDidLoadRefreshedAd:)])
+	if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewDidLoadRefreshedAd:)])
 	{
-		[delegate mobfoxHTMLBannerViewDidLoadRefreshedAd:self];
+		[delegate bizzclickHTMLBannerViewDidLoadRefreshedAd:self];
 	}
 }
 
 - (void)reportError:(NSError *)error
 {
 	bannerLoaded = NO;
-	if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerView:didFailToReceiveAdWithError:)])
+	if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerView:didFailToReceiveAdWithError:)])
 	{
-		[delegate mobfoxHTMLBannerView:self didFailToReceiveAdWithError:error];
+		[delegate bizzclickHTMLBannerView:self didFailToReceiveAdWithError:error];
 	}
 }
 
@@ -1043,6 +1042,8 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
                                         osVersion, @"osv",
                                         language, @"lang",
                                         random, @"rand",
+                                        SDK_VERSION, @"sdkversion",
+                                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier" ], @"bundleidentifier",
 
                                         nil];
 
@@ -1411,8 +1412,6 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 
 - (void)requestAdByTimer:(NSTimer *)timer{
-    NSLog(@"%@", timer );
-
     [self requestAd: adspaceID];
 }
 
@@ -1497,11 +1496,11 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 	browser.userAgent = self.userAgent;
 	browser.webView.scalesPageToFit = _shouldScaleWebView;
 	[self hideStatusBar];
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillPresent:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillPresent:)])
     {
-        [delegate mobfoxHTMLBannerViewActionWillPresent:self];
+        [delegate bizzclickHTMLBannerViewActionWillPresent:self];
     }
-    [viewController presentModalViewController:browser animated:YES];
+    [viewController presentViewController:browser animated:YES completion:nil];
 	bannerViewActionInProgress = YES;
 }
 
@@ -1518,11 +1517,11 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 	NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@/", scheme, host, path]];
 	[browser.webView loadData:data MIMEType:checker.mimeType textEncodingName:checker.textEncodingName baseURL:baseURL];
 	[self hideStatusBar];
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillPresent:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillPresent:)])
     {
-        [delegate mobfoxHTMLBannerViewActionWillPresent:self];
+        [delegate bizzclickHTMLBannerViewActionWillPresent:self];
     }
-    [viewController presentModalViewController:browser animated:YES];
+    [viewController presentViewController:browser animated:YES completion:nil ];
 	bannerViewActionInProgress = YES;
 }
 
@@ -1533,9 +1532,9 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 - (void)tapThrough:(id)sender
 {
-	if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionShouldBegin:willLeaveApplication:)])
+	if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionShouldBegin:willLeaveApplication:)])
 	{
-		BOOL allowAd = [delegate mobfoxHTMLBannerViewActionShouldBegin:self willLeaveApplication:_tapThroughLeavesApp];
+		BOOL allowAd = [delegate bizzclickHTMLBannerViewActionShouldBegin:self willLeaveApplication:_tapThroughLeavesApp];
 
 		if (!allowAd)
 		{
@@ -1547,7 +1546,7 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
         if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillLeaveApplication:)])
         {
-            [delegate mobfoxHTMLBannerViewActionWillLeaveApplication:self];
+            [delegate bizzclickHTMLBannerViewActionWillLeaveApplication:self];
         }
 
         [[UIApplication sharedApplication]openURL:_tapThroughURL];
@@ -1569,11 +1568,11 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 	browser.userAgent = self.userAgent;
 	browser.webView.scalesPageToFit = _shouldScaleWebView;
 	[self hideStatusBar];
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillPresent:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillPresent:)])
     {
-        [delegate mobfoxHTMLBannerViewActionWillPresent:self];
+        [delegate bizzclickHTMLBannerViewActionWillPresent:self];
     }
-    [viewController presentModalViewController:browser animated:YES];
+    [viewController presentViewController:browser animated:YES completion:nil];
 	bannerViewActionInProgress = YES;
 }
 
@@ -1593,17 +1592,17 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 - (void)mobfoxAdBrowserControllerDidDismiss:(MobFoxAdBrowserViewController *)mobfoxAdBrowserController
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillFinish:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillFinish:)])
 	{
-		[delegate mobfoxHTMLBannerViewActionWillFinish:self];
+		[delegate bizzclickHTMLBannerViewActionWillFinish:self];
 	}
     [self showStatusBarIfNecessary];
-	[mobfoxAdBrowserController dismissModalViewControllerAnimated:YES];
+    [mobfoxAdBrowserController dismissViewControllerAnimated:YES completion:nil];
 	bannerViewActionInProgress = NO;
 	[self setRefreshTimerActive:YES];
-	if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionDidFinish:)])
+	if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionDidFinish:)])
 	{
-		[delegate mobfoxHTMLBannerViewActionDidFinish:self];
+		[delegate bizzclickHTMLBannerViewActionDidFinish:self];
 	}
 }
 
@@ -1675,25 +1674,25 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 - (void)userActionWillBeginForAdapter:(MPBaseBannerAdapterMF *)adapter
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillPresent:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillPresent:)])
     {
-        [delegate mobfoxHTMLBannerViewActionWillPresent:self];
+        [delegate bizzclickHTMLBannerViewActionWillPresent:self];
     }
 }
 
 - (void)userActionDidFinishForAdapter:(MPBaseBannerAdapterMF *)adapter
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionDidFinish:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionDidFinish:)])
 	{
-		[delegate mobfoxHTMLBannerViewActionDidFinish:self];
+		[delegate bizzclickHTMLBannerViewActionDidFinish:self];
 	}
 }
 
 - (void)userWillLeaveApplicationFromAdapter:(MPBaseBannerAdapterMF *)adapter
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillLeaveApplication:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillLeaveApplication:)])
     {
-        [delegate mobfoxHTMLBannerViewActionWillLeaveApplication:self];
+        [delegate bizzclickHTMLBannerViewActionWillLeaveApplication:self];
     }
 }
 
@@ -1744,17 +1743,17 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 - (void)customEventBannerWillExpand
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillPresent:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillPresent:)])
 	{
-		[delegate mobfoxHTMLBannerViewActionWillPresent:self];
+		[delegate bizzclickHTMLBannerViewActionWillPresent:self];
 	}
 }
 
 - (void)customEventBannerWillClose
 {
-    if ([delegate respondsToSelector:@selector(mobfoxHTMLBannerViewActionWillFinish:)])
+    if ([delegate respondsToSelector:@selector(bizzclickHTMLBannerViewActionWillFinish:)])
 	{
-		[delegate mobfoxHTMLBannerViewActionWillFinish:self];
+		[delegate bizzclickHTMLBannerViewActionWillFinish:self];
 	}
 }
 

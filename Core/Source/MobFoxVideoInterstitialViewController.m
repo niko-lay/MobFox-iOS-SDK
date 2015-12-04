@@ -11,7 +11,7 @@
 #import "MobFoxAdBrowserViewController.h"
 #import "MobFoxToolBar.h"
 
-#import "MobFoxHTMLBannerView.h"
+#import "BizzclickHTMLBannerView.h"
 
 #import "UIImage+MobFox.h"
 #import "UIButton+MobFox.h"
@@ -1190,7 +1190,7 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
     self.interstitialHoldingView.backgroundColor = [UIColor clearColor];
     self.interstitialHoldingView.autoresizesSubviews = YES;
     
-    MobFoxHTMLBannerView* bannerView = [[MobFoxHTMLBannerView alloc] initWithFrame:interstitialHoldingView.frame];
+    BizzclickHTMLBannerView* bannerView = [[BizzclickHTMLBannerView alloc] initWithFrame:interstitialHoldingView.frame];
 
 
     bannerView.delegate = self;
@@ -2958,21 +2958,21 @@ NSString * const MobFoxVideoInterstitialErrorDomain = @"MobFoxVideoInterstitial"
 
 #pragma mark Banner View Delegate
 
--(void) mobfoxHTMLBannerViewActionWillPresent:(MobFoxHTMLBannerView *)banner {
+-(void) mobfoxHTMLBannerViewActionWillPresent:(BizzclickHTMLBannerView *)banner {
     if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewWasClicked:)])
     {
         [delegate mobfoxVideoInterstitialViewWasClicked:self];
     }
 }
 
--(void) mobfoxHTMLBannerViewActionWillLeaveApplication:(MobFoxHTMLBannerView *)banner {
+-(void) mobfoxHTMLBannerViewActionWillLeaveApplication:(BizzclickHTMLBannerView *)banner {
     if ([delegate respondsToSelector:@selector(mobfoxVideoInterstitialViewActionWillLeaveApplication:)])
     {
         [delegate mobfoxVideoInterstitialViewActionWillLeaveApplication:self];
     }
 }
 
--(NSString*) publisherIdForMobFoxHTMLBannerView:(MobFoxHTMLBannerView *)banner {
+-(NSString*) publisherIdForMobFoxHTMLBannerView:(BizzclickHTMLBannerView *)banner {
     return [delegate publisherIdForMobFoxVideoInterstitialView:self];
 }
 

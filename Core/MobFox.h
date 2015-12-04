@@ -1,4 +1,4 @@
-#import "MobFoxHTMLBannerView.h"
+#import "BizzclickHTMLBannerView.h"
 #import "MobFoxVideoInterstitialViewController.h"
 #import "MobFoxNativeAdController.h"
 #import "MobFoxTableViewHelper.h"

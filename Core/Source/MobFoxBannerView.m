@@ -7,7 +7,7 @@
 //
 
 #import "MobFoxBannerView.h"
-#import "MobFoxHTMLBannerView.h"
+#import "BizzclickHTMLBannerView.h"
 #import "MobFoxCreativeManager.h"
 #import "MobFoxNativeFormatView.h"
 #import "MobFoxCreativesQueueManager.h"
@@ -150,7 +150,7 @@
 }
 
 -(void) requestClassicBanner {
-    MobFoxHTMLBannerView* banner = [[MobFoxHTMLBannerView alloc] initWithFrame:self.frame];
+    BizzclickHTMLBannerView* banner = [[BizzclickHTMLBannerView alloc] initWithFrame:self.frame];
 
     banner.delegate = self;
   //  banner.requestURL = @"http://my.mobfox.com/request.php";
@@ -239,27 +239,27 @@
 
 
 #pragma mark Banner View delegate
-- (NSString *)publisherIdForMobFoxHTMLBannerView:(MobFoxHTMLBannerView *)banner {
+- (NSString *)publisherIdForMobFoxHTMLBannerView:(BizzclickHTMLBannerView *)banner {
     return [self.delegate publisherIdForMobFoxBannerView:self];
 }
 
-- (void)mobfoxHTMLBannerViewDidLoadMobFoxAd:(MobFoxHTMLBannerView *)banner {
+- (void)mobfoxHTMLBannerViewDidLoadMobFoxAd:(BizzclickHTMLBannerView *)banner {
     [self showNewBanner:banner];
 }
 
-- (void)mobfoxHTMLBannerViewDidLoadRefreshedAd:(MobFoxHTMLBannerView *)banner {
+- (void)mobfoxHTMLBannerViewDidLoadRefreshedAd:(BizzclickHTMLBannerView *)banner {
     [self showNewBanner:banner];
 }
 
-- (void)mobfoxHTMLBannerView:(MobFoxHTMLBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+- (void)mobfoxHTMLBannerView:(BizzclickHTMLBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     [self bannerFailedWithError:error];
 }
 
-- (void)mobfoxHTMLBannerViewActionWillPresent:(MobFoxHTMLBannerView *)banner {
+- (void)mobfoxHTMLBannerViewActionWillPresent:(BizzclickHTMLBannerView *)banner {
     [self reportViewActionWillPresent];
 }
 
-- (void)mobfoxHTMLBannerViewActionWillFinish:(MobFoxHTMLBannerView *)banner {
+- (void)mobfoxHTMLBannerViewActionWillFinish:(BizzclickHTMLBannerView *)banner {
     [self reportViewActionWillFinish];
 }
 

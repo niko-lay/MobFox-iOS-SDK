@@ -10,35 +10,34 @@ enum {
     BizzClickErrorWrongInput = 3,
 };
 
-@class MobFoxHTMLBannerView;
+@class BizzclickHTMLBannerView;
 
 @protocol BizzclickHTMLBannerViewDelegate <NSObject>
 
-- (NSString *)publisherIdForMobFoxHTMLBannerView:(MobFoxHTMLBannerView *)banner;
-- (NSUUID *)appKeyForBizzclickHTMLBanner:(MobFoxHTMLBannerView *)banner;
+- (NSUUID *)appKeyForBizzclickHTMLBanner:(BizzclickHTMLBannerView *)banner;
 
 
 @optional
 
-- (void)mobfoxHTMLBannerViewDidLoadMobFoxAd:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewDidLoadAd:(BizzclickHTMLBannerView *)banner;
 
-- (void)mobfoxHTMLBannerViewDidLoadRefreshedAd:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewDidLoadRefreshedAd:(BizzclickHTMLBannerView *)banner;
 
-- (void)mobfoxHTMLBannerView:(MobFoxHTMLBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
+- (void)bizzclickHTMLBannerView:(BizzclickHTMLBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
 
-- (BOOL)mobfoxHTMLBannerViewActionShouldBegin:(MobFoxHTMLBannerView *)banner willLeaveApplication:(BOOL)willLeave;
+- (BOOL)bizzclickHTMLBannerViewActionShouldBegin:(BizzclickHTMLBannerView *)banner willLeaveApplication:(BOOL)willLeave;
 
-- (void)mobfoxHTMLBannerViewActionWillPresent:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewActionWillPresent:(BizzclickHTMLBannerView *)banner;
 
-- (void)mobfoxHTMLBannerViewActionWillFinish:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewActionWillFinish:(BizzclickHTMLBannerView *)banner;
 
-- (void)mobfoxHTMLBannerViewActionDidFinish:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewActionDidFinish:(BizzclickHTMLBannerView *)banner;
 
-- (void)mobfoxHTMLBannerViewActionWillLeaveApplication:(MobFoxHTMLBannerView *)banner;
+- (void)bizzclickHTMLBannerViewActionWillLeaveApplication:(BizzclickHTMLBannerView *)banner;
 
 @end
 
-@interface MobFoxHTMLBannerView : UIView
+@interface BizzclickHTMLBannerView : UIView
 {
 	NSString *advertisingSection;
 	BOOL bannerLoaded;
