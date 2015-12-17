@@ -22,6 +22,12 @@
 
 
 NSString * const ErrorDomain = @"BizzClickSDKError";
+NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
+//NSString * const userID = @"userID";
+#define KEYNAME_USER_ID @"userID"
+#define KEYNAME_IDFA_ID @"IDFA"
+#define KEYNAME_OLDIDFA_ID @"oldIDFA"
+
 
 @interface BizzclickHTMLBannerView () <UIWebViewDelegate, MPBannerAdapterDelegateMF, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate> {
     int ddLogLevel;
@@ -43,6 +49,8 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 @property (nonatomic, assign) CGFloat fetchLatitude;
 @property (nonatomic, assign) CGFloat fetchLongitude;
 @property (nonatomic, strong) NSString* htmlString;
+@property (nonatomic, strong) NSUUID* userID;
+@property (nonatomic, strong) NSUUID* idfa;
 
 @property (nonatomic, retain) UIView *bannerView;
 @property (nonatomic, strong) MFCustomEventBanner *customEventBanner;
@@ -73,6 +81,89 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
    	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+
+
+    _idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+
+
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:KEYNAME_USER_ID] != nil){
+        // we have saved UID
+
+        _userID = [[NSUUID alloc] initWithUUIDString: [[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_USER_ID]];
+
+        NSUUID *oldidfa = [[NSUUID alloc] initWithUUIDString:[[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_OLDIDFA_ID]];
+        if (![_idfa isEqual:oldidfa]){
+            NSLog(@"idfa changed");
+            //idfa changed
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // map
+                if ([self mapUserId:_userID withIDFA:_idfa]){
+                    // and save new
+                    [[NSUserDefaults standardUserDefaults] setObject:[_idfa UUIDString] forKey:KEYNAME_OLDIDFA_ID];
+                    NSLog(@"map OK");
+                }else{
+                    NSLog(@"map fail");
+                }
+            });
+        }
+
+    }else{
+        // we don't have saved UID
+        // try to fetch from server
+        _userID = nil;
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+            _userID = [self fetchUserIDforIdfa:_idfa];
+
+            if (!_userID) {
+
+                // genrate new one
+                _userID = [NSUUID UUID];
+                // and save on server
+                [self mapUserId:_userID withIDFA:_idfa];
+            }
+
+            // save in UserDefaults
+            [[NSUserDefaults standardUserDefaults] setObject:[_userID UUIDString] forKey:KEYNAME_USER_ID];
+            [[NSUserDefaults standardUserDefaults] setObject:[_idfa UUIDString] forKey:KEYNAME_OLDIDFA_ID];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+        }); // dispatch_async
+    }
+}
+
+-(BOOL)mapUserId: (NSUUID*)uid withIDFA: (NSUUID*)idfa{
+
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[uid UUIDString], @"uid", [idfa UUIDString], @"idfa", nil];
+
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@map.php", BaseUrl]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody: [[params asURLStringWithEncoding:YES] dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse *response;
+    NSError *err;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    if (responseData){
+        NSString *respStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        if ([[respStr uppercaseString] isEqualToString:@"OK"]){
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+
+-(NSUUID*) fetchUserIDforIdfa: (NSUUID*)idfa {
+    NSString * fullUrl = [NSString stringWithFormat:@"%@fetch.php?idfa=%@",BaseUrl, [idfa UUIDString]];
+
+    NSString *strUID = [NSString stringWithContentsOfURL:[NSURL URLWithString: fullUrl] encoding:NSUTF8StringEncoding error:nil];
+
+    if (strUID){
+        return [[NSUUID alloc] initWithUUIDString:strUID];
+    }
+    return nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -162,7 +253,7 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
 
 - (NSURL *)serverURL
 {
-    return [NSURL URLWithString:@"http://ad.bizzclick.com:9080/ad.php"];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, @"ad.php" ]];
 }
 
 #pragma mark Properties
@@ -1025,14 +1116,13 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
         }
 
 
-        NSUUID *iosadvid = [[ASIdentifierManager sharedManager] advertisingIdentifier];
         NSString *iosadDontTrack =  ([ASIdentifierManager sharedManager].advertisingTrackingEnabled)?@"1":@"0";
 
         NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSMutableDictionary *reqDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"banner", @"type" ,
                                         @"Apple", @"make",
-                                       [iosadvid UUIDString], @"ifa",
-                                       [[iosadvid UUIDString] sha1], @"dpidsha1",
+                                       [_idfa UUIDString], @"ifa",
+                                       [[_idfa UUIDString] sha1], @"dpidsha1",
                                         iosadDontTrack, @"dnt",
                                         model, @"model",
                                         devicetype, @"devicetype",
@@ -1044,6 +1134,8 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
                                         random, @"rand",
                                         SDK_VERSION, @"sdkversion",
                                         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier" ], @"bundleidentifier",
+                                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString" ], @"appver",
+
 
                                         nil];
 
@@ -1066,31 +1158,20 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
             }
         }
 
-        NSString *fullRequestString;
-        /*
-        fullRequestString = requestStringWithLocation;
-
-
         if([userGender isEqualToString:@"female"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=f",
-                                 fullRequestString];
+            [reqDict setValue:@"female" forKey:@"gender"];
         } else if([userGender isEqualToString:@"male"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=m",
-                                 fullRequestString];
+            [reqDict setValue:@"male" forKey:@"gender"];
         }
+
         if(userAge) {
-            NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_age=%@",
-                                 fullRequestString,
-                                 [age stringByUrlEncoding]];
+            [reqDict setValue:[NSString stringWithFormat:@"%ld", (long)userAge] forKey:@"age"];
         }
+
         if(keywords) {
             NSString *words = [keywords componentsJoinedByString:@","];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_keywords=%@",
-                                 fullRequestString,
-                                 words];
-
-        }*/
+            [reqDict setValue:words forKey:@"keywords"];
+        }
 
         NSDictionary *devIps = [self getIPAddresses];
         __block NSString* devIPsString = @"";
@@ -1098,7 +1179,7 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
             devIPsString = [NSString stringWithFormat:@"%@|%@", obj , devIPsString ];
         }];
 
-        [reqDict setValue:fullRequestString forKey:@"devips"];
+        [reqDict setValue:devIPsString forKey:@"devips"];
 
         NSURL *serverURL = [self serverURL];
 
@@ -1110,11 +1191,11 @@ NSString * const ErrorDomain = @"BizzClickSDKError";
             return;
         }
 
-        fullRequestString = [reqDict asURLStringWithEncoding:TRUE];
+        NSString * fullRequestString = [reqDict asURLStringWithEncoding:TRUE];
 
         NSURL *url;
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
-        NSLog(@"full url = %@", url);
+//        NSLog(@"full url = %@", url);
 
         NSMutableURLRequest *request;
         NSError *error;

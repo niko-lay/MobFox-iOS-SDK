@@ -110,8 +110,8 @@
 		901FCEEA192C8E4900D22785 /* MobFoxNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEE7192C8E4900D22785 /* MobFoxNativeAd.h */; };
 		901FCEEB192C8E4900D22785 /* MobFoxNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEE8192C8E4900D22785 /* MobFoxNativeAd.m */; };
 		901FCEEC192C8E4900D22785 /* MobFoxNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEE8192C8E4900D22785 /* MobFoxNativeAd.m */; };
-		901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		901FCEF3192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		901FCEF3192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEF0192C97EE00D22785 /* MobFoxNativeAdController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		901FCEF4192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
 		901FCEF5192C97EE00D22785 /* MobFoxNativeAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEF1192C97EE00D22785 /* MobFoxNativeAdController.m */; };
 		903ADEF918CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 903ADEF818CDABA50001F0E4 /* MFCustomEventFullscreenDelegate.h */; };
@@ -147,7 +147,7 @@
 		90987D3D18BCD32500148D09 /* MFCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9A18B6168500C929A5 /* MFCustomEventBanner.h */; };
 		90987D3E18BCD32600148D09 /* MFCustomEventBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9718B60DC500C929A5 /* MFCustomEventBannerDelegate.h */; };
 		90987D3F18BCD32600148D09 /* MFCustomEventBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 909A5E9A18B6168500C929A5 /* MFCustomEventBanner.h */; };
-		9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */; };
 		9098B52E1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9098B52B1AF7AB1100173D75 /* MobFoxBannerView.h */; };
 		9098B52F1AF7AB1100173D75 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */; };
 		9098B5301AF7AB1100173D75 /* MobFoxBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9098B52C1AF7AB1100173D75 /* MobFoxBannerView.m */; };
@@ -960,7 +960,7 @@
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
-		A7992E731489362800E86AC8 /* MobFoxSDKSource-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MobFoxSDKSource-Prefix.pch"; sourceTree = "<group>"; };
+		A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BizzClickSDKSource-Prefix.pch"; sourceTree = "<group>"; };
 		A7992E741489362800E86AC8 /* MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFox.h; sourceTree = "<group>"; };
 		A7992E761489362800E86AC8 /* MFDTXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDTXMLDocument.h; sourceTree = "<group>"; };
 		A7992E771489362800E86AC8 /* MFDTXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDTXMLDocument.m; sourceTree = "<group>"; };
@@ -1630,7 +1630,7 @@
 			isa = PBXGroup;
 			children = (
 				A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */,
-				A7992E731489362800E86AC8 /* MobFoxSDKSource-Prefix.pch */,
+				A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */,
 				A7992E741489362800E86AC8 /* MobFox.h */,
 				A7992E751489362800E86AC8 /* Source */,
 			);
@@ -2755,8 +2755,8 @@
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Core/MobFoxSDKSource-Info.plist";
@@ -2805,8 +2805,8 @@
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Core/MobFoxSDKSource-Info.plist";
@@ -2985,6 +2985,7 @@
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3024,6 +3025,7 @@
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
