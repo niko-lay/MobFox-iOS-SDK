@@ -1129,6 +1129,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
                                         self.userAgent, @"ua",
                                         [appkey UUIDString], @"appkey",
                                         [adspaceId stringValue], @"adspaceid",
+                                        @"iOS", @"os",
                                         osVersion, @"osv",
                                         language, @"lang",
                                         random, @"rand",
