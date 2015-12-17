@@ -1139,6 +1139,10 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
 
                                         nil];
+        if (_userID){
+            // in some rare situations could be nil
+            [reqDict setObject:[_userID UUIDString] forKey:@"uid"];
+        }
 
         if(self.userProvidedLatitude && self.userProvidedLongitude)
         {
