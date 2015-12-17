@@ -43,8 +43,8 @@
 		0F7CA22214E34396001FC119 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A746A63914B9DD110019992F /* UIKit.framework */; };
 		0F8D9CB8160A5DEC00C330F8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F8D9CB5160A5DDF00C330F8 /* AdSupport.framework */; };
 		0F9B947D161F15F500348628 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9B947B161F15DD00348628 /* StoreKit.framework */; };
-		0FCEB209150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0FCEB209150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		0FCEB20B150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FCEB20C150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */; };
 		0FE28D7614E34B3000CEA1CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */; };
@@ -53,9 +53,11 @@
 		23EF3BF11C08B28D005760ED /* NSString+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */; };
 		23EF3BF21C08B28D005760ED /* NSString+Bizzclick.h in Headers */ = {isa = PBXBuildFile; fileRef = 23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */; };
 		23EF3BF31C08B28D005760ED /* NSString+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */; };
-		23EF3BF41C08B28D005760ED /* NSString+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */; };
 		23EF3BF61C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */; };
 		23EF3BF71C08B2F7005760ED /* NSDictionary+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF51C08B2F7005760ED /* NSDictionary+Bizzclick.m */; };
+		23F0DCCA1C23176E000D29EE /* NSString+Bizzclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */; };
+		23F0DCCB1C231B15000D29EE /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
+		23F0DCCC1C231B40000D29EE /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */; };
 		90038F0D1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
 		90038F0E1846035D00446EAD /* MFCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 90038EF31846035D00446EAD /* MFCDataScanner.h */; };
 		90038F0F1846035D00446EAD /* MFCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90038EF41846035D00446EAD /* MFCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -106,7 +108,7 @@
 		9014FD34184DFDAD006746EC /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905D81A8184CC1BF007AF71F /* EventKit.framework */; };
 		9014FD35184DFDAD006746EC /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905D81A9184CC1BF007AF71F /* EventKitUI.framework */; };
 		9014FD36184DFDD2006746EC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6451531502309A00922DA3 /* CoreLocation.framework */; };
-		901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEE7192C8E4900D22785 /* MobFoxNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEE7192C8E4900D22785 /* MobFoxNativeAd.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		901FCEEA192C8E4900D22785 /* MobFoxNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 901FCEE7192C8E4900D22785 /* MobFoxNativeAd.h */; };
 		901FCEEB192C8E4900D22785 /* MobFoxNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEE8192C8E4900D22785 /* MobFoxNativeAd.m */; };
 		901FCEEC192C8E4900D22785 /* MobFoxNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 901FCEE8192C8E4900D22785 /* MobFoxNativeAd.m */; };
@@ -162,8 +164,8 @@
 		909FE95819336C060014597C /* MobFoxNativeTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 909FE95419336C060014597C /* MobFoxNativeTrackingView.m */; };
 		90A0330E18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
 		90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A0330B18D2E6A5001340B7 /* iAdCustomEventFullscreen.m */; };
-		90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A3F7BD1935E02F00814208 /* MobFoxTableViewHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		90A3F7C11935E02F00814208 /* MobFoxTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */; };
 		90A3F7C21935E02F00814208 /* MobFoxTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3F7BE1935E02F00814208 /* MobFoxTableViewHelper.m */; };
 		90A5C8C0192F677700978746 /* UIView+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A5C8BE192F677700978746 /* UIView+MobFox.h */; };
@@ -531,7 +533,7 @@
 		90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CC98991AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC98951AE5341000B2907F /* MobFoxNativeFormatView.m */; };
 		90CCFF9C197D47900015FD15 /* MobFoxNativeTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 909FE95319336C060014597C /* MobFoxNativeTrackingView.h */; };
-		90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		90DB89051AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89021AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h */; };
 		90DB89061AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */; };
 		90DB89071AF8AFD200C2DF18 /* MobFoxInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89031AF8AFD100C2DF18 /* MobFoxInterstitialViewController.m */; };
@@ -539,7 +541,7 @@
 		90DB890B1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB89081AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h */; };
 		90DB890C1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
 		90DB890D1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB89091AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.m */; };
-		90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F6DBEF1B09D00000BBE9EA /* MobFoxVASTRequestManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		90F6DBF21B09D00000BBE9EA /* MobFoxVASTRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F6DBF01B09D00000BBE9EA /* MobFoxVASTRequestManager.m */; };
 		90FEE5291AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
 		90FEE52A1AEF7F49006B72CF /* MobFoxCreativesQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */; };
@@ -584,14 +586,14 @@
 		E71DB86B1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86C1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
 		E71DB86D1B53F90600E83634 /* MobFoxCreativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB86A1B53F90600E83634 /* MobFoxCreativeManager.m */; };
-		E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = E72137D81B5E8DCD004B9D44 /* WebViewJavascriptBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = E72137D81B5E8DCD004B9D44 /* WebViewJavascriptBridge.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E72137DC1B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = E72137D91B5E8DCD004B9D44 /* WebViewJavascriptBridge.js.txt */; };
 		E72137DD1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E72137DA1B5E8DCD004B9D44 /* WebViewJavascriptBridge.m */; };
 		E740F27F1B79E68300ECE9F9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E740F27B1B79E68300ECE9F9 /* index.html */; };
 		E740F2801B79E68300ECE9F9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E740F27B1B79E68300ECE9F9 /* index.html */; };
 		E740F2811B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
 		E740F2821B79E68300ECE9F9 /* inline-video.js in Resources */ = {isa = PBXBuildFile; fileRef = E740F27C1B79E68300ECE9F9 /* inline-video.js */; };
-		E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E740F2841B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = E740F27D1B79E68300ECE9F9 /* MobFoxInlineVideoAd.h */; };
 		E740F2851B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
 		E740F2861B79E68300ECE9F9 /* MobFoxInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */; };
@@ -627,7 +629,7 @@
 		E7E18D991B528EF800222640 /* FlurryAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D891B528EF800222640 /* FlurryAdDelegate.h */; };
 		E7E18D9A1B528EF800222640 /* FlurryAds.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E18D8A1B528EF800222640 /* FlurryAds.h */; };
 		E7E18F211B52A95F00222640 /* CreativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E18F201B52A95F00222640 /* CreativeTests.m */; };
-		E7E18F221B52A95F00222640 /* libMobFox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7992EB9148936E400E86AC8 /* libMobFox.a */; };
+		E7E18F221B52A95F00222640 /* libBizzClick.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7992EB9148936E400E86AC8 /* libBizzClick.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -958,8 +960,8 @@
 		90FEE5271AEF7F49006B72CF /* MobFoxCreativesQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxCreativesQueueManager.h; sourceTree = "<group>"; };
 		90FEE5281AEF7F49006B72CF /* MobFoxCreativesQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxCreativesQueueManager.m; sourceTree = "<group>"; };
 		A746A63914B9DD110019992F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
+		A7992E5A1489342100E86AC8 /* BizzClick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BizzClick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7992E721489362800E86AC8 /* BizzClickSDK-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BizzClickSDK-Info.plist"; sourceTree = "<group>"; };
 		A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BizzClickSDKSource-Prefix.pch"; sourceTree = "<group>"; };
 		A7992E741489362800E86AC8 /* BizzClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BizzClick.h; sourceTree = "<group>"; };
 		A7992E761489362800E86AC8 /* MFDTXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDTXMLDocument.h; sourceTree = "<group>"; };
@@ -976,7 +978,7 @@
 		A7992E851489362800E86AC8 /* MFRedirectChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRedirectChecker.m; sourceTree = "<group>"; };
 		A7992E861489362800E86AC8 /* UIView+FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindViewController.h"; sourceTree = "<group>"; };
 		A7992E871489362800E86AC8 /* UIView+FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindViewController.m"; sourceTree = "<group>"; };
-		A7992EB9148936E400E86AC8 /* libMobFox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobFox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7992EB9148936E400E86AC8 /* libBizzClick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBizzClick.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992EBB148936E400E86AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E71DB8601B53AD3C00E83634 /* MobFoxJSONRetriever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetriever.h; sourceTree = "<group>"; };
 		E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetriever.m; sourceTree = "<group>"; };
@@ -1070,7 +1072,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E18F221B52A95F00222640 /* libMobFox.a in Frameworks */,
+				E7E18F221B52A95F00222640 /* libBizzClick.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1629,7 +1631,7 @@
 		A7992E711489362800E86AC8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */,
+				A7992E721489362800E86AC8 /* BizzClickSDK-Info.plist */,
 				A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */,
 				A7992E741489362800E86AC8 /* BizzClick.h */,
 				A7992E751489362800E86AC8 /* Source */,
@@ -1761,8 +1763,8 @@
 		A7CFC66C13C1DB0C006C0DF4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7992E5A1489342100E86AC8 /* MobFox.framework */,
-				A7992EB9148936E400E86AC8 /* libMobFox.a */,
+				A7992E5A1489342100E86AC8 /* BizzClick.framework */,
+				A7992EB9148936E400E86AC8 /* libBizzClick.a */,
 				E7E18F1C1B52A95F00222640 /* UnitTests.xctest */,
 			);
 			name = Products;
@@ -1949,17 +1951,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
+				A7CDEF55148E76F200DD6D84 /* BizzClick.h in Headers */,
+				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
+				E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */,
+				901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
+				0FCEB209150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				E740F2831B79E68300ECE9F9 /* MobFoxInlineVideoAd.h in Headers */,
 				E72137DB1B5E8DCD004B9D44 /* WebViewJavascriptBridge.h in Headers */,
 				90F6DBF11B09D00000BBE9EA /* MobFoxVASTRequestManager.h in Headers */,
 				90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
-				9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
-				A7CDEF55148E76F200DD6D84 /* BizzClick.h in Headers */,
-				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
-				E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */,
 				90B5C5C419652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
-				901FCEE9192C8E4900D22785 /* MobFoxNativeAd.h in Headers */,
 				90B5C55C19652C530013DC80 /* MRAdViewMF.h in Headers */,
 				90CC97B51AE5107500B2907F /* MobFoxNativeFormatCreative.h in Headers */,
 				90DB890A1AF8B7DA00C2DF18 /* MobFoxNativeFormatInterstitial.h in Headers */,
@@ -1976,7 +1979,6 @@
 				90B5C4E419652C530013DC80 /* MPPrivateBannerCustomEventDelegateMF.h in Headers */,
 				E7E18D711B528EC500222640 /* InMobiAnalytics.h in Headers */,
 				90B5C57C19652C530013DC80 /* MRPictureManagerMF.h in Headers */,
-				0FCEB209150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				E7E18D981B528EF800222640 /* FlurryAdTargeting.h in Headers */,
 				90B5C5FE19652C530013DC80 /* MPNativeAdConstantsMF.h in Headers */,
 				A7992E8F1489362800E86AC8 /* MFDTXMLDocument.h in Headers */,
@@ -2127,10 +2129,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				A7CDEF53148E76F100DD6D84 /* BizzClick.h in Headers */,
-				0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				90B5C5C519652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
+				0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
+				90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
 				90B5C55D19652C530013DC80 /* MRAdViewMF.h in Headers */,
 				90B5C50419652C530013DC80 /* MPFacebookKeywordProviderMF.h in Headers */,
 				90B5C5C119652C530013DC80 /* MPAdViewMF.h in Headers */,
@@ -2294,7 +2296,7 @@
 			);
 			name = "Universal Framework";
 			productName = MobFox;
-			productReference = A7992E5A1489342100E86AC8 /* MobFox.framework */;
+			productReference = A7992E5A1489342100E86AC8 /* BizzClick.framework */;
 			productType = "com.apple.product-type.bundle";
 		};
 		A7992EB8148936E400E86AC8 /* Static Library */ = {
@@ -2311,7 +2313,7 @@
 			);
 			name = "Static Library";
 			productName = DTMobFox;
-			productReference = A7992EB9148936E400E86AC8 /* libMobFox.a */;
+			productReference = A7992EB9148936E400E86AC8 /* libBizzClick.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		E7E18F1B1B52A95F00222640 /* UnitTests */ = {
@@ -2345,7 +2347,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A7CFC66313C1DB0C006C0DF4 /* Build configuration list for PBXProject "MobFoxSDKSource" */;
+			buildConfigurationList = A7CFC66313C1DB0C006C0DF4 /* Build configuration list for PBXProject "BizzClickSDK" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2574,7 +2576,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F0DCCC1C231B40000D29EE /* WebViewJavascriptBridge.m in Sources */,
 				90B6D12B1962B67200061451 /* MFCustomEventNative.m in Sources */,
+				23F0DCCB1C231B15000D29EE /* MobFoxJSONRetriever.m in Sources */,
 				90A5C8C3192F677700978746 /* UIView+MobFox.m in Sources */,
 				90B5C58B19652C530013DC80 /* NSJSONSerialization+MPAdditionsMF.m in Sources */,
 				90B5C53019652C530013DC80 /* MPBaseInterstitialAdapterMF.m in Sources */,
@@ -2620,8 +2624,8 @@
 				90B5C58319652C530013DC80 /* MRPropertyMF.m in Sources */,
 				90B5C55F19652C530013DC80 /* MRAdViewMF.m in Sources */,
 				90B5C5B719652C530013DC80 /* MPStoreKitProviderMF.m in Sources */,
-				23EF3BF41C08B28D005760ED /* NSString+Bizzclick.m in Sources */,
 				90B5C59719652C530013DC80 /* UIWebView+MPAdditionsMF.m in Sources */,
+				23F0DCCA1C23176E000D29EE /* NSString+Bizzclick.m in Sources */,
 				90B5C5F719652C530013DC80 /* MPTableViewCellImpressionTrackerMF.m in Sources */,
 				A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */,
 				90B5C5AF19652C530013DC80 /* MPReachabilityMF.m in Sources */,
@@ -2755,11 +2759,11 @@
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Core/MobFoxSDKSource-Info.plist";
+				INFOPLIST_FILE = "Core/BizzClickSDK-Info.plist";
 				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2776,7 +2780,7 @@
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = MobFox;
+				PRODUCT_NAME = BizzClick;
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				WRAPPER_EXTENSION = framework;
@@ -2805,11 +2809,11 @@
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Core/MobFoxSDKSource-Info.plist";
+				INFOPLIST_FILE = "Core/BizzClickSDK-Info.plist";
 				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2826,7 +2830,7 @@
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = MobFox;
+				PRODUCT_NAME = BizzClick;
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				WRAPPER_EXTENSION = framework;
@@ -2849,7 +2853,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
+				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -2861,8 +2865,8 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = MobFox;
-				PUBLIC_HEADERS_FOLDER_PATH = MobFox;
+				PRODUCT_NAME = BizzClick;
+				PUBLIC_HEADERS_FOLDER_PATH = BizzClick;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -2883,7 +2887,7 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/MobFoxSDKSource-Prefix.pch";
+				GCC_PREFIX_HEADER = "Core/BizzClickSDKSource-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -2895,8 +2899,8 @@
 					"$(PROJECT_DIR)/Core/Source/CustomEvents/AdMob/SDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = MobFox;
-				PUBLIC_HEADERS_FOLDER_PATH = MobFox;
+				PRODUCT_NAME = BizzClick;
+				PUBLIC_HEADERS_FOLDER_PATH = BizzClick;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -3060,7 +3064,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7CFC66313C1DB0C006C0DF4 /* Build configuration list for PBXProject "MobFoxSDKSource" */ = {
+		A7CFC66313C1DB0C006C0DF4 /* Build configuration list for PBXProject "BizzClickSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7CFC67613C1DB0C006C0DF4 /* Debug */,
