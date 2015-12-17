@@ -574,8 +574,8 @@
 		A7992ED51489373000E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
 		A7992ED61489373000E86AC8 /* BizzclickHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7992ED71489373000E86AC8 /* BizzclickHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */; };
-		A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* MobFox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7CDEF53148E76F100DD6D84 /* BizzClick.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* BizzClick.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7CDEF55148E76F200DD6D84 /* BizzClick.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E741489362800E86AC8 /* BizzClick.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71DB8621B53D1D400E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
 		E71DB8651B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8641B53DD6C00E83634 /* MobFoxJSONRetrieverDummy.m */; };
 		E71DB8661B53DE6600E83634 /* MobFoxJSONRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = E71DB8611B53D1D400E83634 /* MobFoxJSONRetriever.m */; };
@@ -961,7 +961,7 @@
 		A7992E5A1489342100E86AC8 /* MobFox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobFox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobFoxSDKSource-Info.plist"; sourceTree = "<group>"; };
 		A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BizzClickSDKSource-Prefix.pch"; sourceTree = "<group>"; };
-		A7992E741489362800E86AC8 /* MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFox.h; sourceTree = "<group>"; };
+		A7992E741489362800E86AC8 /* BizzClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BizzClick.h; sourceTree = "<group>"; };
 		A7992E761489362800E86AC8 /* MFDTXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDTXMLDocument.h; sourceTree = "<group>"; };
 		A7992E771489362800E86AC8 /* MFDTXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDTXMLDocument.m; sourceTree = "<group>"; };
 		A7992E781489362800E86AC8 /* MFDTXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDTXMLElement.h; sourceTree = "<group>"; };
@@ -1631,7 +1631,7 @@
 			children = (
 				A7992E721489362800E86AC8 /* MobFoxSDKSource-Info.plist */,
 				A7992E731489362800E86AC8 /* BizzClickSDKSource-Prefix.pch */,
-				A7992E741489362800E86AC8 /* MobFox.h */,
+				A7992E741489362800E86AC8 /* BizzClick.h */,
 				A7992E751489362800E86AC8 /* Source */,
 			);
 			path = Core;
@@ -1955,7 +1955,7 @@
 				90DB89041AF8AFD100C2DF18 /* MobFoxInterstitialViewController.h in Headers */,
 				9098B52D1AF7AB1100173D75 /* MobFoxBannerView.h in Headers */,
 				90A3F7BF1935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
-				A7CDEF55148E76F200DD6D84 /* MobFox.h in Headers */,
+				A7CDEF55148E76F200DD6D84 /* BizzClick.h in Headers */,
 				901FCEF2192C97EE00D22785 /* MobFoxNativeAdController.h in Headers */,
 				E71DB8681B53F43200E83634 /* MobFoxCreativeManager.h in Headers */,
 				90B5C5C419652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
@@ -2128,7 +2128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90A3F7C01935E02F00814208 /* MobFoxTableViewHelper.h in Headers */,
-				A7CDEF53148E76F100DD6D84 /* MobFox.h in Headers */,
+				A7CDEF53148E76F100DD6D84 /* BizzClick.h in Headers */,
 				0FCEB20A150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h in Headers */,
 				90B5C5C519652C530013DC80 /* MPBannerCustomEventMF.h in Headers */,
 				90B5C55D19652C530013DC80 /* MRAdViewMF.h in Headers */,
