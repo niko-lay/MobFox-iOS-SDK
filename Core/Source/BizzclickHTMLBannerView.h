@@ -82,6 +82,9 @@ enum {
 //- (void)requestAd;
 - (BOOL)requestAd: (NSNumber*) adspaceID;
 
+- (BOOL)stopRefreshTimer;
+- (BOOL)startRefreshTimer;
+
 @end
 
 extern NSString * const ErrorDomain;

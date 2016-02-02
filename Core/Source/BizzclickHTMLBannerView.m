@@ -1671,6 +1671,17 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
     }
 }
 
+- (BOOL)stopRefreshTimer{
+    [self setRefreshTimerActive:NO];
+    return NO;
+}
+
+- (BOOL)startRefreshTimer{
+    [self setRefreshTimerActive:YES];
+    return YES;
+}
+
+
 @synthesize delegate;
 @synthesize advertisingSection;
 @synthesize bannerLoaded;
