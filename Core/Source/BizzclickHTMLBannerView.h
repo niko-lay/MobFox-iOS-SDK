@@ -2,6 +2,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
 enum {
     BizzClickErrorUnknown = 0,
@@ -67,7 +69,7 @@ enum {
 @property (nonatomic, assign) NSInteger customReloadTime;
 @property (nonatomic, retain) UIImage *_bannerImage;
 @property (nonatomic, readonly ) NSString *requestURL;
-@property (nonatomic, assign) NSInteger userAge;
+@property (nonatomic, assign) NSInteger userYOB;
 @property (nonatomic, strong) NSString* userGender;
 @property (nonatomic, retain) NSArray* keywords;
 

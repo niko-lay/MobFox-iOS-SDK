@@ -57,6 +57,10 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
 @property (nonatomic, strong) NSMutableDictionary *browserUserAgentDict;
 
+
+@property (nonatomic, strong) CTTelephonyNetworkInfo *telephonyInfo;
+@property (nonatomic, strong) CTCarrier *carier;
+
 @end
 
 
@@ -82,9 +86,23 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
    	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
 
+    _telephonyInfo = [[CTTelephonyNetworkInfo alloc] init];
+    _carier = [_telephonyInfo subscriberCellularProvider];
 
+    _telephonyInfo.subscriberCellularProviderDidUpdateNotifier = ^(CTCarrier *carrier) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"User did change SIM");
+        });
+    };
+
+    /*
+    NSLog(@"Current Radio Access Technology: %@\nCarier Name: %@\nisoCountryCode: %@\nMCC: %@\nMNC: %@", telephonyInfo.currentRadioAccessTechnology,
+          carier.carrierName, carier.isoCountryCode, carier.mobileCountryCode, carier.mobileNetworkCode);
+     */
+
+
+//// IDFA
     _idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
-
 
     if ([[NSUserDefaults standardUserDefaults] objectForKey:KEYNAME_USER_ID] != nil){
         // we have saved UID
@@ -92,12 +110,13 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         _userID = [[NSUUID alloc] initWithUUIDString: [[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_USER_ID]];
 
         NSUUID *oldidfa = [[NSUUID alloc] initWithUUIDString:[[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_OLDIDFA_ID]];
+        NSLog (@"idfa: %@ oldIdfa: %@", [_idfa UUIDString], [oldidfa UUIDString] );
         if (![_idfa isEqual:oldidfa]){
             NSLog(@"idfa changed");
             //idfa changed
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // map
-                if ([self mapUserId:_userID withIDFA:_idfa]){
+                if ([self mapUserId:_userID withIDFA:_idfa oldIDFA:oldidfa]){
                     // and save new
                     [[NSUserDefaults standardUserDefaults] setObject:[_idfa UUIDString] forKey:KEYNAME_OLDIDFA_ID];
                     NSLog(@"map OK");
@@ -105,6 +124,8 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
                     NSLog(@"map fail");
                 }
             });
+        }else{
+            NSLog(@"idfa NOT changed");
         }
 
     }else{
@@ -133,8 +154,15 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 }
 
 -(BOOL)mapUserId: (NSUUID*)uid withIDFA: (NSUUID*)idfa{
+    return [self mapUserId:uid withIDFA:idfa oldIDFA:nil];
+}
 
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[uid UUIDString], @"uid", [idfa UUIDString], @"idfa", nil];
+-(BOOL)mapUserId: (NSUUID*)uid withIDFA: (NSUUID*)idfa oldIDFA:(nullable NSUUID*)oldIDFA{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[uid UUIDString], @"uid", [idfa UUIDString], @"idfa", nil];
+    if (oldIDFA){
+        [params setObject:[oldIDFA UUIDString] forKey: @"oldidfa"];
+    }
 
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@map.php", BaseUrl]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -1107,9 +1135,9 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         NSString *osVersion = [UIDevice currentDevice].systemVersion;
 
         NSString *devicetype;
-        if ([model containsString:@"iPhone"]){
+        if ([model rangeOfString:@"iPhone"].location != NSNotFound){
             devicetype = @"4";
-        }else if([model containsString:@"iPad"]){
+        }else if([model rangeOfString:@"iPad"].location != NSNotFound){
             devicetype = @"5";
         } else{
             devicetype = @"6";
@@ -1139,6 +1167,12 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
 
                                         nil];
+
+        if (self.carier.mobileCountryCode && self.carier.mobileNetworkCode){
+
+            [reqDict setObject:[NSString stringWithFormat:@"%@-%@", [self.carier.mobileCountryCode stringByUrlEncoding] , [self.carier.mobileNetworkCode stringByUrlEncoding]] forKey:@"carier"];
+        }
+        
         if (_userID){
             // in some rare situations could be nil
             [reqDict setObject:[_userID UUIDString] forKey:@"uid"];
@@ -1164,13 +1198,13 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         }
 
         if([userGender isEqualToString:@"female"]) {
-            [reqDict setValue:@"female" forKey:@"gender"];
+            [reqDict setValue:@"F" forKey:@"gender"];
         } else if([userGender isEqualToString:@"male"]) {
-            [reqDict setValue:@"male" forKey:@"gender"];
+            [reqDict setValue:@"M" forKey:@"gender"];
         }
 
-        if(userAge) {
-            [reqDict setValue:[NSString stringWithFormat:@"%ld", (long)userAge] forKey:@"age"];
+        if(userYOB) {
+            [reqDict setValue:[NSString stringWithFormat:@"%ld", (long)userYOB] forKey:@"yob"];
         }
 
         if(keywords) {
@@ -1200,7 +1234,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
         NSURL *url;
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
-//        NSLog(@"full url = %@", url);
+        NSLog(@"full url = %@", url);
 
         NSMutableURLRequest *request;
         NSError *error;
@@ -1245,206 +1279,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         [self performSelectorOnMainThread:@selector(setupAdFromXmlWithDictionary:) withObject:dict waitUntilDone:YES];
         
     }
-}
-
-- (void)asyncRequestAdWithPublisherId:(NSString *)publisherId
-{
-	@autoreleasepool
-	{
-        NSString *mRaidCapable = @"0";
-        
-        NSString *adWidth = [NSString stringWithFormat:@"%d",(int)adspaceWidth];
-        NSString *adHeight = [NSString stringWithFormat:@"%d",(int)adspaceHeight];
-        
-        int r = arc4random_uniform(50000);
-        NSString *random = [NSString stringWithFormat:@"%d", r];
-        
-        NSString *adStrict;
-        if (adspaceStrict)
-        {
-            adStrict = @"1";
-        }
-        else
-        {
-            adStrict = @"0";
-        }
-        
-        NSString *requestType;
-        if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
-        {
-            requestType = @"iphone_app";
-        }
-        else
-        {
-            requestType = @"ipad_app";
-        }
-
-        NSString *osVersion = [UIDevice currentDevice].systemVersion;
-
-        NSString *requestString;
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
-        NSString *iosadvid;
-        if ([ASIdentifierManager instancesRespondToSelector:@selector(advertisingIdentifier )]) {
-            iosadvid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-            NSString *o_iosadvidlimit = @"0";
-            if (NSClassFromString(@"ASIdentifierManager")) {
-
-                if (![ASIdentifierManager sharedManager].advertisingTrackingEnabled) {
-                    o_iosadvidlimit = @"1";
-                }
-            }
-            
-            requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&o_iosadvidlimit=%@&rt=%@&u=%@&u_wv=%@&u_br=%@&o_iosadvid=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
-						   [mRaidCapable stringByUrlEncoding],
-						   [o_iosadvidlimit stringByUrlEncoding],
-						   [requestType stringByUrlEncoding],
-						   [self.userAgent stringByUrlEncoding],
-						   [self.userAgent stringByUrlEncoding],
-						   [[self browserAgentString] stringByUrlEncoding],
-						   [iosadvid stringByUrlEncoding],
-						   [SDK_VERSION stringByUrlEncoding],
-						   [publisherId stringByUrlEncoding],
-						   [osVersion stringByUrlEncoding],
-						   [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
-                           [random stringByUrlEncoding]];
-            
-        } else {
-			requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
-                           [mRaidCapable stringByUrlEncoding],
-                           [requestType stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [self.userAgent stringByUrlEncoding],
-                           [[self browserAgentString] stringByUrlEncoding],
-                           [SDK_VERSION stringByUrlEncoding],
-                           [publisherId stringByUrlEncoding],
-                           [osVersion stringByUrlEncoding],
-                           [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
-                           [random stringByUrlEncoding]];
-
-        }
-#else
-
-        requestString=[NSString stringWithFormat:@"c_mraid=%@&c_customevents=1&r_type=banner&rt=%@&u=%@&u_wv=%@&u_br=%@&v=%@&s=%@&iphone_osversion=%@&spot_id=%@&r_random=%@",
-                       [mRaidCapable stringByUrlEncoding],
-                       [requestType stringByUrlEncoding],
-                       [self.userAgent stringByUrlEncoding],
-                       [self.userAgent stringByUrlEncoding],
-                       [[self browserAgentString] stringByUrlEncoding],
-                       [SDK_VERSION stringByUrlEncoding],
-                       [publisherId stringByUrlEncoding],
-                       [osVersion stringByUrlEncoding],
-                       [advertisingSection?advertisingSection:@"" stringByUrlEncoding],
-                       [random stringByUrlEncoding]];
-
-#endif
-        NSString *requestStringWithLocation;
-        if(locationAwareAdverts && self.userProvidedLatitude && self.userProvidedLongitude)
-        {
-            NSString *latitudeString = [NSString stringWithFormat:@"%+.6f", self.userProvidedLatitude];
-            NSString *longitudeString = [NSString stringWithFormat:@"%+.6f", self.userProvidedLongitude];
-            
-            requestStringWithLocation = [NSString stringWithFormat:@"%@&latitude=%@&longitude=%@",
-                                 requestString,
-                                 [latitudeString stringByUrlEncoding],
-                                 [longitudeString stringByUrlEncoding]
-                                 ];
-        }
-        else
-        {
-            requestStringWithLocation = requestString;
-        }
-        
-        
-        NSString *fullRequestString;
-        if(adspaceHeight > 0 && adspaceWidth > 0)
-        {
-            fullRequestString = [NSString stringWithFormat:@"%@&adspace_width=%@&adspace_height=%@&adspace_strict=%@",
-                                requestStringWithLocation,
-                                [adWidth stringByUrlEncoding],
-                                [adHeight stringByUrlEncoding],
-                                [adStrict stringByUrlEncoding]
-                                ];
-        }
-        else
-        {
-            fullRequestString = requestStringWithLocation;
-        }
-        
-        if([userGender isEqualToString:@"female"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=f",
-                                 fullRequestString];
-        } else if([userGender isEqualToString:@"male"]) {
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_gender=m",
-                                 fullRequestString];
-        }
-        if(userAge) {
-            NSString *age = [NSString stringWithFormat:@"%d",(int)userAge];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_age=%@",
-                                 fullRequestString,
-                                 [age stringByUrlEncoding]];
-        }
-        if(keywords) {
-            NSString *words = [keywords componentsJoinedByString:@","];
-            fullRequestString = [NSString stringWithFormat:@"%@&demo_keywords=%@",
-                                 fullRequestString,
-                                 words];
-            
-        }
-        
-        NSURL *serverURL = [self serverURL];
-
-        if (!serverURL) {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error - no or invalid requestURL. Please set requestURL" forKey:NSLocalizedDescriptionKey];
-
-            NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-            return;
-        }
-
-        NSURL *url;
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
-        
-
-        NSMutableURLRequest *request;
-        NSError *error;
-        NSURLResponse *response;
-        NSData *dataReply;
-
-        request = [NSMutableURLRequest requestWithURL:url];
-        [request setHTTPMethod: @"GET"];
-        [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
-        [request setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
-        
-        NSDictionary *headers = [NSDictionary dictionary];
-        dataReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if ([response respondsToSelector:@selector(allHeaderFields)]) {
-            headers = [(NSHTTPURLResponse *)response allHeaderFields];
-        }
-        
-        MFDTXMLDocument *xml = [MFDTXMLDocument documentWithData:dataReply];
-
-        if (!xml)
-        {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error parsing xml response from server" forKey:NSLocalizedDescriptionKey];
-
-            NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-            [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-            return;
-        }
-        
-        NSString *bannerUrlString = [xml.documentRoot getNamedChild:@"imageurl"].text;
-        __bannerImage = nil;
-        if ([bannerUrlString length])
-        {
-            NSURL *bannerUrl = [NSURL URLWithString:bannerUrlString];
-            __bannerImage = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:bannerUrl]];
-        }
-        
-        [self performSelectorOnMainThread:@selector(setupAdFromXml:) withObject:@[xml, headers] waitUntilDone:YES];
-
-	}
-
 }
 
 - (bool)setLocationWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
@@ -1528,44 +1362,11 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
     NSUUID *appkey = [delegate appKeyForBizzclickHTMLBanner:self];
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:appkey ,@"appkey", adspaceId, @"adspaceId", nil];
 
-    [self performSelectorInBackground:@selector(asyncRequestAdWithParams:) withObject:dict];
+   [self performSelectorInBackground:@selector(asyncRequestAdWithParams:) withObject:dict];
 
     return TRUE;
 }
-/*
-- (void)requestAd
-{
-    
-    if (!delegate)
-	{
-		[self showErrorLabelWithText:@"MobFoxHTMLBannerViewDelegate not set"];
-		return;
-	}
-	if (![delegate respondsToSelector:@selector(publisherIdForMobFoxHTMLBannerView:)])
-	{
-		[self showErrorLabelWithText:@"MobFoxHTMLBannerViewDelegate does not implement publisherIdForMobFoxHTMLBannerView:"];
 
-		return;
-	}
-	NSString *publisherId = [delegate publisherIdForMobFoxHTMLBannerView:self];
-	if (![publisherId length])
-	{
-		[self showErrorLabelWithText:@"MobFoxHTMLBannerViewDelegate returned invalid publisher ID."];
-
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid publisher ID or Publisher ID not set" forKey:NSLocalizedDescriptionKey];
-
-        NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-        [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;
-	}
-    if(adspaceWidth < 1 || adspaceHeight < 1) {
-        NSLog(@"For improved ad serving, it is highly recommended to set the adspace size.");
-    }
-    
-    [self performSelectorInBackground:@selector(asyncRequestAdWithPublisherId:) withObject:publisherId];
-	
-}
-*/
 
 #pragma mark Interaction
 
@@ -1885,7 +1686,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 @synthesize adspaceWidth;
 @synthesize adspaceStrict;
 @synthesize locationAwareAdverts;
-@synthesize userGender,userAge,keywords;
+@synthesize userGender,userYOB,keywords;
 @synthesize locationManager;
 
 
