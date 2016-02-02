@@ -1144,7 +1144,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         }
 
 
-        NSString *iosadDontTrack =  ([ASIdentifierManager sharedManager].advertisingTrackingEnabled)?@"1":@"0";
+        NSString *iosadDontTrack =  ([ASIdentifierManager sharedManager].advertisingTrackingEnabled)?@"0":@"1";
 
         NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSMutableDictionary *reqDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"banner", @"type" ,
