@@ -555,15 +555,15 @@
 		A7992E991489362800E86AC8 /* MobFoxAdBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */; };
 		A7992E9B1489362800E86AC8 /* BizzclickHTMLBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7992E9D1489362800E86AC8 /* BizzclickHTMLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */; };
-		A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
-		A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+MobFox.m */; };
+		A7992EA71489362800E86AC8 /* NSURL+BizzClick.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+BizzClick.h */; };
+		A7992EA91489362800E86AC8 /* NSURL+BizzClick.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+BizzClick.m */; };
 		A7992EAB1489362800E86AC8 /* MFRedirectChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E841489362800E86AC8 /* MFRedirectChecker.h */; };
 		A7992EAD1489362800E86AC8 /* MFRedirectChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E851489362800E86AC8 /* MFRedirectChecker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A7992EAF1489362800E86AC8 /* UIView+FindViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E861489362800E86AC8 /* UIView+FindViewController.h */; };
 		A7992EB11489362800E86AC8 /* UIView+FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E871489362800E86AC8 /* UIView+FindViewController.m */; };
 		A7992EBC148936E400E86AC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7992EBB148936E400E86AC8 /* Foundation.framework */; };
-		A7992ECA1489373000E86AC8 /* NSURL+MobFox.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+MobFox.h */; };
-		A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+MobFox.m */; };
+		A7992ECA1489373000E86AC8 /* NSURL+BizzClick.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E821489362800E86AC8 /* NSURL+BizzClick.h */; };
+		A7992ECB1489373000E86AC8 /* NSURL+BizzClick.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E831489362800E86AC8 /* NSURL+BizzClick.m */; };
 		A7992ECC1489373000E86AC8 /* MFRedirectChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E841489362800E86AC8 /* MFRedirectChecker.h */; };
 		A7992ECD1489373000E86AC8 /* MFRedirectChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7992E851489362800E86AC8 /* MFRedirectChecker.m */; };
 		A7992ECE1489373000E86AC8 /* UIView+FindViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A7992E861489362800E86AC8 /* UIView+FindViewController.h */; };
@@ -666,7 +666,7 @@
 		0FCEB206150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxVideoInterstitialViewController.h; sourceTree = "<group>"; };
 		0FCEB207150EBF9C00BD5BD3 /* MobFoxVideoInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxVideoInterstitialViewController.m; sourceTree = "<group>"; };
 		0FE28D7414E34B1600CEA1CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		23B567191BCD573200AC5505 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = "../ios-deps/AdColony.framework"; sourceTree = "<group>"; };
+		232EB73E1CC13B4B007D9114 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		23EF3BEC1C08B0DA005760ED /* NSDictionary+Bizzclick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bizzclick.h"; sourceTree = "<group>"; };
 		23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bizzclick.h"; sourceTree = "<group>"; };
 		23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bizzclick.m"; sourceTree = "<group>"; };
@@ -972,8 +972,8 @@
 		A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxAdBrowserViewController.m; sourceTree = "<group>"; };
 		A7992E7C1489362800E86AC8 /* BizzclickHTMLBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BizzclickHTMLBannerView.h; sourceTree = "<group>"; };
 		A7992E7D1489362800E86AC8 /* BizzclickHTMLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BizzclickHTMLBannerView.m; sourceTree = "<group>"; };
-		A7992E821489362800E86AC8 /* NSURL+MobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MobFox.h"; sourceTree = "<group>"; };
-		A7992E831489362800E86AC8 /* NSURL+MobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MobFox.m"; sourceTree = "<group>"; };
+		A7992E821489362800E86AC8 /* NSURL+BizzClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BizzClick.h"; sourceTree = "<group>"; };
+		A7992E831489362800E86AC8 /* NSURL+BizzClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BizzClick.m"; sourceTree = "<group>"; };
 		A7992E841489362800E86AC8 /* MFRedirectChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRedirectChecker.h; sourceTree = "<group>"; };
 		A7992E851489362800E86AC8 /* MFRedirectChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRedirectChecker.m; sourceTree = "<group>"; };
 		A7992E861489362800E86AC8 /* UIView+FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindViewController.h"; sourceTree = "<group>"; };
@@ -995,13 +995,6 @@
 		E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxInlineVideoAd.m; sourceTree = "<group>"; };
 		E742961B1B5C1B7C00EDBE61 /* MobFoxJSONRetrieverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobFoxJSONRetrieverImpl.h; sourceTree = "<group>"; };
 		E742961E1B5C1B9C00EDBE61 /* MobFoxJSONRetrieverImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobFoxJSONRetrieverImpl.m; sourceTree = "<group>"; };
-		E745E9651B4D119500A79DF9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
-		E745E9661B4D119500A79DF9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
-		E745E9671B4D119500A79DF9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
-		E745E9681B4D119500A79DF9 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
-		E745E9691B4D119500A79DF9 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
-		E745E96A1B4D119500A79DF9 /* vg_timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_timer.png; sourceTree = "<group>"; };
-		E745E96B1B4D119500A79DF9 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		E7E18D5B1B528EC500222640 /* IMBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBanner.h; sourceTree = "<group>"; };
 		E7E18D5C1B528EC500222640 /* IMBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBannerDelegate.h; sourceTree = "<group>"; };
 		E7E18D5D1B528EC500222640 /* IMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMConstants.h; sourceTree = "<group>"; };
@@ -1683,6 +1676,7 @@
 		A7992EB41489363E00E86AC8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				232EB73E1CC13B4B007D9114 /* DLog.h */,
 				A7992E7A1489362800E86AC8 /* MobFoxAdBrowserViewController.h */,
 				A7992E7B1489362800E86AC8 /* MobFoxAdBrowserViewController.m */,
 				909F362F18487AB200080BD3 /* MobFoxMRAIDBannerAdapter.h */,
@@ -1701,8 +1695,8 @@
 				0F0EB65B1503B40D00EEC4C3 /* UIDevice+MFIdentifierAddition.m */,
 				23EF3BEF1C08B28D005760ED /* NSString+Bizzclick.h */,
 				23EF3BF01C08B28D005760ED /* NSString+Bizzclick.m */,
-				A7992E821489362800E86AC8 /* NSURL+MobFox.h */,
-				A7992E831489362800E86AC8 /* NSURL+MobFox.m */,
+				A7992E821489362800E86AC8 /* NSURL+BizzClick.h */,
+				A7992E831489362800E86AC8 /* NSURL+BizzClick.m */,
 				A7992E841489362800E86AC8 /* MFRedirectChecker.h */,
 				A7992E851489362800E86AC8 /* MFRedirectChecker.m */,
 				A7992E861489362800E86AC8 /* UIView+FindViewController.h */,
@@ -1726,8 +1720,6 @@
 		A7992EBA148936E400E86AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				23B567191BCD573200AC5505 /* AdColony.framework */,
-				E745E9631B4D119500A79DF9 /* VungleSDK.embeddedframework */,
 				904E04151ACBE8720080C634 /* GoogleMobileAds.framework */,
 				90987D0218BCB96E00148D09 /* CoreGraphics.framework */,
 				90987D0018BCB96400148D09 /* AVFoundation.framework */,
@@ -1800,29 +1792,6 @@
 				E740F27E1B79E68300ECE9F9 /* MobFoxInlineVideoAd.m */,
 			);
 			path = video;
-			sourceTree = "<group>";
-		};
-		E745E9631B4D119500A79DF9 /* VungleSDK.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				E745E9641B4D119500A79DF9 /* Resources */,
-				E745E96B1B4D119500A79DF9 /* VungleSDK.framework */,
-			);
-			name = VungleSDK.embeddedframework;
-			path = "../ios-deps/VungleSDK.embeddedframework";
-			sourceTree = "<group>";
-		};
-		E745E9641B4D119500A79DF9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E745E9651B4D119500A79DF9 /* __vungle.db */,
-				E745E9661B4D119500A79DF9 /* vg_close.png */,
-				E745E9671B4D119500A79DF9 /* vg_cta.png */,
-				E745E9681B4D119500A79DF9 /* vg_mute_off.png */,
-				E745E9691B4D119500A79DF9 /* vg_mute_on.png */,
-				E745E96A1B4D119500A79DF9 /* vg_timer.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		E7E18D5A1B528EC500222640 /* SDK */ = {
@@ -2016,7 +1985,7 @@
 				90B5C61419652C530013DC80 /* MPNativeCustomEventDelegateMF.h in Headers */,
 				90B5C54919652C530013DC80 /* MPInstanceProviderMF.h in Headers */,
 				90B5C56C19652C530013DC80 /* MRCommandMF.h in Headers */,
-				A7992EA71489362800E86AC8 /* NSURL+MobFox.h in Headers */,
+				A7992EA71489362800E86AC8 /* NSURL+BizzClick.h in Headers */,
 				E7E18D8F1B528EF800222640 /* FlurryAdBannerDelegate.h in Headers */,
 				90B5C5EA19652C530013DC80 /* MPMoPubNativeCustomEventMF.h in Headers */,
 				90B5C60619652C530013DC80 /* MPNativeAdRenderingMF.h in Headers */,
@@ -2206,7 +2175,7 @@
 				90B5C4D919652C530013DC80 /* MPBannerCustomEventAdapterMF.h in Headers */,
 				90B5C4EB19652C530013DC80 /* MPAdAlertManagerMF.h in Headers */,
 				90B5C51219652C530013DC80 /* MPProgressOverlayViewMF.h in Headers */,
-				A7992ECA1489373000E86AC8 /* NSURL+MobFox.h in Headers */,
+				A7992ECA1489373000E86AC8 /* NSURL+BizzClick.h in Headers */,
 				90B5C4E719652C530013DC80 /* MPAdAlertGestureRecognizerMF.h in Headers */,
 				90038F221846035D00446EAD /* CDataScanner_Extensions.h in Headers */,
 				90B5C55B19652C530013DC80 /* MRAdViewMF+Controllers.h in Headers */,
@@ -2455,7 +2424,7 @@
 				90CC98981AE5341000B2907F /* MobFoxNativeFormatView.m in Sources */,
 				90B5C58619652C530013DC80 /* MRVideoPlayerManagerMF.m in Sources */,
 				90B5C4E819652C530013DC80 /* MPAdAlertGestureRecognizerMF.m in Sources */,
-				A7992EA91489362800E86AC8 /* NSURL+MobFox.m in Sources */,
+				A7992EA91489362800E86AC8 /* NSURL+BizzClick.m in Sources */,
 				90038F171846035D00446EAD /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				90B5C5B219652C530013DC80 /* MPSessionTrackerMF.m in Sources */,
 				A7992EAD1489362800E86AC8 /* MFRedirectChecker.m in Sources */,
@@ -2627,7 +2596,7 @@
 				90B5C59719652C530013DC80 /* UIWebView+MPAdditionsMF.m in Sources */,
 				23F0DCCA1C23176E000D29EE /* NSString+Bizzclick.m in Sources */,
 				90B5C5F719652C530013DC80 /* MPTableViewCellImpressionTrackerMF.m in Sources */,
-				A7992ECB1489373000E86AC8 /* NSURL+MobFox.m in Sources */,
+				A7992ECB1489373000E86AC8 /* NSURL+BizzClick.m in Sources */,
 				90B5C5AF19652C530013DC80 /* MPReachabilityMF.m in Sources */,
 				A7992ECD1489373000E86AC8 /* MFRedirectChecker.m in Sources */,
 				90A0330F18D2E6A5001340B7 /* iAdCustomEventFullscreen.m in Sources */,

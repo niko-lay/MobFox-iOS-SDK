@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface NSURL (MobFox)
+@interface NSURL (BizzClick)
 
 - (BOOL)isDeviceSupported;
 

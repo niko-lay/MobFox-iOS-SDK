@@ -7,7 +7,7 @@
 #import "MFDTXMLElement.h"
 #import "MFVASTXMLParser.h"
 
-#import "NSURL+MobFox.h"
+#import "NSURL+BizzClick.h"
 #import "MobFoxAdBrowserViewController.h"
 #import "MobFoxToolBar.h"
 

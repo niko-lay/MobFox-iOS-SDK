@@ -2,7 +2,7 @@
 
 #import "MobFoxAdBrowserViewController.h"
 
-#import "NSURL+MobFox.h"
+#import "NSURL+BizzClick.h"
 #import "UIImage+MobFox.h"
 
 @interface MobFoxAdBrowserViewController () {

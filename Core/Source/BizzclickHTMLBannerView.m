@@ -3,12 +3,14 @@
 #import "MFDTXMLDocument.h"
 #import "MFDTXMLElement.h"
 #import "UIView+FindViewController.h"
-#import "NSURL+MobFox.h"
+#import "NSURL+BizzClick.h"
 #import "MobFoxAdBrowserViewController.h"
 #import "MFRedirectChecker.h"
 #import "UIDevice+MFIdentifierAddition.h"
 #import "AdMobCustomEventBanner.h"
 #import "iAdCustomEventBanner.h"
+#import "DLog.h"
+
 
 
 #import <AdSupport/AdSupport.h>
@@ -22,7 +24,7 @@
 
 
 NSString * const ErrorDomain = @"BizzClickSDKError";
-NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
+NSString * const BaseUrl = @"https://ad.bizzclick.com/";
 //NSString * const userID = @"userID";
 #define KEYNAME_USER_ID @"userID"
 #define KEYNAME_IDFA_ID @"IDFA"
@@ -31,7 +33,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
 @interface BizzclickHTMLBannerView () <UIWebViewDelegate, MPBannerAdapterDelegateMF, MFCustomEventBannerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate> {
     int ddLogLevel;
-    NSString *skipOverlay;
+    BOOL useOverlay;
     NSMutableArray *customEvents;
     BOOL wasUserAction;
     BOOL normalBannerWasShownAfterCustomEventFail;
@@ -41,7 +43,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 }
 
 @property (nonatomic, strong) NSString *userAgent;
-@property (nonatomic, strong) NSString *skipOverlay;
 @property (nonatomic, strong) NSString *adType;
 @property (nonatomic, strong) MobFoxMRAIDBannerAdapter *adapter;
 @property (nonatomic, assign) CGFloat userProvidedLatitude;
@@ -110,22 +111,22 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         _userID = [[NSUUID alloc] initWithUUIDString: [[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_USER_ID]];
 
         NSUUID *oldidfa = [[NSUUID alloc] initWithUUIDString:[[NSUserDefaults standardUserDefaults] stringForKey:KEYNAME_OLDIDFA_ID]];
-        NSLog (@"idfa: %@ oldIdfa: %@", [_idfa UUIDString], [oldidfa UUIDString] );
+        DLog (@"idfa: %@ oldIdfa: %@", [_idfa UUIDString], [oldidfa UUIDString] );
         if (![_idfa isEqual:oldidfa]){
-            NSLog(@"idfa changed");
+            DLog(@"idfa changed");
             //idfa changed
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // map
                 if ([self mapUserId:_userID withIDFA:_idfa oldIDFA:oldidfa]){
                     // and save new
                     [[NSUserDefaults standardUserDefaults] setObject:[_idfa UUIDString] forKey:KEYNAME_OLDIDFA_ID];
-                    NSLog(@"map OK");
+                    DLog(@"map OK");
                 }else{
-                    NSLog(@"map fail");
+                    DLog(@"map fail");
                 }
             });
         }else{
-            NSLog(@"idfa NOT changed");
+            DLog(@"idfa NOT changed");
         }
 
     }else{
@@ -148,6 +149,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
             [[NSUserDefaults standardUserDefaults] setObject:[_userID UUIDString] forKey:KEYNAME_USER_ID];
             [[NSUserDefaults standardUserDefaults] setObject:[_idfa UUIDString] forKey:KEYNAME_OLDIDFA_ID];
             [[NSUserDefaults standardUserDefaults] synchronize];
+
 
         }); // dispatch_async
     }
@@ -582,9 +584,11 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 - (void)setupAdFromXmlWithDictionary:(NSDictionary*)dict{
 
         MFDTXMLDocument *xml = [dict objectForKey:@"xml"];
-        NSDictionary *headers = [dict objectForKey:@"headers"];
-       // NSNumber *adspaceId = [dict objectForKey:@"adspaceId"];
+        //NSLog(@"%@", xml);
+        // NSDictionary *headers = [dict objectForKey:@"headers"];
+        // NSNumber *adspaceId = [dict objectForKey:@"adspaceId"];
 
+        // we resieve error message from ad-server
         if ([xml.documentRoot.name isEqualToString:@"error"])
         {
             NSString *errorMsg = xml.documentRoot.text;
@@ -595,10 +599,18 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
             [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
             return;
         }
+
+
         NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
 
         MFDTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
-        self.skipOverlay = [htmlElement.attributes objectForKey:@"skipoverlaybutton"];
+        useOverlay = FALSE;
+        NSString *overlay =  (NSString*)[htmlElement.attributes objectForKey:@"useoverlay"];
+
+        if ([overlay isEqualToString:@"1"] || [overlay isEqualToString:@"yes"]){
+            useOverlay = TRUE;
+        }
+
 
         NSString *clickType = [xml.documentRoot getNamedChild:@"clicktype"].text;
         if ([clickType isEqualToString:@"inapp"])
@@ -621,7 +633,8 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         self.bannerView = nil;
         adType = [xml.documentRoot.attributes objectForKey:@"type"];
         _refreshInterval = [[xml.documentRoot getNamedChild:@"refresh"].text intValue];
-        // !!! 
+
+        // !!!
         [self setRefreshTimerActive:YES];
 
         if ([adType isEqualToString:@"imageAd"])
@@ -631,47 +644,54 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         else if ([adType isEqualToString:@"textAd"])
         {
             NSString *html = [xml.documentRoot getNamedChild:@"htmlString"].text;
+            int w = [[xml.documentRoot getNamedChild:@"width"].text intValue];
+            int h = [[xml.documentRoot getNamedChild:@"height"].text intValue];
+
 
             CGSize bannerSize;
-            if(adspaceHeight > 0 && adspaceWidth > 0)
-            {
+            if (w > 0 && h > 0){
+                // setup banner size from server response
+                bannerSize = CGSizeMake(w, h);
+            }
+            else if(adspaceHeight > 0 && adspaceWidth > 0)
+            { // setup banner size from user setings
                 bannerSize = CGSizeMake(adspaceWidth, adspaceHeight);
             }
             else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
-            {
+            { // setup banner size as fallback values – iPad
                 bannerSize = CGSizeMake(728, 90);
             }
             else
-            {
+            { // setup banner size as fallback values – iPhone
                 bannerSize = CGSizeMake(320, 50);
             }
 
             UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, bannerSize.width, bannerSize.height)];
             _htmlString = html;
 
-            if([skipOverlay isEqualToString:@"1"]) {
+            if(useOverlay) {
+                // don't allow user interaction with webview
+                // we'll add transparent button under webview and process clicks throuth it
+                //
+                webView.delegate = nil;
+                webView.userInteractionEnabled = NO;
 
+            } else {
                 wasUserAction = NO;
 
                 webView.delegate = (id)self;
                 webView.userInteractionEnabled = YES;
 
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-
-                [webView addGestureRecognizer:tap];
-
                 tap.delegate = self;
-
-
-            } else {
-
-                webView.delegate = nil;
-                webView.userInteractionEnabled = NO;
+                [webView addGestureRecognizer:tap];
 
             }
             webView.backgroundColor = [UIColor clearColor];
             webView.opaque = NO;
             webView.scrollView.scrollsToTop = false;
+            webView.scrollView.scrollEnabled = NO;
+            webView.scrollView.bounces = NO;
 
             self.bannerView = webView;
         }
@@ -681,10 +701,11 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         }
         else if ([adType isEqualToString:@"noAd"])
         {
-            //do nothing, there still can be custom events.
+            //nothing to do
         }
         else if ([adType isEqualToString:@"error"])
         {
+            // should neve happens
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Unknown error" forKey:NSLocalizedDescriptionKey];
 
             NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
@@ -765,259 +786,13 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         }
 }
 
-- (void)setupAdFromXml:(NSArray*)array
-{
-    NSLog(@"%@", array);
-    MFDTXMLDocument *xml = [array objectAtIndex:0];
-    NSDictionary *headers;
-    if([array count] > 1) {
-        headers = [array objectAtIndex:1];
-    }
-    
-	if ([xml.documentRoot.name isEqualToString:@"error"])
-	{
-		NSString *errorMsg = xml.documentRoot.text;
-
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
-
-		NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;
-	}
-    NSArray *previousSubviews = [NSArray arrayWithArray:self.subviews];
-
-    MFDTXMLElement *htmlElement = [xml.documentRoot getNamedChild:@"htmlString"];
-    self.skipOverlay = [htmlElement.attributes objectForKey:@"skipoverlaybutton"];
-
-	NSString *clickType = [xml.documentRoot getNamedChild:@"clicktype"].text;
-	if ([clickType isEqualToString:@"inapp"])
-	{
-		_tapThroughLeavesApp = NO;
-	}
-	else
-	{
-		_tapThroughLeavesApp = YES;
-	}
-	NSString *clickUrlString = [xml.documentRoot getNamedChild:@"clickurl"].text;
-	if ([clickUrlString length])
-	{
-        clickUrlString = [clickUrlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-		_tapThroughURL = [NSURL URLWithString:clickUrlString];
-	}
-	_shouldScaleWebView = [[xml.documentRoot getNamedChild:@"scale"].text isEqualToString:@"yes"];
-	_shouldSkipLinkPreflight = [[xml.documentRoot getNamedChild:@"skippreflight"].text isEqualToString:@"yes"];
-	self.bannerView = nil;
-	adType = [xml.documentRoot.attributes objectForKey:@"type"];
-	_refreshInterval = [[xml.documentRoot getNamedChild:@"refresh"].text intValue];
-	[self setRefreshTimerActive:YES];
-	if ([adType isEqualToString:@"imageAd"])
-	{
-		if (!__bannerImage)
-		{
-			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Error loading banner image" forKey:NSLocalizedDescriptionKey];
-			NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-			[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-			return;
-		}
-
-		CGFloat bannerWidth = [[xml.documentRoot getNamedChild:@"bannerwidth"].text floatValue];
-		CGFloat bannerHeight = [[xml.documentRoot getNamedChild:@"bannerheight"].text floatValue];
-
-		UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-		[button setFrame:CGRectMake(0, 0, bannerWidth, bannerHeight)];
-		[button addTarget:self action:@selector(tapThrough:) forControlEvents:UIControlEventTouchUpInside];
-
-		[button setImage:__bannerImage forState:UIControlStateNormal];
-		button.center = CGPointMake(roundf(self.bounds.size.width / 2.0), roundf(self.bounds.size.height / 2.0));
-		self.bannerView = button;
-	}
-	else if ([adType isEqualToString:@"textAd"])
-	{
-		NSString *html = [xml.documentRoot getNamedChild:@"htmlString"].text;
-
-        CGSize bannerSize;
-        if(adspaceHeight > 0 && adspaceWidth > 0)
-        {
-            bannerSize = CGSizeMake(adspaceWidth, adspaceHeight);
-        }
-		else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
-		{
-			bannerSize = CGSizeMake(728, 90);
-		}
-        else
-        {
-            bannerSize = CGSizeMake(320, 50);
-        }
-
-		UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, bannerSize.width, bannerSize.height)];
-        
-        //load HTML string later (to avoid calling impression pixels when using custom events)
-        if(!headers) { //means that it's an interstitial ad
-            _htmlString = [NSString stringWithFormat: @"<style>* { -webkit-tap-highlight-color: rgba(0,0,0,0);} body {height:100%%; width:100%%;} img {max-width:100%%; max-height:100%%; width:auto; height:auto; position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;}</style>%@",html];
-        } else {
-            _htmlString = html;
-        }
-        
-
-		if([skipOverlay isEqualToString:@"1"]) {
-
-            wasUserAction = NO;
-            
-            webView.delegate = (id)self;
-            webView.userInteractionEnabled = YES;
-            
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-            
-            [webView addGestureRecognizer:tap];
-            
-            tap.delegate = self;
-            
-            
-        } else {
-
-            webView.delegate = nil;
-            webView.userInteractionEnabled = NO;
-            
-//          add overlay later, only if no custom event is shown
-        }
-		webView.backgroundColor = [UIColor clearColor];
-		webView.opaque = NO;
-        webView.scrollView.scrollsToTop = false;
-
-		self.bannerView = webView;
-	}
-    else if ([adType isEqualToString:@"mraidAd"])
-	{
-        _refreshInterval = 0;
-        [self setRefreshTimerActive:NO];
-
-        NSString *html = [xml.documentRoot getNamedChild:@"htmlString"].text;
-        NSData  *_data = [html dataUsingEncoding:NSUTF8StringEncoding];
-
-        if(!self.adapter) {
-            self.adapter = [[MobFoxMRAIDBannerAdapter alloc] initWithDelegate:self];
-        }
-        
-        CGSize size;
-        if(adspaceHeight > 0 && adspaceWidth > 0)
-        {
-            size = CGSizeMake(adspaceWidth, adspaceHeight);
-        }
-        else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
-		{
-			size = CGSizeMake(728, 90);
-		}
-        else
-        {
-            size = CGSizeMake(320, 50);
-        }
-        
-        
-        MPAdConfigurationMF *mPAdConfiguration = [[MPAdConfigurationMF alloc] init];
-
-        mPAdConfiguration.adResponseData = _data;
-        mPAdConfiguration.preferredSize = size;
-        mPAdConfiguration.adType = MPAdTypeBanner;
-
-        [self.adapter getAdWithConfiguration:mPAdConfiguration containerSize:size];
-
-        self.bannerView = self.adapter.adView;
-
-    }   else if ([adType isEqualToString:@"noAd"])
-	{
-        //do nothing, there still can be custom events.
-	}
-	else if ([adType isEqualToString:@"error"])
-	{
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Unknown error" forKey:NSLocalizedDescriptionKey];
-
-		NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;
-	}
-	else
-	{
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Unknown ad type '%@'", adType] forKey:NSLocalizedDescriptionKey];
-
-		NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorUnknown userInfo:userInfo];
-		[self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-		return;
-	}
-
-    [customEvents removeAllObjects];
-    self.customEventBanner = nil;
-
-    if(headers)
-    {
-        for(NSString* key in headers) {
-            if ([key hasPrefix:@"X-CustomEvent"]) {
-                @try {
-                    NSString* jsonString = [headers objectForKey:key];
-                    NSError *error;
-                    NSDictionary *json =
-                    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                                options: NSJSONReadingMutableContainers
-                                                  error: &error];
-                    if(error) {
-                        continue;
-                    }
-                    MFCustomEvent *customEvent = [[MFCustomEvent alloc] init];
-                    customEvent.className = [json objectForKey:@"class"];
-                    customEvent.optionalParameter = [json objectForKey:@"parameter"];
-                    customEvent.pixelUrl = [json objectForKey:@"pixel"];
-                    [customEvents addObject:customEvent];
-                }
-                @catch (NSException *exception) {
-                    NSLog(@"Error creating custom event");
-                }
-                
-            }
-        }
-        
-    }
-    
-    normalBannerWasShownAfterCustomEventFail = NO;
-	if (self.bannerView && [customEvents count] == 0)
-	{
-        [self showBannerView:self.bannerView withPreviousSubviews:previousSubviews];
-	} else
-    {
-        [self loadCustomEventBanner];
-        if(!normalBannerWasShownAfterCustomEventFail) {
-            if (!_customEventBanner)
-            {
-                [customEvents removeAllObjects];
-                if(self.bannerView)
-                {
-                    [self showBannerView:self.bannerView withPreviousSubviews:previousSubviews];
-                }
-                else {
-                    
-                    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No inventory for ad request" forKey:NSLocalizedDescriptionKey];
-                
-                    _refreshInterval = 15;
-                    [self setRefreshTimerActive:YES];
-                
-                    NSError *error = [NSError errorWithDomain:ErrorDomain code:BizzClickErrorInventoryUnavailable userInfo:userInfo];
-                    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:YES];
-
-                }
-            } else {
-                _refreshInterval = 30; //enable banner refresh for  custom events.
-                [self setRefreshTimerActive:YES];
-            }
-        }
-    }
-}
-
 - (void)showBannerView:(UIView*)nextBannerView withPreviousSubviews:(NSArray*)previousSubviews
 {
     if([adType isEqualToString:@"textAd"] && !_customEventBanner) {
         
         [(UIWebView*)nextBannerView loadHTMLString:_htmlString baseURL:nil];
         
-        if(![skipOverlay isEqualToString:@"1"]) { //create overlay only if necessary, to not interfere with custom events
+        if(useOverlay) { //create overlay only if necessary, to not interfere with custom events
             UIImage *grayingImage = [self darkeningImageOfSize:self.bannerView.frame.size];
         
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -1151,6 +926,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
                                         @"Apple", @"make",
                                        [_idfa UUIDString], @"ifa",
                                        [[_idfa UUIDString] sha1], @"dpidsha1",
+                                        [[_idfa UUIDString] md5], @"dpidmd5",
                                         iosadDontTrack, @"dnt",
                                         model, @"model",
                                         devicetype, @"devicetype",
@@ -1234,7 +1010,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
         NSURL *url;
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", serverURL, fullRequestString]];
-        NSLog(@"full url = %@", url);
+        //NSLog(@"full url = %@", url);
 
         NSMutableURLRequest *request;
         NSError *error;
@@ -1251,7 +1027,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             headers = [(NSHTTPURLResponse *)response allHeaderFields];
         }
-
 
         MFDTXMLDocument *xml = [MFDTXMLDocument documentWithData:dataReply];
 
@@ -1277,7 +1052,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 
         
         [self performSelectorOnMainThread:@selector(setupAdFromXmlWithDictionary:) withObject:dict waitUntilDone:YES];
-        
     }
 }
 
@@ -1323,7 +1097,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 	label.numberOfLines = 0;
 	label.backgroundColor = [UIColor whiteColor];
 	label.font = [UIFont boldSystemFontOfSize:12];
-	label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
 	label.textColor = [UIColor redColor];
 	label.text = text;
 	[self addSubview:label];
@@ -1506,7 +1280,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
             if(_tapThroughURL) {
                 NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
                 [request2 setHTTPMethod: @"GET"];
-                [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+              //  [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
             }
             _tapThroughURL = url;
             [self tapThrough:nil];
@@ -1525,7 +1299,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
                 if(_tapThroughURL) {
                     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:_tapThroughURL];
                     [request2 setHTTPMethod: @"GET"];
-                    [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+               //     [NSURLConnection sendAsynchronousRequest:request2 queue:[[NSOperationQueue alloc] init] completionHandler:nil];
                 }
                 _tapThroughURL = url;
                 [self tapThrough:nil];
@@ -1659,7 +1433,7 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
     if(height > 0) {
         adspaceHeight = height;
     } else {
-        NSLog(@"Adspace height must be greater than 0! Ignoring value: %li", (long)height);
+        NSLog(@"Height should be greater than 0!!! Ignoring value: %li", (long)height);
     }
 }
 
@@ -1667,13 +1441,13 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
     if(width > 0) {
         adspaceWidth = width;
     } else {
-        NSLog(@"Adspace width must be greater than 0! Ignoring value: %li", (long)width);
+        NSLog(@"Width should be greater than 0! Ignoring value: %li", (long)width);
     }
 }
 
 - (BOOL)stopRefreshTimer{
     [self setRefreshTimerActive:NO];
-    return NO;
+    return YES;
 }
 
 - (BOOL)startRefreshTimer{
@@ -1690,7 +1464,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 @synthesize refreshTimerOff;
 @synthesize requestURL;
 @synthesize userAgent;
-@synthesize skipOverlay;
 @synthesize adType;
 @synthesize adapter;
 @synthesize adspaceHeight;
@@ -1699,7 +1472,6 @@ NSString * const BaseUrl = @"http://ad.bizzclick.com:9080/";
 @synthesize locationAwareAdverts;
 @synthesize userGender,userYOB,keywords;
 @synthesize locationManager;
-
 
 
 

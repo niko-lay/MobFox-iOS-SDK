@@ -1,6 +1,6 @@
-#import "NSURL+MobFox.h"
+#import "NSURL+BizzClick.h"
 
-@implementation NSURL (MobFox)
+@implementation NSURL (BizzClick)
 
 - (BOOL)isDeviceSupported
 {
@@ -22,11 +22,6 @@
 			return YES;
 		}
 
-		if ([host isEqualToString:@"phobos.apple.com"])
-		{
-			return YES;
-		}
-        
         if ([host hasSuffix:@"itunes.apple.com"])
 		{
 			return YES;
